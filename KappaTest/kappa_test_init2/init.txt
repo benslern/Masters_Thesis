@@ -1,0 +1,12 @@
+Initial Conditions:
+inifield: 4, 5346689, 123455, 662341
+direction: 6, 123345, 5566478, 662345
+
+set logscale x
+set xlabel "epsilon"
+set ylabel "log10(abs(kappa-1))"
+set grid
+set yrange [-3:5]
+plot for [i=4:9] "./kappa_test_t1/kappa_test_error".i.".dat" u 1:(log10(abs($6-1))) w l lt i title "test error".i
+plot for [i=4:9] "./kappa_test_t3/kappa_test_error".i.".dat" u 1:(log10(abs($6-1))) w l lt i title "test error".i
+plot for [i=4:9] "./kappa_test_t5/kappa_test_error".i.".dat" u 1:(log10(abs($6-1))) w l lt i title "test error".i
