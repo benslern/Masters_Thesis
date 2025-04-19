@@ -1,0 +1,31 @@
+
+create folders 'LOGFILES' and 'results' in the current folder;
+
+load modules:
+
+1) Niagara: module load CCEnv arch/avx512 StdEnv/2020 fftw-mpi/3.3.8 netcdf-fortran-mpi/4.5.2
+
+or
+
+2) Graham: module load StdEnv/2020 fftw-mpi/3.3.8 netcdf-fortran-mpi/4.5.2
+
+compile:
+
+make test_solver
+
+run code:
+
+1) srun --account=def-bprotas --nodes=1 --ntasks-per-node=32 --mem=0M --time=0-01:00  ./test_solver > output &
+
+or
+
+2) sbatch test_solver.sh
+
+
+check the status of the job:
+
+scontrol show job -dd
+
+
+
+
