@@ -157,9 +157,9 @@ PROGRAM EULER_VOIGT
 
    
    
-
-   if (0) then
-      endTime = 10.0_pr
+   ! Noah test simulations
+   if (1) then
+      endTime = 3.0_pr
       stepper = 3
       visc = 0.0_pr
       alpha = 4.0_pr/256.0_pr
@@ -172,8 +172,7 @@ PROGRAM EULER_VOIGT
    end if
 
    ! kappa test
-
-   if (1) then
+   if (0) then
       endTime = 1.0_pr
       stepper = 3
       visc = 0.0_pr
