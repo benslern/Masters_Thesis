@@ -1,2 +1,4 @@
 Code/euler_voigt_copy/results/
 Code/euler_voigt_copy/LOGFILES/
+Code/euler_voigt_copy/*.o
+Code/euler_voigt_copy/*.mod
