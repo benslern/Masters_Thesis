@@ -1,0 +1,22 @@
+\begin{thebibliography}{1}
+
+\bibitem{CaoLunasinTiti2006}
+Yanping Cao, Evelyn~M Lunasin, and Edriss~S Titi.
+\newblock Global well-posedness of the three-dimensional viscous and inviscid
+  simplified bardina turbulence models.
+\newblock {\em Communications in Mathematical Sciences}, 4(4):823--848, 2006.
+
+\bibitem{Larios2018}
+Adam Larios, Mark~R Petersen, Edriss~S Titi, and Beth Wingate.
+\newblock A computational investigation of the finite-time blow-up of the 3d
+  incompressible euler equations based on the voigt regularization.
+\newblock {\em Theoretical and Computational Fluid Dynamics}, 32:23--34, 2018.
+
+\bibitem{Larios:Titi:2010}
+Adam Larios and Edriss~S Titi.
+\newblock On the higher-order global regularity of the inviscid
+  voigt-regularization of three-dimensional hydrodynamic models.
+\newblock {\em Discrete And Continuous Dynamical Systems-Series B},
+  14(2):603--627, 2010.
+
+\end{thebibliography}

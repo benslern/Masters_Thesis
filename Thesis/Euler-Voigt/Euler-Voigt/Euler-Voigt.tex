@@ -1,0 +1,529 @@
+\PassOptionsToPackage{usenames, dvipsnames}{color}
+
+\documentclass[leqno,10pt,a4paper]{amsart}
+
+%-------------------------------------------------------------------------------
+
+\usepackage[full]{textcomp}
+\usepackage{newpxtext}
+\usepackage{times}
+\usepackage{cabin} % sans serif
+\usepackage[varqu,varl]{inconsolata} % sans serif typewriter
+\usepackage[bigdelims,vvarbb]{newpxmath} % bb from STIX
+\usepackage[cal=cm,bb=esstix,bbscaled=1.05]{mathalfa} % mathcal
+%\usepackage[margin=2.54cm]{geometry}
+\usepackage[bottom=1.25in,top=1.1in,left=1.25in,right=1.25in]{geometry}
+\setlength{\footskip}{20pt}
+\usepackage{savesym}
+\let\savedegree\bigtimes
+\let\bigtimes\relax
+\usepackage{mathabx}
+\let\bigtimes\savedegree
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{hyperref}
+\hypersetup{
+ colorlinks,
+ linkcolor={blue!90!black},
+ citecolor={red!80!black},
+ urlcolor={blue!50!black}
+}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\usepackage{mathrsfs}
+\usepackage[all,cmtip]{xy}
+\usepackage{mleftright}
+\usepackage{booktabs}
+\usepackage{cite}
+\usepackage{enumitem}
+
+
+%------------------------------------------------------------------------------
+% added by me
+
+\usepackage{graphicx}
+\usepackage{subfigure}
+
+\usepackage[outdir=./]{epstopdf}
+\usepackage{caption}
+\captionsetup{
+font=small,
+justification   = raggedright}
+
+\usepackage{placeins}
+\usepackage{comment}
+
+
+
+
+%-------------------------------------------------------------------------------
+\renewcommand{\baselinestretch}{1.1}
+\setlist[enumerate]{labelsep=*, leftmargin=1.5pc}
+\setlist[enumerate]{label=\normalfont(\roman*), ref=\roman*}
+%-------------------------------------------------------------------------------
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+%-------------------------------------------------------------------------------
+\theoremstyle{definition}
+\newtheorem{example}[thm]{Example}
+\newtheorem{remark}[thm]{Remark}
+\newtheorem{definition}[thm]{Definition}
+\newtheorem{conjecture}[thm]{Conjecture}
+\newtheorem{question}[thm]{Question}
+\newtheorem{problem}[thm]{Problem}
+\numberwithin{equation}{section}
+%-------------------------------------------------------------------------------
+\newcommand{\mypsdraft}{\psdraft}
+\renewcommand{\mypsdraft}{\psfull}
+\newcommand{\mypsfull}{\psfull}
+
+
+\newcommand{\IGNORE}[1]{}
+\newcommand{\ignore}[1]{}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\tilphi}{\tilde{\varphi}}
+\newcommand{\opn}{\operatorname}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\phm}{\phantom{-}}
+\newcommand{\mbb}[1]{\mathbb{#1}}
+\newcommand{\mb}[1]{\mathbf{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\argsr}{(\theta,\partial_\theta,r\partial_r)}
+\newcommand{\argsl}{(\theta,\partial_\theta,\lambda)}
+\newcommand{\rdr}{r\partial_r}
+\newcommand{\jd}{\displaystyle}
+\newcommand{\js}{\scriptstyle}
+\newcommand{\jt}{\textstyle}
+\newcommand{\jss}{\scriptscriptstyle}
+\newcommand{\lami}{(\lambda-\lambda_i)}
+\newcommand{\lamo}{(\lambda-\lambda_0)}
+\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\derr}[2]{\frac{\delta #1}{\delta #2}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\lla}{\left\langle}
+\newcommand{\rra}{\right\rangle}
+%\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\pa}{\partial}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+
+%\newcommand{\x}{\tilde{x}}
+
+\newcommand{\y}{\tilde{y}}
+\newcommand{\z}{\tilde{z}}
+\renewcommand{\L}{\tilde{L}}
+\newcommand{\n}{\mathbf{\tilde{n}}}
+\newcommand{\PP}{\operatorname{P}}
+\newcommand{\PR}{\operatorname{R}}
+\DeclareMathOperator*{\argmax}{argmax}
+\newcommand{\bds}{\boldsymbol}
+\newcommand{\emach}{\epsilon_{\text{machine}}}
+\newcommand{\tol}{\text{tol}}
+\newcommand{\leray}{{\text{Leray}}}
+\newcommand{\TG}{{\text{TG}}}
+\newcommand{\rand}{{\text{rand}}}
+\newcommand{\low}{{\text{low}}}
+\newcommand{\up}{{\text{up}}}
+\newcommand{\Kerr}{{\text{K}}}
+\newcommand{\filter}{{\text{filter}}}
+\newcommand{\Hou}{{\text{H}}}
+\newcommand{\Trel}{{T_{\text{rel}}}}
+
+\def\bnabla{\boldsymbol{\nabla}}
+\def\u{\boldsymbol{u}}
+\def\vv{\boldsymbol{v}}
+\def\w{\boldsymbol{w}}
+\def\d{\boldsymbol{d}}
+\def\j{\boldsymbol{j}}
+\def\bk{\boldsymbol{k}}
+\def\n{\boldsymbol{n}}
+\def\x{\boldsymbol{x}}
+\def\z{\boldsymbol{z}}
+\def\bbeta{\boldsymbol{\eta}}
+\def\bxi{\boldsymbol{\xi}}
+\def\bomega{\boldsymbol{\omega}}
+\def\RR{\mathbb{R}}
+\def\TT{\mathbb{T}}
+\def\CC{\mathbb{C}}
+
+\def\tPhi{\widetilde{\Phi}}
+\def\teta{\widetilde{\boldsymbol{\eta}}}
+
+\def\M{\mathcal{M}}
+\def\T{\mathcal{T}}
+\newcommand{\xinyu}[1]{{\color{blue} (\sf $\clubsuit$ Xinyu: #1)}}
+\newcommand{\bartosz}[1]{{\color{red} (\sf $\diamondsuit$ Bartosz: #1)}}
+
+\newcommand{\revt}[1]{{\color{blue}#1}}
+%\newcommand{\revt}[1]{{\color{black}#1}}
+\newcommand{\revtt}[1]{{\color{red}#1}}
+\newcommand{\revtbn}[1]{{\color{magenta}#1}}
+%-------------------------------------------------------------------------------
+
+\begin{document}
+\author[]{}
+\address{}
+\email{}
+%-------------------------------------------------------------------------------
+\keywords{}
+\subjclass[]{}
+%-------------------------------------------------------------------------------
+\title{Euler-Voigt Equations}
+\maketitle
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+%-------------------------------------------------------------------------------
+
+We study the Euler-Voigt equations posed on a periodic domain $\mbb T^3 := (\mbb R/\mbb Z)^3 $
+%
+\begin{equation}\label{eq:Euler:Voigt}
+\begin{aligned}
+-\alpha^2 \partial_t\Delta\bds u_\alpha + \partial_t \bds u_\alpha + (\bds u\cdot\nabla)\bds u_\alpha + \nabla p &= 0, \\
+\nabla \cdot \bds u_\alpha &= 0, \\
+\bds u_\alpha(\bds x, 0) &= \bds \eta_\alpha,
+\end{aligned}
+\end{equation}
+%
+where $\alpha > 0$ is a regularization parameter.
+The Euler-Voigt equations can be viewed as an inviscid regularization of the Euler equations
+%
+\begin{equation}\label{eq:Euler}
+\begin{aligned}
+\partial_t \bds u + (\bds u\cdot\nabla)\bds u + \nabla p &= 0, \\
+\nabla \cdot \bds u &= 0, \\
+\bds u(\bds x, 0) &= \bds \eta.
+\end{aligned}
+\end{equation}
+%
+The solutions to \eqref{eq:Euler} and \eqref{eq:Euler:Voigt} both possess the following time scaling symmetry
+%
+\begin{equation}\label{eq:sym}
+\tilde {\bds u}(\bds x, t) = \lambda\bds u(\bds x, \lambda t).
+\end{equation}
+%
+
+Unlike the Euler equations for which the global well-posedness of the solutions remains an open problem, the solutions of the Euler-Voigt are known to be globally well-posed for $t \in (-\infty, \infty)$ \cite{CaoLunasinTiti2006}. Moreover, the ``$\alpha$-energy'' of the solutions of  \eqref{eq:Euler:Voigt} is conserved for all times
+%
+\begin{equation}
+E_\alpha(t) := ||\bds u_\alpha(t)||^2_{L^2} + \alpha^2 ||\nabla \bds u_\alpha(t)||_{L^2}^2 = E_\alpha(0). 
+\end{equation}
+%
+
+The behavior of the solutions of \eqref{eq:Euler:Voigt} as $\alpha \to 0$ can be used to determine whether the solutions of the Euler equations will develop a finite time singularity \cite{Larios2018}. 
+%
+\begin{thm}
+Let $\bds \eta_\alpha \in H^s, s \geq 3$ with $\nabla \cdot \bds \eta_\alpha  = 0$ and let $\bds u_\alpha$ be the corresponding unique solution of \eqref{eq:Euler:Voigt}. Suppose that there exits $T^* > 0$ such that
+%
+\begin{equation}
+\limsup_{\alpha\to 0^+} \left(\alpha \sup_{t\in[0, T^*]} ||\nabla \bds u_\alpha(t)||_{L^2}\right) > 0.
+\end{equation}
+%
+Then the Euler equations with the initial condition $\bds \eta_\alpha$ must develop a singularity within the interval $[0, T^*]$.
+\end{thm}
+%
+
+The Theorem 5.1 in \cite{Larios:Titi:2010} stated that
+%
+\begin{thm} \label{thm:convergence}
+Given initial data $\bbeta$, $\bbeta_\alpha \in H^s(\mbb T^3)$ for some $s\geq 3$, let $\bds u, \bds u_\alpha \in C([0, T], H^s(\mbb T^3)) \cap C^1([0, T], H^{s-1}(\mbb T^3))$ be the corresponding solutions
+to \eqref{eq:Euler} and \eqref{eq:Euler:Voigt}, respectively, where $0 < T < T_{\max}$ and $T_{\max}$ is the maximal time for which a solution to \eqref{eq:Euler} exists and is unique. For all $t\in[0, T]$, we have
+%
+\begin{equation}
+\begin{aligned}
+&\quad ||\bds u(t) - \bds u_\alpha(t)||_{L^2}^2 
++ \alpha^2 ||\nabla(\bds u(t)- \bds u_\alpha(t))||_{L^2}^2 \\
+&\leq \left(||\bds \eta - \bds \eta_\alpha||_{L^2}^2 
++ \alpha^2 ||\nabla(\bds \eta - \bds \eta_\alpha)||_{L^2}^2\right)e^{Ct}
++ C\alpha^2(e^{Ct} - 1).
+\end{aligned}
+\end{equation}
+%
+\end{thm}
+Based on Theorem \ref{thm:convergence}, we know that if 
+%
+\begin{equation}
+||\bds \eta - \bds \eta_\alpha||_{L^2}^2 
++ \alpha^2 ||\nabla(\bds \eta - \bds \eta_\alpha)||_{L^2}^2 \to 0, \quad \text{as } \alpha \to 0, 
+\end{equation}
+%
+then for all $t\in[0, T]$, 
+%
+\begin{equation}
+||\bds u(t) - \bds u_\alpha(t)||_{L^2}^2 
++ \alpha^2 ||\nabla(\bds u(t) - \bds u_\alpha(t))||_{L^2}^2 \to 0.
+\end{equation}
+%
+Therefore, we can put the constraint on $||\nabla\bbeta_\alpha||_{L^2}$ in the optimization process and check whether 
+$||\bds \eta - \bds \eta_\alpha||_{L^2}^2 \to 0$ as $\alpha \to 0$ in computation.
+
+We slightly modify Theorem 5.2 in \cite{Larios:Titi:2010} as follows.
+%
+\begin{thm}\label{thm:blowup}
+Given initial data $\bbeta$, $\bbeta_\alpha \in H^s(\mbb T^3)$ for some $s\geq 3$ satisfying
+%
+\begin{equation}
+||\bds \eta - \bds \eta_\alpha||_{L^2}^2 
++ \alpha^2 ||\nabla(\bds \eta - \bds \eta_\alpha)||_{L^2}^2 \to 0, \quad \text{as } \alpha \to 0,
+\end{equation}
+%
+let $\bds u, \bds u_\alpha \in C([0, T], H^s(\mbb T^3)) \cap C^1([0, T], H^{s-1}(\mbb T^3))$ be the corresponding solutions to \eqref{eq:Euler} and \eqref{eq:Euler:Voigt}, respectively. 
+
+If there exists a finite time $T^* > 0$ such that the solutions $\bds u_\alpha$ satisfies
+%
+\begin{equation}
+\limsup_{\alpha\to 0} \left(\alpha^2 \sup_{t \in [0, T^*]}||\nabla \bds u_\alpha(t)||^2_{L^2}\right)> 0,
+\end{equation}
+%
+then $\bds u$ develops a singularity in the interval $[0, T^{*}]$.
+\end{thm}
+%
+
+\begin{proof}
+Suppose that the solution $\bds u$ of the Euler equations \eqref{eq:Euler} with the initial condition $\bbeta$ is regular
+on $[0, T^*]$.
+Since the Euler-Voigt equations are globally well-posed, we have 
+%
+\begin{equation}
+||\bds u_\alpha(t)||^2_{L^2} + \alpha^2 ||\nabla \bds u_\alpha(t)||^2_{L^2}  = 
+||\bbeta_\alpha||^2_{L^2} + \alpha^2 ||\nabla\bbeta_\alpha||^2_{L^2},
+\end{equation}
+%
+thus
+%
+\begin{equation}
+ \alpha^2 ||\nabla \bds u_\alpha(t)||^2_{L^2}  = 
+||\bbeta_\alpha||^2_{L^2} + \alpha^2 ||\nabla\bbeta_\alpha||^2_{L^2} - ||\bds u_\alpha(t)||^2_{L^2}.
+\end{equation}
+%
+Taking the supremum over $t\in[0,T^*]$ of the above equation, we obtain that
+ %
+\begin{equation}
+\sup_{t\in[0,T^*]}\alpha^2 ||\nabla \bds u_\alpha(t)||^2_{L^2} = 
+||\bbeta_\alpha||^2_{L^2} + \alpha^2 ||\nabla\bbeta_\alpha||^2_{L^2} - \inf_{t\in[0, T^*]} ||\bds u_\alpha(t)||^2_{L^2}.
+\end{equation}
+%
+Taking the $\limsup$ when $\alpha \to 0$ of the above equation, we obtain that
+%
+\begin{equation}
+\begin{aligned}
+\limsup_{\alpha\to 0} \sup_{t\in[0,T^*]}\alpha^2 ||\nabla \bds u_\alpha(t)||^2_{L^2} 
+&= \limsup_{\alpha\to 0} \left(||\bbeta_\alpha||^2_{L^2} + \alpha^2 ||\nabla\bbeta_\alpha||^2_{L^2} - \inf_{t\in[0, T^*]} ||\bds u_\alpha(t)||^2_{L^2}\right)\\
+&= ||\bbeta||^2_{L^2} - ||\bds u(t)||^2_{L^2},
+\end{aligned}
+\end{equation}
+%
+where the second equality holds because according to Theorem \ref{thm:convergence}, the convergence of the solutions of the Euler-Voigt equations to the solution of the Euler equations is uniform on $[0, T^*]$.
+Since the energy of regular solutions of the Euler equations is conserved, we have $||\bbeta||^2_{L^2} = ||\bds u(t)||^2_{L^2}$, thus
+%
+\begin{equation}
+\limsup_{\alpha\to 0} \left(\sup_{t\in[0,T^*]}\alpha^2 ||\nabla \bds u_\alpha(t)||^2_{L^2} \right)= 0,
+\end{equation}
+%
+which contradicts the hypothesis in the theorem that the above expression is positive.
+
+
+\end{proof}
+ 
+ 
+%-------------------------------------------------------------------------------
+\section{PDE optimization method}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\subsection{The optimization problem}
+%-------------------------------------------------------------------------------
+
+
+We consider analytic initial conditions that belong to the following Gevrey class
+\begin{equation}
+G^\sigma := \left\{ \vv \in H^s(\TT^3) \ : \ \| \vv \|_{G^\sigma} = \left\langle \vv,\vv \right\rangle^{1/2}_{G^\sigma} < \infty \right\}, \quad s \geq 3, \quad \sigma > 0,
+\label{eq:G}
+\end{equation}
+with the inner product
+\begin{equation}\label{eq:Gevrey:def}
+\begin{aligned}
+\forall \bds v, \bds u\in G^{\sigma}, \quad 
+\left\la\bds v, \bds u \right\ra_{G^{\sigma}} 
+:= &\sum_{\bds j \in \mathbb Z^3} 
+(1+|2\pi\bds j|^2)^s e^{4\pi\sigma|\bds j|} \hat{\bds v}_{\bds j} \cdot \overline{\hat{\bds u}}_{\bds j}\\
+=& \int_{\mbb T^3}(1+|D|^2)^s e^{2\sigma|D|} \bds v \cdot \bds u \, d\bds x,
+\end{aligned}
+\end{equation}
+where overbar denotes complex conjugation, whereas the operators $|D|$
+and $e^{\sigma|D|}$ are defined via
+%
+\begin{equation}
+\left[\widehat{|D| \bds v}\right]_{\bds j} := 2\pi|\bds j| \hat{\bds v}_{\bds j}, \qquad \qquad 
+\left[\widehat{e^{\sigma |D|}\bds v}\right]_{\bds j} := e^{2\pi\sigma|\bds j|}\hat{\bds v}_{\bds j}.
+\label{eq:D}
+\end{equation}
+Since the initial conditions in \eqref{eq:Euler:Voigt} and \eqref{eq:Euler} need to
+be divergence-free and the quantity $\int_{\TT} \bbeta \, d\x$ is an
+invariant of motion, we introduce the following subspace in which
+optimal initial conditions will be sought
+%
+\begin{equation}\label{eq:space:initial:condition}
+V := \{ \bds v  \in G^{\sigma}: \,
+\bnabla \cdot \bds v = 0, \quad \int_{\mbb T^3} \bds v \, d \bds x= \bds 0\}.
+\end{equation}
+%
+According to the analytical results in Section \ref{sec:intro}, we define the objective functional $\Phi_{\alpha, T}: V \to \mbb R^+$ as
+%
+\begin{equation}\label{eq:obj}
+\Phi_{\alpha, T}(\bbeta) := \| \nabla\u_\alpha(T; \bbeta) \|^2_{L^2} 
+= \| \u_\alpha(T; \bbeta) \|^2_{\dot{H}^1},
+\end{equation}
+%
+where $\u_\alpha(T;\bbeta)$ is the solution of the Euler-Voigt equations
+\eqref{eq:Euler:Voigt} obtained with the initial condition $\bbeta \in V$ and $\alpha$ is the regularization parameter in \eqref{eq:Euler:Voigt}. 
+
+Due to the scaling property \eqref{eq:sym} of the Euler-Voigt equations \eqref{eq:Euler:Voigt},  
+we can restrict our discussion to initial conditions with
+unit $\dot H^1$ seminorm which belong to a closed manifold
+$\M_1 \subset V$ defined as
+\begin{equation}\label{eq:M1}
+\M_1 = \{\bds v \in V:\,  ||\bds v||_{\dot H^1} = 1\}.
+\end{equation}
+Therefore, we  arrive at the following optimization problem
+%
+\begin{problem}\label{pb:H3}
+Given $\alpha, T \in \mbb R_+$, find 
+%
+\begin{equation}
+\teta_{\alpha, T} = \argmax\limits_{\bbeta \in \M_{1}} \Phi_{\alpha, T}(\bbeta).
+\end{equation}
+%
+\end{problem}
+Our goal is to first fix $T$ and solve the optimization problem \ref{pb:H3} for a sequence of decreasing values of $\alpha$ that converge to 0.
+
+
+%-------------------------------------------------------------------------------
+\subsection{The adjoint method}
+%-------------------------------------------------------------------------------
+We compute the gradient $\nabla \Phi_{\alpha, T}(\bbeta)$ of the objective
+functional in \eqref{eq:obj} using an adjoint method which depends on solving a properly defined
+adjoint system backward in time. We 
+first introduce the G\^{a}teaux
+(directional) differential $\Phi_{\alpha, T}'(\bbeta; \bbeta'): V \times V
+\to \mbb R$
+%
+\begin{equation}\label{eq:differential}
+\begin{aligned}
+\Phi_{\alpha, T}'(\bbeta; \bbeta') :&= \lim_{\epsilon \to 0} \frac{1}{\epsilon}
+\left[ \Phi_{\alpha, T}\left(\bbeta + \epsilon \bbeta'\right) - \Phi_{\alpha, T}(\bbeta)\right]\\
+& = 2\left\la\bds u_\alpha(\cdot, T), \bds u_\alpha'(\cdot, T)\right\ra_{\dot H^1}.
+\end{aligned}
+\end{equation}
+Here $\bds u_\alpha'(\bds x, t)$ is the solution of the linearization of the
+Euler-Voigt equations \eqref{eq:Euler:Voigt} around its solution $\bds u_\alpha(\bds x, t;
+\bbeta)$, which is defined by
+%
+\begin{equation}\label{eq:L}
+\begin{aligned}
+\mc L
+\begin{bmatrix} \bds{u}_\alpha' \\ p_\alpha' \end{bmatrix}
+:&=
+\begin{bmatrix}
+\partial_t \bds u_\alpha' + (I-\alpha^2\Delta)^{-1}\left(\bds u_\alpha' \cdot \bnabla \bds u_\alpha + \bds u_\alpha\cdot \bnabla \bds u_\alpha' + \bnabla p_\alpha'\right)\\[3pt]
+\bnabla \cdot \bds u_\alpha'
+\end{bmatrix}=
+\begin{bmatrix}
+\bds 0\\[3pt]
+0
+\end{bmatrix},\\[3pt]
+\u_\alpha'(\bds x, 0) & = \bbeta'(\bds x),
+\end{aligned}
+\end{equation}
+%
+where $\bbeta'$ is the perturbation of the initial condition and
+$p'_\alpha(\bds x, t)$ is the corresponding pressure perturbation.
+We further introduce the adjoint states $\left\{\bds u^*_\alpha: \mbb T^3 \times [0, T]
+  \to \mbb R^3, \ p^*_\alpha: \mbb T^3 \times [0, T] \to \mbb R\right\}$ and
+the following duality-pairing relation
+%
+\begin{equation}\label{eq:pairing}
+\begin{aligned}
+\left(\mc L 
+\begin{bmatrix} \bds{u}_\alpha' \\ p_\alpha' \end{bmatrix}, \, 
+\begin{bmatrix} \bds{u}_\alpha^* \\ p_\alpha^* \end{bmatrix}
+\right) : =& 
+\int_0^{T}\int_{\mbb T^3} 
+\mc L \begin{bmatrix} \bds{u}_\alpha' \\ p_\alpha' \end{bmatrix} \cdot 
+\begin{bmatrix} \bds{u}_\alpha^* \\ p_\alpha^* \end{bmatrix}
+\, d\bds x \,dt\\[3pt]
+= &\left(
+\begin{bmatrix} \bds{u}_\alpha' \\ p_\alpha' \end{bmatrix}, \, 
+\mc L^* \begin{bmatrix} \bds{u}_\alpha^* \\ p_\alpha^* \end{bmatrix}
+\right)
++ \int_{\mbb T^3} \bds u_\alpha'(\bds x, T) \cdot \bds u_\alpha^*(\bds x, T) \, d\bds x\\[3pt]
+&- \int_{\mbb T^3} \bbeta'(\bds x) \cdot \bds u_\alpha^*(\bds x, 0) \, d\bds x\\[3pt]
+= &\  0.
+\end{aligned}
+\end{equation}
+%
+Here ``$\cdot$'' denotes the usual Euclidean inner product on
+$\RR^4$ and $\mc L^*$ is the {\em adjoint} operator defined
+in terms of the following system, which is obtained by performing
+integration by parts with respect to both space and time in
+(\ref{eq:pairing})
+%
+\begin{equation}\label{eq:adjoint}
+\begin{aligned}
+\mc L^* \begin{bmatrix} \bds{u}_\alpha^* \\ p_\alpha^* \end{bmatrix} :&= 
+\begin{bmatrix}
+-\partial_t \bds u_\alpha^* - (\bnabla (I - \alpha^2\Delta)^{-1}\bds u_\alpha^* + 
+(\bnabla(I-\alpha^2\Delta)^{-1}\bds u_\alpha^*)^T)\bds u_\alpha - \bnabla p_\alpha^*\\[3pt]
+-\bnabla \cdot \bds u_\alpha^*
+\end{bmatrix}
+= \begin{bmatrix}
+\bds 0\\[3pt]
+0
+\end{bmatrix}, \\[3pt]
+\bds u^*_\alpha(\bds x, T) &=  2|D|^2\bds u_\alpha(\bds x, T).
+\end{aligned} 
+\end{equation}
+%
+Therefore, we have
+%
+\begin{equation}
+\Phi_{\alpha, T}'(\bbeta; \bbeta') = 2\left\la\bds u_\alpha(\cdot, T), \bds u_\alpha'(\cdot, T)\right\ra_{\dot H^1} = \left\la\bds u_\alpha^*(\cdot, 0), \bds \eta'(\cdot)\right\ra_{L^2} 
+\end{equation}
+%
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{plain}
+\bibliography{references} 
+
+
+\end{document}
+
+%% To be filled in the journal office:
+
+@author:
+@affiliation:
+@title:
+@language: English
+@pages:
+@classification1:
+@classification2:
+@keywords:
+@abstract:
+@filename:
+@EOI
+
+
