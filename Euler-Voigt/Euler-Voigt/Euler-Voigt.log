@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  20 APR 2025 12:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  22 APR 2025 13:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -4810,8 +4810,8 @@ Package rerunfilecheck Warning: File `Euler-Voigt.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `Euler-Voigt.out':
-(rerunfilecheck)             Before: 3455AA4390BCEF03167DDF596C810C4E;789
-(rerunfilecheck)             After:  EF29E228C2E20BC69D7BBCF498521D73;822.
+(rerunfilecheck)             Before: EF29E228C2E20BC69D7BBCF498521D73;822
+(rerunfilecheck)             After:  3455AA4390BCEF03167DDF596C810C4E;789.
  ) 
 Here is how much of TeX's memory you used:
  31154 strings out of 474486
@@ -4845,7 +4845,7 @@ type1/urw/times/utmr8a.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/newpx/zplb.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts
 /type1/public/newpx/zplr.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/font
 s/type1/public/newpx/zplri.pfb>
-Output written on Euler-Voigt.pdf (4 pages, 265176 bytes).
+Output written on Euler-Voigt.pdf (4 pages, 265204 bytes).
 PDF statistics:
  294 PDF objects out of 1000 (max. 8388607)
  44 named destinations out of 1000 (max. 500000)

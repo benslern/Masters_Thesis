@@ -35,7 +35,7 @@
 \\~\\
 \qquad Because of the periodic boundary, each pair of opposite faces on $\Omega$ are actually the same face. Therefore, the value of a periodic function is the same on opposite faces. However, the normal vector in the surface integral is, by convention, outward-pointing. Therefore, the surface integral over one face will be exactly cancelled by the integral over the opposite face. This means the surface integral of a periodic function on $\Omega$ is zero.
 \\~\\
-\qquad The resolution of a simulation describes the number of points in the grid. It is denoted by the symbol $N^3$ where $N$ is the number of points along each axis. Typically the simulations will use a resolution of $128^3$, $256^3$, $512^3$, or $1024^3$. The simulations for my Masters thesis will use uniform grids. However, some simulations utilize adaptive grids which increase the local resolution near points of interest.
+\qquad The resolution of a simulation describes the number of points in the grid. It is denoted by the symbol $N^3$ where $N$ is the number of points along each axis. Typically the simulations will use a resolution of $128^3$, $256^3$, $512^3$, or $1024^3$. The simulations for my master's thesis will use uniform grids. However, some simulations utilize adaptive grids which increase the local resolution near points of interest.
 
 \section{Smooth and Analytic Functions}
 
@@ -47,9 +47,12 @@
       0 & \text{if }x\leq 0. \\ 
    \end{cases}
 \]
-This function is smooth as it has continuous derivatives of all orders at every real number $x$. However, the function is not analytic.
+This function is smooth as it has continuous derivatives of all orders at every real number $x$. However, the function is not analytic because there is no convergent power series at $x=0$.
 
 \section{Fourier Analysis}
+
+\qquad In mathematics, Fourier analysis is the study of the way general functions may be represented or approximated by sums of simpler trigonometric functions. We make use of several different components of Fourier Analysis.
+
 \subsection{Fourier Transform}
 
 \qquad The Fourier Transform (FT) is a mathematical tool that decomposes a function into its constituent frequencies. This transforms the function from physical space to its frequency domain or Fourier Space. The Fourier transform of a function $u(x)$, $x\in \mathbb{R}$ is the function $\hat{u}(k)$ defined by,
@@ -64,9 +67,7 @@ The number $\hat{u}(k)$ can be interpreted as the amplitude density of $u$ at wa
 \subsection{Inverse Fourier Transform}
 Conversely, we can reconstruct $u$ from $\hat{u}$ by the inverse Fourier transform,
 $$u(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{ikx}\hat{u}(k)dk, \qquad x\in\mathbb{R}.$$
-The Fourier transform and inverse Fourier transform are defined over continuous unbounded space ($x$) and continuous unbounded wavenumbers ($k$). 
-\\~\\
-The $L^2$-norms of $u$ and $\hat{u}$ are related by Parseval's equality,
+The Fourier transform and inverse Fourier transform are defined over continuous unbounded space ($x$) and continuous unbounded wavenumbers ($k$). The $L^2$-norms of $u$ and $\hat{u}$ are related by Parseval's equality,
 $$\|\hat{u}\| = \sqrt{2\pi}\|u\|$$
 
 \subsection{Semi-discrete Fourier Transform}
@@ -76,6 +77,7 @@ $$\hat{v}(k) = h\sum_{-\infty}^{\infty}e^{-ikx_j}v_j, \qquad k\in [-\pi/h,\pi/h]
 \subsection{Inverse Semi-discrete Fourier Transform}
 The inverse semi-discrete Fourier transform is,
 $$v_j = \frac{1}{2\pi}\int_{-\pi/h}^{\pi/h}e^{ikx_j}\hat{v}(k)dk, \qquad j\in\mathbb{Z}.$$
+The Semi-discrete Fourier Transform and Semi-discrete Inverse Fourier Transform are defined over unbounded discrete space ($x$) and continuous bounded wave numbers (k).
 
 \subsection{Discrete Fourier Transform}
 
@@ -86,8 +88,17 @@ $$\hat{v}(k) = \sum_{j=0}^{N-1}v_j e^{-2\pi i k j/N}, \qquad j\in\mathbb{Z}$$
 
 The inverse discrete Fourier transform is,
 $$v_j = \frac{1}{N}\sum_{k=0}^{N-1} \hat{v}(k)e^{2\pi ik j/N}, \qquad j\in\mathbb{Z}$$
+The Discrete Fourier Transform and Discrete Inverse Fourier Transform are defined over bounded discrete space ($x$) and bounded discrete wave numbers ($k$).
 
 \subsection{Fourier Series}
+
+\qquad A Fourier series is an expansion of a periodic function $f(x)$ into a sum of trigonometric functions. The formula for a Fourier series is,
+$$f(x) = \frac{a_0}{2}+
+\sum_{n=1}^\infty \left[ a_n\cos(n\pi x/L)+b_n\sin(n\pi x/L) \right]$$
+where $a_n$ and $b_n$ are the Fourier Coefficients given by the formulas,
+$$a_0 = \frac{1}{L}\int f(x)dx$$
+$$a_n = \frac{1}{L}\int_{2L}f(x)\cos(n\pi x/L)dx$$
+$$b_n = \frac{1}{L}\int_{2L}f(x)\sin(n\pi x/L) dx$$
 
 \subsection{Fourier Expansion}
 
@@ -97,7 +108,7 @@ where the coefficients $\hat{u}_k$ are complex numbers satisfying the condition
 $$\hat{u}_k = \overline{\hat{u}_{-k}} \qquad \text{for all}  \qquad k \in \mathbb{Z}^3$$
 imposed to ensure that $u$ is real. If needed, the Fourier coefficients $\hat{u}_k$ can be computed explicitly via the integral,
 $$\hat{u}_k = \frac{1}{(2\pi)^3}\int_{\Omega}e^{-ikx}u(x)dx.$$
-The Fourier coefficients represent the amplitude and phase at each frequency of the series. From the Payley-Wiener theorem, if $u(x)$ is real analytic, then its Fourier coefficients decay exponentially and conversely, if a Fourier expansion has exponentially decreasing coefficients then it is real analytic.
+\qquad The Fourier coefficients represent the amplitude and phase at each frequency of the series. From the Payley-Wiener theorem, if $u(x)$ is real analytic, then its Fourier coefficients decay exponentially and conversely, if a Fourier expansion has exponentially decreasing coefficients then it is real analytic.
 
 \subsection{Fast Fourier Transform}
 
@@ -109,13 +120,13 @@ The Inverse Fast Fourier Transform is an algorithm for computing the inverse dis
 
 \subsection{Fourier Filter}
 
-The Fourier filter is a type of filtering function that is based on manipulation of specific frequency components of a signal. It works by taking the Fourier transform of the signal, then attenuating or amplifying specific frequencies, and finally inverse transforming the result.
-
-\subsection{Fourier Mode}
-
-The Fourier Mode is ...
+\qquad The Fourier filter is a type of filtering function that is based on manipulation of specific frequency components of a signal. It works by taking the Fourier transform of the signal, then attenuating or amplifying specific frequencies, and finally inverse transforming the result.
 
 \subsection{Randomization in Fourier Space}
+
+\qquad For my thesis we will use random perturbations and initial conditions. However, a randomly generated function is not likely to be divergence free, analytic, or have a mean of zero. In order to achieve this we make use of the Payley-Wiener theorem described above. We created a Fourier expansion with exponentially decreasing coefficients to ensure it is analytic and randomly change the phase of the Fourier coefficients to create our random function. Then we apply Hodge Projection to ensure it is divergence free. Given a vector $v$ such that $\nabla\cdot v$, we define the divergence free vector $u$,
+$$u = Pv = v-\nabla\Delta^{-1}\nabla\cdot v$$
+Aliasing happens when high-frequency components are mistaken as lower frequencies due to insufficient sampling. We apply dealiasing in Fourier space. Finally we apply the Inverse Fast Fourier Transform to convert back to physical space.
 
 \section{Initial Conditions}
 
@@ -189,7 +200,7 @@ A visualization of the Hou initial condition is shown below. FIND VISUALIZATION.
 
 \subsection{Random}
 
-The random initial condition is defined by the equation,
+The random initial condition is also described in the Randomization in Fourier Space section and is defined by the equation,
 $$\eta := P_L v_{\text{rand}} := v_{\text{rand}} - \nabla \Delta^{-1}(\nabla \cdot v_{\text{rand}})$$
 where $P_L$ is the Leray projector with the property that for any $\omega\in H^1(\mathbb{T}^3)$, $\nabla\cdot (P_L \omega) = 0$, and $v_{\text{rand}}$ is given by,
 $$v_{\text{rand}} = \begin{bmatrix}
@@ -208,11 +219,16 @@ where $\theta_1$, $\theta_2$, and $\theta_3$ are $N_0$-dimensional random variab
 
 \qquad The supremum, denoted as $\text{sup} f(x)$, represents the smallest upper bound of the values attained by the function over a given domain. It is the largest value that the function can achieve. The infimum, denoted as $\text{inf} f(x)$, represents the greatest lower bound of a set, meaning the largest number that is less than or equal to all elements in the set.
 \\~\\
-\qquad The essential supremum, $ess sup f(x)$, is the smallest value that is greater than or equal to the function values everywhere while ignoring what the function does at a set of points of measure zero. The essential infimum, $ess inf f(x)$, is the largest value that is greater than or equal to the function values everywhere while ignoring what the function does at a set of points of measure zero.
+\qquad The essential supremum, $\text{ess} \sup f(x)$, is the smallest value that is greater than or equal to the function values everywhere while ignoring what the function does at a set of points of measure zero. The essential infimum, $\text{ess} \inf f(x)$, is the largest value that is greater than or equal to the function values everywhere while ignoring what the function does at a set of points of measure zero.
 \\~\\
 \qquad The limit superior, denoted $\limsup f(x)$, is the supremum of a functions limit. Therefore it is the smallest upper bound of the values attained by the function over a given domain as it approaches the limit argument. The limit infimum, denoted $\liminf f(x)$,  is the infimum of a functions limit. Therefore it is the largest lower bound of the values attained by the function over a given domain as it approaches the limit argument.
 
 \section{Functional Analysis}
+
+\qquad Functions can be thought of as points in an infinite dimensional space of vectors. We must first define some set operations.
+The product of two sets is the set of pairs,
+$$X \times Y := \{(x,y):x\in X, y\in Y\}$$
+A function $f:X\rightarrow Y, x\mapsto f(x)$, assigns, for every input $x\in X$, a unique output element $f(x)\in Y$. $X$ is called the domain of $f$ and $Y$ its codomain. 
 
 \subsection{Metric Spaces}
 
@@ -233,7 +249,7 @@ The boundary of $A$ is the set that contains all boundary points for A and is de
 
 \qquad A sequence $x_1,x_2,x_3,...\in X$, where $X$ is a metric space, is called Cauchy if for every positive real number r there is a positive integer $N$ such that for all positive integers $m,n>N$, $d(x_m,x_n)<r$. A metric space is complete if every Cauchy sequence in X has a limit that is also in X.
 
-\subsection{Norms}
+\subsection{Normed Space}
 
 A map $\|\cdot\|: X\rightarrow [0,\infty)$ is called a norm if,
 $$\|x\| = 0 \Leftrightarrow x=0$$
@@ -241,11 +257,15 @@ $$\|\lambda x\| = \lambda| \|x\|$$
 $$\|x+y\| \leq \|x\| + \|y\|$$
 A vector space with a norm is called a normed space. If $\|\cdot \|$ is the norm of the vector space X, then 
 $$d_{\|\cdot\|}(x,y) := \|x-y\|$$
-defines a metric for the set X. Therefore, a normed space is a type of metric space.
+defines a metric for the set X. Therefore, a normed space is a type of metric space. A non-negative function that satisfies the first two axioms is termed a seminorm.
 
 \subsection{Function Spaces}
 
-A function space is a set of functions between two fixed sets.
+A function space is a set of functions between two fixed sets. For example, the space of bounded functions from set $X$ to a metric space $Y$ is itself a metric space, with distance defined by
+$$d(f,g) := \sup_{x\in X}d(f(x),g(x))$$
+which is complete when $Y$ is complete. 
+\\~\\
+A vector space $V$ over a field $\mathbb{F}$ is a set on which are defined an operation of vector addition, $+:V\times V \rightarrow V$, satisfying associativity, commutativity, zero and inverse axioms, and an operation of scalar multiplication, $\mathbb{F}\times V \rightarrow V$, that satisfies the respective distributive laws.
 
 \subsection{Banach Spaces}
 
@@ -292,7 +312,17 @@ The space Lebesgue space $L^2(D)$ is a Hilbert space when equipped with the inne
 $$<u,v> := \int_D u(x)\cdot v(x) dx$$
 
 \subsection{Gevrey Subspace} 
+
+The Gevrey class we utilize in the optimization problem is defined as,
+$$G^\sigma := \{v\in H^s(\Omega):\|v\|_{G^\sigma}:= <v,v>_{G^\sigma}^{1/2}<\infty\}, s\geq 3, \sigma > 0$$
+with the inner product
+$$\forall v,u\in G^\sigma, <v,u>_{G^\sigma} := \sum_{j\in \mathbb{Z}^3} (1+|2\pi j|^2)^s e^{4\pi\sigma |j|}\hat{v}_j \cdot \overline{\hat{u}}_j)$$
+$$ = \int_\Omega (1+|D|^2)^s e^{2\sigma |D|}v\cdot u dx$$
+where overbar denotes complex conjugation, where as the operators $|D|$ and $e^{\sigma|D|}$ are defined via
+$$\left[ \hat{|D|v} \right]_j := 2\pi|j|\hat{v}_j$$
+$$\left[ \hat{e^{\sigma|D|}v} \right]_j := e^{2\pi\sigma |j|}\hat{v}_j.$$
 \subsection{Manifolds}
+
 
 \section{Strong vs Weak Solutions}
 
@@ -304,13 +334,31 @@ $$<u,v> := \int_D u(x)\cdot v(x) dx$$
  
 \section{Navier-Stokes Equations}
 
+The Navier Stokes Equations are defined as
+$$\partial_t\textbf{u}+\textbf{u}\cdot \nabla \textbf{u}+\nabla p - \mu \Delta \textbf{u} = 0 \textbf{ in }\Omega\times (0,T]$$
+$$\nabla \cdot \textbf{u} = 0 \text{ in }\Omega\times[0,T]$$
+$$\textbf{u}(0) = \textbf{u}_0$$
+where $\textbf{u}:[0,T]\times\Omega \rightarrow \mathbb{R}^3$ and $p:[0,T]\times\Omega \rightarrow \mathbb{R}$ are the velocity and pressure fields. $\mu >0$ is the coefficient of kinematic viscosity, $\textbf{u}_0$ is a divergence-free initial condition whereas the fluid density $\rho$ is assumed constant and equal to 1.
+
 \section{Navier-Stokes-Voigt Equations} 
  
 \section{Euler's Equations}
-same difficulties as the 3D Navier-Stokes equations in the case of large Reynolds numbers.
+The Euler equations are the inviscid incompressible from of the Navier-stokes equations. They are defined by the equations
+$$\partial_t\textbf{u}+(\textbf{u}\cdot\nabla)\textbf{u}+\nabla p = 0$$
+$$\nabla \cdot \textbf{u} = 0$$
+$$\textbf{u}(\textbf{x},0) = \textbf{u}_0(\textbf{x}).$$
 
 \section{Euler-Voigt Equations}
+The Euler–Voigt equations were proposed as an inviscid regularization of the Euler equations.The Euler–Voigt equations are given by
+$$-\alpha^2\partial_t\nabla^2\textbf{u}+\partial_t\textbf{u}+(\textbf{u}\cdot\nabla)\textbf{u}+\nabla p = 0$$
+$$\nabla \cdot \textbf{u} = 0$$
+$$\textbf{u}(\textbf{x},0) = \textbf{u}_0(\textbf{x}).$$
+Here $\alpha>0$ is a regularization parameter having units of length. Note that the usual incompressible Euler equations are formally obtained by setting $\alpha=0$.
 \subsection{$\alpha$-Energy}
+
+An $\alpha-$energy equality was proved to hold for solutions for the Euler-Voigt equations for all $t\in \mathbb{R}$,
+$$E_\alpha(t) := \|\textbf{u}^\alpha(t)\|_{L^2}^2 + \alpha^2\|\nabla \textbf{u}^\alpha (t)\|_{L^2}^2 = E_\alpha (0).$$
+
 \subsection{Linearization}
 
 \section{Burgers Equation}
@@ -318,13 +366,21 @@ same difficulties as the 3D Navier-Stokes equations in the case of large Reynold
 \subsection{Inviscid}
 
 \section{Blow-up Criteria}
+
+\qquad There are several different criteria that are used to determine whether a flow has formed a singularity. These criteria are described below.
+
 \subsection{Beale-Kato-Majda Criterion}
+The Beale-Kato-Majda (BKM) criterion states that a smooth solution $u$ of the Euler system develops a singularity at $t=T^*$ if and only if
+$$\lim_{t\rightarrow T^*}\int_0^t \|\omega(\tau)\|_{L^\infty}d\tau = \infty$$
+where $\omega:=\nabla\times u$ is the vorticity field of the flow. 
+
 \subsection{Vorticity Criterion}
 \subsection{Voigt-type Criterion}
 \subsection{Enstrophy}
+In fluid dynamics, enstrophy is a measure of the strength of vorticity, essentially the squared magnitude of vorticity. Enstrophy is defined by the equation
+$$\varepsilon(u(t)):=\frac{1}{2}\int_{\Omega}|\omega(t,x)|^2dx = \frac{1}{2}\|\nabla u(t)\|_{L^2(\Omega)}$$
+where $\omega$ is again the vorticity.
 
-
-\section{Optimization Problems}
 \section{Brent's Minimization Method}
 
 \qquad Given a function $f$ that depends on one or more independent variables find the value of those variables where $f$ takes on a minimum value. Use this variables calculate the minimum value of $f$. In general, finding a global minimum of a function is very difficult. It is made more difficult by the fact that we do not have the derivative of the function. To solve this problem we use Brent's method. 
@@ -370,6 +426,46 @@ The Polak-Ribiere Method varies in the way it calculates $\beta_k$. The formula 
 \qquad The Riemannian Conjugate Gradient Method is taken from the paper, Systematic Search for Singularities in 3D Euler Flows. 
 
 \section{Spectral Methods}
+
+\section{Optimization Problems}
+
+\section{Kappa Test}
+
+The Kappa test is a method for verifying the accuracy of the Gateaux differential. The formula for the kappa test is
+$$\kappa(\epsilon) = \frac{\epsilon^{-1}\left[ \Phi(\eta + \epsilon\eta') - \Phi(\eta) \right]}{\langle \nabla\Phi(\eta),\eta' \rangle}. $$
+This formula shows the gradient, round off, and truncation errors as a function of epsilon. The round off errors should be approximately of order $O(\epsilon^-1)$. Therefore, we expect the value of $\kappa$ do be dominated by round off errors for small $\epsilon$ values. The truncation errors should be of order $O(\epsilon^p)$ for some $p\geq 0$. Therefore, we expect the value of $\kappa$ to be dominated by the truncation errors for large values of $\epsilon$. Between these two regions the value of $\kappa$ will be determined by the gradient errors, which are themselves a product of the spatial and temporal resolution. With smaller values of $\Delta x$ and $\Delta t$ causing the gradient error to decrease, while also decreasing the range of $\epsilon$ over which the gradient errors dominate. Therefore, we expect the plot of $\kappa$ vs $\epsilon$ to be of the general form shown in the graph below, taken from Adjoint-based enforcement of state constraints in PDE optimization problems.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.6]{kappa_test.png}
+\end{figure}
+
+The kappa test graphs for our simulations are shown below.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.3]{kappa_test_init_1_t1_result.png}
+\end{figure}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.3]{kappa_test_init_1_t3_result.png}
+\end{figure}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.3]{kappa_test_init_2_t1_result.png}
+\end{figure}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.3]{kappa_test_init_2_t3_result.png}
+\end{figure}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.3]{kappa_test_init_3_t1_result.png}
+\end{figure}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.3]{kappa_test_init_3_t3_result.png}
+\end{figure}
 
 \pagebreak
 

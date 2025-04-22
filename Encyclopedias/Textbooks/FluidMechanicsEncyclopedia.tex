@@ -1,0 +1,426 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, total={6.5in,10in}]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\pagecolor[rgb]{0.2,0.2,0.2}
+\color[rgb]{0.95,0.95,0.95}
+
+\begin{document}
+\begin{huge}
+\begin{center}
+\textbf{Introduction}
+\noindent\rule{16.5cm}{0.4pt}
+\end{center}
+\end{huge}
+
+\begin{flushleft}
+\qquad The purpose of this document is to create a comprehensive encyclopedia of Fluid Mechanics definitions, equations, and principles. It will not include derivations. It is compiled from the following textbooks.
+\\~\\
+$\bullet$ An Introduction to Theoretical Fluid Mechanics - Stephen Childress
+\\~\\
+$\bullet$ A Mathematical Introduction to Fluid Mechanics 2nd Ed. - A.J. Chorin and J.E. Marsden
+\\~\\
+$\bullet$ Applied Analysis of the Navier-Stokes Equations - Charles R. Doering and J.D. Gibbon
+\\~\\
+\qquad While the general structure of this document is simple to complex topics, this document is not intended to be read from start to finish in a linear fashion. Rather, each section is meant to provide all of the relevant equations and definitions for a single topic. These equations and definitions may rely on information not provided in that section. A comprehensive understanding of a topic will require switching back and forth between related topics.
+\end{flushleft}
+
+\pagebreak
+
+\begin{huge}
+\begin{center}
+\textbf{Basic Definitions}
+\noindent\rule{16.5cm}{0.4pt}
+\end{center}
+\end{huge}
+
+\begin{flushleft}
+D is a two- or three-dimensional domain. The surface of the domain is $\partial$D. A domain D is called simply connected if 
+any continuous closed curve in D can be continuously shrunk to a point without 
+leaving D. 
+\\~\\
+$x\in$D is a point in D where $x$ is the point $x=$(x,y,z).
+\\~\\
+A particle of fluid, or fluid parcel, is a 'infinitesimal' volume of the fluid. Such a particle is not truly infinitesimal but may be treated as such as they are small with respect to the length scale of variation of the properties that describe it. These properties are velocity, density, and pressure. They are taken as averages over the volume of the fluid parcel. It is denoted by the symbol, $\delta V$. Each face of the volume has an area $\delta a$.
+\\~\\
+The spacial velocity field of a fluid is defined by the function $\textbf{u}(x,\text{t})$. It describes the velocity of a particle of fluid that is moving through point $x\in$ D at time t.
+\\~\\
+The density of a fluid is defined by the function $\rho(\textbf{x},t)$. It describes the density of a fluid parcel that is moving through point $x\in$ D at time t.
+\\~\\
+The pressure of a fluid is defined by the function $p(\textbf{x},t)$. The pressure is the magnitude of the force per unit area, or normal stress, imposed on
+a fluid parcel moving through point $x\in$ D at time t from neighboring elements. The normal force directed into the infinitesimal volume across a face of area $\textbf{n}\delta a$ centered at $\textbf{x}$, where $\textbf{n}$ is the outward
+directed unit vector normal to the face, is $-\textbf{n}p(\textbf{x}, t)\delta a$. 
+\\~\\
+The mass of a fluid parcel is given by the equation, $\delta m = \rho(\textbf{x},t)\delta V$.
+\\~\\
+The momentum of a fluid parcel is given by the equation, $\delta m \textbf{u}(\textbf{x},t)$.
+\\~\\
+The convective derivative, or material derivative, is given by the equation,
+$$\frac{Df(\textbf{x},t)}{Dt} = \frac{\partial f(\textbf{x},t)}{\partial t} + \textbf{u}\cdot \nabla f(\textbf{x},t)$$
+The equation uses the italicized $D$ so as to not confuse it with the domain D.
+\\~\\
+An ideal fluid is one with the following property: for any motion of the fluid there 
+is a function p(x, t) called the pressure such that if S is a surface in the fluid with a chosen unit normal $\textbf{n}$, the force of stress exerted across the surface S per unit area at $x \in $S at time t is p($x$, t)$\textbf{n}$.
+\\~\\
+For an ideal incompressible fluid the kinetic energy is conserved. This is natural because we have not taken any dissipative effects into account and there is no external work being done on the system. 
+\\~\\
+A flow will be called isentropic if there is a function w, called the enthalpy, such that,
+$$\nabla w = \frac{1}{\rho}\nabla p$$
+\\~\\
+Given a fluid flow with velocity field u(x, t), a streamline at a fixed time is an integral curve of u; i.e., if x(s) is a streamline parametrized by s at the 
+instant t, then x(s) satisfies,
+$$\frac{dx}{ds} = \textbf{u}(x(s),t)$$
+for a fixed t.
+\\~\\
+We define a trajectory to be the curve traced out by a particle as time progresses, as explained at the beginning of this section.
+\\~\\
+The flow is called stationary if streamlines and trajectories coincide.
+\\~\\
+Bernoulli's Theorem: In stationary isentropic flows, the quantity 
+$$\frac{1}{2}\|\textbf{u}\|^2+w$$
+is constant along streamlines. The same holds for homogeneous incompressible flow with w replaced by $p/\rho$. 
+\\~\\
+The circulation around the closed contour $C_t$ is defined to be the line integral,
+$$\Gamma_{C_t} = \oint_{C_t}\textbf{u}\cdot ds$$
+Kelvin's Circulation Theorem For isentropic flow, $\Gamma_{C_t}$ is constant in time. This is also true for barotropic fluids.
+\\~\\
+A stagnation point is a point at which $\textbf{u}$=0.
+\\~\\
+inviscid irrotational flows are called potential flows. Potential flows have a velocity field that is the gradient of a scalar potential, usually denoted by $\phi$ so that $\textbf{u}=\nabla\phi$. Potential flows are governed by Laplace’s equation and are determined by boundary conditions.
+\\~\\
+A streak line consists of all particles that at some time in the past were located at the same point x.
+\\~\\
+A barotropic fluid is defined by specifying pressure as a given function of the density, $p(\rho)$. This reduces the dependent variables of an ideal fluid to \textbf{u}, and so the system of momentum and mass equations is closed.
+\\~\\
+The Rayleigh number is a...
+\end{flushleft}
+
+\pagebreak
+
+\begin{huge}
+\begin{center}
+\textbf{Common Theorems}
+\noindent\rule{16.5cm}{0.4pt}
+\end{center}
+\end{huge}
+
+\begin{flushleft}
+
+\end{flushleft}
+\pagebreak
+
+\begin{huge}
+\begin{center}
+\textbf{Euler's Equations}
+\noindent\rule{16.5cm}{0.4pt}
+\end{center}
+\end{huge}
+
+\begin{flushleft}
+Once properties are expressed as functions of $\textbf{x}$ and t we have the Eulerian description of a fluid.
+\\~\\
+Using the pressure, density, velocity and principle of conservation of mass, one can derive the continuity equation,
+$$0 = \frac{\partial \rho}{\partial t} + \textbf{u}\cdot\nabla \rho + \rho\nabla\cdot\textbf{u} = \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho\textbf{u})$$
+\\~\\
+Using the principle of conservation of mass and the definition of the convective derivative and dividing through by $\delta m$ we find Euler's equations for an incompressible homogeneous fluid,
+$$\frac{\partial \textbf{u}}{\partial t}+\textbf{u}\cdot\nabla \textbf{u} + \frac{1}{\rho}\nabla p= 0$$
+Mathematically the condition of incompressibility is simply $\nabla\cdot \textbf{u} = 0$.
+\\~\\
+If an external force is applied to the fluid, then Euler's equations for an incompressible  fluid become,
+$$\frac{\partial \textbf{u}}{\partial t}+\textbf{u}\cdot\nabla \textbf{u}+\frac{1}{\rho}\nabla p = \frac{1}{\rho}\textbf{f}(\textbf{x},t)$$
+where the 'body force' is the applied force per unit volume. 
+\\~\\
+If the force is the gradient of a potential per unit volume, $\textbf{f} = -\nabla \phi$, then the net work done by the body force vanishes identically for either stationary rigid or period boundary conditions. In the case of a gradient body force, the body force can be absorbed into the pressure term. Therefore the Euler's equations for an incompressible fluid become,
+$$\frac{\partial \textbf{u}}{\partial t}+\textbf{u}\cdot\nabla \textbf{u}+\frac{1}{\rho}\nabla (p+\phi) = 0$$
+\\~\\
+The most general form of this equation is,
+$$\frac{\partial \textbf{u}}{\partial t}+\textbf{u}\cdot\nabla \textbf{u}+\frac{1}{\rho}\nabla p = \frac{1}{\rho}\nabla \cdot \textbf{T}$$
+where \textbf{T} is the symmetric shear stress tensor defined in Viscosity.
+\\~\\
+Euler's equations for isentropic flow are,
+$$\frac{\partial\textbf{u}}{\partial t}+(\textbf{u}\cdot\nabla)\textbf{u} = -\nabla w+\textbf{f}$$
+$$\frac{\partial \rho}{\partial t}+\nabla\cdot(\rho\textbf{u}) = 0$$
+\end{flushleft}
+
+\pagebreak
+
+\begin{huge}
+\begin{center}
+\textbf{Rotation and Vorticity}
+\noindent\rule{16.5cm}{0.4pt}
+\end{center}
+\end{huge}
+
+\begin{flushleft}
+Besides the local velocity of the fluid, another important kinematic quantity is the local angular velocity. The standard measure of this angular velocity is the vorticity $\boldsymbol\omega$, defined by,
+$$\boldsymbol\omega = \nabla \times \textbf{u}$$
+\\~\\
+From Euler's equations for an incompressible homogeneous fluid we obtain,
+$$\frac{\partial \boldsymbol\omega}{\partial t} + \textbf{u}\cdot\nabla\boldsymbol\omega = \boldsymbol\omega\cdot\nabla\textbf{u}$$
+If a body force is present then there is also a $\rho^{-1}\nabla\times \textbf{f}$ on the right hand side of the equation.
+\\~\\
+Vortex stretching acts as an amplifier of vorticity for individual particles of the fluid. This 3d mechanism is just elementary conservation of angular momentum. To see how the vortex stretching term operates, consider a cylindrical shaped piece of fluid with angular momentum along the z-axis. If the flow field is momentarily configured so that the $u_3$ is locally increasing in the z-direction, then the cylinder will tend to be stretched. Conservation of angular momentum for the mass in the cylinder then implies an increase in the magnitude of the angular velocity. This can work the other way, too. The magnitude of the vorticity will decrease if the flow conspires to increase the fluid particle's relevant moment of inertia. The vortex stretching mechanism does not increase or decrease the total angular velocity: That is, global conservation of angular momentum leads to conservation of the integrated vorticity, but it can lead to local intensification of the vorticity amplitude.
+\\~\\
+A global measure of the vorticity content of a flow is the enstrophy,
+$$\|\boldsymbol\omega\| = \int_{\text{D}}|\boldsymbol\omega|^2d^dx$$
+For periodic or stationary rigid boundary conditions in 2d, the enstrophy is conserved by the Euler equations. Enstrophy may be amplified or diminished by the vortex stretching term $\boldsymbol\omega\cdot\nabla\textbf{u}$ in 3d.
+\\~\\
+The vorticity evolution equation for an incompressible Newtonian fluid is,
+$$\frac{\partial \boldsymbol\omega}{\partial t}+\textbf{u}\cdot\nabla\boldsymbol\omega = \nu\Delta\boldsymbol\omega+\boldsymbol\omega\cdot\nabla\textbf{u}+\frac{1}{\rho}\nabla\times\textbf{f}$$
+\\~\\
+By definition, a vortex sheet is a surface S that is tangent to the vorticity vector $\omega$ at each of its points. 
+\\~\\
+A vortex line is the intersection of two vortex sheets
+\\~\\
+A vortex tube consists of a two-dimensional surface S nowhere tangent to $\omega$ with vortex lines drawn through each point of the bounding curve C of S; these vortex lines are integral curves of $\omega$ and are extended as far as possible in 
+each direction.
+\\~\\
+Helmholtz's Theorem: Assume the fluid is isentropic. Then  If $C_1$ and $C_2$ are any two curves encircling the vortex tube, then,
+$$\int_{C_1}\textbf{u}\cdot ds = \int_{C_2}\textbf{u}\cdot ds$$
+This common value is called the strength of the vortex tube. The strength of the vortex tube is constant in time, as the tube moves with the fluid. 
+\\~\\
+For isentropic flow,
+$$\frac{1}{\rho}\frac{D\omega}{Dt} - \frac{1}{\rho}(\omega\cdot\nabla)\textbf{u} = 0$$
+
+\end{flushleft}
+
+\pagebreak
+
+\begin{huge}
+\begin{center}
+\textbf{Navier-Stokes Equations}
+\noindent\rule{16.5cm}{0.4pt}
+\end{center}
+\end{huge}
+
+\begin{flushleft}
+\qquad The Navier-Stokes equations of fluid dynamics are a formulation of
+Newton's laws of motion for a continuous distribution of matter in the
+fluid state, characterized by an inability to support shear stresses. While very similar to the Euler equations, Navier–Stokes equations take viscosity into account while the Euler equations model only inviscid flow. The incompressible Navier-Stokes equations are,
+$$\frac{\partial \textbf{u}}{\partial t}+\textbf{u}\cdot\nabla \textbf{u}+\frac{1}{\rho}\nabla p = \nu\Delta \textbf{u}$$
+$$\nabla \cdot \textbf{u} = 0$$
+The material parameter $\nu$ is the kinematic viscosity.
+\\~\\
+If an external body force (per unit volume) \textbf{f} is imposed on the fluid,
+then the incompressible Navier-Stokes equations become,
+$$\frac{\partial \textbf{u}}{\partial t}+\textbf{u}\cdot\nabla \textbf{u}+\frac{1}{\rho}\nabla p = \nu\Delta \textbf{u} + \frac{1}{\rho}\textbf{f}$$
+$$\nabla \cdot \textbf{u} = 0$$
+\\~\\
+The Reynolds number is the dimensionless value,
+$$R = \frac{LU}{\nu}$$
+where L is the characteristic length and U is the characteristic velocity. Two flows with the same geometry and the same Reynolds number are called similar.
+\\~\\
+The 
+$\nabla\textbf{u}/R$ is the diffusion or dissipation term. $(\textbf{u}\cdot\nabla)\textbf{u}$ is the inertia or convection term.
+\\~\\
+The dimensionless Navier-Stokes equations are,
+$$\frac{\partial \textbf{u}'}{\partial t'} + \textbf{u}'\cdot\nabla'\textbf{u}'+\nabla ' p ' = \Delta'\textbf{u}'+\mathfrak{G}\textbf{f}'$$
+$$\nabla'\cdot\textbf{u}' = 0$$
+where $x\in[0,1]^d$, $x' = x/L$, $t' = \nu t/L^2$, $u'=uL/\nu$, $p'=pL^2/rho\nu^2$, the dimensionless 'unit-strength' body force, 
+$$f' = \frac{L^{d/2}}{\|\textbf{f}\|_2}\textbf{f}$$
+and the Grashof number is,
+$$\mathfrak{G} = \frac{L^{3-d/2}}{\rho\nu^2}\|\textbf{f}\|_2$$
+which is a measure of the ratio of the strength of the driving force to the damping coefficient. Problems with $\mathfrak{G}<<1$ correspond to weakly forced or overdamped systems. When $\mathfrak{G}>>1$ then the forcing is 'strong' in an absolute sense or the damping is truly weak and more interesting dynamical behaviour may be expected.
+\\~\\
+Another form of the dimensionless Navier-Stokes equation, for a system without a body force but with some boundary condition $\textbf{u}|_{\partial \text{D}}=\textbf{U}(\textbf{x})$
+where $\textbf{U}(\textbf{x})$ is specified for $\textbf{x}\in\partial\text{D}$
+$$\frac{\partial \textbf{u}'}{\partial t'}+\textbf{u}'\cdot\nabla'\textbf{u}'+\nabla'p'=\frac{1}{R}\Delta'\textbf{u}'$$
+where $x'=x/L$, $t'=Ut/L$, $u'=u/U$, $p'=p/\rho U^2$. 
+\end{flushleft}
+
+\pagebreak
+
+\begin{huge}
+\begin{center}
+\textbf{Thermal Convection}
+\noindent\rule{16.5cm}{0.4pt}
+\end{center}
+\end{huge}
+
+\begin{flushleft}
+Although for most of this document is concerned with the incompressible Navier-Stokes equations for the velocity field alone, neglecting
+temperature and density variations, there is one particular generalization
+that will be considered in some detail. This is the problem of thermal
+convection (heat transfer) by an incompressible Newtonian fluid. In the
+first approximation, the local temperature of the fluid may be considered a passive scalar, i.e., a quantity characteristic of each particular
+fluid element whose space-time evolution is thus controlled by the fluid's
+motion. Thermal conduction between neighboring fluid elements is then
+taken into account by including a diffusive term and introducing another material parameter, the thermal diffusion coefficient. The influence
+of the temperature field on the incompressible fluid's motion is taken
+into account by introducing a buoyancy force into the velocity evolution equation. The origin of the buoyancy force is the observation that
+temperature variations typically lead to density variations which, in the
+presence of a gravitational field, lead to pressure gradients. The inclusion
+of density variations in the buoyancy force - while neglecting them in
+the continuity equation - and the neglect of the local heat source due to
+viscous dissipation constitute the approximate formulation known as the
+Boussinesq equations.
+\\~\\
+The Boussinesq equations for the velocity vector field, the pressure
+field and the local temperature T(x, t) of the fluid are,
+$$\frac{\partial \textbf{u}}{\partial t}+\textbf{u}\cdot\nabla\textbf{u}+\frac{1}{\rho_0}\nabla p = \nu\Delta\textbf{u}+\frac{1}{\rho_0}\hat{\textbf{k}}g\alpha(T-T_0)$$
+$$\nabla\cdot\textbf{u} = 0$$
+$$\frac{\partial T}{\partial t}+\textbf{u}\cdot\nabla T = \kappa\Delta T$$
+Where $-\hat{\textbf{k}}g$ is the acceleration of gravity, $\rho_0$ is the reference density, $T_0$ is the reference temperature, $\alpha$ is the thermal expansion coefficient, and $\kappa$ is the thermal diffusion coefficient.
+\\~\\
+The vertical buoyancy force results from changes in density associated with temperature variations.
+$$\rho-\rho_0 = -\alpha(T-T_0)$$
+\\~\\
+For a constant vertical temperature gradient $-\delta T/\delta h$, define the temperature variation $\theta(\textbf{x},t)$ by,
+$$T(x,t) = -\frac{\delta T}{\delta h}z+\theta(x,t)$$
+The Boussinesq equations become,
+$$\frac{\partial \textbf{u}}{\partial t}+\textbf{u}\cdot\nabla\textbf{u}+\frac{1}{\rho_0}\nabla p = \nu\Delta\textbf{u}+\frac{1}{\rho_0}\hat{\textbf{k}}g\alpha\theta$$
+$$\nabla\cdot\textbf{u} = 0$$
+$$\frac{\partial\theta}{\partial t}+\textbf{u}\cdot\nabla\theta = \kappa\Delta\theta + \frac{\delta T}{\delta h}u_3$$
+The dimensionless formulations of the thermal convection problems are,
+$$\frac{\partial \textbf{u}'}{\partial t'}+\textbf{u}'\cdot\nabla'\textbf{u}'+\nabla'p' = \sigma\nabla'\textbf{u}'+\hat{\textbf{k}}\sigma Ra T'$$
+$$\nabla'\cdot\textbf{u}' = 0$$
+$$\frac{\partial T'}{\partial t'} + \textbf{u}'\cdot\nabla'T' = \Delta'T'$$
+where $\kappa$ is the thermal diffusion coefficient, $\delta T$ is the temperature difference, $h$ is the vertical gap height, $x' = x/h$, $t'=\kappa t/h^2$, $u' = uh/\kappa$, $p'=ph^2\rho\kappa^2$, and $T' = T/\delta T$. We define the Prandtl number $\sigma = \nu/\kappa$ and the Rayleigh number,
+$$Ra = \frac{\alpha g\delta T h^3}{\rho \nu \kappa}$$
+which is a measure of the ratio of the driving to the damping in the system. A small rayleigh number indicates a relatively weakly driven, highly constrained system while a large Rayleigh number allows for more interesting dynamical behaviour. 
+\end{flushleft}
+
+\pagebreak
+
+\begin{huge}
+\begin{center}
+\textbf{Boundary Layers}
+\noindent\rule{16.5cm}{0.4pt}
+\end{center}
+\end{huge}
+
+\begin{flushleft}
+
+\end{flushleft}
+
+\pagebreak
+
+\begin{huge}
+\begin{center}
+\textbf{Boundary Conditions}
+\noindent\rule{16.5cm}{0.4pt}
+\end{center}
+\end{huge}
+
+\begin{flushleft}
+The Neumann boundary condition specifies the normal derivative at a boundary to be zero or a constant. If the fluid is confined to a fixed region of space D bounded by a stationary boundary $\partial D$, then the fluid cannot cross these rigid boundaries. This means that the normal component of the velocity vector field satisfies,
+$$\textbf{n}\cdot\textbf{u}|_{\partial \text{D}} = 0$$
+where $\textbf{n}$ is the local normal to $\partial $D.
+\\~\\
+Because,
+$$\textbf{n}\cdot\frac{\partial \textbf{u}}{\partial t}\Bigg| _{\partial \text{D}} = 0$$
+the pressure satisfies Neumann boundary conditions,
+$$\textbf{n}\cdot \nabla p|_{\partial \text{D}} = -\rho\textbf{n}\cdot [\textbf{u}\cdot\nabla\textbf{u}]|_{\partial \text{D}}$$
+For stationary flat boundary surfaces this condition simplifies to,
+$$\textbf{n}\cdot\nabla p|_{\partial \text{D}} = 0$$
+\\~\\
+Another set of boundary conditions, often used in both theoretical and numerical studies, are periodic boundary conditions where the fluid motion is confined to a 2- or 3-torus. Mathematically one imposes periodic boundary conditions on $p$ and each component of $\textbf{u}$, in each of the d directions with spatial periods $L_1,...,L_d$. 
+\\~\\
+For a viscous fluid, the tangential components of the fluid's velocity at the boundary
+are controlled. Physically, the picture is that the microscopic interactions
+between the fluid particles and the wall are at least as strong as those
+between fluid particles themselves so that the velocity vector field should
+be continuous at the wall. These "no-slip" boundary conditions for
+rigid boundaries are that the fluid at the boundary must move with the prescribed
+boundary motion. If the velocity of the boundary is given by $\textbf{U}(x, \text{t})$ then the appropriate boundary conditions for \textbf{u} are,
+$$\textbf{u}|_{\partial \text{D}} = \textbf{U}$$
+So-called "stress-free" boundary conditions are imposed by relaxing the
+no-slip condition, and, for stationary boundaries, replacing this equation with,
+$$\textbf{n}\cdot \textbf{u}|_{\partial \text{D}} = 0$$
+$$\textbf{n}\times\text{D}|_{\partial \text{D}} = 0$$
+\\~\\
+Dirichlet boundary conditions have a fixed value at the boundary.
+\\~\\
+The boundary conditions for the Boussinesq equations depend on the problem. For convection in a horizontal layer between plates held at fixed temperatures, the boundary conditions are,
+$$T|_{z=0} = T_{bottom}$$
+$$T|_{z=h} = T_{top}$$
+Insulating boundary conditions apply to problems where no heat can flow across the boundaries. At an insulated surface $\partial$D with local normal unit vector \textbf{n}, the boundary conditions are,
+$$\textbf{n}\cdot\nabla T|_{\partial \textbf{D}} = 0$$
+If the top and bottom plates are rigid, no-slip boundaries, then the velocity vector field boundary conditions are,
+$$\textbf{u}|_{z=0} = 0 = \textbf{u}|_{z=h}$$
+For some applications it is appropriate to consider boundaries in the vertical direction which, although letting no matter pass, apply no shear stress to the fluid. For such stress free boundaries the vertical component of the velocity satisfies the Dirichlet Boundary conditions.
+$$u_3|_{z=0} = 0 = u_3|_{z=h}$$
+where as the tangential components satisfy the Neumann conditions,
+$$\frac{\partial u_1}{\partial z}|_{z=0} = 0 = \frac{\partial u_1}{\partial z}|_{z=h}$$
+$$\frac{\partial u_2}{\partial z}|_{z=0} = 0 = \frac{\partial u_2}{\partial z}|_{z=h}$$
+\\~\\
+For a potential flow, the boundary condition is,
+$$\frac{\partial\phi}{\partial n}\Bigg|_{\partial \text{D}} = 0$$
+\end{flushleft}
+
+\pagebreak
+
+\begin{huge}
+\begin{center}
+\textbf{Viscosity}
+\noindent\rule{16.5cm}{0.4pt}
+\end{center}
+\end{huge}
+
+\begin{flushleft}
+Viscosity is a measure of the diffusion of momentum due to the microscopic molecular nature of real fluids, and its effect is to produce a
+resistance to shearing motions. As such, it is a frictional force with its
+origins in the microscopic interactions between the atoms or molecules
+making up the fluid. Its net effect is to dissipate organized, macroscopic
+forms of energy - the kinetic energy in the flow field - and convert it to
+the disorganized, microscopic form of energy - heat. Shearing forces in
+continuum mechanical systems are described by the stress tensor. The
+tensorial nature of these forces results from the fact that there are two
+directions associated with each such force, the direction of the force itself
+and the orientation of the area across which the force acts.
+\\~\\
+The force per unit volume acting at a point in the fluid due to
+stresses within the fluid is the divergence of the stress tensor,
+$$\frac{\delta\textbf{F}}{\delta V} = \nabla \cdot \textbf{S}$$
+Where S is the stress tensor. $S_{ij}$ is the force per unit area in the jth direction acting
+across an area element whose normal is in the ith direction. Forces in
+the direction of the normal to an area element are associated with the
+pressure, while those that act in the plane of the element are associated
+with shear stresses. The stress tensor is always symmetric.
+\\~\\
+The stress tensor can be decomposed into portions due to the pressure
+p and the symmetric shear stress tensor $T_{ij}$,
+$$S_{ij} = -\delta_{ij}p+T_{ij}$$
+A Newtonian fluid is defined as one in which the shear stress tensor is a linear function of the rate of strain tensor. The rate of strain tensor is defined as,
+$$R_{ij} = \frac{\partial u_i}{\partial x_j}+\frac{\partial u_j}{\partial x_i}$$
+The most general linear isotropic (direction independent) relationship
+between the symmetric shear stress tensor T and the symmetric rate of strain tensor R is,
+$$\textbf{T} = \alpha \textbf{R}$$
+
+
+\end{flushleft}
+
+\pagebreak
+
+\begin{huge}
+\begin{center}
+\textbf{Lift and Drag}
+\noindent\rule{16.5cm}{0.4pt}
+\end{center}
+\end{huge}
+
+\begin{flushleft}
+
+\end{flushleft}
+
+\pagebreak
+
+\begin{huge}
+\begin{center}
+\textbf{Turbulence}
+\noindent\rule{16.5cm}{0.4pt}
+\end{center}
+\end{huge}
+
+\begin{flushleft}
+
+\end{flushleft}
+
+\pagebreak
+
+\end{document}
