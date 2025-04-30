@@ -17,6 +17,7 @@ PROGRAM EULER_VOIGT
    USE function_ops
    USE solvers
    USE fftwfunction
+   USE optimization
    IMPLICIT NONE
    INCLUDE "mpif.h"
    include 'fftw3-mpi.f03'
@@ -33,7 +34,7 @@ PROGRAM EULER_VOIGT
    integer :: stepper
    real(pr) :: t_start, t_end ! record time
    real(pr) :: A, B, C
-   real(pr), dimension(1:2) :: tau_brack
+   real(pr), dimension(1:3) :: tau_brack
    integer omp_get_thread_num,omp_get_num_threads
 
   
@@ -165,9 +166,16 @@ PROGRAM EULER_VOIGT
       alpha = 4.0_pr/256.0_pr
       fix_dt1 = 2.0_pr**(-5)
       call solvers_allocate(stepper)
+      ! s=3
+      ! l=1
+      ! sigma = 1E-1, ..., 1E-5
+      ! norm_constr = 1
+      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
       !call initial_condition_refine((/128,128,128/))
       call set_initial(Uvec0, 2, 11111,2222,31234)
-      call fwd_3D(Uvec0, fix_dt1, 1, stepper, 0)
+      !call fwd_3D(Uvec0, fix_dt1, 1, stepper, 0)
+      call maximization(tau_brack)
+      call optimization_deallocate()
       call solvers_deallocate()
    end if
 
