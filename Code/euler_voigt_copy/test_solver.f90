@@ -174,6 +174,8 @@ PROGRAM EULER_VOIGT
       !call initial_condition_refine((/128,128,128/))
       call set_initial(Uvec0, 2, 11111,2222,31234)
       !call fwd_3D(Uvec0, fix_dt1, 1, stepper, 0)
+      tau_brack(1) = 0.0_pr
+      tau_brack(2) = 0.1_pr
       call maximization(tau_brack)
       call optimization_deallocate()
       call solvers_deallocate()
