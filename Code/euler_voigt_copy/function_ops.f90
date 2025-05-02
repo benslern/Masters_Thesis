@@ -140,13 +140,7 @@ CONTAINS
           call L2_product_fourier_1(temp1_function_cx, temp1_function_cx, val)
           rslt = rslt + val
        end do
-    end do
-    
-        
-          
-    
-    
-  
+    end do  
   
 
   END SUBROUTINE L2_grad

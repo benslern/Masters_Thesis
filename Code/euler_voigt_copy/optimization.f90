@@ -725,8 +725,37 @@ CONTAINS
 
      END SUBROUTINE rescale_cx
 
+!=========================================================
+! FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag)
+! Compute the cost function PHI = (||GRAD u(T)||_L^2)^2
+! INPUT: myfield (u(0))
+!=========================================================
+     FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag) RESULT(PHI)
+       USE global_variables
+       USE fftwfunction
+       USE function_ops
+       use solvers
+       IMPLICIT NONE
+       INCLUDE "mpif.h"
+       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), intent(inout) :: myfield
+       REAL(pr), INTENT(IN) :: mydt
+       integer, INTENT(IN) :: savesign, myiter, constr_flag
+       real(pr) :: val
 
-        
+
+       REAL(pr) :: PHI
+
+       PHI = 0.0_pr
+
+       if(constr_flag .ne. 0) call rescale(myfield, val)       
+
+       call fwd_3D(myfield, mydt, savesign, stepper_opt, myiter)
+       call fftfwd_m(Uvec, temp1_solver_cx, 3)
+       call L2_grad(temp1_solver_cx,PHI)
+       PHI = PHI**2
+
+     END FUNCTION compute_PHI_L2
+   
 !=========================================================
 ! FUNCTION compute_J(myfield, mydt, savesign, myiter, constr_flag)     
 ! Compute the cost function J = -1/2(||u(T)||_dotH^3)^2
