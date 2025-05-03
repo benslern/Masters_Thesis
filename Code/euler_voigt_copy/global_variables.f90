@@ -4,23 +4,25 @@ MODULE global_variables
 !   INCLUDE "mpif.h"
 !   include 'fftw3-mpi.f03'
  
-  INTEGER, PARAMETER :: pr = KIND (1.0d0)
-  INTEGER, PARAMETER :: MAX_ITER = 1
-  INTEGER, PARAMETER :: KappaPoints = 16
-  REAL, PARAMETER :: OPTIM_TOL = 1.0e-10_pr
-  REAL, PARAMETER :: MACH_EPSILON = 1.0e-10_pr 
-  REAL, PARAMETER :: TAU_MAX = 100
+  INTEGER, PARAMETER :: pr = KIND (1.0d0)      ! Double precision kind
+  INTEGER, PARAMETER :: MAX_ITER = 10          ! Maximum optimization iterations
+  !INTEGER, PARAMETER :: KappaPoints = 16      ! Unused parameter 
+  REAL, PARAMETER :: OPTIM_TOL = 1.0e-10_pr    ! Optimization tolereance
+  REAL, PARAMETER :: MACH_EPSILON = 1.0e-10_pr ! ???
+  REAL, PARAMETER :: TAU_MAX = 100             ! Maximum optimization step size
 
-  REAL(pr), parameter :: WEIGHT = 1.0_pr   ! Newly added on July 15, 2017, WEIGHT*R(u)+(1-WEIGHT)
-  integer :: RESOL = 128, K0_index = 0, E0_index = 12000  ! E0 here is the Lq norm (to the power q) of U or Sobolev norm of U
-  real(pr) :: fix_dt1  = 0.001_pr, fix_dt2  = 0.00005_pr
-  real(pr) :: iniTime = 0.0_pr, endTime = 75.0_pr
-  REAL(pr) :: lambda1 = 2.0_pr
-  REAL(pr) :: alpha0  = 100.0_pr
-  REAL(pr), SAVE :: Jorig                  ! April 3, 2018, added by me.
-  Real(pr):: nullvortexrate = 0.01
-  Real(pr):: alpha
+  !REAL(pr), parameter :: WEIGHT = 1.0_pr ! Unused parameter  ! Newly added on July 15, 2017, WEIGHT*R(u)+(1-WEIGHT)
+  integer :: RESOL = 128, K0_index = 0, E0_index = 12000  ! Resolution, Initial Kinetic Energy Index?, Initial Enstrophy Index? 
+  !E0 here is the Lq norm (to the power q) of U or Sobolev norm of U
+  real(pr) :: fix_dt1  = 0.001_pr, fix_dt2  = 0.00005_pr ! Time step size 1, time step size 2
+  real(pr) :: iniTime = 0.0_pr, endTime = 75.0_pr ! Initial time, end time
+  !REAL(pr) :: lambda1 = 2.0_pr     ! Unused parameter
+  !REAL(pr) :: alpha0  = 100.0_pr   ! Unused parameter
+  !REAL(pr), SAVE :: Jorig          ! Unused parameter          ! April 3, 2018, added by me.
+  !Real(pr):: nullvortexrate = 0.01 ! Unused parameter
+  Real(pr):: alpha ! Regularization parameter
 
+  ! q, p, ??, ??, ??
   Real(pr) :: LPS_q = 4.0_pr, LPS_p , LPSnorm ,LPShalfnorm, Sobolev_order = 0.75_pr     !q>3, 2/p+3/q \leq 1
 
 
@@ -43,37 +45,39 @@ MODULE global_variables
   LOGICAL, parameter :: save_binary2nc = .FALSE.
   !CHARACTER(len=*), parameter :: InitCond_pathname = "/work/kangdi/maxET/E39/T01/4FRT02_L3_N256_dt0003_E37_Uvec_fwdTE0"
 
-
-  LOGICAL :: kappaTest
-  LOGICAL :: toDealias
-  LOGICAL :: timing 
-  LOGICAL :: save_diag_NS
-  LOGICAL :: save_data_NS
-  LOGICAL :: calc_geom_NS
-  LOGICAL :: calc_ExactSol
-  LOGICAL :: save_diag_Constr
-  LOGICAL :: save_data_Constr
-  LOGICAL :: save_diag_Optim
-  LOGICAL :: save_data_Optim
-  LOGICAL :: save_diag_lineMin
-  LOGICAL :: save_data_lineMin
+  ! Unused parameters
+  !LOGICAL :: kappaTest
+  !LOGICAL :: toDealias
+  !LOGICAL :: timing 
+  !LOGICAL :: save_diag_NS
+  !LOGICAL :: save_data_NS
+  !LOGICAL :: calc_geom_NS
+  !LOGICAL :: calc_ExactSol
+  !LOGICAL :: save_diag_Constr
+  !LOGICAL :: save_data_Constr
+  !LOGICAL :: save_diag_Optim
+  !LOGICAL :: save_data_Optim
+  !LOGICAL :: save_diag_lineMin
+  !LOGICAL :: save_data_lineMin
   LOGICAL :: parallel_data
-  LOGICAL :: save_null_vortex
+  !LOGICAL :: save_null_vortex
 
-
-  INTEGER, DIMENSION(3), SAVE :: n
-  INTEGER, SAVE :: n_dim  
-  INTEGER, SAVE :: DT_index, NU_index, ConsType, iniIndex 
-  REAL(pr), SAVE :: E0, K0, PI, visc, dV, Kcut, Kmax
-  Integer :: kkmax
+  
+  INTEGER, DIMENSION(3), SAVE :: n 				! Size of each dimension x,y,z
+  INTEGER, SAVE :: n_dim           			    ! ??
+  INTEGER, SAVE :: DT_index, NU_index, iniIndex ! ??, viscosity index?, ??, !ConsType Unused Parameter
+  ! Initial Enstrophy, initial kinetic energy, pi, viscosity, delta volume, cut frequency used for dealiasing, maximal frequency present in solution.
+  REAL(pr), SAVE :: E0, K0, PI, visc, dV, Kcut, Kmax 
+  Integer :: kkmax ! ??
   !--NOTE: Kcut = cut frequency used for dealiasing. 
   !-       Kmax = maximal frequency present in solution.
   !-       kkmax = ceiling(sqrt(real(n(1),pr)**2/4_pr+real(n(2),pr)**2/4_pr+real(n(3),pr)**2/4_pr)) 
 
+  
   REAL(pr), DIMENSION (:), ALLOCATABLE, SAVE :: K1, K2, K3
   REAL(pr), DIMENSION (:), ALLOCATABLE, SAVE :: K1_filter, K2_filter, K3_filter ! added 26/09/21
   REAL(pr), DIMENSION (:), ALLOCATABLE, SAVE :: spectral_k ! added 28/09/21
-  REAL(pr), DIMENSION (:,:,:,:), ALLOCATABLE, SAVE :: Uvec, Wvec
+  REAL(pr), DIMENSION (:,:,:,:), ALLOCATABLE, SAVE :: Uvec, Wvec ! Velocity vector, vorticity vector
   
   !========================================================================== 
   !                            MPI VARIABLES
@@ -98,6 +102,7 @@ MODULE global_variables
 
   INTEGER(C_INTPTR_T), DIMENSION(3), SAVE :: C_n
   INTEGER(C_INTPTR_T), SAVE :: C_local_alloc, C_local_N, C_local_k_offset       ! Newly Added July 14, 2017
+                           ! Size of rank splice
   INTEGER, SAVE :: local_alloc, local_N, local_k_offset, total_local_size       ! Newly Added July 14, 2017
 
 

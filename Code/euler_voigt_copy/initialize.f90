@@ -93,21 +93,21 @@ SUBROUTINE initialize
 
   kkmax = ceiling(sqrt(real(n(1),pr)**2/4_pr+real(n(2),pr)**2/4_pr+real(n(3),pr)**2/4_pr)) 
 
-  
-  kappaTest = .FALSE.
-  toDealias = .TRUE.
-  timing = .FALSE.
-  save_diag_NS = .TRUE.
-  save_data_NS =.TRUE.
-  calc_geom_NS = .FALSE.
-  calc_ExactSol = .FALSE.
-  save_diag_lineMin = .TRUE.
-  save_data_lineMin = .TRUE.
-  save_diag_Constr = .TRUE.
-  save_data_Constr = .TRUE.
-  save_diag_Optim = .TRUE.
-  save_data_Optim = .TRUE.
-  save_null_vortex = .False.
+  ! Unused Flags
+  !kappaTest = .FALSE.
+  !toDealias = .TRUE.
+  !timing = .FALSE.
+  !save_diag_NS = .TRUE.
+  !save_data_NS =.TRUE.
+  !calc_geom_NS = .FALSE.
+  !calc_ExactSol = .FALSE.
+  !save_diag_lineMin = .TRUE.
+  !save_data_lineMin = .TRUE.
+  !save_diag_Constr = .TRUE.
+  !save_data_Constr = .TRUE.
+  !save_diag_Optim = .TRUE.
+  !save_data_Optim = .TRUE.
+  !save_null_vortex = .False.
 
   IF (n(1)<64) THEN
      parallel_data = .FALSE.
