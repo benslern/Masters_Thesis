@@ -169,10 +169,7 @@ PROGRAM EULER_VOIGT
       alpha = 4.0_pr/256.0_pr
       fix_dt1 = 2.0_pr**(-5)
       call solvers_allocate(stepper)
-      ! s=3
-      ! l=1
-      ! sigma = 1E-1, ..., 1E-5
-      ! norm_constr = 1
+      ! s=3, l=1, sigma = 1E-1, ..., 1E-5, ! norm_constr = 1
       call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
       !call initial_condition_refine((/128,128,128/))
       call set_initial(Uvec0, 2, 11111,2222,31234)

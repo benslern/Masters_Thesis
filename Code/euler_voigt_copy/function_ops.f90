@@ -833,7 +833,7 @@ CONTAINS
          
     INTEGER :: i1, i2, i3, ii
     REAL(pr), DIMENSION(1:3) :: k
-    REAL(pr) :: mode 
+    !REAL(pr) :: mode ! Unused parameter
 
     
     Do ii = 1, m
@@ -873,7 +873,7 @@ CONTAINS
          
     INTEGER :: i1, i2, i3, ii
     REAL(pr), DIMENSION(1:3) :: k
-    REAL(pr) :: mode 
+    !REAL(pr) :: mode ! Unused parameter
 
     
     Do ii = 1, m

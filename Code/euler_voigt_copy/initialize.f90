@@ -6,16 +6,16 @@ SUBROUTINE initialize
    INCLUDE "fftw3-mpi.f03"             ! Needed, as there is a fftw_mpi_local_size_3d command below
 
    INTEGER :: i,j,k
-   real(pr) :: mode
+   !real(pr) :: mode ! Unused parameter
          
-
+   ! amount of memory to allocate
    C_local_alloc = fftw_mpi_local_size_3d(C_n(3), C_n(2), C_n(1)/2+1, MPI_COMM_WORLD, C_local_N, C_local_k_offset)   ! Newly Added July 14, 2017
-   local_N = int( C_local_N )
-   local_k_offset = int( C_local_k_offset )
-   total_local_size = n(1)*n(2)*local_N
+   local_N = int( C_local_N ) !Size of ranks splice
+   local_k_offset = int( C_local_k_offset ) ! splice offset
+   total_local_size = n(1)*n(2)*local_N ! total size of splice
 
-   ALLOCATE( Uvec(1:n(1),1:n(2),1:local_N,1:3) )
-   ALLOCATE( Wvec(1:n(1),1:n(2),1:local_N,1:3) )
+   ALLOCATE( Uvec(1:n(1),1:n(2),1:local_N,1:3) ) ! local velocity vector ux,uy,uz
+   ALLOCATE( Wvec(1:n(1),1:n(2),1:local_N,1:3) ) ! local vorticity vector
 
    ALLOCATE( fwd_Field1(1:n(1),1:n(2),1:local_N,1:3) )   ! fwd_Field, adj_Uvec, adj_Wvec are Newly added for adjoint problem
    ALLOCATE( fwd_Field2(1:n(1),1:n(2),1:local_N,1:3) ) 
@@ -26,7 +26,7 @@ SUBROUTINE initialize
    ALLOCATE( adj_Uvec0_direction(1:n(1),1:n(2),1:local_N,1:3) )
 
  
-  ALLOCATE ( K1(1:n(1)) )
+  ALLOCATE ( K1(1:n(1)) ) ! Fourier wave numbers
   ALLOCATE ( K2(1:n(2)) )
   ALLOCATE ( K3(1:n(3)) )
   
