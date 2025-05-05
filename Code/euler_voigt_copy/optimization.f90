@@ -25,6 +25,7 @@ MODULE optimization
   real(pr) :: sigma, l, s
   integer :: stepper_opt
   real(pr), dimension(:,:,:,:), allocatable :: gradJ_opt, gradJ_pre_opt
+  real(pr), dimension(:,:,:,:), allocatable :: gradPHI_opt, gradPHI_pre_opt
   real(pr), dimension(:,:,:,:), allocatable :: d_opt, d1_opt
   
 CONTAINS
@@ -47,6 +48,8 @@ CONTAINS
     stepper_opt = stepper_
     if (.not. allocated(gradJ_opt)) allocate(gradJ_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(gradJ_pre_opt)) allocate(gradJ_pre_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
+    if (.not. allocated(gradPHI_opt)) allocate(gradPHI_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
+    if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(d_opt)) allocate(d_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(d1_opt)) allocate(d1_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
 
@@ -533,15 +536,13 @@ CONTAINS
         
       END SUBROUTINE projection
 
-
-
-!================================================= 
+!=================================================
 ! SUBROUTINE: projection_RCG(myfield, gradJ, dJ, norm2, norm2_pre)
-! vector transportation      
+! vector transportation
 ! project gradJ to the tangent space of the submanifold
 ! project dJ to the tangent space
-! compute the conjugate gradient       
-! USE: solvers.f90: temp1_solver, temp1_solver_cx, temp2_solver_cx   
+! compute the conjugate gradient
+! USE: solvers.f90: temp1_solver, temp1_solver_cx, temp2_solver_cx
 !=================================================
       SUBROUTINE projection_RCG(myfield, gradJ, gradJ_pre, dJ, dJ_actual, norm2, norm2_pre, beta_, RCG_flag, restart_flag_)
         USE global_variables
@@ -560,34 +561,34 @@ CONTAINS
         real(pr) :: tol = 0.1_pr
 
         ! RCG_flag =  1: feltcher-reeves
-        ! RCG_flag =  2: polak-ribiere 
+        ! RCG_flag =  2: polak-ribiere
 
         ! temp1_solver_cx = |D|^6 u_cx/norm
-        
+
         call fftfwd_m(myfield, temp1_solver_cx, 3)
         call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 6.0_pr)
 
         ! temp2_solver_cx = n(u)_cx/norm
         ! = (1+l^2|D|^2)^(-s)|D|^6u_cx/norm
-        
+
         call G_l_s_sigma_fourier(temp1_solver_cx, temp2_solver_cx, l, -s, -2.0_pr*sigma)
-        
-        
+
+
         call L2_product_fourier(temp1_solver_cx, temp2_solver_cx, norm)
         norm = sqrt(norm)
         temp1_solver_cx = temp1_solver_cx/norm
-        
+
         call fftbwd_m(temp1_solver_cx, temp1_solver, 3)
-        
+
 
         ! temp1_solver_cx = n(u)_cx/norm
         ! = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)|D|^6u_cx/norm
         call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -0.5_pr*s, -sigma)
 
         call fftbwd_m(temp1_solver_cx, temp2_solver, 3)
-      
-        
- 
+
+
+
         ! project gradJ_pre
         call L2_product(gradJ_pre, temp2_solver, val)
         gradJ_pre = gradJ_pre - val*temp2_solver
@@ -598,14 +599,14 @@ CONTAINS
         ! project dJ
         call L2_product(dJ, temp2_solver, val)
         dJ = dJ - val*temp2_solver
-       
+
         call L2_product(dJ, temp2_solver, val)
         if (rank == 0) print *, "dJ: inner product = ", val
-       
 
-        
 
-        
+
+
+
 
         ! temp2_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)gradJ(L2)
         call fftfwd_m(gradJ, temp2_solver_cx, 3)
@@ -616,65 +617,65 @@ CONTAINS
         call div_free_fourier(temp2_solver_cx)
         call fftbwd_m(temp2_solver_cx, gradJ, 3)
         call L2_product(gradJ, gradJ, norm2)
-                
+
         call L2_product(gradJ, temp2_solver, val)
         if (rank == 0) print *, "gradJ: inner product = ", val
 
 
 
-       
+
         ! RCG_flag =  1: feltcher-reeves
-        ! RCG_flag =  2: polak-ribiere 
+        ! RCG_flag =  2: polak-ribiere
 
 
         if (RCG_flag == 1) then
 
            beta_ = norm2/norm2_pre
            dJ = gradJ + beta_*dJ
-              
+
         else
            temp2_solver = gradJ - gradJ_pre
            call L2_product(temp2_solver, gradJ, val)
            beta_ = val/norm2_pre
            dJ = gradJ + beta_*dJ
         end if
-           
 
-        
+
+
         call L2_product(dJ, gradJ, val)
         call L2_product(dJ, dJ, val2)
 
-        
+
         if (val/sqrt(norm2)/sqrt(val2) < 1e-6_pr) then
            beta_ = 0.0_pr
            dJ = gradJ
            restart_flag_ = 1
         end if
 
-     
-        
-        
-        
+
+
+
+
         call fftfwd_m(dJ, temp1_solver_cx, 3)
         call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -0.5_pr*s, -sigma)
-       
+
         call fftbwd_m(temp1_solver_cx, dJ_actual, 3)
 
         call rescale(dJ_actual, val)
 
-        
-        
-           
-           
-        
 
-        
-        
+
+
+
+
+
+
+
      END SUBROUTINE projection_RCG
-      
+
 !=========================================================
 ! SUBROUTINE rescale(myfield, val)
-! scale myfield such that its dotH_3 is norm_constr     
+! scale myfield such that its dotH_3 is norm_constr
 !=========================================================
      SUBROUTINE rescale(myfield, scaling)
        USE global_variables
@@ -700,7 +701,7 @@ CONTAINS
 
 !=========================================================
 ! SUBROUTINE rescale_cx(myfield_cx)
-! scale myfield such that its dotH_3 is norm_constr     
+! scale myfield such that its dotH_3 is norm_constr
 !=========================================================
      SUBROUTINE rescale_cx(myfield_cx, scaling)
        USE global_variables
@@ -712,7 +713,7 @@ CONTAINS
        complex(pr), DIMENSION(1:n(1)/2+1,1:n(2),1:local_N,1:3), INTENT(inout) :: myfield_cx
        real(pr), intent(out) :: scaling
        real(pr) :: norm
-       
+
        norm = 0.0_pr
        call abs_deriv_fourier(myfield_cx, myfield_cx, 3.0_pr)
        call div_free_fourier(temp1_solver_cx)
@@ -747,7 +748,7 @@ CONTAINS
 
        PHI = 0.0_pr
 
-       if(constr_flag .ne. 0) call rescale(myfield, val)       
+       if(constr_flag .ne. 0) call rescale(myfield, val)
 
        call fwd_3D(myfield, mydt, savesign, stepper_opt, myiter)
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
@@ -757,10 +758,10 @@ CONTAINS
      END FUNCTION compute_PHI_L2
 
 !=========================================================
-! FUNCTION compute_J(myfield, mydt, savesign, myiter, constr_flag)     
+! FUNCTION compute_J(myfield, mydt, savesign, myiter, constr_flag)
 ! Compute the cost function J = -1/2(||u(T)||_dotH^3)^2
 ! Trying to minimize J, which is equivalent to maximize -J
-! INPUT: myfield (u(0))     
+! INPUT: myfield (u(0))
 ! Usage: solvers.f90 temp1_solver_cx
 !=========================================================
      FUNCTION compute_J(myfield, mydt, savesign, myiter, constr_flag) RESULT (J)
@@ -777,19 +778,19 @@ CONTAINS
 
 
        REAL(pr) :: J
-      
+
 
        J = 0.0_pr
 
-       
+
        if(constr_flag .ne. 0) call rescale(myfield, val)
-          
+
        call fwd_3D(myfield, mydt, savesign, stepper_opt, myiter)
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
        call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, J)
        J = -J
-       
+
     END FUNCTION compute_J
 
 !================================================
@@ -799,7 +800,7 @@ CONTAINS
 ! We use the Hsigma space
 ! Use: solvers.f90: temp1_solver_cx
 !================================================
-    SUBROUTINE compute_gradPHI(myfield, mydt, savesign, gradJ, myiter)
+    SUBROUTINE compute_gradPHI(myfield, mydt, savesign, gradPHI, myiter)
       USE global_variables
       USE fftwfunction
       USE function_ops
@@ -813,7 +814,10 @@ CONTAINS
 
       
       call bkd_3D(adj_Uvec0, mydt, savesign, stepper_opt, myiter)
-      gradPHI = adj_Uvec
+      call fftfwd_m(adj_Uvec, temp1_solver_cx, 3)
+      call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, 1.0_pr, -3.0_pr, -0.001_pr)
+      !gradPHI = adj_Uvec
+      call fftbwd_m(temp1_solver_cx, gradPhi, 3)
       CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
       
     END SUBROUTINE compute_gradPHI
@@ -863,7 +867,7 @@ CONTAINS
       character(200) :: file_name
       Real(pr) :: A, B, tau, dtau
       integer :: i
-      Real(pr) :: J
+      Real(pr) :: PHI
       real(pr) :: norm2
 
       A = MIN(tau_brack(1),tau_brack(2))
@@ -892,7 +896,7 @@ CONTAINS
          !Uvec = myfield
          !Uvec = Uvec + tau*gradJ_opt
          CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-         J = compute_PHI_L2(Uvec, fix_dt1, 1, i,  1)
+         PHI = compute_PHI_L2(Uvec, fix_dt1, 1, i,  1)
          if (rank == 0) then
             open(10, file = file_name, status = 'old', position = 'append')
             write(10, "(2 G20.12)"), tau, PHI 
@@ -902,7 +906,7 @@ CONTAINS
             
       close(10)
          
-    END SUBROUTINE report_J
+    END SUBROUTINE report_PHI
       
 !=========================================================
 ! SUBROUTINE: report_J(myfield,tau_brack, count, mydt)
