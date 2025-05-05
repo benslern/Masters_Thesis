@@ -792,7 +792,32 @@ CONTAINS
        
     END FUNCTION compute_J
 
+!================================================
+! SUBROUTINE: compute_gradPHI(myfield, mydt, savesign, gradJ, myiter)
+! INPUT: inifield (u(T))
+! OUTPUT: gradPHI
+! We use the Hsigma space
+! Use: solvers.f90: temp1_solver_cx
+!================================================
+    SUBROUTINE compute_gradPHI(myfield, mydt, savesign, gradJ, myiter)
+      USE global_variables
+      USE fftwfunction
+      USE function_ops
+      use solvers
+      IMPLICIT NONE
+      INCLUDE "mpif.h"
+      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: myfield
+      REAL(pr), INTENT(IN) :: mydt
+      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(OUT) :: gradPHI
+      INTEGER, INTENT(IN) :: savesign, myiter
 
+      
+      call bkd_3D(adj_Uvec0, mydt, savesign, stepper_opt, myiter)
+      gradPHI = adj_Uvec
+      CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
+      
+    END SUBROUTINE compute_gradPHI
+    
 !================================================
 ! SUBROUTINE: compute_gradJ(myfield, mydt, savesign, gradJ, myiter)
 ! INPUT: inifield (u(T))
@@ -818,6 +843,66 @@ CONTAINS
       CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
       
     END SUBROUTINE compute_gradJ
+    
+!=========================================================
+! SUBROUTINE: report_PHI(myfield,tau_brack, count, mydt)
+! compute the cost function along myfield + tau*gradPHI
+! Use Uvec
+!==========================================================
+    SUBROUTINE report_PHI(myfield,tau_brack, count, mydt)
+      USE global_variables
+      USE data_ops
+      USE function_ops
+      USE solvers
+      IMPLICIT NONE
+      INCLUDE "mpif.h"
+      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(INOUT) :: myfield
+      REAL(pr), DIMENSION(1:3) :: tau_brack
+      integer, intent(in) :: count
+      real(pr), intent(in) :: mydt
+      character(200) :: file_name
+      Real(pr) :: A, B, tau, dtau
+      integer :: i
+      Real(pr) :: J
+      real(pr) :: norm2
+
+      A = MIN(tau_brack(1),tau_brack(2))
+      B = MAX(tau_brack(1),tau_brack(2))
+      dtau = (B-A)/count
+      
+      if (rank == 0) then
+         file_name = TRIM(scratch_pathname)//"report_cost"//".dat"
+         OPEN(10, FILE = file_name, STATUS = 'REPLACE')
+         close(10)
+      end if
+
+      PHI = 0.0_pr
+      PHI = compute_PHI_L2(myfield, fix_dt1, 1, 1, 1)
+
+      call compute_gradPHI(myfield, fix_dt2, 0, gradPHI_opt, 1)
+      CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
+      
+      
+      
+      do i = 0,count
+         PHI = 0.0_pr
+         tau = A + i*dtau
+         Uvec = myfield + tau*gradPHI_opt
+         !Uvec = tau*gradJ_opt
+         !Uvec = myfield
+         !Uvec = Uvec + tau*gradJ_opt
+         CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
+         J = compute_PHI_L2(Uvec, fix_dt1, 1, i,  1)
+         if (rank == 0) then
+            open(10, file = file_name, status = 'old', position = 'append')
+            write(10, "(2 G20.12)"), tau, PHI 
+         end if
+      end do
+      
+            
+      close(10)
+         
+    END SUBROUTINE report_J
       
 !=========================================================
 ! SUBROUTINE: report_J(myfield,tau_brack, count, mydt)
