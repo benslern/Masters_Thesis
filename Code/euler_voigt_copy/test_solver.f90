@@ -39,8 +39,9 @@ PROGRAM EULER_VOIGT
    real(pr), dimension(1:3) :: tau_brack		  ! tau bracket 
    integer omp_get_thread_num,omp_get_num_threads ! thread number and number of threads
 
-   REAL(pr) :: PHI = 0.0_pr                       ! Objective function testing
-  
+   REAL(pr) :: PHI1 = 0.0_pr                       ! Objective function testing
+   REAL(pr) :: PHI2 = 0.0_pr
+
    !=============================================
    ! MPI
    !=============================================
@@ -176,7 +177,7 @@ PROGRAM EULER_VOIGT
       !call fwd_3D(Uvec0, fix_dt1, 1, stepper, 0)
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 5.0_pr
-      !PHI = compute_PHI(Uvec0, fix_dt1, 1, 1, 1)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 1)
       !call maximization(tau_brack)
       call optimization_deallocate()
       call solvers_deallocate()
@@ -190,7 +191,7 @@ PROGRAM EULER_VOIGT
 
       if (rank == 0) then
        open(3, file = filename, status = 'old', position = 'append')
-       write(3, "(1 G20.12)"), PHI
+       write(3, "(2 G20.12)"), PHI1
        close(3)
     end if
 

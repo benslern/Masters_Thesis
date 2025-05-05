@@ -755,7 +755,7 @@ CONTAINS
        PHI = PHI**2
 
      END FUNCTION compute_PHI_L2
-   
+
 !=========================================================
 ! FUNCTION compute_J(myfield, mydt, savesign, myiter, constr_flag)     
 ! Compute the cost function J = -1/2(||u(T)||_dotH^3)^2
