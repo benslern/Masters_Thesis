@@ -171,27 +171,24 @@ PROGRAM EULER_VOIGT
       call solvers_allocate(stepper)
       ! s=3, l=1, sigma = 1E-1, ..., 1E-5, ! norm_constr = 1
       call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
-      !call initial_condition_refine((/128,128,128/))
       call set_initial(Uvec0, 2, 11111,2222,31234)
-      !call fwd_3D(Uvec0, fix_dt1, 1, stepper, 0)
       tau_brack(1) = 0.0_pr
-      tau_brack(2) = 5.0_pr
-      !PHI = compute_PHI(Uvec0, fix_dt1, 1, 1, 1)
-      !call maximization(tau_brack)
+      tau_brack(2) = 20.0_pr
+      report_PHI(Uvec0,tau_brack, 20, fix_dt1)
       call optimization_deallocate()
       call solvers_deallocate()
    
       ! Save PHI test data
-      if (rank == 0) then
-       filename = TRIM(scratch_pathname)//"PHI_TEST"//".dat"
-       OPEN(3, FILE = filename, STATUS = 'REPLACE')
-       close(3)
-      end if
+      !if (rank == 0) then
+      ! filename = TRIM(scratch_pathname)//"PHI_TEST"//".dat"
+      ! OPEN(3, FILE = filename, STATUS = 'REPLACE')
+      ! close(3)
+      !end if
 
-      if (rank == 0) then
-       open(3, file = filename, status = 'old', position = 'append')
-       write(3, "(1 G20.12)"), PHI
-       close(3)
+      !if (rank == 0) then
+      ! open(3, file = filename, status = 'old', position = 'append')
+      ! write(3, "(1 G20.12)"), PHI
+      ! close(3)
     end if
 
    end if
