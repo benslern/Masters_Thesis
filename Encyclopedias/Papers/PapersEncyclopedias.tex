@@ -1,18 +1,17 @@
+
 \documentclass[12pt]{article}
 
 \usepackage[a4paper, total={6.5in,10in}]{geometry}
-\usepackage{xcolor}
 \usepackage{graphicx}
-\usepackage{blindtext}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{listings}
-\usepackage{subfig}
 
+\usepackage{xcolor}
 \pagecolor[rgb]{0.2,0.2,0.2}
 \color[rgb]{0.95,0.95,0.95}
+
+\usepackage{hyperref}
+\urlstyle{same}
 
 \begin{document}
 
@@ -25,10 +24,12 @@
 \noindent\rule{16.5cm}{0.4pt}
 \end{center}
 
+\tableofcontents
+
 \begin{flushleft}
 
 \section{Introduction}
-\qquad The purpose of this document is to provide detailed explanations the most important points of the paper's provided by Dr. Protas for my masters thesis research. Each section is intended to provide the relevant definitions, derivations, and theory of the topic as it relates to my research. This document is not intended as a comprehensive review of each subject. Segments of this document are taken directly from textbooks, papers, and online sources and so is not my original work.
+\qquad The purpose of this document is to provide detailed explanations the most important points of the paper's provided by Dr. Protas for my masters thesis research. Each section is intended to provide the relevant definitions, derivations, and theory of the topic as it relates to my research. This document is not intended as a comprehensive review of each subject. Segments of this document are taken directly from textbooks, papers, and online sources and so is not my original work. Sections which are my original work are labelled as such.
 
 \section{3D Torus}
 \qquad The 3D torus is denoted by the symbol, $\Omega = \mathbb{T}^3 := (\mathbb{R}/\mathbb{Z})^3$. The domain of the torus is usually $\boldsymbol x\in [0,1]^3$ or $\boldsymbol x\in [0,2\pi]^3$ where $\boldsymbol x$ is a vector. The 3D torus has periodic boundaries. The functions defined on $\Omega$ are usually periodic, but do not necessarily need to be.
@@ -327,10 +328,51 @@ $$\left[ \hat{e^{\sigma|D|}v} \right]_j := e^{2\pi\sigma |j|}\hat{v}_j.$$
 \section{Strong vs Weak Solutions}
 
 \section{Time Stepping}
-\subsection{Runge-Kutta-4}
+\subsection{leapfrog bk}
+\subsection{ssprk3 bk}
+Strong stability preserving 3rd order Runge-Kutta. This method is called strong stability preserving because it preserves the strong stability properties of first-order Euler time stepping method.
+\subsection{rk4 bk}
+
+The Fourth Order Runge Kutta Method is a numerical method used to approximate solutions to ODEs. It's a highly accurate and widely used method that provides a step-by-step approach to estimating the solution's next value based on an average of slopes at different points within a small interval. 
+\\~\\
+K1 is the slope at the beginning of the time step.
+\\~\\
+K2 is an estimate of the slope at the half time step using K1.
+\\~\\
+K3 is another estimate of the slope at the half time step using K2.
+\\~\\
+K4 is an estimate of the slope at the end of the time step.
+\\~\\
+The RK4 algorithm works by using the four approximations of the slope. It uses these approximations to estimate the slope with a weighted average at some time $t$. It then uses this estimate to update the PDE solution value.
+
+
+\subsection{rk5 bk}
+
+The Fifth Order Runge Kutta Method is similar to RK4 but uses six approximations of the slope and a different weighted average.
+
  
 \section{The Adjoint Method} 
 \subsection{The Gateaux Directional Differential}
+
+The equation for the Gateaux differential is,
+$$\Phi'_{\alpha,T}(\eta;\eta'):=\lim_{\epsilon\rightarrow 0}[\Phi_{\alpha,T}(\eta+\epsilon\eta')-\Phi_{\alpha,T}(\eta)].$$
+The objective functional is defined as,
+$$\Phi_{\alpha,T}(\eta):=\|\nabla u_\alpha(T;\eta)\|_{L^2}^2 = \|u_\alpha(T;\eta)\|_{\dot{H}^1}^2.$$
+Substituting the second definition into the Gateaux differential,
+$$\Phi'_{\alpha,T}(\eta;\eta')=\lim_{\epsilon\rightarrow 0}[\|u_\alpha(T;\eta+\epsilon\eta')\|_{\dot{H}^1}^2-\|u_\alpha(T;\eta)\|_{\dot{H}^1}^2].$$
+Substituting in the equation for the $\dot{H}^1$ seminorm,
+$$\Phi'_{\alpha,T}(\eta;\eta')=\lim_{\epsilon\rightarrow 0}[(2\pi)^3\sum_{k\in\mathbb{Z}^3}|k|^2|\hat{u}_k+\epsilon\hat{u}'_k|^2-(2\pi)^3\sum_{k\in\mathbb{Z}^3}|k|^2|\hat{u}_k|^2].$$
+This simplifies to,
+$$\Phi'_{\alpha,T}(\eta;\eta')=\lim_{\epsilon\rightarrow 0}[(2\pi)^3\sum_{k\in\mathbb{Z}^3}|k|^22\epsilon|\hat{u}_k\hat{u}'_k|+(2\pi)^3\sum_{k\in\mathbb{Z}^3}|k|^2\epsilon^2|\hat{u}'_k|^2].$$
+Taking the limit,
+$$\Phi'_{\alpha,T}(\eta;\eta')=2(2\pi)^3\sum_{k\in\mathbb{Z}^3}|k|^2|\hat{u}_k\hat{u}'_k|.$$
+This can be expressed in the integral form, 
+$$\Phi'_{\alpha,T}(\eta;\eta')=2\int_{\mathbb{T}^3}\sum_{k\in\mathbb{Z}^3}|k|^2\hat{u}_k\hat{u}'_ke^{2ikx}dx.$$
+Which is equivalent to the inner product,
+$$\Phi'_{\alpha,T}(\eta;\eta')=2<\sum_{k\in\mathbb{Z}^3}|k|\hat{u}_ke^{ikx},\sum_{k\in\mathbb{Z}^3}|k|\hat{u}'_ke^{ikx}>$$
+This gives us the Gateaux differential in the form of the $\dot{H}^1$ inner product,
+$$\Phi'_{\alpha,T}(\eta;\eta')=  2<u_\alpha(\cdot,T),u'_\alpha(\cdot,T)>_{\dot{H}^1}$$
+
  
 \section{Navier-Stokes Equations}
 
@@ -341,19 +383,21 @@ $$\textbf{u}(0) = \textbf{u}_0$$
 where $\textbf{u}:[0,T]\times\Omega \rightarrow \mathbb{R}^3$ and $p:[0,T]\times\Omega \rightarrow \mathbb{R}$ are the velocity and pressure fields. $\mu >0$ is the coefficient of kinematic viscosity, $\textbf{u}_0$ is a divergence-free initial condition whereas the fluid density $\rho$ is assumed constant and equal to 1.
 
 \section{Navier-Stokes-Voigt Equations} 
+
+THIS SECTION IS COPIED FROM MY THESIS AND IS MY ORIGINAL WORK.
  
 \section{Euler's Equations}
+THIS SECTION IS COPIED FROM MY THESIS AND IS MY ORIGINAL WORK.
+\\~\\
 The Euler equations are the inviscid incompressible from of the Navier-stokes equations. They are defined by the equations
 $$\partial_t\textbf{u}+(\textbf{u}\cdot\nabla)\textbf{u}+\nabla p = 0$$
 $$\nabla \cdot \textbf{u} = 0$$
 $$\textbf{u}(\textbf{x},0) = \textbf{u}_0(\textbf{x}).$$
 
 \section{Euler-Voigt Equations}
-The Euler–Voigt equations were proposed as an inviscid regularization of the Euler equations.The Euler–Voigt equations are given by
-$$-\alpha^2\partial_t\nabla^2\textbf{u}+\partial_t\textbf{u}+(\textbf{u}\cdot\nabla)\textbf{u}+\nabla p = 0$$
-$$\nabla \cdot \textbf{u} = 0$$
-$$\textbf{u}(\textbf{x},0) = \textbf{u}_0(\textbf{x}).$$
-Here $\alpha>0$ is a regularization parameter having units of length. Note that the usual incompressible Euler equations are formally obtained by setting $\alpha=0$.
+
+THIS SECTION IS COPIED FROM MY THESIS AND IS MY ORIGINAL WORK.
+
 \subsection{$\alpha$-Energy}
 
 An $\alpha-$energy equality was proved to hold for solutions for the Euler-Voigt equations for all $t\in \mathbb{R}$,
@@ -435,34 +479,34 @@ The Kappa test is a method for verifying the accuracy of the Gateaux differentia
 $$\kappa(\epsilon) = \frac{\epsilon^{-1}\left[ \Phi(\eta + \epsilon\eta') - \Phi(\eta) \right]}{\langle \nabla\Phi(\eta),\eta' \rangle}. $$
 This formula shows the gradient, round off, and truncation errors as a function of epsilon. The round off errors should be approximately of order $O(\epsilon^-1)$. Therefore, we expect the value of $\kappa$ do be dominated by round off errors for small $\epsilon$ values. The truncation errors should be of order $O(\epsilon^p)$ for some $p\geq 0$. Therefore, we expect the value of $\kappa$ to be dominated by the truncation errors for large values of $\epsilon$. Between these two regions the value of $\kappa$ will be determined by the gradient errors, which are themselves a product of the spatial and temporal resolution. With smaller values of $\Delta x$ and $\Delta t$ causing the gradient error to decrease, while also decreasing the range of $\epsilon$ over which the gradient errors dominate. Therefore, we expect the plot of $\kappa$ vs $\epsilon$ to be of the general form shown in the graph below, taken from Adjoint-based enforcement of state constraints in PDE optimization problems.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.6]{kappa_test.png}
 \end{figure}
 
 The kappa test graphs for our simulations are shown below.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.3]{kappa_test_init_1_t1_result.png}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.3]{kappa_test_init_1_t3_result.png}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.3]{kappa_test_init_2_t1_result.png}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.3]{kappa_test_init_2_t3_result.png}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.3]{kappa_test_init_3_t1_result.png}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.3]{kappa_test_init_3_t3_result.png}
 \end{figure}
