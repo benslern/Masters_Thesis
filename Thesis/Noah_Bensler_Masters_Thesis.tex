@@ -4,6 +4,7 @@
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 
@@ -14,6 +15,12 @@
 \doublespacing
 
 \usepackage{hyperref}
+\hypersetup{
+ colorlinks,
+ linkcolor={blue!90!black},
+ citecolor={red!80!black},
+ urlcolor={blue!50!black}
+}
 \urlstyle{same}
 \pagenumbering{arabic}
 
@@ -24,6 +31,32 @@
 \rhead{McMaster University - CSE}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
+
+\newcommand{\bds}{\boldsymbol}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+\newcommand{\lb}{\left\lbrace}
+\newcommand{\rb}{\right\rbrace}
+
+\def\u{\boldsymbol u}
+\def\v{\boldsymbol v}
+\def\j{\boldsymbol j}
+\def\ua{\boldsymbol u_\alpha}
+\def\bn{\boldsymbol \nabla}
+\def\be{\boldsymbol \eta}
+\def\bea{\boldsymbol \eta_\alpha}
+\def\RR{\mathbb{R}}
+\def\TT{\mathbb{T}}
+\def\CC{\mathbb{C}}
+\def\ZZ{\mathbb{Z}}
+\def\M{\mathcal{M}}
+\def\T{\mathcal{T}}
+
+\DeclareMathOperator*{\argmax}{argmax}
+
+\newtheorem{thm}{Theorem}[section]
+
+\numberwithin{equation}{section}
 
 \begin{document}
 
@@ -57,7 +90,6 @@
             
        \vspace{0.8cm}
      
-       %\includegraphics[width=0.4\textwidth]{university}
             
        Computational Science \& Engineering\\
        McMaster University\\
@@ -66,7 +98,6 @@
    \end{center}
 \end{titlepage}
 \restoregeometry
-
 
 \pagenumbering{roman}
 \setcounter{page}{2}
@@ -89,7 +120,6 @@
 
 \pagebreak
 
-%\begin{flushleft}
 \begin{flushleft}
 \begin{large}
 \textbf{Lay Abstract}
@@ -99,11 +129,9 @@
 
 
 The Navier-Stokes equations are a set of equations used to model the behaviour of viscous incompressible fluids. The question of whether or not the Navier-Stokes equations, or the inviscid Euler equations, are a valid description of fluid mechanics remains unanswered. A singularity is the occurrence of an infinite derivative of the velocity at a single point in the fluid flow. If the equations form a singularity from smooth initial conditions, then they are not valid descriptions of fluid mechanics. The Euler-Voigt equations are an inviscid regularization of the Euler equations which are known to not form singularities from smooth initial conditions. However, by decreasing the regularization parameter we approximate Euler flows. We examine the Euler-Voigt equations with a PDE-constrained optimization problem to identify initial conditions that produce 'extreme' behaviour in numerical simulations.  \#\# We present numerical evidence that CONCLUSION \#\#
-%\end{flushleft}
 
 \pagebreak
 
-%\begin{flushleft}
 \begin{large}
 \textbf{Abstract}
 \\~\\
@@ -114,11 +142,9 @@ An abstract of not more than 300 words must be included and indicates the major 
 The Navier-Stokes equations are a set of partial differential equations used to model the behaviour of viscous incompressible fluids. The question of whether or not unique classical solutions of the Navier-Stokes equations, and inviscid Euler equations, exist for all time, given smooth initial conditions, remains unanswered for the three-dimensional problem. 
 \\~\\
 A singularity is the occurrence of an infinite derivative of the velocity at a single point in the fluid flow. The formation of a singularity from smooth initial conditions would invalidate the equations as accurate descriptions of fluid mechanics. The Euler-Voigt equations are an inviscid regularization of the Euler equations which are known to not form singularities from smooth initial conditions. However, by decreasing the regularization parameter we approximate Euler flows. We examine the Euler-Voigt equations with a PDE-constrained optimization problem to identify initial conditions that produce 'extreme' behaviour in numerical simulations.  \#\# We present numerical evidence that CONCLUSION \#\#
-%\end{flushleft}
 
 \pagebreak
 
-%\begin{flushleft}
 \begin{large}
 \textbf{Acknowledgements}
 \\~\\
@@ -128,33 +154,31 @@ set forth on a separate page or incorporated into the Preface (if there is one).
 preliminary pages listed under (f), (g) and (h) must be numbered in lower case Roman numerals, i.e., ‘iv’, 
 ‘v’, ‘vi’ etc. 
 \\~\\
-Dr. Bartosz Protas, Dr. J\"{o}rn Davidsen, members of committee 
-%\end{flushleft}
+Dr. Bartosz Protas, Dr. Xinyu Zhao, Dr. J\"{o}rn Davidsen, members of committee, Parents 
+
+
 I would like to thank Dr. Bartosz Protas for his support and guidance on my research project.
 I also want to thank Dr. J\"{o}rn Davidsen of the Complexity Science Group for supervising my undergraduate research and inspiring me to pursue computational physics.
 
 
 \pagebreak
 
-
-%\begin{flushleft}
-\tableofcontents
-%\end{flushleft}
+{
+  \hypersetup{linkcolor=black}
+  \tableofcontents
+}
 
 \pagebreak
 
-%\begin{flushleft}
 \begin{large}
 \textbf{List of Figures and Tables}
 \\~\\
 \end{large}
 Must include the titles and page numbers; must be numbered in lower case Roman numerals continuous after 
-(f).
-%\end{flushleft}
+(f)
 
 \pagebreak
 
-%\begin{flushleft}
 \begin{large}
 \textbf{List of Abbreviations and Symbols}
 \\~\\
@@ -162,124 +186,181 @@ Must include the titles and page numbers; must be numbered in lower case Roman n
 Must include with their appropriate definitions; must be numbered in lower case Roman numerals continuous after (g).
 \\~\\
 Partial Differential Equation - PDE
-%\end{flushleft}
 
 \pagebreak
 
-%\begin{flushleft}
 \begin{large}
 \textbf{Declaration of Academic Achievement}
 \\~\\
 \end{large}
 The student will declare his/her research contribution and, as appropriate, those of colleagues or other 
 contributors to the contents of the thesis.
-%\end{flushleft}
 
 \pagebreak
 
 \pagenumbering{arabic}
 
-%\begin{flushleft}
 \section{Introduction}
 \subsection{Singularity Formation in 3D Fluid Flows}
 The Navier-Stokes equations are a set of partial differential equations (PDEs) that describe the motion of viscous incompressible fluids. The fluids described by the Navier-Stokes equations can be modelled in domains with a wide variety of shape, dimension, and boundary conditions [CITE MULTIPLE PAPERS WITH DIFFERENT DOMAINS]. Because of their flexibility they are utilized to model the behaviour of systems in fields as disparate as aero/hydrodynamics, weather prediction, biophysics, and astrophysics \cite{cho_solving_2022}\cite{doering_3d_2009}. Despite the numerous fields that make use of the 3D Navier-Stokes equations, and extensive research examining their properties, there is no known unique classical solution \cite{protas_systematic_2022}. In fact, this is the basis of the well known millennium problem from the Clay Institute which offers a million dollar award for the confirmation of the existence, or non-existence, of a solution for smooth initial conditions \cite{robinson_navierstokes_2020}.
 \\~\\
-Most often, scientific research which focuses the fundamental properties of the Navier-Stokes equations utilizes either the unbounded domain $\Omega := \mathbb{R}^3$, or the three-dimensional torus $\Omega := \mathbb{T}^3_L$ with $L>0$ \cite{protas_systematic_2022}. For this analysis, we will use the three-dimensional torus. The Navier-Stokes system on the domain $\Omega := \mathbb{T}^3_L := [0,L]^3$ and time interval $[0,T]$ is defined as 
-\begin{align}\label{eq:Navier:Stokes}
-\tag{1.1a}
-\partial_t \mathbf{u} + \mathbf{u}\cdot \boldsymbol\nabla \mathbf{u} + \boldsymbol\nabla p - \nu \Delta \mathbf{u} &= 0 \text{ in } \Omega\times (0,T],\\
-\tag{1.1b}
-\boldsymbol\nabla \cdot \mathbf{u} &= 0 \text{ in } \Omega\times [0,T],\\
-\tag{1.1c}
-\mathbf{u}(0) &= \mathbf{u}_0
+Most often, scientific research that focuses the fundamental properties of the Navier-Stokes equations utilizes either the unbounded domain $\Omega := \RR^3$, or the three-dimensional torus $\Omega := \TT^3_L$ with $L>0$ \cite{protas_systematic_2022}. For this analysis, we will use the three-dimensional torus. The Navier-Stokes system on the domain $\Omega := \TT^3_L := [0,L]^3$ and time interval $[0,T]$ is defined as 
+\begin{subequations}\label{eq:Navier:Stokes}
+\begin{align}
+\partial_t \u + \u\cdot \bn \u + \bn p - \nu \Delta \u &= 0 \qquad\text{ in } \Omega\times (0,T],\\
+\bn \cdot \u &= 0 \qquad\text{ in } \Omega\times [0,T],\\
+\u(0) &= \u_0
 \end{align}
-where $\mathbf{u} = [u_1,u_2,u_3]^T$ is the fluid velocity field, $p$ is the scalar pressure, and $\nu>0$ is the coefficient of kinematic viscosity. The value $\mathbf{u}_0$ is the initial divergence free velocity field of the fluid at time $t=0$. Finally, $\boldsymbol\nabla = [\partial_1,\partial_2,\partial_3]^T$ is used to define the gradient of the pressure, divergence of the velocity field, and the tensor $[\boldsymbol\nabla \mathbf{u}]_{ij}=\partial_j u_i$ for $i,j=1,2,3$.
+\end{subequations}
+where $\u = [u_1,u_2,u_3]^T$ is the fluid velocity field, $p$ is the scalar pressure, and $\nu>0$ is the coefficient of kinematic viscosity. The value $\u_0$ is the initial divergence free velocity field of the fluid at time $t=0$. Finally, the $\bn = [\partial_1,\partial_2,\partial_3]^T$ operator is used to define the gradient of the pressure, the tensor $[\bn \u]_{ij}=\partial_j u_i$ for $i,j=1,2,3$, and the divergence of the velocity field.
 \\~\\
-One line of evidence against the validity of the 3D Navier-Stokes equation is the formation of singularities. A singularity occurs when the derivative of the velocity field becomes infinite at a single point\cite{moffatt_singularities_2019}. How do they form?
+One line of evidence against the validity of the 3D Navier-Stokes equations is the formation of singularities. A singularity occurs when the derivative of the velocity field becomes infinite at a single point \cite{moffatt_singularities_2019}. \textit{How do they form?}
 \\~\\
-The formation of a singularity in a fluid flow given smooth initial conditions would invalidate the Navier-Stokes equations as an accurate description of fluid flows \cite{protas_systematic_2022}. The question of singularity formation from smooth initial conditions also exists for the Euler equations. The Euler equations are the inviscid form of the Navier-Stokes equations. The Euler are often studied because they are simpler to analyze than the Navier-Stokes equations [Citation]. Additionally, many people believe the Eulers equations are more likely to form singularities than the Navier-Stokes due to the lack of a viscosity term dampening the fluid flow [Citation].
+The formation of a singularity in a fluid flow given smooth initial conditions would invalidate the Navier-Stokes equations as an accurate description of fluid flows \cite{protas_systematic_2022}. The question of singularity formation from smooth initial conditions has also not been answered for the Euler equations. The Euler equations are the inviscid form of the Navier-Stokes equations, obtained by setting $\nu=0$
+\begin{subequations}\label{eq:Euler}
+\begin{align}
+\partial_t \u + \u\cdot \bn \u + \bn p &= 0 \qquad\text{ in } \Omega\times (0,T],\\
+\boldsymbol\nabla \cdot \mathbf{u} &= 0 \qquad\text{ in } \Omega\times [0,T],\\
+\u(0) &= \u_0
+\end{align}
+\end{subequations}
+\textit{The Euler are often studied because they are simpler to analyze than the Navier-Stokes equations [Citation]. Additionally, many people believe the Eulers equations are more likely to form singularities than the Navier-Stokes due to the lack of a viscosity term dampening the fluid flow [Citation].}
 
 \subsection{3D Euler-Voigt Equations}
-The Euler-Voigt equations are an inviscid regularization of the Euler equations and have been shown to be globally well-posed and so do not form singularities given smooth initial conditions \cite{cao_global_2006}. The Euler-Voigt equations on the torus are
-\begin{align}\label{eq:Euler:Voigt}
-\tag{1.2a}
--\alpha^2\partial_t\Delta\mathbf{u}_\alpha + \partial_t \mathbf{u}_\alpha + \mathbf{u}_\alpha\cdot \nabla \mathbf{u}_\alpha + \nabla p &= 0,\\
-\tag{1.2b}
-\nabla \cdot \mathbf{u_\alpha} &= 0,\\
-\tag{1.2c}
-\mathbf{u}_\alpha(x,0) &= \mathbf{u}_\alpha.
+The Euler-Voigt equations are an inviscid regularization of the Euler equations (\ref{eq:Euler}) which have been shown to be globally well-posed and so do not form singularities given smooth initial conditions \cite{cao_global_2006}. The Euler-Voigt equations on the torus $\Omega = \mathbb{T}_L^3 := [0,L]^3$ and time interval $[0,T]$
+\begin{subequations}\label{eq:Euler:Voigt}
+\begin{align}
+-\alpha^2\partial_t\Delta\ua + \partial_t \ua + \ua\cdot \bn\ua + \bn p &= 0 \qquad\text{ in } \Omega\times (0,T],\\
+\bn \cdot \ua &= 0 \qquad\text{ in } \Omega\times (0,T],\\
+\ua(x,0) &= \ua.
 \end{align}
-where $\mathbf{u}_\alpha$ is the velocity field of the Euler-Voigt flow. The $p$ and $\nabla$ symbols have the same definitions as system (1.1). The regularization of the Euler-Voigt equations is accomplished with the addition of the term $-\alpha^2\partial_t \Delta \mathbf{u}_\alpha$ where $\alpha >0$ is the regularization parameter. This term is used to stabilize simulations without adding artificial viscosity, which would remove energy from the system \cite{larios_computational_2018}. The property of constant energy, known as the '$\alpha$-energy' can be used to test the validity of the simulations. 
-\\~\\
-Why study the Euler-Voigt equations.\\
-We study the Euler-Voigt equations because they are faster and let us explore the euler-voigt equations. By modelling the Euler-Voigt flows at decreasing values of $\alpha$ we approximate Euler flows. Based on prior communication with Dr. Xinyu Zhao.
-\\~\\
+\end{subequations}
+where $\ua$ is the velocity field of the Euler-Voigt flow. The $p$ and $\bn$ symbols have the same definitions as system (\ref{eq:Navier:Stokes}) and (\ref{eq:Euler}). The regularization of the Euler-Voigt equations is accomplished with the addition of the term $-\alpha^2\partial_t \Delta \ua$ where $\alpha >0$ is the regularization parameter. This term is used to stabilize simulations without adding artificial viscosity, which would remove energy from the system \cite{larios_computational_2018}. The property of constant energy, known as the '$\alpha$-energy' can be used to test the validity of the simulations. The $\alpha$-energy is defined as
+\begin{equation}\label{eq:alpha:Energy}
+E_\alpha(t):=\|\ua(t)\|_{L^2}^2 + \alpha^2\|\bn\ua(t)\|_{L^2}^2 = E_\alpha(0).
+\end{equation}
+It is worth noting that both (\ref{eq:Euler}) and (\ref{eq:Euler:Voigt}) possess the following time scaling symmetry
+\begin{equation}\label{eq:time:scaling}
+\tilde{\u}(\bds x,t) = \lambda\u(\bds x,\lambda t)
+\end{equation}
+\textit{Why study the Euler-Voigt equations.\\
+We study the Euler-Voigt equations because they are faster and let us explore the euler-voigt equations. By modelling the Euler-Voigt flows at decreasing values of $\alpha$ we approximate Euler flows. Based on prior communication with Dr. Xinyu Zhao.} The behavior of the solutions of (\ref{eq:Euler:Voigt}) as $\alpha\rightarrow 0$ can be used to determine whether the solutions of the Euler equations will develop a finite time singularity \cite{larios_computational_2018}
+
 \subsection{Initial Conditions}
-The specific initial conditions that will be used in our simulations are described in section NUMBER. However, in order to formulate our optimization problem we must first describe the properties that each initial condition must have. Firstly, the pseudospectral methods used in this study require the functions to be smooth and real-analytic in order to have exponential convergence. A requirement of the Euler-Voigt equations is that the initial conditions are divergent free. Additionally, we assume without loss of generality that the initial conditions have a mean of zero. This is important because REASON.
+The specific initial conditions that will be used in our simulations are described in section NUMBER. However, in order to formulate our optimization problem we must first describe the properties that each initial condition must have. Firstly, the pseudospectral methods used in this study require the functions to be smooth and real-analytic in order to have exponential convergence. A requirement of the Euler-Voigt equations is that the initial conditions are divergence free. Additionally, we assume without loss of generality that the initial conditions have a mean of zero. \textit{This is important because REASON.}
 \\~\\
 In order to identify initial conditions that satisfy these conditions, we consider analytic initial conditions that belong to the following Gevrey class
-\begin{align}\label{eq:Gevrey:Class}
-\tag{1.3}
-G^\sigma := \left\lbrace \boldsymbol v\in H^s(\mathbb{T}^3) : \|\mathbf{\boldsymbol v}\|_{G^\sigma} = \left\langle \mathbf{\boldsymbol v,\boldsymbol v}\right\rangle_{G^\sigma}^{1/2}<\infty \right\rbrace, s\geq 3, \sigma > 0,
-\end{align}
-with the inner product
-\begin{equation}\label{eq:Gevrey:def}
-\tag{1.4}
-\begin{aligned}
-\forall \boldsymbol v,\boldsymbol u \in G^\sigma, \quad \left\langle \boldsymbol v,\boldsymbol u\right\rangle_{G^\sigma} :=& \sum_{\boldsymbol j\in \mathbb{Z}^3} (1+|2\pi \boldsymbol j|^2)^se^{4\pi\sigma|\boldsymbol j|}\hat{\boldsymbol{v}}_{\boldsymbol j}\cdot \overline{\hat{\boldsymbol u}}_{\boldsymbol j} \\
-=& \int_{\mathbb{T}^3}(1+|D|^2)^se^{2\sigma |D|}\boldsymbol v\cdot \boldsymbol u \, dx,
-\end{aligned}
+\begin{equation}\label{eq:Gevrey:Class}
+G^\sigma := \lb \v\in H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\sigma}^{1/2}<\infty \rb, s\geq 3, \sigma > 0,
 \end{equation}
+with the inner product
+\begin{subequations}\label{eq:Gevrey:def}s
+\begin{align}
+\forall \v,\u \in G^\sigma, \quad \la \v,\u \ra_{G^\sigma} :=& \sum_{\j\in \ZZ^3} (1+|2\pi \j|^2)^se^{4\pi\sigma|\j|}\hat{\v}_{\j}\cdot \overline{\hat{\u}}_{\j} \\
+=& \int_{\TT^3}(1+|D|^2)^se^{2\sigma |D|}\v\cdot \u \, dx,
+\end{align}
+\end{subequations}
 where overbar denotes complex conjugation, whereas the operators $|D|$ and $e^{\sigma|D|}$ are defined via
 \begin{equation}
-\tag{1.5}
 \left[ \widehat{|D|\boldsymbol v} \right]_{\boldsymbol j} := 2\pi|\boldsymbol j|\boldsymbol{\hat{v}_j}, \qquad \left[ \widehat{e^{\sigma |D|}\boldsymbol v} \right]_{\boldsymbol j} := e^{2\pi|\boldsymbol j|}\boldsymbol{\hat{v}_j}.
 \end{equation}
-Since the initial conditions of (1.2) need to be divergence free and the mean is an invariant of motion, we introduce the following subspace in which optimal initial conditions will be sought
-\begin{align}
-\tag{1.6}
+Since the initial conditions of (\ref{eq:Euler:Voigt}) need to be divergence free and the mean is an invariant of motion, we introduce the following subspace in which optimal initial conditions will be sought
+\begin{equation}
 V := \{\boldsymbol v \in G^\sigma : \boldsymbol \nabla \cdot \boldsymbol v = 0, \int_{\mathbb{T}^3}\boldsymbol v\, dx = 0\}.
-\end{align}
-Due to the scaling property of the Euler-Voigt equations, we can restrict our discussion to initial conditions with unit $\dot{H}^1$ seminorm which belong to a close manifold $\mathcal{M}_1\subset V$ defined as
-\begin{align}
-\tag{1.7}
-\mathcal{M}_1 = \{\boldsymbol v \in V : \|\boldsymbol v\|_{\dot{H}^1} = 1 \}.
-\end{align}
+\end{equation}
+Due to the time scaling property of the Euler-Voigt equations (\ref{eq:time:scaling}), we can restrict our discussion to initial conditions with unit $\dot{H}^1$ seminorm which belong to a closed manifold $\M_1\subset V$ defined as
+\begin{equation}
+\M_1 = \{\v \in V : \|\v\|_{\dot{H}^1} = 1 \}.
+\end{equation}
 
 \subsection{Finite Time Blow-up Criteria}
 
-\textbf{Theorem 1.1.} \textit{Let $\eta_\alpha\in H^s$,$s\geq 3$ with $\nabla \cdot \eta_\alpha = 0$ and let $\mathbb{u}_\alpha$ be the corresponding unique solution of the Euler-Voigt equations. Suppose that there exists a time $T^*>0$ such that}
-\begin{align}\label{eq:Theorem:1.1}
-\tag{1.9}
-\limsup_{\alpha \rightarrow 0^+} \left( \alpha \sup_{t\in[0,T^*]} \|\nabla \mathbf{u}_\alpha(t)\|_{L^2}\right) > 0.
-\end{align}
-\textit{Then the Euler equations with the initial condition $\mathbf{\eta}_\alpha$ must develop a singularity within the interval $[0,T^*]$.}
-\\~\\
-What methods are there for determining blow-up.\\
-Which method will we use.\\
+As previously mentioned, the behaviour of the Euler-Voigt equations as $\alpha\rightarrow 0^+$ can be used to to determine whether solutions of the Euler equations will develop a finite time singularity. This was proved in the following theorem from \cite{larios_computational_2018}.
+\begin{thm}\label{thm:Theorem:1.1}
+Let $\eta_\alpha\in H^s$,$s\geq 3$ with $\nabla \cdot \eta_\alpha = 0$ and let $\u_\alpha$ be the corresponding unique solution of the Euler-Voigt equations. Suppose that there exists a time $T^*>0$ such that
+\begin{equation}
+\limsup_{\alpha \rightarrow 0^+} \left( \alpha \sup_{t\in[0,T^*]} \|\bn \ua(t)\|_{L^2}\right) > 0.
+\end{equation}
+Then the Euler equations with the initial condition $\be_\alpha$ must develop a singularity within the interval $[0,T^*]$.
+\end{thm}
+\noindent Theorem 5.1 in \cite{larios_higher-order_2010} states that
+\begin{thm}\label{thm:Theorem:1.2}
+Given initial data $\be,\bea \in H^s(\TT^3)$ for some $s\geq 3$, let $\u,\ua \in C([0,T],H^s(\TT^3))\cap C^1([0,T],H^{s-1}(\TT^3))$ be the corresponding solutions to (\ref{eq:Euler}) and (\ref{eq:Euler:Voigt}), respectively, where $0<T<T_{\text{max}}$ and $T_{\text{max}}$ is the maximal time for which a solution to (\ref{eq:Euler}) exists and is unique. For all $t\in[0,T]$, we have 
+\begin{equation}
+\begin{aligned}
+\|\u(t)-\ua(t)\|_{L^2}^2 + \alpha^2\|\bn(\u(t)-\ua(t))\|_{L^2}^2 \leq \\ \left( \|\be-\bea \|_{L^2}^2 + \alpha^2\|\bn(\be - \bea)\|_{L^2}^2 \right)e^{Ct} + C\alpha^2(e^{Ct}-1).
+\end{aligned}
+\end{equation}
+\end{thm}
 
-%\end{flushleft}
+\noindent Based on this theorem we know that if
+\begin{equation}
+\|\be-\bea\|_{L^2}^2+\alpha^2\|\bn(\be-\bea)\|_{L^2}^2 \rightarrow 0, \quad \text{as } \alpha\rightarrow 0,
+\end{equation}
+then for all $t\in [0,T]$,
+\begin{equation}
+\|\u(t)-\ua(t)\|_{L^2}^2 + \alpha^2\|\bn(\u(t)-\ua(t))\|_{L^2}^2 \rightarrow 0.
+\end{equation}
+Finally, we slightly modify Theorem 5.2 in \cite{larios_higher-order_2010} as follows.
+\begin{thm}\label{thm:Theorem:1.3}
+Given initial data $\be,\bea \in H^s(\TT^3)$ for some $s\geq 3$ satisfying
+\begin{equation}
+\|\be-\bea\|_{L^2}^2+\alpha^2\|\bn(\be-\bea)\|_{L^2}^2 \rightarrow 0, \quad \text{as} \alpha\rightarrow 0,
+\end{equation} 
+let $\u,\ua \in C([0,T],H^s(\TT^3))\cap C^1([0,T],H^{s-1}(\TT^3))$ be the corresponding solutions to (\ref{eq:Euler}) and (\ref{eq:Euler:Voigt}), respectively. If there exists a finite time $T^*>0$ such that the solutions $\ua$ satisfies
+\begin{equation}
+\limsup_{\alpha^2 \rightarrow 0^+} \left( \alpha \sup_{t\in[0,T^*]} \|\bn \ua(t)\|_{L^2}^2\right) > 0,
+\end{equation}
+then $\u$ develops a singularity in the interval $[0,T^*]$.
+\end{thm}
 
-%\begin{flushleft}
+\begin{proof}
+Suppose that the solution $\u$ of the Euler equations (\ref{eq:Euler}) with the initial condition $\be$ is regular on $[0,T^*]$. Since the Euler-Voigt equations are globally well-posed, we have
+\begin{equation}
+\|\ua(t)\|_{L^2}^2 + \alpha^2\|\bn\ua(t)\|_{L^2}^2  = \|\bea\|_{L^2}^2+\alpha^2\|\bn(\bea)\|_{L^2}^2,
+\end{equation}
+thus
+\begin{equation}
+\alpha^2\|\bn\ua(t)\|_{L^2}^2  = \|\bea\|_{L^2}^2+\alpha^2\|\bn(\bea)\|_{L^2}^2 - \|\ua(t)\|_{L^2}^2.
+\end{equation}
+Taking the supremum over $t\in[0,T^*]$ of the above equation, we obtain that
+\begin{equation}
+\sup_{t\in[0,T^*]}\alpha^2\|\bn\ua(t)\|_{L^2}^2  = \|\bea\|_{L^2}^2+\alpha^2\|\bn(\bea)\|_{L^2}^2 - \inf_{t\in[0,T^*]} \|\ua(t)\|_{L^2}^2.
+\end{equation}
+Taking the limsup when $\alpha\rightarrow 0$ of the above equation, we obtain that
+\begin{equation}
+\limsup_{\alpha\rightarrow 0}\left(\sup_{t\in[0,T^*]}\alpha^2\|\bn\ua(t)\|_{L^2}^2\right)  = \limsup_{\alpha\rightarrow 0}\left(\|\bea\|_{L^2}^2+\alpha^2\|\bn(\bea)\|_{L^2}^2 - \inf_{t\in[0,T^*]} \|\ua(t)\|_{L^2}^2\right).
+\end{equation}
+We now make use of Theorem (\ref{thm:Theorem:1.2}), which demonstrates that the convergence of the solutions of the Euler-Voigt equations (\ref{eq:Euler:Voigt}) to the solution of the Euler equations (\ref{eq:Euler}) is uniform on $[0,T^*]$. Therefore we can reduce the above equation to
+\begin{equation}
+\limsup_{\alpha\rightarrow 0}\left(\sup_{t\in[0,T^*]}\alpha^2\|\bn\ua(t)\|_{L^2}^2\right)  = \|\be\|_{L^2}^2 - \|\u(t)\|_{L^2}^2.
+\end{equation}
+Since the energy of regular solutions of the Euler equations is conserved, we have
+\begin{equation}
+\limsup_{\alpha\rightarrow 0}\left(\sup_{t\in[0,T^*]}\alpha^2\|\bn\ua(t)\|_{L^2}^2\right)  = 0,
+\end{equation}
+which contradicts the hypothesis in the theorem that the above expression is positive.
+\end{proof}
+
 \section{The Optimization Problem}
 
 
 \subsection{Formulation of the Problem}
-We define the objection function $\Phi_{\alpha,T}: V\rightarrow \mathbb{R}^+$ as
+With our initial conditions and blowup criteria defined, we can now define the objection function $\Phi_{\alpha,T}: V\rightarrow \RR^+$ as
 \begin{align}
 \tag{2.1}
 \Phi_{\alpha,T}(\boldsymbol \eta) := \|\nabla \boldsymbol u_\alpha(T;\boldsymbol \eta)\|_{L^2}^2 = \|\boldsymbol u_\alpha(T;\boldsymbol \eta)\|_{\dot{H}^1}^2,
 \end{align}
-where $u_\alpha(T;\boldsymbol \eta)$ is the solution of the Euler-Voigt equations obtained with the initial condition $\eta \in V$.
-We can now formula our optimization problem. Given $\alpha, T\in\mathbb{R}_+$, find
+where $u_\alpha(T;\boldsymbol \eta)$ is the solution of the Euler-Voigt equations obtained with the initial condition $\be \in V$.
+We can now formulate our optimization problem. Given $\alpha, T\in\mathbb{R}_+$, find
 \begin{align}
 \tag{2.2}
-\tilde{\mathbf{\eta}}_{\alpha,T} = argmax_{\eta \in M_1}\Phi_{\alpha,T}(\eta)
+\tilde{\be}_{\alpha,T} = \argmax_{\be \in M_1}\Phi_{\alpha,T}(\be).
 \end{align}
 The objective function is maximized using an iterative relation
-\begin{align}
+\begin{align}\label{eq:iterative}
 \tag{2.3}
-\boldsymbol \eta_{\alpha,T}^{n+1} = \boldsymbol \eta_{\alpha,T}^n + \tau_n\nabla\Phi_T\left(\boldsymbol \eta_{\alpha,T}^n\right), \quad \boldsymbol \eta_{\alpha,T}^{(0)} = \boldsymbol \eta_{\alpha,0}, \quad n=0,1,...
+\be_{\alpha,T}^{n+1} = \be_{\alpha,T}^n + \tau_n\nabla\Phi_T\left(\be_{\alpha,T}^n\right), \quad \be_{\alpha,T}^{(0)} = \be_{\alpha,0}, \quad n=0,1,...
 \end{align}
 where $\nabla \Phi_{T}$ is the gradient of the objective functional evaluated at the element $\eta_T^n$, $\tau_n$ is the step size along the gradient direction, and $\eta_0$ is the first initial condition. The solution to the problem is the limit as $n\rightarrow \infty$. Our goal is to first fix T and solve the optimization problem for a sequence of decrease values of $\alpha$ that converge to 0. 
 \subsection{G\^{a}teaux (Directional) Differential}
@@ -307,11 +388,13 @@ $$\Phi'_{\alpha,T}(\eta;\eta')=  2<u_\alpha(\cdot,T),u'_\alpha(\cdot,T)>_{\dot{H
 DERIVE FORM IN L2 INNER PRODUCT
 
 \subsection{Riemannian Conjugate Gradient Method}
-description of the Riemannian conjugate gradient method.
 
-%\end{flushleft}
-
-%\begin{flushleft}
+The optimization looks for an initial condition $\be \in M_1$ that maximizes our objective functional. Therefore, not only must our first initial condition $\be^0_{\alpha,T}$ have a unit $\dot{H}^1$ seminorm, but so to must each following iteration $\be_{\alpha,T}^{n+1}$. This will not be true in general given the iterative relation (\ref{eq:iterative}). We ensure this constraint is upheld using a Riemannian conjugate gradient method modified from the method used in \cite{protas_systematic_2022}. This method has three steps: 
+\begin{enumerate}
+  \item Project the gradient $\nabla\Phi_T(\be)$ onto the tangent space to $\M_1$ at $\be$
+  \item Perform a suitable vector transport operation in order to construct a Riemannian conjugate ascent direction using the previous search direction
+  \item Retract the resulting state back to the constraint manifold $\M_1$
+\end{enumerate}
 \section{Numerical Methods}
 \subsection{Spatial Discretization \& Spectral Methods}
 define the domain and mathematical tools used
@@ -324,9 +407,6 @@ which time stepping method will we use.
 what is the kappa test.
 results from the kappa test.
 
-%\end{flushleft}
-
-%\begin{flushleft}
 \section{Results}
 \subsection{Results for $\boldsymbol{\alpha= }$value 1}
 TEXT
@@ -334,20 +414,15 @@ TEXT
 TEXT
 \subsection{Results for $\boldsymbol{\alpha= }$value 3}
 TEXT
-%\end{flushleft}
 
-%\begin{flushleft}
 \section{Conclusion}
 TEXT
-%\end{flushleft}
 
-%\begin{flushleft}
 \section{Appendix}
 \subsection{Derivation of the Gateaux Directional Differential}
 \subsection{Linearization of the Euler-Voigt System}
 \subsection{Derivation of the Adjoint System}
 TEXT example citation \cite{protas_systematic_2022}
-%\end{flushleft}
 
 \bibliographystyle{plain}
 \bibliography{references}
