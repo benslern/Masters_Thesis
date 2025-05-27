@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.9.9)  25 MAY 2025 12:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.9.9)  27 MAY 2025 13:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1542,7 +1542,6 @@ Overfull \hbox (79.90698pt too wide) detected at line 557
 12 )
  []
 
-(./Noah_Bensler_Masters_Thesis.bbl
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1551,7 +1550,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[18]
+[18] (./Noah_Bensler_Masters_Thesis.bbl
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1603,7 +1602,7 @@ b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr
 share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/times/utmri8a.pfb>
-Output written on Noah_Bensler_Masters_Thesis.pdf (30 pages, 256104 bytes).
+Output written on Noah_Bensler_Masters_Thesis.pdf (30 pages, 256791 bytes).
 PDF statistics:
  456 PDF objects out of 1000 (max. 8388607)
  384 compressed objects within 4 object streams

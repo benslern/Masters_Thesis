@@ -401,8 +401,8 @@ what time stepping methods are there.
 which time stepping method will we use.
 
 \subsection{Kappa Test Validation}
-what is the kappa test.
-results from the kappa test.
+
+The kappa test is a means of validating the Euler-Voigt simulations. 
 
 \section{Results}
 \subsection{Results for $\boldsymbol{\alpha= }$value 1}
@@ -566,6 +566,13 @@ p_{\alpha}^*
 0\\
 0
 \end{bmatrix}$$
+
+To derive the terminal condition of the adjoint system we compare the second term of the duality pairing to the objective functional.
+$$\int_{\TT^3}u'(x,T)\u^*(x,T) dx = 2\la u(x,T),u'(x,T)\ra_{\hdo}$$
+$$ = 2\int_{\TT^3}|D|u(x,T)\u'(x,T) dx$$
+$$ = \int_{\TT^3}2|D|^2u(x,T)\u'(x,T)dx$$
+Therefore,
+$$\u^*(x,T) = 2|D|^2u(x,T)$$
 
 \bibliographystyle{plain}
 \bibliography{references}
