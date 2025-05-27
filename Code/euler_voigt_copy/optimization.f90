@@ -120,7 +120,7 @@ CONTAINS
        print *, "eval_J; main_iter =", iter
     end if
        
-    J1 = compute_J(Uvec0, fix_dt1, 1, iter, 1)   
+    J1 =compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1) !compute_J(Uvec0, fix_dt1, 1, iter, 1)   
 
     if (rank == 0) then
        open(3, file = file_cost, status = 'old', position = 'append')
@@ -144,7 +144,7 @@ CONTAINS
           print *, "eval_grad_J; main_iter =", iter
        end if
        gradJ_opt = 0.0_pr
-       call compute_gradJ(Uvec0, fix_dt2, 0, gradJ_opt, iter)
+       call compute_gradPHI(Uvec0, fix_dt2, 0, gradJ_opt, iter)
        call projection(Uvec0, gradJ_opt, gradJ_opt, norm2_grad)
       
      
@@ -191,7 +191,7 @@ CONTAINS
           print *, "eval_J; main_iter =", iter
        end if
        
-       J1 = compute_J(Uvec0, fix_dt1, 1, iter, 1)   
+       J1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1)   
 
        
        
@@ -700,6 +700,32 @@ CONTAINS
      END SUBROUTINE rescale
 
 !=========================================================
+! SUBROUTINE rescale_H1(myfield, val)
+! scale myfield such that its dotH_1 is norm_constr
+!=========================================================
+     SUBROUTINE rescale_H1(myfield, scaling)
+       USE global_variables
+       USE fftwfunction
+       USE function_ops
+       USE solvers
+       IMPLICIT NONE
+       INCLUDE "mpif.h"
+       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(inout) :: myfield
+       real(pr) :: norm
+       real(pr), intent(out) :: scaling
+       norm = 0.0_pr
+       call fftfwd_m(myfield, temp1_solver_cx, 3)
+       call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 1.0_pr)
+       call div_free_fourier(temp1_solver_cx)
+       call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, norm)
+       scaling = norm_constr/sqrt(norm)
+       myfield = myfield*norm_constr/sqrt(norm)
+       CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
+       if(rank == 0) print *, "norm = ", norm, "norm_constr = ", norm_constr
+
+     END SUBROUTINE rescale_H1
+
+!=========================================================
 ! SUBROUTINE rescale_cx(myfield_cx)
 ! scale myfield such that its dotH_3 is norm_constr
 !=========================================================
@@ -748,12 +774,13 @@ CONTAINS
 
        PHI = 0.0_pr
 
-       if(constr_flag .ne. 0) call rescale(myfield, val)
+       if(constr_flag .ne. 0) call rescale_H1(myfield, val)
 
        call fwd_3D(myfield, mydt, savesign, stepper_opt, myiter)
+       !Uvec
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call L2_grad(temp1_solver_cx,PHI)
-       PHI = PHI**2
+       !PHI = PHI**2
 
      END FUNCTION compute_PHI_L2
 
@@ -794,7 +821,7 @@ CONTAINS
     END FUNCTION compute_J
 
 !================================================
-! SUBROUTINE: compute_gradPHI(myfield, mydt, savesign, gradJ, myiter)
+! SUBROUTINE: compute_gradPHI(myfield, mydt, savesign, gradPHI, myiter)
 ! INPUT: inifield (u(T))
 ! OUTPUT: gradPHI
 ! We use the Hsigma space

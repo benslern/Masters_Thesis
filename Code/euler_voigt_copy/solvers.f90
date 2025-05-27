@@ -283,7 +283,7 @@ CONTAINS
        call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, inifield,3)
 
-       case (3)
+    case (3)
        ! 3d taylor-green
           inifield = 0.0_pr
           ii = 3
