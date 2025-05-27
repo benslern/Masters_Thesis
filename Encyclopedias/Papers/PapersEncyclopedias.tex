@@ -64,6 +64,8 @@ The number $\hat{u}(k)$ can be interpreted as the amplitude density of $u$ at wa
 \centering
 \includegraphics[scale=0.08]{fourier_series_visualization.png}
 \end{figure}
+The fourier transform of a derivative $u'(x)$ just has a term added to it,
+$$F(u'(x))(k) = 2\pi i k F(u(x))(k)$$
 
 \subsection{Inverse Fourier Transform}
 Conversely, we can reconstruct $u$ from $\hat{u}$ by the inverse Fourier transform,
@@ -107,9 +109,12 @@ $$b_n = \frac{1}{L}\int_{2L}f(x)\sin(n\pi x/L) dx$$
 $$u(x) = \sum_{k\in \mathbb{Z}^3}\hat{u}_k e^{ikx}$$
 where the coefficients $\hat{u}_k$ are complex numbers satisfying the condition
 $$\hat{u}_k = \overline{\hat{u}_{-k}} \qquad \text{for all}  \qquad k \in \mathbb{Z}^3$$
-imposed to ensure that $u$ is real. If needed, the Fourier coefficients $\hat{u}_k$ can be computed explicitly via the integral,
+imposed to ensure that $u$ is real. Therefore, the fourier expansion has the property that,
+$$\overline{u(x)} = u(x)$$
+If needed, the Fourier coefficients $\hat{u}_k$ can be computed explicitly via the integral,
 $$\hat{u}_k = \frac{1}{(2\pi)^3}\int_{\Omega}e^{-ikx}u(x)dx.$$
 \qquad The Fourier coefficients represent the amplitude and phase at each frequency of the series. From the Payley-Wiener theorem, if $u(x)$ is real analytic, then its Fourier coefficients decay exponentially and conversely, if a Fourier expansion has exponentially decreasing coefficients then it is real analytic.
+
 
 \subsection{Fast Fourier Transform}
 
@@ -128,6 +133,11 @@ The Inverse Fast Fourier Transform is an algorithm for computing the inverse dis
 \qquad For my thesis we will use random perturbations and initial conditions. However, a randomly generated function is not likely to be divergence free, analytic, or have a mean of zero. In order to achieve this we make use of the Payley-Wiener theorem described above. We created a Fourier expansion with exponentially decreasing coefficients to ensure it is analytic and randomly change the phase of the Fourier coefficients to create our random function. Then we apply Hodge Projection to ensure it is divergence free. Given a vector $v$ such that $\nabla\cdot v$, we define the divergence free vector $u$,
 $$u = Pv = v-\nabla\Delta^{-1}\nabla\cdot v$$
 Aliasing happens when high-frequency components are mistaken as lower frequencies due to insufficient sampling. We apply dealiasing in Fourier space. Finally we apply the Inverse Fast Fourier Transform to convert back to physical space.
+
+\subsection{Parseval's Theorem}
+
+suppose u and v are complex valued functions on R of period $2\pi$ that are square integrable (with respect to the Lebesgue measure) over intervals of period length
+$$\sum_{n=-\infty}^{\infty}a_n\overline{b_n} = \frac{1}{2\pi}\int_{-\pi}^{\pi}A(x)\overline{B(x)}dx$$
 
 \section{Initial Conditions}
 
