@@ -63,4 +63,5 @@
 \contentsline {section}{\numberline {23}Kappa Test}{19}{section.23}%
 \contentsline {section}{\numberline {24}Paper Summary}{21}{section.24}%
 \contentsline {section}{\numberline {25}Paper Summary}{22}{section.25}%
-\contentsline {section}{\numberline {26}References}{22}{section.26}%
+\contentsline {section}{\numberline {26}Paper Summary}{22}{section.26}%
+\contentsline {section}{\numberline {27}References}{22}{section.27}%

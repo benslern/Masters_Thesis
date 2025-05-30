@@ -43,6 +43,7 @@
 \def\ppat{\Phi'_{\alpha,T}}
 \def\u{\boldsymbol u}
 \def\v{\boldsymbol v}
+\def\x{\boldsymbol x}
 \def\j{\boldsymbol j}
 \def\ua{\boldsymbol u_\alpha}
 \def\upa{\boldsymbol u'_\alpha}
@@ -59,6 +60,7 @@
 \def\ZZ{\mathbb{Z}}
 \def\M{\mathcal{M}}
 \def\T{\mathcal{T}}
+\def\L{\mathcal{L}}
 
 \DeclareMathOperator*{\argmax}{argmax}
 
@@ -379,11 +381,84 @@ We compute the gradient $\nabla\pat(\be)$ of the objection functional using an a
 \ppat(\be;\be'):=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}\pat(\be+\epsilon\be')-\pat(\be)].
 \end{align}
 Substituting the second definition of the objective functional (\ref{eq:objective:functional}) into the G\^{a}teaux differential, we derive the G\^{a}teaux differential in the form of the $\hdo$ inner product and the $L^2$ inner product,
-\begin{align}
+\begin{align}\label{eq:Gateaux:differential:inner:product}
 \ppat(\be;\be')=  2\la \ua(\cdot,T),\upa(\cdot,T)\ra_{\hdo} = 2\la \usa(\cdot,0),\upa(\cdot,0)\ra_{L^2}
 \end{align}
-The complete derivations for both forms are shown in Appendix \ref{app:gateaux}
+The complete derivations for both forms are shown in Appendix \ref{app:gateaux}. In (\ref{eq:Gateaux:differential:inner:product}) the value $\upa$ is the solution of the linearization of the Euler-Voigt system (\ref{eq:Euler:Voigt}) around its solution $\ua$. The linearization of the Euler-Voigt system is defined as
+\begin{equation}\label{eq:Euler-Voigt:linearization}
+\begin{aligned}
+\L\begin{bmatrix}
+\upa \\
+p'
+\end{bmatrix} :=& 
+\begin{bmatrix}
+\partial_t \upa +(I-\alpha^2\Delta)^{-1}(\ua\cdot\bn\upa +\upa\cdot\bn \ua+\bn p')=0\\
+      \nabla\cdot \upa = 0\\
+\end{bmatrix} = \begin{bmatrix}
+0\\
+0
+\end{bmatrix}\\
+\upa(x,0) =& \be'
+\end{aligned}
+\end{equation}
+where $\be'$ and $p'$ are the perturbtionations of the initial condition and pressure, respectively. The value $\usa$ is the solution of the adjoint system
+\begin{equation}\label{eq:Euler-Voigt:adjoint}
+\begin{aligned}
+\L^*\begin{bmatrix}
+\usa\\
+p_{\alpha}^*
+\end{bmatrix} :=& \begin{bmatrix}
+-\partial_t\usa-(\bn (I-\alpha^2)^{-1}\usa + (\bn (I-\alpha^2)^{-1}\usa)^T)\ua-\bn p_{\alpha}^*\\
+-\bn \cdot \usa
+\end{bmatrix} = \begin{bmatrix}
+0\\
+0
+\end{bmatrix}\\
+\usa(x,T) =& 2|D|^2\ua(\x.T),'
+\end{aligned}
+\end{equation}
+which is derived by performing integration by parts, in both space and time, on the following duality-pairing relation (\ref{app:adjoint})
+\begin{equation}\label{eq:duality:pairing}
+\begin{aligned}
+\left(\L\begin{bmatrix}
+\upa\\
+p'
+\end{bmatrix}, \begin{bmatrix}
+\usa\\
+p^*
+\end{bmatrix} \right) :=& \int_0^T\int_{\TT^3} \L\begin{bmatrix}
+\upa\\
+p'
+\end{bmatrix}, \begin{bmatrix}
+\usa\\
+p^*
+\end{bmatrix} \,dx\,dt \\
+=& \left( \begin{bmatrix}
+\upa\\
+p'
+\end{bmatrix},\L^*\begin{bmatrix}
+\usa\\
+p^*
+\end{bmatrix} \right) + \int_{\TT^3} \upa(\x,T)\cdot \usa(\x,T)\,dx \\ 
+ - \int_{\TT^3}\be'(\x)\cdot \usa(\x,0) \,dx \\
+=& 0.
+\end{aligned}
+\end{equation}
 
+Using the adjoint system we can now define the gradient. We take the G\^{a}teaux differential (\ref{eq:Gateaux:differential:inner:product}) and the Riesz representation form
+\begin{equation}
+\ppat(\be;\be') = 2\la \usa(\cdot,0),\upa(\cdot,0)\ra_{L^2} = \la \nabla\pat(\be),\be' \ra.
+\end{equation}
+Expressing the $L^2$ inner product in its integral form,
+
+\begin{align}
+\la \nabla\pat(\be),\be' \ra &= \int_{\TT^3} \usa(x,0)\cdot \be'(x) \,dx \\
+&= \int_{\TT^3} (1+|D|^2)^3e^{2\sigma|D|}\left[(1+|D|^2)^{-3}e^{-2\sigma|D|}\usa(x,0)\right]\cdot \be'(x) \,dx \\
+\la (1+|D|^2)^{-3}e^{-2\sigma|D|} \usa(x,0),\be'(x) \ra_{G^\sigma}
+\end{align}
+Therefore, the gradient of the objective functional is
+$$\nabla \pat(\be) = (1+|D|^2)^{-3}e^{-2\sigma|D|}\usa(x,0)$$
+ 
 \subsection{Riemannian Conjugate Gradient Method}
 
 The optimization looks for an initial condition $\be \in M_1$ that maximizes our objective functional. Therefore, not only must our first initial condition $\be^0_{\alpha,T}$ have a unit $\dot{H}^1$ seminorm, but so to must each following iteration $\be_{\alpha,T}^{n+1}$. This will not be true in general given the iterative relation (\ref{eq:iterative}). We ensure this constraint is upheld using a Riemannian conjugate gradient method modified from the method used in \cite{protas_systematic_2022}. This method has three steps: 
@@ -402,7 +477,12 @@ which time stepping method will we use.
 
 \subsection{Kappa Test Validation}
 
-The kappa test is a means of validating the Euler-Voigt simulations. 
+The Euler-voigt equations (\ref{eq:Euler:Voigt}) and adjoint system () are descritized in space using METHOD and time using METHOD. The kappa test is a means of validating these descritization methods based on the validation method of \cite{Adjoint-based enforcement of state constraints in PDE
+optimization problems}. We define the value $\kappa$ as
+\begin{equation}
+\kappa(\epsilon) = \frac{1}{\epsilon}\frac{\left[ \pat(\be+\epsilon\be)-\pat(\be) \right]}{\la \nabla\pat(\be),\be' \ra}
+\end{equation}
+where $\pat$ is the objective functional (\ref{eq:objective:functional}), $\be$ is the initial condition, and $\nabla\pat$ is the gradient of the objective functional (). The value $\eta$ is the 
 
 \section{Results}
 \subsection{Results for $\boldsymbol{\alpha= }$value 1}
