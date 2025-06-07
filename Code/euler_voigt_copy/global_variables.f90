@@ -107,7 +107,7 @@ MODULE global_variables
 
 
   INTEGER, SAVE :: final_time_iter, reclen
-  REAL(pr), DIMENSION (:,:,:,:), ALLOCATABLE, SAVE :: fwd_Field1, fwd_Field2, adj_Uvec, adj_Wvec, Uvec0, adj_Uvec0, adj_Uvec0_direction
+  REAL(pr), DIMENSION (:,:,:,:), ALLOCATABLE, SAVE :: fwd_Field1, fwd_Field2, adj_Uvec, adj_Wvec, Uvec0, Uvec1, Uvec2, Uvec3, adj_Uvec0, adj_Uvec0_direction
   real(pr), dimension(:,:,:), allocatable, save :: global_u
 
 

@@ -46,8 +46,8 @@ module solvers
   REAL(pr), DIMENSION(:), ALLOCATABLE :: b_solver, b2_solver
   REAL(pr), DIMENSION(:,:,:,:,:), ALLOCATABLE :: K_solver
   REAL(pr), DIMENSION(:,:,:,:), ALLOCATABLE ::ff_temp1
-  REAL(pr), DIMENSION(:,:,:,:), ALLOCATABLE :: temp1_solver, temp2_solver, Umid_solver
-  COMPLEX(pr), DIMENSION(:,:,:,:), ALLOCATABLE :: temp1_solver_cx, temp2_solver_cx, ff_temp1_cx
+  REAL(pr), DIMENSION(:,:,:,:), ALLOCATABLE :: temp1_solver, temp2_solver, temp3_solver, temp4_solver, Umid_solver
+  COMPLEX(pr), DIMENSION(:,:,:,:), ALLOCATABLE :: temp1_solver_cx, temp2_solver_cx, temp3_solver_cx, temp4_solver_cx, ff_temp1_cx
   REAL(pr), DIMENSION(:,:,:,:), ALLOCATABLE :: U2d_solver, W2d_solver
   COMPLEX(pr), DIMENSION(:,:,:,:), ALLOCATABLE :: U2d_solver_cx, W2d_solver_cx
   
@@ -76,9 +76,14 @@ CONTAINS
     
     if (.not. allocated(temp1_solver)) allocate(temp1_solver(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(temp2_solver)) allocate(temp2_solver(1:n(1), 1:n(2), 1:local_N, 1:3))
-    
+    if (.not. allocated(temp3_solver)) allocate(temp3_solver(1:n(1), 1:n(2), 1:local_N, 1:3))   
+    if (.not. allocated(temp4_solver)) allocate(temp4_solver(1:n(1), 1:n(2), 1:local_N, 1:3))
+
     if (.not. allocated(temp1_solver_cx)) allocate(temp1_solver_cx(1:n(1)/2+1, 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(temp2_solver_cx)) allocate(temp2_solver_cx(1:n(1)/2+1, 1:n(2), 1:local_N, 1:3))
+    if (.not. allocated(temp3_solver_cx)) allocate(temp3_solver_cx(1:n(1)/2+1, 1:n(2), 1:local_N, 1:3))
+    if (.not. allocated(temp4_solver_cx)) allocate(temp4_solver_cx(1:n(1)/2+1, 1:n(2), 1:local_N, 1:3))
+
     if (.not. allocated(ff_temp1_cx)) allocate(ff_temp1_cx(1:n(1)/2+1, 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(spectral_data)) allocate(spectral_data(1:kkmax,1:2))
     if (.not. allocated(Omega)) allocate(Omega(1:mm))

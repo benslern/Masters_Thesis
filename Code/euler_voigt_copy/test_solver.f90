@@ -164,7 +164,7 @@ PROGRAM EULER_VOIGT
    !- Euler-Voigt Simulations
    !=======================================================
    if (1) then
-      endTime = 0.1_pr
+      endTime = 0.25_pr
       stepper = 3
       visc = 0.0_pr
       alpha = 4.0_pr/256.0_pr
@@ -174,7 +174,7 @@ PROGRAM EULER_VOIGT
       call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
       call set_initial(Uvec0, 2, 11111,2222,31234)
       tau_brack(1) = 0.0_pr
-      tau_brack(2) = 100000.0_pr
+      tau_brack(2) = 5000000.0_pr
       !call maximization(tau_brack)
       call report_PHI(Uvec0,tau_brack, 100, fix_dt1)
 

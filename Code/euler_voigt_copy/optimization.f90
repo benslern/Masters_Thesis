@@ -26,6 +26,7 @@ MODULE optimization
   integer :: stepper_opt
   real(pr), dimension(:,:,:,:), allocatable :: gradJ_opt, gradJ_pre_opt
   real(pr), dimension(:,:,:,:), allocatable :: gradPHI_opt, gradPHI_pre_opt
+  real(pr), dimension(:,:,:,:), allocatable :: gradPHI_backup, gradPHI_pre_backup
   real(pr), dimension(:,:,:,:), allocatable :: d_opt, d1_opt
   
 CONTAINS
@@ -49,7 +50,9 @@ CONTAINS
     if (.not. allocated(gradJ_opt)) allocate(gradJ_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(gradJ_pre_opt)) allocate(gradJ_pre_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(gradPHI_opt)) allocate(gradPHI_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
+    if (.not. allocated(gradPHI_backup)) allocate(gradPHI_backup(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
+    if (.not. allocated(gradPHI_pre_backup)) allocate(gradPHI_pre_backup(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(d_opt)) allocate(d_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(d1_opt)) allocate(d1_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
 
@@ -120,7 +123,7 @@ CONTAINS
        print *, "eval_J; main_iter =", iter
     end if
        
-    J1 =compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1) !compute_J(Uvec0, fix_dt1, 1, iter, 1)   
+    J1 =compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1) !compute_J(Uvec0, fix_dt1, 1, iter, 1)   
 
     if (rank == 0) then
        open(3, file = file_cost, status = 'old', position = 'append')
@@ -191,7 +194,7 @@ CONTAINS
           print *, "eval_J; main_iter =", iter
        end if
        
-       J1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1)   
+       J1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1)   
 
        
        
@@ -458,7 +461,58 @@ CONTAINS
    
   END SUBROUTINE maximization_RCG
 
+!(myfield, Uvec2, Uvec3)
+!================================================= 
+! SUBROUTINE: project_field(v, w, proj)
+! project w to the tangent space of v
+! proj: \P_{T_{\v}\M_1} w
+! USE: solvers.f90: temp1_solver, temp1_solver_cx, temp2_solver_cx      
+!=================================================
+      SUBROUTINE project_field(v, w, proj)
+        USE global_variables
+        USE fftwfunction
+        USE function_ops
+        USE solvers
+        IMPLICIT NONE
+        INCLUDE "mpif.h"
+        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(in) :: w
+        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: v
+        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(out) :: proj
+        Real(pr) :: norm, val
 
+        ! temp1_solver_cx = |D|^2 v
+        call fftfwd_m(v, temp1_solver_cx, 3)
+        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 2.0_pr)
+
+        ! temp2_solver_cx = (1+l^2|D|^2)^(-s)exp(-2sigma|D|)|D|^2v
+        call G_l_s_sigma_fourier(temp1_solver_cx, temp2_solver_cx, l, -s, -2.0_pr*sigma)
+
+        ! norm = || (1+l^2|D|^2)^(-s)exp(-2sigma|D|)|D|^2v ||_G^sigma
+        call L2_product_fourier(temp1_solver_cx, temp2_solver_cx, norm)
+        norm = sqrt(norm)
+
+        ! temp4_solver_cx = n_v
+        temp4_solver_cx = temp2_solver_cx/norm
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        ! temp2_solver_cx =  (1+l^2|D|^2)^(s)exp(2sigma|D|) n_v 
+        call G_l_s_sigma_fourier(temp4_solver_cx, temp2_solver_cx, l, s, 2.0_pr*sigma)
+        
+        ! temp3_solver_cx = fourier transform of w
+        call fftfwd_m(w, temp3_solver_cx,3) 
+        
+        ! val = <n_v,w>_{G^sigma} = <(1+l^2|D|^2)^(s)exp(2sigma|D|) n_v, w>_{L^2}
+        call L2_product_fourier(temp2_solver_cx,temp3_solver_cx, val)
+        
+        ! temp3_solver_cx = w - <n_v,w>_{G^sigma}n_v
+        temp3_solver_cx = temp3_solver_cx - val*temp4_solver_cx
+
+        call div_free_fourier(temp3_solver_cx) !make sure divergence free
+        call fftbwd_m(temp3_solver_cx,proj,3) 
+        !call rescale_H1(proj,val) !rescale to h1 seminorm of 1
+
+  END SUBROUTINE project_field
   
 !================================================= 
 ! SUBROUTINE: projection(myfield, gradJ, norm2)
@@ -479,32 +533,28 @@ CONTAINS
         real(pr), intent(out):: norm2
         Real(pr) :: norm, val
 
-        ! temp1_solver_cx = |D|^6 u_cx/norm
-        
+        ! temp1_solver_cx = |D|^2 u_cx/norm
         call fftfwd_m(myfield, temp1_solver_cx, 3)
-        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 6.0_pr)
+        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 2.0_pr)
 
         ! temp2_solver_cx = n(u)_cx/norm
-        ! = (1+l^2|D|^2)^(-s)exp(-2sigma|D|)|D|^6u_cx/norm
-        
+        ! = (1+l^2|D|^2)^(-s)exp(-2sigma|D|)|D|^2u_cx/norm
         call G_l_s_sigma_fourier(temp1_solver_cx, temp2_solver_cx, l, -s, -2.0_pr*sigma)
-        
-        
         
         call L2_product_fourier(temp1_solver_cx, temp2_solver_cx, norm)
         norm = sqrt(norm)
-        temp1_solver_cx = temp1_solver_cx/norm
+        temp1_solver_cx = temp1_solver_cx/norm ! n_v (2.16)
 
 
         
 
         ! temp1_solver_cx = n(u)_cx/norm
-        ! = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)|D|^6u_cx/norm
+        ! = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)|D|^2u_cx/norm
         call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -0.5_pr*s, -sigma)
 
         call fftbwd_m(temp1_solver_cx, temp2_solver, 3)
 
-        ! temp2_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)gradJ(L2)
+        !temp2_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)gradJ(L2)
         call fftfwd_m(gradJ, temp2_solver_cx, 3)
         call G_l_s_sigma_fourier(temp2_solver_cx, temp2_solver_cx, l, -0.5_pr*s, -sigma)
         call L2_product_fourier(temp2_solver_cx,temp1_solver_cx,val)
@@ -757,7 +807,7 @@ CONTAINS
 ! Compute the cost function PHI = (||GRAD u(T)||_L^2)^2
 ! INPUT: myfield (u(0))
 !=========================================================
-     FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag) RESULT(PHI)
+     FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag, evolve_flag) RESULT(PHI)
        USE global_variables
        USE fftwfunction
        USE function_ops
@@ -766,7 +816,7 @@ CONTAINS
        INCLUDE "mpif.h"
        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), intent(inout) :: myfield
        REAL(pr), INTENT(IN) :: mydt
-       integer, INTENT(IN) :: savesign, myiter, constr_flag
+       integer, INTENT(IN) :: savesign, myiter, constr_flag, evolve_flag
        real(pr) :: val
 
 
@@ -776,7 +826,7 @@ CONTAINS
 
        if(constr_flag .ne. 0) call rescale_H1(myfield, val)
 
-       call fwd_3D(myfield, mydt, savesign, stepper_opt, myiter)
+       if(evolve_flag .ne. 0) call fwd_3D(myfield, mydt, savesign, stepper_opt, myiter)
        !Uvec
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call L2_grad(temp1_solver_cx,PHI)
@@ -842,7 +892,7 @@ CONTAINS
       
       call bkd_3D(adj_Uvec0, mydt, savesign, stepper_opt, myiter)
       call fftfwd_m(adj_Uvec, temp1_solver_cx, 3)
-      call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, 1.0_pr, -3.0_pr, -0.001_pr)
+      call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -s, -2.0_pr*sigma)
       !gradPHI = adj_Uvec
       call fftbwd_m(temp1_solver_cx, gradPhi, 3)
       CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
@@ -894,9 +944,8 @@ CONTAINS
       character(200) :: file_name
       Real(pr) :: A, B, tau, dtau
       integer :: i
-      Real(pr) :: PHI
-      real(pr) :: norm2
-
+      Real(pr) :: PHI,PHI2,PHI3
+      LOGICAL :: TEST1, TEST2, TEST3
       A = MIN(tau_brack(1),tau_brack(2))
       B = MAX(tau_brack(1),tau_brack(2))
       dtau = (B-A)/count
@@ -908,25 +957,45 @@ CONTAINS
       end if
 
       PHI = 0.0_pr
-      PHI = compute_PHI_L2(myfield, fix_dt1, 1, 1, 1)
-
-      call compute_gradPHI(myfield, fix_dt2, 0, gradPHI_opt, 1)
+      Uvec1 = myfield
+      PHI = compute_PHI_L2(myfield, mydt, 1, 1, 1, 1)
+      call compute_gradPHI(myfield, mydt, 0, gradPHI_opt, 1)
       CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
       
-      
-      
+      myfield = Uvec1
+      gradPHI_backup = gradPHI_opt
+
       do i = 0,count
          PHI = 0.0_pr
          tau = A + i*dtau
-         Uvec = myfield + tau*gradPHI_opt
-         !Uvec = tau*gradJ_opt
-         !Uvec = myfield
-         !Uvec = Uvec + tau*gradJ_opt
+
+         !PHI 1
+         !myfield = Uvec1
+         !Uvec  = myfield + tau*gradPHI_opt
+         !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
+         !PHI = compute_PHI_L2(Uvec, fix_dt1, 1, i, 0, 1)
+         
+         !PHI 2
+         !myfield = Uvec1
+         !Uvec  = myfield + tau*gradPHI_opt
+         !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
+         !PHI = compute_PHI_L2(Uvec, fix_dt1, 1, i, 1, 1)
+
+         !PHI 3
+         !call project_field(myfield, gradPHI_opt, Uvec2)
+         !Uvec2 = Uvec1 + tau*Uvec2
+         !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
+         !PHI = compute_PHI_L2(Uvec2, fix_dt1, 1, i, 0, 1)
+
+         !PHI 4
+         call project_field(myfield, gradPHI_opt, Uvec2)
+         Uvec2 = Uvec1 + tau*Uvec2
          CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-         PHI = compute_PHI_L2(Uvec, fix_dt1, 1, i,  1)
+         PHI = compute_PHI_L2(Uvec2, fix_dt1, 1, i, 1, 1)
+
          if (rank == 0) then
             open(10, file = file_name, status = 'old', position = 'append')
-            write(10, "(2 G20.12)"), tau, PHI 
+            write(10, "(2 G20.12,L1)"), tau, PHI
          end if
       end do
       

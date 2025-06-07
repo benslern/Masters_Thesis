@@ -22,6 +22,9 @@ SUBROUTINE initialize
    ALLOCATE( adj_Uvec(1:n(1),1:n(2),1:local_N,1:3) )
    !ALLOCATE( adj_Wvec(1:n(1),1:n(2),1:local_N,1:3) )
    ALLOCATE( Uvec0(1:n(1),1:n(2),1:local_N,1:3) )
+   ALLOCATE( Uvec1(1:n(1),1:n(2),1:local_N,1:3) )
+   ALLOCATE( Uvec2(1:n(1),1:n(2),1:local_N,1:3) )
+   ALLOCATE( Uvec3(1:n(1),1:n(2),1:local_N,1:3) )
    ALLOCATE( adj_Uvec0(1:n(1),1:n(2),1:local_N,1:3) )
    ALLOCATE( adj_Uvec0_direction(1:n(1),1:n(2),1:local_N,1:3) )
 
