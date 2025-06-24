@@ -91,7 +91,7 @@ CONTAINS
     INCLUDE "mpif.h"
          
 
-    REAL(pr) :: J0, J1, deltaJ, tau
+    REAL(pr) :: PHI0, PHI1, deltaPHI, tau
     character(200) :: file_cost, file_grad
     INTEGER :: iter, mnbrak_flag, FixConstr_flag , i
     real(pr), dimension(1:3), intent(inout) :: tau_brack
@@ -113,8 +113,8 @@ CONTAINS
     end if
       
     iter = 0
-    J0 = 0.0_pr
-    J1 = 0.0_pr
+    PHI0 = 0.0_pr
+    PHI1 = 0.0_pr
     deltaJ = 1.0_pr
     tau = 0.0_pr
     norm2_grad = 0.0_pr
@@ -161,7 +161,7 @@ CONTAINS
        if (rank==0) then
           print *, "Start mnbrak; main_iter =", iter
        end if
-       tau_brack = mnbrak("maxET", Uvec0, gradJ_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)  
+       tau_brack = mnbrak(Uvec0, gradJ_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)  
        IF (mnbrak_flag /= 0) THEN
           if (rank ==0) then
              print *, "mnbrack iteration beyond maximum, the maxdEdt stops iterating ... " , mnbrak_flag
@@ -393,7 +393,7 @@ CONTAINS
           print *, "Start mnbrak; main_iter =", iter
        end if
        call rescale(Uvec0, val1)
-       tau_brack = mnbrak("maxET", Uvec0, d_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)  
+       tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)  
        IF (mnbrak_flag /= 0) THEN
           if (rank ==0) then
              print *, "mnbrack iteration beyond maximum, the maxdEdt stops iterating ... " , mnbrak_flag
@@ -461,7 +461,6 @@ CONTAINS
    
   END SUBROUTINE maximization_RCG
 
-!(myfield, Uvec2, Uvec3)
 !================================================= 
 ! SUBROUTINE: project_field(v, w, proj)
 ! project w to the tangent space of v
@@ -856,7 +855,6 @@ CONTAINS
 
        REAL(pr) :: J
 
-
        J = 0.0_pr
 
 
@@ -963,20 +961,18 @@ CONTAINS
       CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
       
       myfield = Uvec1
-      gradPHI_backup = gradPHI_opt
+      !gradPHI_backup = gradPHI_opt
 
       do i = 0,count
          PHI = 0.0_pr
          tau = A + i*dtau
 
          !PHI 1
-         !myfield = Uvec1
          !Uvec  = myfield + tau*gradPHI_opt
          !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
          !PHI = compute_PHI_L2(Uvec, fix_dt1, 1, i, 0, 1)
          
          !PHI 2
-         !myfield = Uvec1
          !Uvec  = myfield + tau*gradPHI_opt
          !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
          !PHI = compute_PHI_L2(Uvec, fix_dt1, 1, i, 1, 1)
@@ -995,7 +991,7 @@ CONTAINS
 
          if (rank == 0) then
             open(10, file = file_name, status = 'old', position = 'append')
-            write(10, "(2 G20.12,L1)"), tau, PHI
+            write(10, "(2 G20.12)"), tau, PHI
          end if
       end do
       
@@ -1069,20 +1065,21 @@ CONTAINS
        
       
 !================================================
-! FUNCTION: mnbrak(mysystem, myfield, gradJ, tA0, tB0, myflag, myindex)      
+! FUNCTION: mnbrak(myfield, gradPHI, tA0, tB0, myflag, myindex)      
 ! OUTPUT: tau_brack(2)
 ! Use: Uvec
 !================================================
-    FUNCTION mnbrak(mysystem, myfield, gradJ, tA0, tB0, myflag, myindex) RESULT (tau_brack)
+    FUNCTION mnbrak(myfield, gradPHI, tA0, tB0, myflag, myindex) RESULT (tau_brack)
       USE global_variables
       USE fftwfunction
       USE data_ops
       USE function_ops
       USE solvers
       IMPLICIT NONE
-      CHARACTER(len=*), INTENT(IN) :: mysystem
+      INCLUDE "mpif.h"
+      !CHARACTER(len=*), INTENT(IN) :: mysystem
       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: myfield
-      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: gradJ
+      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: gradPHI
       REAL(pr), INTENT(IN) :: tA0, tB0
       INTEGER, INTENT(INOUT) :: myflag
       INTEGER, INTENT(IN) :: myindex
@@ -1099,79 +1096,84 @@ CONTAINS
       CHARACTER(100) :: filename1
       CHARACTER(5) :: itertxt
 
-      Real(pr) ::J_val
+      Real(pr) ::PHI_val
       
-      REAL(pr), PARAMETER :: mnbrak_TOL = 1E-10  ! Mar 3, 2018
+      REAL(pr), PARAMETER :: mnbrak_TOL = 1E-3 !1E-10  ! Mar 3, 2018
       WRITE(itertxt, '(i4)') myindex
       filename1 = "./LOGFILES/maxET_brakbrent_OPT"//trim(adjustl(itertxt))//".dat"
 
       saveLineMin = .TRUE.
 
-      J_val = 0.0_pr
+      PHI_val = 0.0_pr
 
       FuncEval    = 0
       iter        = 0
       tA = tA0
       tB = MAX(tB0, MACH_EPSILON)
-      ! tA0 = 0
-      !Uvec = myfield + tA*gradJ
-      !FA = compute_J(Uvec, fix_dt1, 0, myindex, 1)
       
-      call fftfwd_m(Uvec, temp1_solver_cx, 3)
-      call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
-      call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, FA)
-      FA =  -FA
+      Uvec = myfield + tA*gradPHI
+      FA = compute_PHI_L2(Uvec, fix_dt1, 1, myindex, 1, 1)
+      FA = -FA 
+      !call fftfwd_m(Uvec, temp1_solver_cx, 3)
+      !call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
+      !call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, FA)
+      !FA =  -FA
       
       if (rank==0) then
          OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'REPLACE') 
-         WRITE(10, "(G20.12, G20.12)") tA, FA
+         WRITE(10, *) "A", ta, -FA !,"(G20.12, G20.12)") "A", tA, FA
          CLOSE(10)
       end if
 
+      
+
       FuncEval = FuncEval+1
 
-      Uvec = myfield + tB*gradJ
-      FB = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+      Uvec = myfield + tB*gradPHI
+      FB = compute_PHI_L2(Uvec, fix_dt1, 1, myindex, 1, 1)
+      FB = -FB
       if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tB, FB
+            WRITE(10, *) "B", tB, -FB !"(G20.12, G20.12)") tB, FB
             CLOSE(10)
          end if
       FuncEval = FuncEval+1
 
-      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, mysystem, "replace", myindex)
-
+      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, "replace", myindex)
 
       DO WHILE ((FB > FA) .AND. (tB > MACH_EPSILON) .AND. (abs(FB-FA)/abs(FA) > mnbrak_TOL)) 
-         tB = CGOLD*tB/10.0_pr
-        Uvec = myfield + tB*gradJ
+        tB = CGOLD*tB/10.0_pr
+        Uvec = myfield + tB*gradPHI
          if (rank == 0 ) then
             print *, "      mnbrak; do while NO. 1 ... FuncEval =", FuncEval
          end if
-         FB = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+         FB = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+         FB = -FB
          if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tB, FB
+            WRITE(10, *) "B", tB, -FB !"(G20.12, G20.12)") tB, FB
             CLOSE(10)
          end if
          FuncEval = FuncEval+1
-         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, mysystem, "append", myindex)
+         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, "append", myindex)
       END DO
 
       IF ((tB .LE. MACH_EPSILON) .OR. (abs(FB-FA)/abs(FA) .LE. mnbrak_TOL)) THEN
          myflag = 1
          RETURN
       END IF
+      
       tC = GOLD*tB
-      Uvec = myfield + tC*gradJ
-      FC = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+      Uvec = myfield + tC*gradPHI
+      FC = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+      FC = -FC
       if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tC, FC
+            WRITE(10, *) "C", tC, -FC !"(G20.12, G20.12)") tC, FC
             CLOSE(10)
          end if
       FuncEval = FuncEval+1
-      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, mysystem, "append", myindex)
+      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, "append", myindex)
       DO WHILE (FB>=FC .AND. iter<ITMAX)
          if (rank == 0 ) then
             print *, "      mnbrak; do while NO. 2 ... mnbrak_iter =", iter
@@ -1187,11 +1189,12 @@ CONTAINS
             if (rank == 0) then
                print *, "            mnbrak; do while NO. 2; case 1"
             end if
-           Uvec = myfield + tP*gradJ
-            FP = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+           Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+            FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tP, FP
+            WRITE(10, *) "P", tP, -FP !"(G20.12, G20.12)") tP, FP
             CLOSE(10)
          end if
             IF (FP<FC) THEN
@@ -1212,22 +1215,24 @@ CONTAINS
                EXIT
             END IF
             tP = tC + GOLD*(tC-tB)
-            Uvec = myfield + tP*gradJ
-            FP = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+            Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+            FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tP, FP
+            WRITE(10, *) "P", tP, -FP! "(G20.12, G20.12)") tP, FP
             CLOSE(10)
          end if
          ELSEIF ( (tC-tP)*(tP-Pmax)>0 ) THEN
             if (rank == 0) then
                print *, "            mnbrak; do while NO. 2; case 2"
             end if
-            Uvec = myfield + tP*gradJ
-            FP = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+            Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+            FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tP, FP
+            WRITE(10, *) "P", tP, -FP!"(G20.12, G20.12)") tP, FP
             CLOSE(10)
             end if
 
@@ -1237,11 +1242,12 @@ CONTAINS
                FB = FC
                FC = FP
                tP = tC+GOLD*(tC-tB)
-               Uvec = myfield + tP*gradJ
-               FP = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+               Uvec = myfield + tP*gradPHI
+               FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+               FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tP, FP
+            WRITE(10, *) "P", tP, -FP!"(G20.12, G20.12)") tP, FP
             CLOSE(10)
          end if
             END IF
@@ -1250,11 +1256,12 @@ CONTAINS
                print *, "            mnbrak; do while NO. 2; case 3"
             end if
             tP = Pmax
-            Uvec = myfield + tP*gradJ
-            FP = compute_J(Uvec, fix_dt1, 0, myindex, 1)
-           if (rank==0) then
+            Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+            FP = -FP 
+          if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tP, FP
+            WRITE(10, *) "P", tP, -FP!"(G20.12, G20.12)") tP, FP
             CLOSE(10)
          end if
          ELSE
@@ -1262,11 +1269,12 @@ CONTAINS
                print *, "            mnbrak; do while NO. 2; case 4"
             end if
             tP = tC + GOLD*(tC-tB)
-            Uvec = myfield + tP*gradJ
-            FP = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+            Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+            FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tP, FP
+            WRITE(10, *) "P", tP, -FP!"(G20.12, G20.12)") tP, FP
             CLOSE(10)
          end if
          END IF
@@ -1276,15 +1284,21 @@ CONTAINS
          FA = FB
          FB = FC
          FC = FP        
-         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, mysystem, "append", myindex)
+         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, "append", myindex)
 
         
       END DO
-
      
       tau_brack(1) = tA
       tau_brack(2) = tC
       tau_brack(3) = tB
+
+      if (rank==0) then
+            OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
+            WRITE(10, *) tA, tB, tC
+            CLOSE(10)
+         end if
+
 
       IF (iter .GE. ITMAX) THEN
          myflag = 2
@@ -1300,14 +1314,14 @@ CONTAINS
 ! OUTPUT: X
 ! Use: Uvec
 !====================================================
-    FUNCTION brent(iteration, mysystem, myfield, gradJ, tau_brack) RESULT (X)  
+    FUNCTION brent(iteration, mysystem, myfield, gradPHI, tau_brack) RESULT (X)  
       USE global_variables
       USE data_ops
       USE function_ops
       IMPLICIT NONE
       INTEGER, INTENT(IN) :: iteration
       CHARACTER(len=*), INTENT(IN) :: mysystem
-      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: myfield, gradJ
+      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: myfield, gradPHI
       REAL(pr), DIMENSION(1:3), INTENT(IN) :: tau_brack
       REAL(pr) :: X
       REAL(pr) :: X_old, FX_old                 ! Mar 3, 2018
@@ -1341,13 +1355,14 @@ CONTAINS
       W = V
       X = V 
       E = 0.0_pr
-     ! Uvec = myfield + D*gradJ
-     ! FX = compute_J(Uvec, fix_dt1, 1, iteration, 1)
+      Uvec = myfield! + D*gradJ
+      FX = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1)
+      FX = -FX
       if (rank==0) then
          filename = "./LOGFILES/maxET_brent_OPT"//trim(adjustl(itertxt))//".dat"
          OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'REPLACE')
          WRITE(10,*) "# Tau J" 
-        ! WRITE(10, "(G20.12, G20.12)") D, FX
+         WRITE(10, "(G20.12, G20.12)") 0.0, -FX
          CLOSE(10)
       end if
       
@@ -1356,11 +1371,12 @@ CONTAINS
       !      WRITE(10, "(G20.12, G20.12)") D, FX
       !      CLOSE(10)
       !   end if
-      Uvec = myfield + X*gradJ
-      FX = compute_J(Uvec, fix_dt1, 0, iteration, 1)
+      Uvec = myfield + X*gradPHI
+      FX = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1)
+      FX = -FX
        if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") X, FX
+            WRITE(10, "(G20.12, G20.12)") X, -FX
             CLOSE(10)
          end if
       FV = FX 
@@ -1426,11 +1442,12 @@ CONTAINS
             U = X + SIGN(TOL1,D)
          END IF
     
-         Uvec = myfield + U*gradJ
-         FU = compute_J(Uvec, fix_dt1, 0, iteration, 1)
+         Uvec = myfield + U*gradPHI
+         FU = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1)
+         FU = -FU
           if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") U, FU
+            WRITE(10, "(G20.12, G20.12)") U, -FU
             CLOSE(10)
          end if
  
@@ -1485,7 +1502,7 @@ CONTAINS
          if (rank==0) then
             print *, "      brent; do iteration j =", j
             OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") X, FX
+            WRITE(10, "(G20.12, G20.12)") X, -FX
             CLOSE(10)
          end if
 

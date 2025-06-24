@@ -2918,14 +2918,14 @@ SUBROUTINE read_field_R3toR3_ncdf2(myfield, filename, Fx_txt, Fy_txt, Fz_txt)
         !============================================
         ! SAVE LINE MINIMIZATION DATA
         !============================================
-        SUBROUTINE save_linemin_data(tA, tB, tC, FA, FB, FC, iter, mysystem, mymode, myindex)
+        SUBROUTINE save_linemin_data(tA, tB, tC, FA, FB, FC, iter, mymode, myindex)
           USE global_variables
           IMPLICIT NONE
           INCLUDE "mpif.h"
           
           REAL(pr), INTENT(IN) :: tA, tB, tC, FA, FB, FC
           INTEGER, INTENT(IN) :: iter
-          CHARACTER(len=*), INTENT(IN) :: mysystem
+          !CHARACTER(len=*), INTENT(IN) :: mysystem
           CHARACTER(len=*), INTENT(IN) :: mymode
           INTEGER, INTENT(IN) :: myindex
           CHARACTER(100) :: filename
