@@ -115,25 +115,27 @@ CONTAINS
     iter = 0
     PHI0 = 0.0_pr
     PHI1 = 0.0_pr
-    deltaJ = 1.0_pr
+    deltaPHI = 1.0_pr
     tau = 0.0_pr
     norm2_grad = 0.0_pr
 
     if (rank == 0) then
-       print *, "eval_J; main_iter =", iter
+       print *, "eval_PHI; main_iter =", iter
     end if
-       
-    J1 =compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1) !compute_J(Uvec0, fix_dt1, 1, iter, 1)   
+
+    
+    Uvec3 = Uvec0
+    PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1) !compute_J(Uvec0, fix_dt1, 1, iter, 1)   
 
     if (rank == 0) then
        open(3, file = file_cost, status = 'old', position = 'append')
-       write(3, "(4 G20.12)"), iter, J1, norm2_grad, tau
+       write(3, "(4 G20.12)"), iter, PHI1, norm2_grad, tau
        close(3)
     end if
 
     iter = 1
     
-    DO WHILE ( (ABS(deltaJ) > OPTIM_TOL) .AND. (iter<=MAX_ITER) )
+    DO WHILE ( (ABS(deltaPHI) > OPTIM_TOL) .AND. (iter<=MAX_ITER) )
 
         if (rank == 0) then
           print *, "maximization; main_iter =", iter
@@ -144,14 +146,15 @@ CONTAINS
 !- compute the gradient
 !======================================================
        if (rank == 0) then
-          print *, "eval_grad_J; main_iter =", iter
+          print *, "eval_grad_PHI; main_iter =", iter
        end if
-       gradJ_opt = 0.0_pr
-       call compute_gradPHI(Uvec0, fix_dt2, 0, gradJ_opt, iter)
-       call projection(Uvec0, gradJ_opt, gradJ_opt, norm2_grad)
-      
-     
        
+       gradPHI_opt = 0.0_pr
+       call compute_gradPHI(Uvec0, fix_dt1, 1, gradPHI_opt, iter)
+       !call projection(Uvec0, gradJ_opt, gradJ_opt, norm2_grad)
+       Uvec0 = Uvec3
+       call project_field(Uvec0, gradPHI_opt, gradPHI_backup)
+       gradPHI_opt = gradPHI_backup
 
 !======================================================
 !- maximiaztion using mnbrak and brent
@@ -161,7 +164,7 @@ CONTAINS
        if (rank==0) then
           print *, "Start mnbrak; main_iter =", iter
        end if
-       tau_brack = mnbrak(Uvec0, gradJ_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)  
+       tau_brack = mnbrak(Uvec0, gradPHI_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)  
        IF (mnbrak_flag /= 0) THEN
           if (rank ==0) then
              print *, "mnbrack iteration beyond maximum, the maxdEdt stops iterating ... " , mnbrak_flag
@@ -173,7 +176,9 @@ CONTAINS
        if (rank==0) then
           print *, "Start brent; main_iter =", iter
        end if
-       tau = brent(iter, "maxET", Uvec0, gradJ_opt, tau_brack)
+       Uvec0 = Uvec3
+       gradPHI_opt = gradPHI_backup
+       tau = brent(iter, "maxET", Uvec0, gradPHI_opt, tau_brack)
        tau_brack(1) = 0.0_pr
        tau_brack(2) = 2.0_pr*tau
        IF (tau == TAU_MAX) THEN
@@ -182,8 +187,10 @@ CONTAINS
 !======================================
 ! UPDATE (initial condition) VELOCITY
 !======================================
-       Uvec0 = Uvec0 + tau*gradJ_opt
-       J0 = J1
+       Uvec0 = Uvec0 + tau*gradPHI_opt
+
+       Uvec3 = Uvec0
+       PHI0 = PHI1
        
 
 !======================================================
@@ -191,23 +198,23 @@ CONTAINS
 !======================================================
 
        if (rank == 0) then
-          print *, "eval_J; main_iter =", iter
+          print *, "eval_PHI; main_iter =", iter
        end if
        
-       J1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1)   
+       PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1)   
 
        
        
        
        IF (iter > 0) THEN   ! Feb 17, 2018
-          deltaJ = abs(J1-J0)/ABS(J0)
-          IF (J1-J0 > -1.0e-15_pr) THEN 
+          deltaPHI = abs(PHI1-PHI0)/ABS(PHI0)
+          IF (PHI1-PHI0 < 1.0e-15_pr) THEN 
              CALL optim_msg_handle(0)
              EXIT
-          ELSEIF (deltaJ<OPTIM_TOL) THEN
+          ELSEIF (deltaPHI<OPTIM_TOL) THEN
              if (rank == 0) then
                 open(3, file = file_cost, status = 'old', position = 'append')
-                write(3, "(4 G20.12)"), iter, J1, norm2_grad, tau
+                write(3, "(4 G20.12)"), iter, PHI1, norm2_grad, tau
                 close(3)
                 PRINT *, "Relative difference reaches tolerance, iteration exit ... ..."
              end if
@@ -217,7 +224,7 @@ CONTAINS
 
        if (rank == 0) then
           open(3, file = file_cost, status = 'old', position = 'append')
-          write(3, "(4 G20.12)"), iter, J1, norm2_grad, tau
+          write(3, "(4 G20.12)"), iter, PHI1, norm2_grad, tau
           close(3)
        end if
        
@@ -244,7 +251,7 @@ CONTAINS
     INCLUDE "mpif.h"
          
 
-    REAL(pr) :: J0, J1, deltaJ, tau
+    REAL(pr) :: PHI0, PHI1, deltaPHI, tau
     character(200) :: file_cost, file_grad
     INTEGER :: iter, mnbrak_flag, FixConstr_flag , i
     real(pr), dimension(1:3), intent(inout) :: tau_brack
@@ -1098,7 +1105,7 @@ CONTAINS
 
       Real(pr) ::PHI_val
       
-      REAL(pr), PARAMETER :: mnbrak_TOL = 1E-3 !1E-10  ! Mar 3, 2018
+      REAL(pr), PARAMETER :: mnbrak_TOL = 1E-10  ! Mar 3, 2018
       WRITE(itertxt, '(i4)') myindex
       filename1 = "./LOGFILES/maxET_brakbrent_OPT"//trim(adjustl(itertxt))//".dat"
 
@@ -1139,7 +1146,7 @@ CONTAINS
          end if
       FuncEval = FuncEval+1
 
-      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, "replace", myindex)
+      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "replace", myindex)
 
       DO WHILE ((FB > FA) .AND. (tB > MACH_EPSILON) .AND. (abs(FB-FA)/abs(FA) > mnbrak_TOL)) 
         tB = CGOLD*tB/10.0_pr
@@ -1155,7 +1162,7 @@ CONTAINS
             CLOSE(10)
          end if
          FuncEval = FuncEval+1
-         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, "append", myindex)
+         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "append", myindex)
       END DO
 
       IF ((tB .LE. MACH_EPSILON) .OR. (abs(FB-FA)/abs(FA) .LE. mnbrak_TOL)) THEN
@@ -1173,7 +1180,7 @@ CONTAINS
             CLOSE(10)
          end if
       FuncEval = FuncEval+1
-      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, "append", myindex)
+      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "append", myindex)
       DO WHILE (FB>=FC .AND. iter<ITMAX)
          if (rank == 0 ) then
             print *, "      mnbrak; do while NO. 2 ... mnbrak_iter =", iter
@@ -1284,7 +1291,7 @@ CONTAINS
          FA = FB
          FB = FC
          FC = FP        
-         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, "append", myindex)
+         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "append", myindex)
 
         
       END DO

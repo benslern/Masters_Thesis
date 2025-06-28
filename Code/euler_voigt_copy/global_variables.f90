@@ -5,7 +5,7 @@ MODULE global_variables
 !   include 'fftw3-mpi.f03'
  
   INTEGER, PARAMETER :: pr = KIND (1.0d0)      ! Double precision kind
-  INTEGER, PARAMETER :: MAX_ITER = 10          ! Maximum optimization iterations
+  INTEGER, PARAMETER :: MAX_ITER = 20          ! Maximum optimization iterations
   !INTEGER, PARAMETER :: KappaPoints = 16      ! Unused parameter 
   REAL, PARAMETER :: OPTIM_TOL = 1.0e-10_pr    ! Optimization tolereance
   REAL, PARAMETER :: MACH_EPSILON = 1.0e-10_pr ! ???
