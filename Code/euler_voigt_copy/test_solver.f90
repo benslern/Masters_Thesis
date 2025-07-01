@@ -42,7 +42,7 @@ PROGRAM EULER_VOIGT
    REAL(pr) :: PHI1 = 0.0_pr                       ! Objective function testing
    REAL(pr) :: PHI2 = 0.0_pr
    REAL(pr) :: tau = 0.0_pr
-
+   LOGICAL :: TEST1, TEST2
    !=============================================
    ! MPI
    !=============================================
@@ -160,7 +160,7 @@ PROGRAM EULER_VOIGT
    end if
 
    !=======================================================
-   !- Report Maximization Test Euler-Voigt Simulations
+   !- Evolution Test Euler-Voigt Simulations
    !=======================================================
    if (0) then
       !constants
@@ -168,6 +168,43 @@ PROGRAM EULER_VOIGT
       stepper = 3
       visc = 0.0_pr
       alpha = 4.0_pr/256.0_pr
+      fix_dt1 = 2.0_pr**(-5)
+      call solvers_allocate(stepper)
+      ! s=3, l=1, sigma = 1E-1, ..., 1E-5, ! norm_constr = 1
+      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
+
+      !set 3D Taylor Green
+      call set_initial(Uvec0, 2, 11111,2222,31234)
+     
+      call rescale(Uvec0,PHI1)
+      Uvec3 = Uvec0
+      tau = 1.0_pr
+
+      TEST1 = all(Uvec0 == Uvec3)
+      ! Compute the Objective Function
+      PHI1 = compute_J(Uvec0, fix_dt1, 1, 1, 0)
+      TEST2 = all(Uvec0 == Uvec3)
+
+     if (rank == 0) then
+            filename = TRIM(scratch_pathname)//"evolution_test"//".dat"
+            open(10, file = filename, status = 'REPLACE')
+            write(10, *), TEST1, TEST2
+            close(10)
+      end if      
+
+      call optimization_deallocate()
+      call solvers_deallocate()
+   end if
+
+   !=======================================================
+   !- Report Maximization Test Euler-Voigt Simulations
+   !=======================================================
+   if (0) then
+      !constants
+      endTime = 0.5_pr
+      stepper = 3
+      visc = 0.0_pr
+      alpha = 4.0_pr/256.0_pr 
       fix_dt1 = 2.0_pr**(-5)
       call solvers_allocate(stepper)
       ! s=3, l=1, sigma = 1E-1, ..., 1E-5, ! norm_constr = 1
@@ -185,7 +222,7 @@ PROGRAM EULER_VOIGT
       !call project_field(Uvec0, gradPHI_opt, gradPHI_backup)
       !init taubrak
       tau_brack(1) = 0.0_pr
-      tau_brack(2) = 2000000.0_pr
+      tau_brack(2) = 1E-16_pr !2000000.0_pr
       call report_PHI(Uvec0,tau_brack, 50, fix_dt1)
 
       call optimization_deallocate()
@@ -208,6 +245,7 @@ PROGRAM EULER_VOIGT
 
       !set 3D Taylor Green
       call set_initial(Uvec0, 2, 11111,2222,31234)
+      call rescale_H1(Uvec0,PHI1)
 
       !init taubrak
       tau_brack(1) = 0.0_pr
@@ -236,14 +274,12 @@ PROGRAM EULER_VOIGT
 
       !set 3D Taylor Green
       call set_initial(Uvec0, 2, 11111,2222,31234)
-      Uvec3 = Uvec0
+      call rescale_H1(Uvec0,PHI1)
 
       !evolve Uvec0 forward
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 1, 1)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1)
       !use evolved Uvec0 to find gradient
       call compute_gradPHI(Uvec0, fix_dt1, 0, gradPHI_opt, 1)
-      !reset Uvec0 to 3D Taylor Green
-      Uvec0 = Uvec3
       !project gradient onto tangent space of Uvec0 
       call project_field(Uvec0, gradPHI_opt, gradPHI_backup)
 
@@ -255,24 +291,18 @@ PROGRAM EULER_VOIGT
       !minimize taubrak  
       i = 0
       tau_brack = mnbrak(Uvec0, gradPHI_opt, tau_brack(1), tau_brack(2), i, 1)
-      !reset Uvec0 to 3D Taylor Green
-      Uvec0 = Uvec3
       !report PHI
-      gradPHI_opt = gradPHI_backup
       call report_PHI(Uvec0,tau_brack, 100, fix_dt1)
 
       gradPHI_opt = gradPHI_backup
 
-      !reset Uvec0 to 3D Taylor Green
-      Uvec0 = Uvec3
       !find peak tau
       i = 1
       tau = brent(i, "maxET", Uvec0, gradPHI_opt, tau_brack)
-      gradPHI_opt = gradPHI_backup
 
-      Uvec0 = Uvec3
       Uvec0 = Uvec0 + tau*gradPHI_backup
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, i, 1, 1)
+      call rescale_H1(Uvec0,PHI1)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, i, 0, 1)
 
       if (rank == 0) then
             filename = TRIM(scratch_pathname)//"peak_cost"//".dat"
@@ -301,12 +331,11 @@ PROGRAM EULER_VOIGT
       
       !set 3D Taylor Green
       call set_initial(Uvec0, 2, 11111,2222,31234)
-      !evolve Uvec0 forward
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 1, 1)
-      !use evolved Uvec0 to find gradient
+      !evolve Uvec forward
+      call rescale_H1(Uvec0, PHI1)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1)
+      !use evolved Uvec to find gradient
       call compute_gradPHI(Uvec0, fix_dt1, 0, gradPHI_opt, 1)
-      !reset Uvec0 to 3D Taylor Green
-      call set_initial(Uvec0, 2, 11111,2222,31234)
       !project gradient onto tangent space of Uvec0 
       call project_field(Uvec0, gradPHI_opt, gradPHI_opt)  
       !init taubrak
@@ -315,8 +344,6 @@ PROGRAM EULER_VOIGT
       !minimize taubrak  
       i = 0
       tau_brack = mnbrak(Uvec0, gradPHI_opt, tau_brack(1), tau_brack(2), i, 1)
-      !reset Uvec0 to 3D Taylor Green
-      call set_initial(Uvec0, 2, 11111,2222,31234)
       !report PHI
       call report_PHI(Uvec0,tau_brack, 100, fix_dt1)
 
@@ -339,15 +366,8 @@ PROGRAM EULER_VOIGT
       call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
       call set_initial(Uvec0, 2, 11111,2222,31234)
       tau_brack(1) = 0.0_pr
-      tau_brack(2) = 5000000.0_pr
-      call report_PHI(Uvec0,tau_brack, 100, fix_dt1)
-
-      !PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0)      
-
-      !filename = "./LOGFILES/PHI_TEST.dat"
-      !OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'REPLACE')
-      !WRITE(10, "(1 G20.12)") PHI1
-      !CLOSE(10)
+      tau_brack(2) = 500.0_pr !5000000.0_pr
+      call report_PHI(Uvec0,tau_brack, 50, fix_dt1)
 
       call optimization_deallocate()
       call solvers_deallocate()

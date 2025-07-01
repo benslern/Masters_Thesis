@@ -122,10 +122,8 @@ CONTAINS
     if (rank == 0) then
        print *, "eval_PHI; main_iter =", iter
     end if
-
-    
-    Uvec3 = Uvec0
-    PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1) !compute_J(Uvec0, fix_dt1, 1, iter, 1)   
+       
+    PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 0, 1)   
 
     if (rank == 0) then
        open(3, file = file_cost, status = 'old', position = 'append')
@@ -148,13 +146,12 @@ CONTAINS
        if (rank == 0) then
           print *, "eval_grad_PHI; main_iter =", iter
        end if
-       
        gradPHI_opt = 0.0_pr
-       call compute_gradPHI(Uvec0, fix_dt1, 1, gradPHI_opt, iter)
-       !call projection(Uvec0, gradJ_opt, gradJ_opt, norm2_grad)
-       Uvec0 = Uvec3
-       call project_field(Uvec0, gradPHI_opt, gradPHI_backup)
-       gradPHI_opt = gradPHI_backup
+       call compute_gradPHI(Uvec0, fix_dt2, 0, gradPHI_opt, iter)
+       call projection(Uvec0, gradPHI_opt, gradPHI_opt, norm2_grad)
+      
+     
+       
 
 !======================================================
 !- maximiaztion using mnbrak and brent
@@ -176,8 +173,6 @@ CONTAINS
        if (rank==0) then
           print *, "Start brent; main_iter =", iter
        end if
-       Uvec0 = Uvec3
-       gradPHI_opt = gradPHI_backup
        tau = brent(iter, "maxET", Uvec0, gradPHI_opt, tau_brack)
        tau_brack(1) = 0.0_pr
        tau_brack(2) = 2.0_pr*tau
@@ -188,8 +183,7 @@ CONTAINS
 ! UPDATE (initial condition) VELOCITY
 !======================================
        Uvec0 = Uvec0 + tau*gradPHI_opt
-
-       Uvec3 = Uvec0
+       call rescale_H1(Uvec0, val1)
        PHI0 = PHI1
        
 
@@ -201,7 +195,7 @@ CONTAINS
           print *, "eval_PHI; main_iter =", iter
        end if
        
-       PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1)   
+       PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 0, 1)   
 
        
        
@@ -216,7 +210,7 @@ CONTAINS
                 open(3, file = file_cost, status = 'old', position = 'append')
                 write(3, "(4 G20.12)"), iter, PHI1, norm2_grad, tau
                 close(3)
-                PRINT *, "Relative difference reaches tolerance, iteration exit ... ..."
+                PRINT *, "Relative difference reaches tolerance, iteration exit... ..."
              end if
              EXIT
           END IF
@@ -232,7 +226,6 @@ CONTAINS
     END DO
    
   END SUBROUTINE maximization
-
 
   
 
@@ -280,9 +273,9 @@ CONTAINS
       
     iter = 0
     norm2_grad = 0.0_pr
-    J0 = 0.0_pr
-    J1 = 0.0_pr
-    deltaJ = 1.0_pr
+    PHI0 = 0.0_pr
+    PHI1 = 0.0_pr
+    deltaPHI = 1.0_pr
     tau = 0.0_pr
     beta = 0.0_pr
     restart_flag = 0
@@ -290,16 +283,16 @@ CONTAINS
 
 
     if (rank == 0) then
-       print *, "eval_J; main_iter =", iter
+       print *, "eval_PHI; main_iter =", iter
     end if
        
-    J1 = compute_J(Uvec0, fix_dt1, 1, iter, 1)
+    PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 0, 1)
     if (0) then
        call read4binary2(iter+1, Uvec, "fwdTE")
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
-       call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, J1)
-       J1 = -J1
+       call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, PHI1)
+       PHI1 = -PHI1
        final_time_iter = floor(endTime/fix_dt2)
     else if (1) THEN
        call save2binary2(Uvec, iter, "fwdTE")
@@ -309,13 +302,13 @@ CONTAINS
 
     if (rank == 0) then
        open(3, file = file_cost, status = 'old', position = 'append')
-       write(3, "(6 G20.12)"), iter, J1, norm2_grad, tau, beta, restart_flag
+       write(3, "(6 G20.12)"), iter, PHI1, norm2_grad, tau, beta, restart_flag
        close(3)
     end if
 
     iter = 1
     
-    DO WHILE ( (ABS(deltaJ) > OPTIM_TOL) .AND. (iter<=MAX_ITER) )
+    DO WHILE ( (ABS(deltaPHI) > OPTIM_TOL) .AND. (iter<=MAX_ITER) )
 
        restart_flag = 0
        if (rank == 0) then
@@ -336,53 +329,53 @@ CONTAINS
 !- compute the gradient
 !======================================================
        if (rank == 0) then
-          print *, "eval_grad_J; main_iter =", iter
+          print *, "eval_grad_PHI; main_iter =", iter
        end if
 
-       ! save gradJ for one iteration
+       ! save gradPHI for one iteration
        if (1) then
-          call compute_gradJ(Uvec0, fix_dt2, 1, gradJ_opt, iter)
+          call compute_gradPHI(Uvec0, fix_dt2, 1, gradPHI_opt, iter)
           
        else if (0) then
           call save2binary2(Uvec, iter, "fwdTE")
           exit
        else if (0) then
           call read4binary2(iter, Uvec, "fwdTE")
-          call compute_gradJ(Uvec0, fix_dt2, 1, gradJ_opt, iter)
-          call save2binary2(gradJ_opt, iter+1, "fwdTE")
+          call compute_gradPHI(Uvec0, fix_dt2, 1, gradPHI_opt, iter)
+          call save2binary2(gradPHI_opt, iter+1, "fwdTE")
           exit
        else if (0) then
-          call read4binary2(iter+1, gradJ_opt, "fwdTE")
+          call read4binary2(iter+1, gradPHI_opt, "fwdTE")
           
        end if
        
        if (iter == 1 .or. mod(iter, restart_freq) == 0) then
           restart_flag = 3
           beta = 0.0_pr          
-          call projection(Uvec0, gradJ_opt, d_opt, norm2_grad)
+          call projection(Uvec0, gradPHI_opt, d_opt, norm2_grad)
           if (rank == 0) then
              print *, "norm2_grad = ", norm2_grad
           end if
           
-          d1_opt = gradJ_opt
+          d1_opt = gradPHI_opt
           ! save intermediate results
           if (0) then
              ! norm2_grad_pre = 1.0_pr
-             call read4binary2(iter+2, gradJ_pre_opt, "fwdTE")
+             call read4binary2(iter+2, gradPHI_pre_opt, "fwdTE")
              call read4binary2(iter+3, d1_opt, "fwdTE")
-             call projection_RCG(Uvec0, gradJ_opt, gradJ_pre_opt, d1_opt, d_opt, norm2_grad, norm2_grad_pre, beta, 2, restart_flag)
-             call save2binary2(gradJ_opt, iter+2, "fwdTE")
+             call projection_RCG(Uvec0, gradPHI_opt, gradPHI_pre_opt, d1_opt, d_opt, norm2_grad, norm2_grad_pre, beta, 2, restart_flag)
+             call save2binary2(gradPHI_opt, iter+2, "fwdTE")
              call save2binary2(d1_opt, iter+3, "fwdTE")
              if (rank == 0) then
                 print *, "norm2_grad = ", norm2_grad
              end if
           else if (1) then
-             call save2binary2(gradJ_opt, iter+2, "fwdTE")
+             call save2binary2(gradPHI_opt, iter+2, "fwdTE")
              call save2binary2(d1_opt, iter+3, "fwdTE")
              
           end if
        else
-          call projection_RCG(Uvec0, gradJ_opt, gradJ_pre_opt, d1_opt, d_opt, norm2_grad, norm2_grad_pre, beta, 2, restart_flag)
+          call projection_RCG(Uvec0, gradPHI_opt, gradPHI_pre_opt, d1_opt, d_opt, norm2_grad, norm2_grad_pre, beta, 2, restart_flag)
        
           
        end if
@@ -399,7 +392,7 @@ CONTAINS
        if (rank==0) then
           print *, "Start mnbrak; main_iter =", iter
        end if
-       call rescale(Uvec0, val1)
+       call rescale_H1(Uvec0, val1)
        tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)  
        IF (mnbrak_flag /= 0) THEN
           if (rank ==0) then
@@ -422,8 +415,9 @@ CONTAINS
 ! UPDATE (initial condition) VELOCITY
 !======================================
        Uvec0 = Uvec0 + tau*d_opt
-       J0 = J1
-       gradJ_pre_opt = gradJ_opt
+       call rescale_H1(Uvec0,val1)
+       PHI0 = PHI1
+       gradPHI_pre_opt = gradPHI_opt
        norm2_grad_pre = norm2_grad
        
        
@@ -432,10 +426,10 @@ CONTAINS
 !======================================================
 
        if (rank == 0) then
-          print *, "eval_J; main_iter =", iter
+          print *, "eval_PHI; main_iter =", iter
        end if
        
-       J1 = compute_J(Uvec0, fix_dt1, 1, iter, 1)
+       PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 0, 1)
        if (1) then
           call save2binary2(Uvec, iter, "fwdTE")
        end if
@@ -443,14 +437,14 @@ CONTAINS
           
 
        IF (iter > 0) THEN   ! Feb 17, 2018
-          deltaJ = abs(J1-J0)/ABS(J0)
-          IF (J1-J0 > -1.0e-15_pr) THEN 
+          deltaPHI = abs(PHI1-PHI0)/ABS(PHI0)
+          IF (PHI1-PHI0 < 1.0e-15_pr) THEN 
              CALL optim_msg_handle(0)
              EXIT
-          ELSEIF (deltaJ<OPTIM_TOL) THEN
+          ELSEIF (deltaPHI<OPTIM_TOL) THEN
              if (rank == 0) then
                 open(3, file = file_cost, status = 'old', position = 'append')
-                write(3, "(6 G20.12)"), iter, J1, norm2_grad, tau, beta, restart_flag
+                write(3, "(6 G20.12)"), iter, PHI1, norm2_grad, tau, beta, restart_flag
                 close(3)
                 PRINT *, "Relative difference reaches tolerance, iteration exit ... ..."
              end if
@@ -460,7 +454,7 @@ CONTAINS
 
        if (rank == 0) then
           open(3, file = file_cost, status = 'old', position = 'append')
-          write(3, "(6 G20.12)"), iter, J1, norm2_grad, tau, beta, restart_flag
+          write(3, "(6 G20.12)"), iter, PHI1, norm2_grad, tau, beta, restart_flag
           close(3)
        end if
        iter = iter + 1
@@ -619,10 +613,10 @@ CONTAINS
         ! RCG_flag =  1: feltcher-reeves
         ! RCG_flag =  2: polak-ribiere
 
-        ! temp1_solver_cx = |D|^6 u_cx/norm
+        ! temp1_solver_cx = |D|^2 u_cx/norm
 
         call fftfwd_m(myfield, temp1_solver_cx, 3)
-        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 6.0_pr)
+        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 2.0_pr)
 
         ! temp2_solver_cx = n(u)_cx/norm
         ! = (1+l^2|D|^2)^(-s)|D|^6u_cx/norm
@@ -638,7 +632,7 @@ CONTAINS
 
 
         ! temp1_solver_cx = n(u)_cx/norm
-        ! = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)|D|^6u_cx/norm
+        ! = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)|D|^2u_cx/norm
         call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -0.5_pr*s, -sigma)
 
         call fftbwd_m(temp1_solver_cx, temp2_solver, 3)
@@ -947,10 +941,10 @@ CONTAINS
       integer, intent(in) :: count
       real(pr), intent(in) :: mydt
       character(200) :: file_name
-      Real(pr) :: A, B, tau, dtau
+      Real(pr) :: A, B, tau, dtau, PHI, val
       integer :: i
-      Real(pr) :: PHI,PHI2,PHI3
-      LOGICAL :: TEST1, TEST2, TEST3
+      real(pr) :: norm2_grad
+
       A = MIN(tau_brack(1),tau_brack(2))
       B = MAX(tau_brack(1),tau_brack(2))
       dtau = (B-A)/count
@@ -962,37 +956,39 @@ CONTAINS
       end if
 
       PHI = 0.0_pr
-      Uvec1 = myfield
-      PHI = compute_PHI_L2(myfield, mydt, 1, 1, 1, 1)
-      call compute_gradPHI(myfield, mydt, 0, gradPHI_opt, 1)
-      CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
+      call rescale_H1(myfield,val)
+      PHI = compute_PHI_L2(myfield, mydt, 1, 1, 0, 1)
       
-      myfield = Uvec1
-      !gradPHI_backup = gradPHI_opt
-
+      norm2_grad = 0.0_pr
+      gradPHI_opt = 0.0_pr
+      ! call projection(Uvec0, gradPHI_opt, gradPHI_opt, norm2_grad)
+      call compute_gradPHI(myfield, fix_dt2, 0, gradPHI_opt, 1)
+      call projection(Uvec0, gradPHI_opt, gradPHI_opt, norm2_grad)
+      CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
+     
       do i = 0,count
          PHI = 0.0_pr
          tau = A + i*dtau
 
          !PHI 1
-         !Uvec  = myfield + tau*gradPHI_opt
+         !Uvec = myfield + tau*gradPHI_opt
          !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
          !PHI = compute_PHI_L2(Uvec, fix_dt1, 1, i, 0, 1)
          
          !PHI 2
-         !Uvec  = myfield + tau*gradPHI_opt
+         !Uvec = myfield + tau*gradPHI_opt
+         !call rescale_H1(Uvec, val)
          !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-         !PHI = compute_PHI_L2(Uvec, fix_dt1, 1, i, 1, 1)
+         !PHI = compute_PHI_L2(Uvec, fix_dt1, 1, i, 0, 1)
 
          !PHI 3
          !call project_field(myfield, gradPHI_opt, Uvec2)
-         !Uvec2 = Uvec1 + tau*Uvec2
+         !Uvec2 = myfield + tau*Uvec2
          !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
          !PHI = compute_PHI_L2(Uvec2, fix_dt1, 1, i, 0, 1)
 
          !PHI 4
-         call project_field(myfield, gradPHI_opt, Uvec2)
-         Uvec2 = Uvec1 + tau*Uvec2
+         Uvec2 = myfield + tau*gradPHI_opt
          CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
          PHI = compute_PHI_L2(Uvec2, fix_dt1, 1, i, 1, 1)
 
