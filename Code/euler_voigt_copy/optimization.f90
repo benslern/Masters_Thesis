@@ -477,8 +477,16 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 !================================================= 
 ! SUBROUTINE: project_field(v, w, proj)
 ! project w to the tangent space of v
-! proj: \P_{T_{\v}\M_1} w
-! USE: solvers.f90: temp1_solver, temp1_solver_cx, temp2_solver_cx      
+!
+! INPUT:
+! v: vector to compute tangent space
+! w: vector to project
+!
+! Output
+! proj: projection of w onto tangent space of v \P_{T_{\v}\M_1} w
+! 
+! USE: 
+! temp1_solver, temp1_solver_cx, temp2_solver_cx, temp3_solver_cx      
 !=================================================
       SUBROUTINE project_field(v, w, proj)
         USE global_variables
@@ -503,11 +511,11 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
         call L2_product_fourier(temp1_solver_cx, temp2_solver_cx, norm)
         norm = sqrt(norm)
 
-        ! temp4_solver_cx = n_v
-        temp4_solver_cx = temp2_solver_cx/norm
+        ! temp1_solver_cx = n_v
+        temp1_solver_cx = temp2_solver_cx/norm
 
         ! temp2_solver_cx =  (1+l^2|D|^2)^(s)exp(2sigma|D|) n_v 
-        call G_l_s_sigma_fourier(temp4_solver_cx, temp2_solver_cx, l, s, 2.0_pr*sigma)
+        call G_l_s_sigma_fourier(temp1_solver_cx, temp2_solver_cx, l, s, 2.0_pr*sigma)
         
         ! temp3_solver_cx = fourier transform of w
         call fftfwd_m(w, temp3_solver_cx,3) 
@@ -516,7 +524,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
         call L2_product_fourier(temp2_solver_cx,temp3_solver_cx, val)
         
         ! temp3_solver_cx = w - <n_v,w>_{G^sigma}n_v
-        temp3_solver_cx = temp3_solver_cx - val*temp4_solver_cx
+        temp3_solver_cx = temp3_solver_cx - val*temp1_solver_cx
 
         call div_free_fourier(temp3_solver_cx) !make sure divergence free
         call fftbwd_m(temp3_solver_cx,proj,3) 
@@ -761,8 +769,17 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
      END SUBROUTINE rescale
 
 !=========================================================
-! SUBROUTINE rescale_H1(myfield, val)
+! SUBROUTINE rescale_H1(myfield, scaling)
 ! scale myfield such that its dotH_1 is norm_constr
+!
+! INPUT:
+! myfield: Initial condition
+! 
+! OUTPUT:
+! scaling: scaling factor
+!
+! USE:
+! temp1_solver_cx
 !=========================================================
      SUBROUTINE rescale_H1(myfield, scaling)
        USE global_variables
@@ -814,9 +831,22 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
      END SUBROUTINE rescale_cx
 
 !=========================================================
-! FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag)
+! FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag, evolve_flag)
 ! Compute the cost function PHI = (||GRAD u(T)||_L^2)^2
-! INPUT: myfield (u(0))
+! 
+! INPUT: 
+! myfield: Initial condition
+! mydt: Time step size
+! savesign: Save data iff 1
+! myiter: Iteration number
+! constr_flag: Rescale myfield iff not 0
+! evolve_flag: Fwd evolve myfield iff not 0
+!
+! OUTPUT:
+! PHI: value of phi at myfield
+!
+! USE:
+! Uvec, temp1_solver_cx
 !=========================================================
      FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag, evolve_flag) RESULT(PHI)
        USE global_variables
@@ -838,10 +868,8 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
        if(constr_flag .ne. 0) call rescale_H1(myfield, val)
 
        if(evolve_flag .ne. 0) call fwd_3D(myfield, mydt, savesign, stepper_opt, myiter)
-       !Uvec
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call L2_grad(temp1_solver_cx,PHI)
-       !PHI = PHI**2
 
      END FUNCTION compute_PHI_L2
 
@@ -882,10 +910,19 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 
 !================================================
 ! SUBROUTINE: compute_gradPHI(myfield, mydt, savesign, gradPHI, myiter, term)
-! INPUT: inifield (u(T))
-! OUTPUT: gradPHI
-! We use the Hsigma space
-! Use: solvers.f90: temp1_solver_cx
+! Compute the gradient of phi at myfield.
+!
+! INPUT:
+! myfield: Rescaled initial condition
+! mydt: Time step size
+! savesign: save data iff 1
+! myiter: iteration number
+!
+! OUTPUT: 
+! gradPHI: gradient of phi (1+|D|^2)^-s exp(-2sigma|D|) u*(t=0)
+
+! Use: 
+! temp1_solver_cx
 !================================================
     SUBROUTINE compute_gradPHI(myfield, mydt, savesign, gradPHI, myiter)
       USE global_variables
@@ -903,8 +940,6 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       call fftfwd_m(adj_Uvec, temp1_solver_cx, 3)
       call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -s, -2.0_pr*sigma)
       call fftbwd_m(temp1_solver_cx, gradPhi, 3)
-        !gradPHI = adj_Uvec
-
       CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
       
     END SUBROUTINE compute_gradPHI
@@ -937,8 +972,16 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
     
 !=========================================================
 ! SUBROUTINE: report_PHI(myfield,tau_brack, count, mydt)
-! compute the cost function along myfield + tau*gradPHI
-! Use Uvec
+! Compute the cost function along myfield + tau*gradPHI
+!
+! INPUT:
+! myfield: Rescaled initial condition
+! tau_brack: Tau bracket to compute phi in
+! count: Number of points to compute phi
+! mydt: Time step size
+!
+! USE:
+! Uvec, gradPHI_opt
 !==========================================================
     SUBROUTINE report_PHI(myfield,tau_brack, count, mydt, iter)
       USE global_variables
@@ -981,29 +1024,11 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
          PHI = 0.0_pr
          tau = A + i*dtau
 
-         !PHI 1
-         !Uvec = myfield + tau*gradPHI_opt
-         !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-         !PHI = compute_PHI_L2(Uvec, fix_dt1, 1, i, 0, 1)
-         
-         !PHI 2
-         !Uvec = myfield + tau*gradPHI_opt
-         !call rescale_H1(Uvec, val)
-         !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-         !PHI = compute_PHI_L2(Uvec, fix_dt1, 1, i, 0, 1)
-
-         !PHI 3
-         !call project_field(myfield, gradPHI_opt, Uvec2)
-         !Uvec2 = myfield + tau*Uvec2
-         !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-         !PHI = compute_PHI_L2(Uvec2, fix_dt1, 1, i, 0, 1)
-
-         !PHI 4
-         call project_field(myfield, gradPHI_opt, Uvec2)
-         Uvec2 = myfield + tau*Uvec2
-         call rescale_H1(Uvec2, PHI)
+         call project_field(myfield, gradPHI_opt, Uvec)
+         Uvec = myfield + tau*Uvec
+         call rescale_H1(Uvec, PHI)
          CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-         PHI = compute_PHI_L2(Uvec2, fix_dt1, 0, i, 0, 1)
+         PHI = compute_PHI_L2(Uvec, mydt, 0, i, 0, 1)
 
          if (rank == 0) then
             open(10, file = file_name, status = 'old', position = 'append')
@@ -1082,7 +1107,19 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       
 !================================================
 ! FUNCTION: mnbrak(myfield, gradPHI, tA0, tB0, myflag, myindex)      
-! OUTPUT: tau_brack(2)
+! Minimize the tau bracket
+!
+! INPUT:
+! myfield: Rescaled initial condition
+! gradPHI: Projected gradient
+! tA0: Initial left tau bracket
+! tB0: Initial right tau bracket
+! myflag: Unused flag
+! myindex: Iteration number
+!
+! OUTPUT: 
+! tau_brack: Minimized tau bracket
+!
 ! Use: Uvec
 !================================================
     FUNCTION mnbrak(myfield, gradPHI, tA0, tB0, myflag, myindex) RESULT (tau_brack)
@@ -1127,8 +1164,8 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       tA = tA0
       tB = MAX(tB0, MACH_EPSILON)
       
-      Uvec2 = myfield + tA*gradPHI
-      FA = compute_PHI_L2(Uvec2, fix_dt1, 0, myindex, 1, 1)
+      Uvec = myfield + tA*gradPHI
+      FA = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
       FA = -FA 
       !call fftfwd_m(Uvec, temp1_solver_cx, 3)
       !call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
@@ -1145,8 +1182,8 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 
       FuncEval = FuncEval+1
 
-      Uvec2 = myfield + tB*gradPHI
-      FB = compute_PHI_L2(Uvec2, fix_dt1, 0, myindex, 1, 1)
+      Uvec = myfield + tB*gradPHI
+      FB = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
       FB = -FB
       if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1159,11 +1196,11 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 
       DO WHILE ((FB > FA) .AND. (tB > MACH_EPSILON) .AND. (abs(FB-FA)/abs(FA) > mnbrak_TOL)) 
         tB = CGOLD*tB/10.0_pr
-        Uvec2 = myfield + tB*gradPHI
+        Uvec = myfield + tB*gradPHI
          if (rank == 0 ) then
             print *, "      mnbrak; do while NO. 1 ... FuncEval =", FuncEval
          end if
-         FB = compute_PHI_L2(Uvec2, fix_dt1, 0, myindex, 1, 1)
+         FB = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
          FB = -FB
          if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1180,8 +1217,8 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       END IF
       
       tC = GOLD*tB
-      Uvec2 = myfield + tC*gradPHI
-      FC = compute_PHI_L2(Uvec2, fix_dt1, 0, myindex, 1, 1)
+      Uvec = myfield + tC*gradPHI
+      FC = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
       FC = -FC
       if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1205,8 +1242,8 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
             if (rank == 0) then
                print *, "            mnbrak; do while NO. 2; case 1"
             end if
-           Uvec2 = myfield + tP*gradPHI
-            FP = compute_PHI_L2(Uvec2, fix_dt1, 0, myindex, 1, 1)
+           Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
             FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1231,8 +1268,8 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
                EXIT
             END IF
             tP = tC + GOLD*(tC-tB)
-            Uvec2 = myfield + tP*gradPHI
-            FP = compute_PHI_L2(Uvec2, fix_dt1, 0, myindex, 1, 1)
+            Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
             FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1243,8 +1280,8 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
             if (rank == 0) then
                print *, "            mnbrak; do while NO. 2; case 2"
             end if
-            Uvec2 = myfield + tP*gradPHI
-            FP = compute_PHI_L2(Uvec2, fix_dt1, 0, myindex, 1, 1)
+            Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
             FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1258,8 +1295,8 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
                FB = FC
                FC = FP
                tP = tC+GOLD*(tC-tB)
-               Uvec2 = myfield + tP*gradPHI
-               FP = compute_PHI_L2(Uvec2, fix_dt1, 0, myindex, 1, 1)
+               Uvec = myfield + tP*gradPHI
+               FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
                FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1272,8 +1309,8 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
                print *, "            mnbrak; do while NO. 2; case 3"
             end if
             tP = Pmax
-            Uvec2 = myfield + tP*gradPHI
-            FP = compute_PHI_L2(Uvec2, fix_dt1, 0, myindex, 1, 1)
+            Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
             FP = -FP 
           if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1285,8 +1322,8 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
                print *, "            mnbrak; do while NO. 2; case 4"
             end if
             tP = tC + GOLD*(tC-tB)
-            Uvec2 = myfield + tP*gradPHI
-            FP = compute_PHI_L2(Uvec2, fix_dt1, 0, myindex, 1, 1)
+            Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
             FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1326,9 +1363,21 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 
 
 !====================================================
-! FUNCTION: brent(iteration, mysystem, myfield, gradJ, tau_brack)     
-! OUTPUT: X
-! Use: Uvec
+! FUNCTION: brent(iteration, mysystem, myfield, gradPHI, tau_brack)     
+! Find the peak of phi along the gradient using brents method
+!
+! INPUT:
+! iteration: Iteration number
+! mysystem: Unused variable
+! myfield: Rescaled initial condition
+! gradPHI: Projected gradient
+! tau_brack: Initial tau bracket
+!
+! OUTPUT:
+! X: tau value of phi peak
+!
+! USE: 
+! Uvec
 !====================================================
     FUNCTION brent(iteration, mysystem, myfield, gradPHI, tau_brack) RESULT (X)  
       USE global_variables
@@ -1371,22 +1420,17 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       W = V
       X = V 
       E = 0.0_pr
-      Uvec = myfield! + D*gradJ
+      Uvec = myfield + D*gradPHI
       FX = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1)
       FX = -FX
       if (rank==0) then
          filename = "./LOGFILES/maxET_brent_OPT"//trim(adjustl(itertxt))//".dat"
          OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'REPLACE')
          WRITE(10,*) "# Tau J" 
-         WRITE(10, "(G20.12, G20.12)") 0.0, -FX
+         WRITE(10, "(G20.12, G20.12)") D, -FX
          CLOSE(10)
       end if
       
-      !if (rank==0) then
-      !      OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-      !      WRITE(10, "(G20.12, G20.12)") D, FX
-      !      CLOSE(10)
-      !   end if
       Uvec = myfield + X*gradPHI
       FX = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1)
       FX = -FX

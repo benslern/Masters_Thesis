@@ -150,7 +150,9 @@ PROGRAM EULER_VOIGT
             
    !compute the foward time evolution: save_sign = 1, myindex = 1
 
-
+   !=======================================================
+   !- Viscosity Test: Navier-Stokes Simulations
+   !=======================================================
    if (0) then
       stepper = 3
       call solvers_allocate(stepper)
@@ -160,88 +162,41 @@ PROGRAM EULER_VOIGT
          call fwd_3D(Uvec0, fix_dt1, 1, stepper, i)
       end do
       call solvers_deallocate()
-
    end if
 
    !=======================================================
-   !- Projection Test Euler-Voigt Simulations
-   !=======================================================
-   if (0) then
-      !constants
-      endTime = 1.0_pr
-      stepper = 3
-      visc = 0.0_pr
-      alpha = 4.0_pr/256.0_pr
-      fix_dt1 = 2.0_pr**(-5)
-
-      call solvers_allocate(stepper)
-      ! s=3, l=1, sigma = 1E-1, ..., 1E-5, ! norm_constr = 1
-      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
-
-      !set 3D Taylor Green with Hdot1 = 1
-      call set_initial(Uvec0, 2, 11111,2222,31234)
-      call rescale(Uvec0, val1)
-
-      gradPHI_opt = 0.0_pr
-
-      !project using Xinyu method
-      ! gradPHI_backup is the projection of full grad onto tangent space
-      call projection(Uvec0, gradPHI_opt, gradPHI_backup, norm2_grad)
-      gradPHI_backup_2 = gradPHI_backup
-
-      call fftfwd_m(gradPHI_backup_2, temp1_solver_cx, 3)
-      call L2_grad(temp1_solver_cx, PHI2)
-
-      !project using My method
-      call project_field(Uvec0, gradPHI_opt, gradPHI_backup)
-        
-      call fftfwd_m(gradPHI_backup, temp1_solver_cx, 3)
-      call L2_grad(temp1_solver_cx, PHI3)
-
-      if (rank == 0) then
-            filename = TRIM(scratch_pathname)//"projection_test"//".dat"
-            open(10, file = filename, status = 'REPLACE')
-            write(10, *), PHI2, PHI3, all(gradPHI_backup == gradPHI_backup_2)
-            close(10)
-      end if
-
-
-      call optimization_deallocate()
-      call solvers_deallocate()
-   end if
-
-   !=======================================================
-   !- Maximization Test Euler-Voigt Simulations
+   !- Maximization Test: Euler-Voigt Simulations
    !=======================================================
    if (1) then
       ! Set Constants
-      endTime = 1.0_pr
+      endTime = 4.0_pr
       stepper = 3
       visc = 0.0_pr
-      alpha = 1.0_pr/512.0_pr
+      alpha = 4.0_pr/256.0_pr
       fix_dt1 = 2.0_pr**(-5)
       
       ! Allocate
       call solvers_allocate(stepper)
       call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
 
-      !set 3D Taylor Green Initial Condition
+      ! set 3D Taylor Green Initial Condition
       call set_initial(Uvec0, 2, 11111,2222,31234)
       call rescale_H1(Uvec0,PHI1)
 
-      !init taubrak
+      ! init taubrak
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 500000.0_pr
       
-      !maximize
+      ! maximize
       call maximization(tau_brack)
 
+      ! Deallocate
       call optimization_deallocate()
       call solvers_deallocate()
    end if
 
    !=======================================================
-   !- Brent Test Euler-Voigt Simulations
+   !- Brent Test: Euler-Voigt Simulations
    !=======================================================
    if (0) then
       ! Set Constants
@@ -270,10 +225,10 @@ PROGRAM EULER_VOIGT
       i = 0
       tau_brack = mnbrak(Uvec0, gradPHI_opt, tau_brack(1), tau_brack(2), i, 1)
       
-      !report PHI
+      ! report PHI
       call report_PHI(Uvec0,tau_brack, 100, fix_dt1, 1)
 
-      !reset 3D Taylor Green Initial Conditions
+      ! reset 3D Taylor Green Initial Conditions
       call set_initial(Uvec0, 2, 11111,2222,31234)
       call rescale_H1(Uvec0,PHI1)
 
@@ -282,12 +237,14 @@ PROGRAM EULER_VOIGT
       call compute_gradPHI(Uvec0, fix_dt2, 0, gradPHI_opt, 1)
       call project_field(Uvec0, gradPHI_opt, gradPHI_opt)
 
-      !find peak tau
+      ! find peak tau and phi
       i = 1
       tau = brent(i, "maxET", Uvec0, gradPHI_opt, tau_brack)
       Uvec0 = Uvec0 + tau*gradPHI_opt
       call rescale_H1(Uvec0,PHI1)
       PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, i, 0, 1)
+      
+      ! record peak phi
       if (rank == 0) then
             filename = TRIM(scratch_pathname)//"peak_cost"//".dat"
             open(10, file = filename, status = 'REPLACE')
@@ -301,7 +258,7 @@ PROGRAM EULER_VOIGT
    end if
 
    !=======================================================
-   !- mnbrak Test Euler-Voigt Simulations
+   !- mnbrak Test: Euler-Voigt Simulations
    !=======================================================
    if (0) then
       ! Set Constants
@@ -340,7 +297,7 @@ PROGRAM EULER_VOIGT
    end if
    
    !=======================================================
-   !- report_PHI Test Euler-Voigt Simulations
+   !- report_PHI Test: Euler-Voigt Simulations
    !=======================================================
    if (0) then
       ! Set Constants
@@ -358,7 +315,7 @@ PROGRAM EULER_VOIGT
       call set_initial(Uvec0, 2, 11111,2222,31234)
       call rescale_H1(Uvec0,PHI1)
 
-      !Report Phi
+      ! Report Phi
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 500000.0_pr
       call report_PHI(Uvec0, tau_brack, 100, fix_dt1, 1)
@@ -368,15 +325,20 @@ PROGRAM EULER_VOIGT
       call solvers_deallocate()
    end if
 
-   ! kappa test
+   !=======================================================
+   !- Kappa Test: Euler-Voigt Simulations
+   !=======================================================
    if (0) then
       stepper = 3
       visc = 0.0_pr
       alpha = 4.0_pr/256.0_pr
       stepper = 3
       visc = 0.0_pr
+
+      ! Allocate
       call solvers_allocate(stepper)
 
+      ! Iterate over time step size
       do i = 4,8
          fix_dt1 = 2.0_pr**(-i)
          if (rank == 0) then
@@ -386,13 +348,17 @@ PROGRAM EULER_VOIGT
             close(30)
          endif
          
+         ! call kappa tests
          call kappa_test(Uvec0,adj_Uvec0_direction,fix_dt1,1,stepper,i)
       end do
       
+      ! Deallocate
       call solvers_deallocate()
    end if
    
-
+   !=======================================================
+   !- Time Step Test: Euler-Voigt Simulations
+   !=======================================================
    if (0) then
       visc = 0.0e-2_pr
       stepper = 3
