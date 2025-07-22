@@ -71,7 +71,10 @@ CONTAINS
     if (allocated(gradJ_pre_opt)) deallocate(gradJ_pre_opt)
     if (allocated(d_opt)) deallocate(d_opt)
     if (allocated(d1_opt)) deallocate(d1_opt)
-
+    if (allocated(gradPHI_opt)) deallocate(gradPHI_opt)
+    if (allocated(gradPHI_backup)) deallocate(gradPHI_backup)
+    if (allocated(gradPHI_pre_opt)) deallocate(gradPHI_pre_opt)
+    if (allocated(gradPHI_pre_backup)) deallocate(gradPHI_pre_backup)
 
   END SUBROUTINE optimization_deallocate
 !=======================================
@@ -148,8 +151,8 @@ CONTAINS
        end if
        gradPHI_opt = 0.0_pr
        call compute_gradPHI(Uvec0, fix_dt2, 0, gradPHI_opt, iter)
-       call projection(Uvec0, gradPHI_opt, gradPHI_opt, norm2_grad)
-      
+       call projection(Uvec0, gradPHI_opt, d_opt, norm2_grad)
+       gradPHI_opt = d_opt
      
        
 
@@ -494,8 +497,6 @@ CONTAINS
         ! temp4_solver_cx = n_v
         temp4_solver_cx = temp2_solver_cx/norm
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
         ! temp2_solver_cx =  (1+l^2|D|^2)^(s)exp(2sigma|D|) n_v 
         call G_l_s_sigma_fourier(temp4_solver_cx, temp2_solver_cx, l, s, 2.0_pr*sigma)
         
@@ -521,7 +522,7 @@ CONTAINS
 ! norm2: <gradJ, gradJ>_Gsimga 
 ! USE: solvers.f90: temp1_solver, temp1_solver_cx, temp2_solver_cx      
 !=================================================
-      SUBROUTINE projection(myfield, gradJ, dJ_actual, norm2)
+      SUBROUTINE projection(myfield, gradPHI, dPHI_actual, norm2)
         USE global_variables
         USE fftwfunction
         USE function_ops
@@ -529,7 +530,7 @@ CONTAINS
         IMPLICIT NONE
         INCLUDE "mpif.h"
         REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(in) :: myfield
-        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(inout) :: gradJ, dJ_actual
+        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(inout) :: gradPHI, dPHI_actual
         real(pr), intent(out):: norm2
         Real(pr) :: norm, val
 
@@ -555,7 +556,7 @@ CONTAINS
         call fftbwd_m(temp1_solver_cx, temp2_solver, 3)
 
         !temp2_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)gradJ(L2)
-        call fftfwd_m(gradJ, temp2_solver_cx, 3)
+        call fftfwd_m(gradPHI, temp2_solver_cx, 3)
         call G_l_s_sigma_fourier(temp2_solver_cx, temp2_solver_cx, l, -0.5_pr*s, -sigma)
         call L2_product_fourier(temp2_solver_cx,temp1_solver_cx,val)
         temp2_solver_cx = temp2_solver_cx - val*temp1_solver_cx
@@ -564,20 +565,20 @@ CONTAINS
         call div_free_fourier(temp2_solver_cx)
         
         
-        call fftbwd_m(temp2_solver_cx, gradJ, 3)
-        call L2_product(gradJ, gradJ, norm2)
+        call fftbwd_m(temp2_solver_cx, gradPHI, 3)
+        call L2_product(gradPHI, gradPHI, norm2)
 
-        call L2_product(gradJ, temp2_solver, val)
-        if (rank == 0) print *, "gradJ: inner product = ", val
+        call L2_product(gradPHI, temp2_solver, val)
+        if (rank == 0) print *, "gradPHI: inner product = ", val
 
         
         ! temp1_solver_cx = (1+l^2|D|^2)^(-s)exp(-2sigma|D|)gradJ(L2)
         call G_l_s_sigma_fourier(temp2_solver_cx, temp1_solver_cx, l, -0.5_pr*s, -sigma)
      
-        call fftbwd_m(temp1_solver_cx, dJ_actual, 3)
+        call fftbwd_m(temp1_solver_cx, dPHI_actual, 3)
 
         
-        call rescale(dJ_actual, val)
+        !call rescale(dJ_actual, val)
         
 
        
@@ -890,10 +891,10 @@ CONTAINS
 
       
       call bkd_3D(adj_Uvec0, mydt, savesign, stepper_opt, myiter)
-      call fftfwd_m(adj_Uvec, temp1_solver_cx, 3)
-      call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -s, -2.0_pr*sigma)
-      !gradPHI = adj_Uvec
-      call fftbwd_m(temp1_solver_cx, gradPhi, 3)
+      !call fftfwd_m(adj_Uvec, temp1_solver_cx, 3)
+      !call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -s, -2.0_pr*sigma)
+      gradPHI = adj_Uvec
+      !call fftbwd_m(temp1_solver_cx, gradPhi, 3)
       CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
       
     END SUBROUTINE compute_gradPHI
@@ -923,11 +924,19 @@ CONTAINS
       CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
       
     END SUBROUTINE compute_gradJ
-    
+   
 !=========================================================
 ! SUBROUTINE: report_PHI(myfield,tau_brack, count, mydt)
-! compute the cost function along myfield + tau*gradPHI
-! Use Uvec
+! Compute the cost function along myfield + tau*gradPHI
+!
+! INPUT:
+! myfield: Rescaled initial condition
+! tau_brack: Tau bracket to compute phi in
+! count: Number of points to compute phi
+! mydt: Time step size
+!
+! USE:
+! Uvec, gradPHI_opt
 !==========================================================
     SUBROUTINE report_PHI(myfield,tau_brack, count, mydt)
       USE global_variables
@@ -956,41 +965,25 @@ CONTAINS
       end if
 
       PHI = 0.0_pr
-      call rescale_H1(myfield,val)
       PHI = compute_PHI_L2(myfield, mydt, 1, 1, 0, 1)
-      
-      norm2_grad = 0.0_pr
+      tau = 0.0_pr 
       gradPHI_opt = 0.0_pr
-      ! call projection(Uvec0, gradPHI_opt, gradPHI_opt, norm2_grad)
+      
       call compute_gradPHI(myfield, fix_dt2, 0, gradPHI_opt, 1)
-      call projection(Uvec0, gradPHI_opt, gradPHI_opt, norm2_grad)
+      gradPHI_backup = gradPHI_opt
       CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
      
       do i = 0,count
          PHI = 0.0_pr
          tau = A + i*dtau
 
-         !PHI 1
-         !Uvec = myfield + tau*gradPHI_opt
-         !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-         !PHI = compute_PHI_L2(Uvec, fix_dt1, 1, i, 0, 1)
-         
-         !PHI 2
-         !Uvec = myfield + tau*gradPHI_opt
-         !call rescale_H1(Uvec, val)
-         !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-         !PHI = compute_PHI_L2(Uvec, fix_dt1, 1, i, 0, 1)
-
-         !PHI 3
-         !call project_field(myfield, gradPHI_opt, Uvec2)
-         !Uvec2 = myfield + tau*Uvec2
-         !CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-         !PHI = compute_PHI_L2(Uvec2, fix_dt1, 1, i, 0, 1)
-
          !PHI 4
-         Uvec2 = myfield + tau*gradPHI_opt
+         !call project_field(myfield, gradPHI_opt, Uvec)
+         call projection(myfield, gradPHI_opt, d_opt, norm2_grad)
+         Uvec = myfield + tau*d_opt
          CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-         PHI = compute_PHI_L2(Uvec2, fix_dt1, 1, i, 1, 1)
+         PHI = compute_PHI_L2(Uvec, fix_dt1, 0, i, 1, 1)
+         gradPHI_opt = gradPHI_backup
 
          if (rank == 0) then
             open(10, file = file_name, status = 'old', position = 'append')
