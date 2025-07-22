@@ -200,7 +200,7 @@ PROGRAM EULER_VOIGT
    !=======================================================
    if (0) then
       ! Set Constants
-      endTime = 0.25_pr
+      endTime = 2.0_pr
       stepper = 3
       visc = 0.0_pr
       alpha = 4.0_pr/256.0_pr
@@ -280,7 +280,6 @@ PROGRAM EULER_VOIGT
       PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1)
       call compute_gradPHI(Uvec0, fix_dt2, 0, gradPHI_opt, 1)
       call projection(Uvec0, gradPHI_opt, d_opt, norm2_grad)      
-
       ! Minimize Taubrak
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 500000.0_pr
@@ -318,7 +317,7 @@ PROGRAM EULER_VOIGT
       ! Report Phi
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 500000.0_pr
-      call report_PHI(Uvec0, tau_brack, 50, fix_dt1)
+      call report_PHI(Uvec0, tau_brack, 100, fix_dt1, 1)
 
       ! Deallocate
       call optimization_deallocate()

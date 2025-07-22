@@ -27,6 +27,7 @@ MODULE optimization
   real(pr), dimension(:,:,:,:), allocatable :: gradJ_opt, gradJ_pre_opt
   real(pr), dimension(:,:,:,:), allocatable :: gradPHI_opt, gradPHI_pre_opt
   real(pr), dimension(:,:,:,:), allocatable :: gradPHI_backup, gradPHI_pre_backup
+  real(pr), dimension(:,:,:,:), allocatable :: gradPHI_backup_2, gradPHI_pre_backup_2
   real(pr), dimension(:,:,:,:), allocatable :: d_opt, d1_opt
   
 CONTAINS
@@ -51,7 +52,8 @@ CONTAINS
     if (.not. allocated(gradJ_pre_opt)) allocate(gradJ_pre_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(gradPHI_opt)) allocate(gradPHI_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(gradPHI_backup)) allocate(gradPHI_backup(1:n(1), 1:n(2), 1:local_N, 1:3))
-    if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
+    if (.not. allocated(gradPHI_backup_2)) allocate(gradPHI_backup_2(1:n(1), 1:n(2), 1:local_N, 1:3))
+if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(gradPHI_pre_backup)) allocate(gradPHI_pre_backup(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(d_opt)) allocate(d_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(d1_opt)) allocate(d1_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
@@ -68,6 +70,10 @@ CONTAINS
     implicit none
     
     if (allocated(gradJ_opt)) deallocate(gradJ_opt)
+    if (allocated(gradPHI_opt)) deallocate(gradPHI_opt)
+    if (allocated(gradPHI_backup)) deallocate(gradPHI_backup)
+    if (allocated(gradPHI_pre_opt)) deallocate(gradPHI_pre_opt)
+    if (allocated(gradPHI_pre_backup)) deallocate(gradPHI_pre_backup)
     if (allocated(gradJ_pre_opt)) deallocate(gradJ_pre_opt)
     if (allocated(d_opt)) deallocate(d_opt)
     if (allocated(d1_opt)) deallocate(d1_opt)
@@ -125,7 +131,7 @@ CONTAINS
     if (rank == 0) then
        print *, "eval_PHI; main_iter =", iter
     end if
-       
+
     PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 0, 1)   
 
     if (rank == 0) then
@@ -176,6 +182,11 @@ CONTAINS
        if (rank==0) then
           print *, "Start brent; main_iter =", iter
        end if
+       
+       call report_Phi(Uvec0, tau_brack, 100, fix_dt1, iter)
+
+       gradPHI_opt = gradPHI_backup
+
        tau = brent(iter, "maxET", Uvec0, gradPHI_opt, tau_brack)
        tau_brack(1) = 0.0_pr
        tau_brack(2) = 2.0_pr*tau
@@ -468,8 +479,16 @@ CONTAINS
 !================================================= 
 ! SUBROUTINE: project_field(v, w, proj)
 ! project w to the tangent space of v
-! proj: \P_{T_{\v}\M_1} w
-! USE: solvers.f90: temp1_solver, temp1_solver_cx, temp2_solver_cx      
+!
+! INPUT:
+! v: vector to compute tangent space
+! w: vector to project
+!
+! Output
+! proj: projection of w onto tangent space of v \P_{T_{\v}\M_1} w
+! 
+! USE: 
+! temp1_solver, temp1_solver_cx, temp2_solver_cx, temp3_solver_cx      
 !=================================================
       SUBROUTINE project_field(v, w, proj)
         USE global_variables
@@ -478,27 +497,27 @@ CONTAINS
         USE solvers
         IMPLICIT NONE
         INCLUDE "mpif.h"
-        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(in) :: w
+        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: w
         REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: v
-        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(out) :: proj
+        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(OUT) :: proj
         Real(pr) :: norm, val
 
         ! temp1_solver_cx = |D|^2 v
         call fftfwd_m(v, temp1_solver_cx, 3)
         call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 2.0_pr)
 
-        ! temp2_solver_cx = (1+l^2|D|^2)^(-s)exp(-2sigma|D|)|D|^2v
+        ! temp2_solver_cx = (1+|D|^2)^(-s)exp(-2sigma|D|) |D|^2 v
         call G_l_s_sigma_fourier(temp1_solver_cx, temp2_solver_cx, l, -s, -2.0_pr*sigma)
 
         ! norm = || (1+l^2|D|^2)^(-s)exp(-2sigma|D|)|D|^2v ||_G^sigma
         call L2_product_fourier(temp1_solver_cx, temp2_solver_cx, norm)
         norm = sqrt(norm)
 
-        ! temp4_solver_cx = n_v
-        temp4_solver_cx = temp2_solver_cx/norm
+        ! temp1_solver_cx = n_v
+        temp1_solver_cx = temp2_solver_cx/norm
 
         ! temp2_solver_cx =  (1+l^2|D|^2)^(s)exp(2sigma|D|) n_v 
-        call G_l_s_sigma_fourier(temp4_solver_cx, temp2_solver_cx, l, s, 2.0_pr*sigma)
+        call G_l_s_sigma_fourier(temp1_solver_cx, temp2_solver_cx, l, s, 2.0_pr*sigma)
         
         ! temp3_solver_cx = fourier transform of w
         call fftfwd_m(w, temp3_solver_cx,3) 
@@ -507,7 +526,7 @@ CONTAINS
         call L2_product_fourier(temp2_solver_cx,temp3_solver_cx, val)
         
         ! temp3_solver_cx = w - <n_v,w>_{G^sigma}n_v
-        temp3_solver_cx = temp3_solver_cx - val*temp4_solver_cx
+        temp3_solver_cx = temp3_solver_cx - val*temp1_solver_cx
 
         call div_free_fourier(temp3_solver_cx) !make sure divergence free
         call fftbwd_m(temp3_solver_cx,proj,3) 
@@ -534,33 +553,30 @@ CONTAINS
         real(pr), intent(out):: norm2
         Real(pr) :: norm, val
 
-        ! temp1_solver_cx = |D|^2 u_cx/norm
+        ! temp1_solver_cx = |D|^2 v
         call fftfwd_m(myfield, temp1_solver_cx, 3)
         call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 2.0_pr)
 
-        ! temp2_solver_cx = n(u)_cx/norm
-        ! = (1+l^2|D|^2)^(-s)exp(-2sigma|D|)|D|^2u_cx/norm
+        ! temp2_solver_cx = (1+|D|^2)^(-s)exp(-2sigma|D|) |D|^2 v
         call G_l_s_sigma_fourier(temp1_solver_cx, temp2_solver_cx, l, -s, -2.0_pr*sigma)
         
+        ! norm = ||(1+|D|^2)^(-s)exp(-2sigma|D|) |D|^2 v ||_G^sigma
         call L2_product_fourier(temp1_solver_cx, temp2_solver_cx, norm)
         norm = sqrt(norm)
-        temp1_solver_cx = temp1_solver_cx/norm ! n_v (2.16)
 
+        !temp1_solver_cx = n_v
+        temp1_solver_cx = temp1_solver_cx/norm
 
-        
-
-        ! temp1_solver_cx = n(u)_cx/norm
-        ! = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)|D|^2u_cx/norm
+        ! temp1_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) n_v
         call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -0.5_pr*s, -sigma)
 
-        call fftbwd_m(temp1_solver_cx, temp2_solver, 3)
+        !call fftbwd_m(temp1_solver_cx, temp2_solver, 3)
 
         !temp2_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)gradJ(L2)
         call fftfwd_m(gradPHI, temp2_solver_cx, 3)
         call G_l_s_sigma_fourier(temp2_solver_cx, temp2_solver_cx, l, -0.5_pr*s, -sigma)
         call L2_product_fourier(temp2_solver_cx,temp1_solver_cx,val)
         temp2_solver_cx = temp2_solver_cx - val*temp1_solver_cx
-
 
         call div_free_fourier(temp2_solver_cx)
         
@@ -712,7 +728,7 @@ CONTAINS
 
         call fftbwd_m(temp1_solver_cx, dJ_actual, 3)
 
-        call rescale(dJ_actual, val)
+        call rescale_H1(dJ_actual, val)
 
 
 
@@ -751,8 +767,17 @@ CONTAINS
      END SUBROUTINE rescale
 
 !=========================================================
-! SUBROUTINE rescale_H1(myfield, val)
+! SUBROUTINE rescale_H1(myfield, scaling)
 ! scale myfield such that its dotH_1 is norm_constr
+!
+! INPUT:
+! myfield: Initial condition
+! 
+! OUTPUT:
+! scaling: scaling factor
+!
+! USE:
+! temp1_solver_cx
 !=========================================================
      SUBROUTINE rescale_H1(myfield, scaling)
        USE global_variables
@@ -804,9 +829,22 @@ CONTAINS
      END SUBROUTINE rescale_cx
 
 !=========================================================
-! FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag)
+! FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag, evolve_flag)
 ! Compute the cost function PHI = (||GRAD u(T)||_L^2)^2
-! INPUT: myfield (u(0))
+! 
+! INPUT: 
+! myfield: Initial condition
+! mydt: Time step size
+! savesign: Save data iff 1
+! myiter: Iteration number
+! constr_flag: Rescale myfield iff not 0
+! evolve_flag: Fwd evolve myfield iff not 0
+!
+! OUTPUT:
+! PHI: value of phi at myfield
+!
+! USE:
+! Uvec, temp1_solver_cx
 !=========================================================
      FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag, evolve_flag) RESULT(PHI)
        USE global_variables
@@ -828,10 +866,8 @@ CONTAINS
        if(constr_flag .ne. 0) call rescale_H1(myfield, val)
 
        if(evolve_flag .ne. 0) call fwd_3D(myfield, mydt, savesign, stepper_opt, myiter)
-       !Uvec
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call L2_grad(temp1_solver_cx,PHI)
-       !PHI = PHI**2
 
      END FUNCTION compute_PHI_L2
 
@@ -871,11 +907,20 @@ CONTAINS
     END FUNCTION compute_J
 
 !================================================
-! SUBROUTINE: compute_gradPHI(myfield, mydt, savesign, gradPHI, myiter)
-! INPUT: inifield (u(T))
-! OUTPUT: gradPHI
-! We use the Hsigma space
-! Use: solvers.f90: temp1_solver_cx
+! SUBROUTINE: compute_gradPHI(myfield, mydt, savesign, gradPHI, myiter, term)
+! Compute the gradient of phi at myfield.
+!
+! INPUT:
+! myfield: Rescaled initial condition
+! mydt: Time step size
+! savesign: save data iff 1
+! myiter: iteration number
+!
+! OUTPUT: 
+! gradPHI: gradient of phi (1+|D|^2)^-s exp(-2sigma|D|) u*(t=0)
+
+! Use: 
+! temp1_solver_cx
 !================================================
     SUBROUTINE compute_gradPHI(myfield, mydt, savesign, gradPHI, myiter)
       USE global_variables
@@ -888,7 +933,6 @@ CONTAINS
       REAL(pr), INTENT(IN) :: mydt
       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(OUT) :: gradPHI
       INTEGER, INTENT(IN) :: savesign, myiter
-
       
       call bkd_3D(adj_Uvec0, mydt, savesign, stepper_opt, myiter)
       !call fftfwd_m(adj_Uvec, temp1_solver_cx, 3)
@@ -904,7 +948,7 @@ CONTAINS
 ! INPUT: inifield (u(T))
 ! OUTPUT: gradJ
 ! We use the Hsigma space
-! Use: solvers.f90: temp1_solver_cx
+! Use: solversef90: temp1_solver_cx
 !================================================
     SUBROUTINE compute_gradJ(myfield, mydt, savesign, gradJ, myiter)
       USE global_variables
@@ -938,7 +982,7 @@ CONTAINS
 ! USE:
 ! Uvec, gradPHI_opt
 !==========================================================
-    SUBROUTINE report_PHI(myfield,tau_brack, count, mydt)
+    SUBROUTINE report_PHI(myfield,tau_brack, count, mydt, iter)
       USE global_variables
       USE data_ops
       USE function_ops
@@ -950,16 +994,20 @@ CONTAINS
       integer, intent(in) :: count
       real(pr), intent(in) :: mydt
       character(200) :: file_name
+      integer, intent(in) :: iter
       Real(pr) :: A, B, tau, dtau, PHI, val
       integer :: i
       real(pr) :: norm2_grad
+      CHARACTER(5) :: itertxt
 
       A = MIN(tau_brack(1),tau_brack(2))
       B = MAX(tau_brack(1),tau_brack(2))
       dtau = (B-A)/count
-      
+     
+      WRITE(itertxt, '(i4)') iter
+
       if (rank == 0) then
-         file_name = TRIM(scratch_pathname)//"report_cost"//".dat"
+         file_name = TRIM(scratch_pathname)//"report_cost_"//trim(adjustl(itertxt))//".dat"
          OPEN(10, FILE = file_name, STATUS = 'REPLACE')
          close(10)
       end if
@@ -972,7 +1020,7 @@ CONTAINS
       call compute_gradPHI(myfield, fix_dt2, 0, gradPHI_opt, 1)
       gradPHI_backup = gradPHI_opt
       CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-     
+
       do i = 0,count
          PHI = 0.0_pr
          tau = A + i*dtau
@@ -1062,7 +1110,19 @@ CONTAINS
       
 !================================================
 ! FUNCTION: mnbrak(myfield, gradPHI, tA0, tB0, myflag, myindex)      
-! OUTPUT: tau_brack(2)
+! Minimize the tau bracket
+!
+! INPUT:
+! myfield: Rescaled initial condition
+! gradPHI: Projected gradient
+! tA0: Initial left tau bracket
+! tB0: Initial right tau bracket
+! myflag: Unused flag
+! myindex: Iteration number
+!
+! OUTPUT: 
+! tau_brack: Minimized tau bracket
+!
 ! Use: Uvec
 !================================================
     FUNCTION mnbrak(myfield, gradPHI, tA0, tB0, myflag, myindex) RESULT (tau_brack)
@@ -1108,7 +1168,7 @@ CONTAINS
       tB = MAX(tB0, MACH_EPSILON)
       
       Uvec = myfield + tA*gradPHI
-      FA = compute_PHI_L2(Uvec, fix_dt1, 1, myindex, 1, 1)
+      FA = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
       FA = -FA 
       !call fftfwd_m(Uvec, temp1_solver_cx, 3)
       !call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
@@ -1126,7 +1186,7 @@ CONTAINS
       FuncEval = FuncEval+1
 
       Uvec = myfield + tB*gradPHI
-      FB = compute_PHI_L2(Uvec, fix_dt1, 1, myindex, 1, 1)
+      FB = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
       FB = -FB
       if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1306,9 +1366,21 @@ CONTAINS
 
 
 !====================================================
-! FUNCTION: brent(iteration, mysystem, myfield, gradJ, tau_brack)     
-! OUTPUT: X
-! Use: Uvec
+! FUNCTION: brent(iteration, mysystem, myfield, gradPHI, tau_brack)     
+! Find the peak of phi along the gradient using brents method
+!
+! INPUT:
+! iteration: Iteration number
+! mysystem: Unused variable
+! myfield: Rescaled initial condition
+! gradPHI: Projected gradient
+! tau_brack: Initial tau bracket
+!
+! OUTPUT:
+! X: tau value of phi peak
+!
+! USE: 
+! Uvec
 !====================================================
     FUNCTION brent(iteration, mysystem, myfield, gradPHI, tau_brack) RESULT (X)  
       USE global_variables
@@ -1351,22 +1423,17 @@ CONTAINS
       W = V
       X = V 
       E = 0.0_pr
-      Uvec = myfield! + D*gradJ
+      Uvec = myfield + D*gradPHI
       FX = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1)
       FX = -FX
       if (rank==0) then
          filename = "./LOGFILES/maxET_brent_OPT"//trim(adjustl(itertxt))//".dat"
          OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'REPLACE')
          WRITE(10,*) "# Tau J" 
-         WRITE(10, "(G20.12, G20.12)") 0.0, -FX
+         WRITE(10, "(G20.12, G20.12)") D, -FX
          CLOSE(10)
       end if
       
-      !if (rank==0) then
-      !      OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-      !      WRITE(10, "(G20.12, G20.12)") D, FX
-      !      CLOSE(10)
-      !   end if
       Uvec = myfield + X*gradPHI
       FX = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1)
       FX = -FX

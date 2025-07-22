@@ -189,8 +189,12 @@ CONTAINS
 
     if(allocated(temp1_solver)) deallocate(temp1_solver)
     if(allocated(temp2_solver)) deallocate(temp2_solver)
+    if(allocated(temp3_solver)) deallocate(temp3_solver)
+    if(allocated(temp4_solver)) deallocate(temp4_solver)
     if(allocated(temp1_solver_cx)) deallocate(temp1_solver_cx)
     if(allocated(temp2_solver_cx)) deallocate(temp2_solver_cx)
+    if(allocated(temp3_solver_cx)) deallocate(temp3_solver_cx)
+    if(allocated(temp4_solver_cx)) deallocate(temp4_solver_cx)
     if(allocated(ff_temp1_cx)) deallocate(ff_temp1_cx)
     if(allocated(A_solver)) deallocate(A_solver)
     if(allocated(b_solver)) deallocate(b_solver)
