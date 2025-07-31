@@ -172,8 +172,8 @@ PROGRAM EULER_VOIGT
       endTime = 15.0_pr
       stepper = 3
       visc = 0.0_pr
-      alpha = 4.0_pr/256.0_pr
-      fix_dt1 = 2.0_pr**(-7)
+      alpha = 0.0_pr !2.0_pr/256.0_pr
+      fix_dt1 = 2.0_pr**(-11)
       
       ! Allocate
       call solvers_allocate(stepper)
@@ -181,14 +181,14 @@ PROGRAM EULER_VOIGT
 
       ! set 3D Taylor Green Initial Condition
       call set_initial(Uvec0, 2, 11111,2222,31234)
-      call rescale_H1(Uvec0,PHI1)
+      call rescale_H1(Uvec0, val1)
 
       ! init taubrak
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 500000.0_pr
       
       ! maximize
-      call maximization(tau_brack)
+      call maximization_RCG(tau_brack)
 
       ! Deallocate
       call optimization_deallocate()
@@ -200,7 +200,7 @@ PROGRAM EULER_VOIGT
    !=======================================================
    if (0) then
       ! Set Constants
-      endTime = 2.0_pr
+      endTime = 5.0_pr
       stepper = 3
       visc = 0.0_pr
       alpha = 4.0_pr/256.0_pr
@@ -226,7 +226,7 @@ PROGRAM EULER_VOIGT
       tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), i, 1)
       
       ! report PHI
-      call report_PHI(Uvec0,tau_brack, 100, fix_dt1)
+      call report_PHI(Uvec0,tau_brack, 100, fix_dt1, 0)
 
       ! reset 3D Taylor Green Initial Conditions
       call set_initial(Uvec0, 2, 11111,2222,31234)
@@ -287,7 +287,7 @@ PROGRAM EULER_VOIGT
       tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), i, 1)
       
       !report PHI
-      call report_PHI(Uvec0, tau_brack, 100, fix_dt1)
+      call report_PHI(Uvec0, tau_brack, 100, fix_dt1, 0)
 
       ! Deallocate
       call optimization_deallocate()
@@ -318,6 +318,33 @@ PROGRAM EULER_VOIGT
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 500000.0_pr
       call report_PHI(Uvec0, tau_brack, 100, fix_dt1, 1)
+
+      ! Deallocate
+      call optimization_deallocate()
+      call solvers_deallocate()
+   end if
+
+   !=======================================================
+   !- Timescale Test: Euler-Voigt Simulations
+   !=======================================================
+   if (0) then
+      ! Set Constants
+      endTime = 25.0_pr
+      stepper = 3
+      visc = 0.0_pr
+      alpha = 0.0_pr !4.0_pr/256.0_pr
+      fix_dt1 = 2.0_pr**(-12)
+
+      ! Allocate
+      call solvers_allocate(stepper)
+      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
+
+      ! Set 3D Taylor Green Initial Condition
+      call set_initial(Uvec0, 2, 11111,2222,31234)
+      call rescale_H1(Uvec0, PHI1)
+
+      ! Evolve forward
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1)
 
       ! Deallocate
       call optimization_deallocate()
