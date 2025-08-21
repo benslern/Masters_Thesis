@@ -1374,7 +1374,7 @@ CONTAINS
        
 
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-       IF (savesign == 1) THEN
+       IF (savesign == 1) THEN !  .and. MODULO(Time_iter,50)==0) THEN
            
           
           !temp1_solver_cx = HatU

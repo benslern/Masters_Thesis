@@ -12,7 +12,7 @@ MODULE global_variables
   REAL, PARAMETER :: TAU_MAX = 100             ! Maximum optimization step size
 
   !REAL(pr), parameter :: WEIGHT = 1.0_pr ! Unused parameter  ! Newly added on July 15, 2017, WEIGHT*R(u)+(1-WEIGHT)
-  integer :: RESOL = 128
+  integer :: RESOL = 256
   integer :: K0_index = 0, E0_index = 12000  ! Resolution, Initial Kinetic Energy Index?, Initial Enstrophy Index? 
   !E0 here is the Lq norm (to the power q) of U or Sobolev norm of U
   real(pr) :: fix_dt1  = 0.001_pr, fix_dt2  = 0.00005_pr ! Time step size 1, time step size 2

@@ -169,11 +169,11 @@ PROGRAM EULER_VOIGT
    !=======================================================
    if (1) then
       ! Set Constants
-      endTime = 15.0_pr
+      endTime = 25.0_pr
       stepper = 3
       visc = 0.0_pr
-      alpha = 0.0_pr !2.0_pr/256.0_pr
-      fix_dt1 = 2.0_pr**(-11)
+      alpha = 16.0_pr/256.0_pr
+      fix_dt1 = 2.0_pr**(-5)
       
       ! Allocate
       call solvers_allocate(stepper)
@@ -300,11 +300,11 @@ PROGRAM EULER_VOIGT
    !=======================================================
    if (0) then
       ! Set Constants
-      endTime = 0.5_pr
+      endTime = 32.0_pr
       stepper = 3
       visc = 0.0_pr
-      alpha = 4.0_pr/256.0_pr
-      fix_dt1 = 2.0_pr**(-5)
+      alpha = 1.0_pr/256.0_pr
+      fix_dt1 = 2.0_pr**(-7)
 
       ! Allocate
       call solvers_allocate(stepper)
@@ -316,7 +316,7 @@ PROGRAM EULER_VOIGT
 
       ! Report Phi
       tau_brack(1) = 0.0_pr
-      tau_brack(2) = 500000.0_pr
+      tau_brack(2) = 50000.0_pr
       call report_PHI(Uvec0, tau_brack, 100, fix_dt1, 1)
 
       ! Deallocate
@@ -329,11 +329,11 @@ PROGRAM EULER_VOIGT
    !=======================================================
    if (0) then
       ! Set Constants
-      endTime = 25.0_pr
+      endTime = 200.0_pr
       stepper = 3
       visc = 0.0_pr
-      alpha = 0.0_pr !4.0_pr/256.0_pr
-      fix_dt1 = 2.0_pr**(-12)
+      alpha = 16.0_pr/256.0_pr
+      fix_dt1 = 2.0_pr**(-5)
 
       ! Allocate
       call solvers_allocate(stepper)
@@ -355,17 +355,16 @@ PROGRAM EULER_VOIGT
    !- Kappa Test: Euler-Voigt Simulations
    !=======================================================
    if (0) then
+      endTime = 25.0_pr
       stepper = 3
       visc = 0.0_pr
       alpha = 4.0_pr/256.0_pr
-      stepper = 3
-      visc = 0.0_pr
 
       ! Allocate
       call solvers_allocate(stepper)
 
       ! Iterate over time step size
-      do i = 4,8
+      do i = 4,11
          fix_dt1 = 2.0_pr**(-i)
          if (rank == 0) then
             WRITE(indexchar, '(i4)') i
