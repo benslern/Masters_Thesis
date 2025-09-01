@@ -12,7 +12,7 @@ MODULE global_variables
   REAL, PARAMETER :: TAU_MAX = 100             ! Maximum optimization step size
 
   !REAL(pr), parameter :: WEIGHT = 1.0_pr ! Unused parameter  ! Newly added on July 15, 2017, WEIGHT*R(u)+(1-WEIGHT)
-  integer :: RESOL = 256
+  integer :: RESOL = 512
   integer :: K0_index = 0, E0_index = 12000  ! Resolution, Initial Kinetic Energy Index?, Initial Enstrophy Index? 
   !E0 here is the Lq norm (to the power q) of U or Sobolev norm of U
   real(pr) :: fix_dt1  = 0.001_pr, fix_dt2  = 0.00005_pr ! Time step size 1, time step size 2
@@ -35,7 +35,7 @@ MODULE global_variables
 
   !- Run on graham
   CHARACTER(len=*), parameter :: work_pathname = "./results/"
-  CHARACTER(len=*), parameter :: scratch_pathname = work_pathname
+  CHARACTER(len=32), parameter :: scratch_pathname = work_pathname
 
 
   CHARACTER(len=*), parameter :: IC_type = "NumMaximizer"
@@ -108,7 +108,8 @@ MODULE global_variables
 
 
   INTEGER, SAVE :: final_time_iter, reclen
-  REAL(pr), DIMENSION (:,:,:,:), ALLOCATABLE, SAVE :: fwd_Field1, fwd_Field2, adj_Uvec, adj_Wvec, Uvec0, Uvec1, Uvec2, Uvec3, adj_Uvec0, adj_Uvec0_direction
+  REAL(pr), DIMENSION (:,:,:,:), ALLOCATABLE, SAVE :: fwd_Field1, fwd_Field2, Uvec0, Uvec1, Uvec2, Uvec3
+  REAL(pr), DIMENSION (:,:,:,:), ALLOCATABLE, SAVE :: adj_Uvec, adj_Wvec, adj_Uvec0, adj_Uvec0_direction
   real(pr), dimension(:,:,:), allocatable, save :: global_u
 
 

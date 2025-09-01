@@ -1227,7 +1227,7 @@ CONTAINS
   !  5: RK45
   !=================================================== 
   
-  SUBROUTINE fwd_3D(inifield,mydt,savesign,stepper,myindex)
+  SUBROUTINE fwd_3D(inifield,mydt,savesign,stepper,myindex,subpath)
   
     USE global_variables
     USE fftwfunction
@@ -1239,6 +1239,8 @@ CONTAINS
     REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: inifield
     REAL(pr), INTENT(IN) :: mydt
     integer, INTENT(IN) :: savesign, stepper, myindex
+    CHARACTER(len=*), INTENT(IN) :: subpath
+
     REAL(pr) ::  dt, time
     INTEGER :: Time_iter
     integer :: nn
@@ -1269,8 +1271,8 @@ CONTAINS
 
     
     IF (savesign == 1) THEN
-       file_spectrum = TRIM(scratch_pathname)//"spectrum_fwd_"//trim(adjustl(indexchar))//".dat"
-       file_energy = TRIM(scratch_pathname)//"energy_fwd_"//trim(adjustl(indexchar))//".dat"
+       file_spectrum = TRIM(scratch_pathname)//trim(subpath)//"/spectrum_fwd_"//trim(adjustl(indexchar))//".dat"
+       file_energy = TRIM(scratch_pathname)//trim(subpath)//"/energy_fwd_"//trim(adjustl(indexchar))//".dat"
       
 
        if (rank == 0) then
@@ -1294,11 +1296,11 @@ CONTAINS
        call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, Uvec, 3)
 
-       call save2binary2(Uvec,Time_iter, "fwdTE")
+       call save2binary2(Uvec,Time_iter, "fwdTE", subpath)
   
        
 
-       call save_velocity(Uvec, Time_iter)
+       call save_velocity(Uvec, Time_iter, subpath)
 
 !       if (parallel_data) then
 !          call save_velocity_cx(temp1_solver_cx, myindex)
@@ -1329,7 +1331,7 @@ CONTAINS
       
      
       
-       call save_vorticity(Wvec, Time_iter) 
+       call save_vorticity(Wvec, Time_iter, subpath) 
        call calculate_total_energy(Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
        call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy)
 
@@ -1386,7 +1388,7 @@ CONTAINS
           end if
 
           
-          call save2binary2(Uvec,Time_iter, "fwdTE")
+          call save2binary2(Uvec,Time_iter, "fwdTE", subpath)
        
          
           
@@ -1444,7 +1446,7 @@ CONTAINS
   ! test the backward solver
   !===================================================
 
-  SUBROUTINE reverse_test(inifield,mydt,stepper,myindex)
+  SUBROUTINE reverse_test(inifield,mydt,stepper,myindex,subpath)
   
     USE global_variables
     USE fftwfunction
@@ -1456,6 +1458,8 @@ CONTAINS
     REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: inifield
     REAL(pr), INTENT(IN) :: mydt
     integer, INTENT(IN) :: stepper, myindex
+    character(len=*), INTENT(IN) :: subpath
+
     REAL(pr) ::  time
     integer :: nn
     integer :: i1, i2, i3
@@ -1467,7 +1471,7 @@ CONTAINS
 
     WRITE(indexchar, '(i4)') myindex
     
-    call fwd_3D(inifield, mydt, 1, stepper, myindex)
+    call fwd_3D(inifield, mydt, 1, stepper, myindex, subpath)
     
 
 
@@ -2131,7 +2135,7 @@ CONTAINS
   !  4: RK5
   !=================================================== 
   
-  SUBROUTINE kappa_test(inifield,direction,mydt,savesign,stepper,myindex)
+  SUBROUTINE kappa_test(inifield,direction,mydt,savesign,stepper,myindex,subpath)
   
     USE global_variables
     USE fftwfunction
@@ -2144,6 +2148,8 @@ CONTAINS
     REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(INOUT) :: direction
     REAL(pr), INTENT(IN) :: mydt
     integer, INTENT(IN) :: savesign, stepper, myindex
+    CHARACTER(len=*), INTENT(IN) :: subpath
+
     character(4) :: indexchar
     character(200) :: file_error
     real(pr) :: val1, val2, val3, val
@@ -2172,7 +2178,7 @@ CONTAINS
     
     
     
-    call fwd_3D(inifield, mydt, savesign, stepper,myindex)
+    call fwd_3D(inifield, mydt, savesign, stepper,myindex,subpath)
     call fftfwd_m(Uvec, temp1_solver_cx, 3)
     call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 1.0_pr)
     call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, val)
@@ -2201,7 +2207,7 @@ CONTAINS
        inifield = inifield + epsilon*direction
        
        
-       call fwd_3D(inifield, mydt, savesign, stepper, myindex)
+       call fwd_3D(inifield, mydt, savesign, stepper, myindex, subpath)
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 1.0_pr)
        call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, val1)

@@ -21,7 +21,7 @@ PROGRAM EULER_VOIGT
    IMPLICIT NONE
    INCLUDE "mpif.h"
    include 'fftw3-mpi.f03'
-   
+  
    INTEGER  :: i,ii, FixConstr_flag , iii1,iii2,iii3 ! ??
    REAL(pr) :: aux ,aaa1,aaa2                        ! ??
    ! Initial kinetic energy vector, Initial entrophy vector, 
@@ -46,6 +46,11 @@ PROGRAM EULER_VOIGT
    LOGICAL :: TEST1, TEST2, TEST3, TEST4
    real(pr) :: norm2_grad
    REAL(pr) :: val1, val2, val3, val4
+
+   INTEGER :: arg
+   CHARACTER(len=32) :: arg_char
+   call get_command_argument(1,arg_char)
+   READ (arg_char, '(I13)') arg
 
    !=============================================
    ! MPI
@@ -104,7 +109,7 @@ PROGRAM EULER_VOIGT
 
    
    IF (rank==0) THEN
-      OPEN(10, FILE="./LOGFILES/maxET_parameter_info.log", STATUS='REPLACE')
+      OPEN(10, FILE="./LOGFILES/maxET_parameter_info_"//TRIM(arg_char)//".log", STATUS='REPLACE')
       WRITE(10,*) "======================================= "
       WRITE(10,*) "  Resolution N      = ", n(1)
       WRITE(10,*) "  Energy K0         = ", K0
@@ -159,7 +164,7 @@ PROGRAM EULER_VOIGT
       do i = 0,10
          visc = 10.0_pr**(-i)
          call set_initial(Uvec0,4,11111,2222,31234)
-         call fwd_3D(Uvec0, fix_dt1, 1, stepper, i)
+         call fwd_3D(Uvec0, fix_dt1, 1, stepper, i, arg_char)
       end do
       call solvers_deallocate()
    end if
@@ -167,7 +172,7 @@ PROGRAM EULER_VOIGT
    !=======================================================
    !- Maximization Test: Euler-Voigt Simulations
    !=======================================================
-   if (1) then
+   if (0) then
       ! Set Constants
       endTime = 25.0_pr
       stepper = 3
@@ -188,7 +193,7 @@ PROGRAM EULER_VOIGT
       tau_brack(2) = 500000.0_pr
       
       ! maximize
-      call maximization_RCG(tau_brack)
+      call maximization_RCG(tau_brack, arg_char)
 
       ! Deallocate
       call optimization_deallocate()
@@ -215,7 +220,7 @@ PROGRAM EULER_VOIGT
       call rescale_H1(Uvec0,PHI1)
 
       ! compute projected gradient
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1, arg_char)
       call compute_gradPHI(Uvec0, fix_dt2, 0, gradPHI_opt, 1)
       call projection(Uvec0, gradPHI_opt, d_opt, norm2_grad)
 
@@ -223,26 +228,26 @@ PROGRAM EULER_VOIGT
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 500000.0_pr
       i = 0
-      tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), i, 1)
+      tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), i, 1, arg_char)
       
       ! report PHI
-      call report_PHI(Uvec0,tau_brack, 100, fix_dt1, 0)
+      call report_PHI(Uvec0,tau_brack, 100, fix_dt1, 0, arg_char)
 
       ! reset 3D Taylor Green Initial Conditions
       call set_initial(Uvec0, 2, 11111,2222,31234)
       call rescale_H1(Uvec0,PHI1)
 
       ! compute projected gradient
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1, arg_char)
       call compute_gradPHI(Uvec0, fix_dt2, 0, gradPHI_opt, 1)
       call projection(Uvec0, gradPHI_opt, d_opt, norm2_grad)
 
       ! find peak tau and phi
       i = 1
-      tau = brent(i, "maxET", Uvec0, d_opt, tau_brack)
+      tau = brent(i, "maxET", Uvec0, d_opt, tau_brack, arg_char)
       Uvec0 = Uvec0 + tau*d_opt
       call rescale_H1(Uvec0,PHI1)
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, i, 0, 1)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, i, 0, 1, arg_char)
       
       ! record peak phi
       if (rank == 0) then
@@ -277,17 +282,17 @@ PROGRAM EULER_VOIGT
       call rescale_H1(Uvec0, PHI1)
       
       ! Compute Projected Gradient
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1, arg_char)
       call compute_gradPHI(Uvec0, fix_dt2, 0, gradPHI_opt, 1)
       call projection(Uvec0, gradPHI_opt, d_opt, norm2_grad)      
       ! Minimize Taubrak
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 500000.0_pr
       i = 0
-      tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), i, 1)
+      tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), i, 1, arg_char)
       
       !report PHI
-      call report_PHI(Uvec0, tau_brack, 100, fix_dt1, 0)
+      call report_PHI(Uvec0, tau_brack, 100, fix_dt1, 0, arg_char)
 
       ! Deallocate
       call optimization_deallocate()
@@ -317,7 +322,7 @@ PROGRAM EULER_VOIGT
       ! Report Phi
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 50000.0_pr
-      call report_PHI(Uvec0, tau_brack, 100, fix_dt1, 1)
+      call report_PHI(Uvec0, tau_brack, 100, fix_dt1, 1, arg_char)
 
       ! Deallocate
       call optimization_deallocate()
@@ -327,13 +332,29 @@ PROGRAM EULER_VOIGT
    !=======================================================
    !- Timescale Test: Euler-Voigt Simulations
    !=======================================================
-   if (0) then
+   if (1) then
       ! Set Constants
-      endTime = 200.0_pr
+      endTime = 5.0_pr
       stepper = 3
       visc = 0.0_pr
-      alpha = 16.0_pr/256.0_pr
+      alpha = (2.0_pr**(arg+1))/256.0_pr
       fix_dt1 = 2.0_pr**(-5)
+
+      IF (rank==0) THEN
+        OPEN(10, FILE="./LOGFILES/maxET_parameter_info_"//TRIM(arg_char)//".log", STATUS='REPLACE')
+        WRITE(10,*) "======================================= "
+        WRITE(10,*) "  Resolution N      = ", n(1)
+        WRITE(10,*) "  Energy K0         = ", K0
+        WRITE(10,*) "  Enstrophy E0      = ", E0
+        WRITE(10,*) "  Initial time      = ", iniTime
+        WRITE(10,*) "  Final time        = ", endTime
+        WRITE(10,*) "  Viscosity         = ", visc
+        WRITE(10,*) "  Processors        = ", np
+        WRITE(10,*) "  Alpha             = ", alpha
+        WRITE(10,*) "  Initial condition = ", IC_type
+        WRITE(10,*) "======================================= "
+        CLOSE(10)
+      END IF
 
       ! Allocate
       call solvers_allocate(stepper)
@@ -344,7 +365,7 @@ PROGRAM EULER_VOIGT
       call rescale_H1(Uvec0, PHI1)
 
       ! Evolve forward
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, arg, 0, 1, arg_char)
 
       ! Deallocate
       call optimization_deallocate()
@@ -374,7 +395,7 @@ PROGRAM EULER_VOIGT
          endif
          
          ! call kappa tests
-         call kappa_test(Uvec0,adj_Uvec0_direction,fix_dt1,1,stepper,i)
+         call kappa_test(Uvec0,adj_Uvec0_direction,fix_dt1,1,stepper,i, arg_char)
       end do
       
       ! Deallocate
@@ -391,7 +412,7 @@ PROGRAM EULER_VOIGT
       do i = 2,16,2
          fix_dt1 = 2.0_pr**(-i)
          call set_initial(Uvec0,3,123456,7778446,5213445)
-         call fwd_3D(Uvec0, fix_dt1, 1, stepper, i)         
+         call fwd_3D(Uvec0, fix_dt1, 1, stepper, i, arg_char)         
       end do
       call solvers_deallocate()
    end if

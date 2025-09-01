@@ -225,19 +225,20 @@ MODULE data_ops
         !=================================
         !    SAVE VELOCITY FROM NS SYSTEM
         !=================================
-        SUBROUTINE save_velocity(u_mat, optiter)
+        SUBROUTINE save_velocity(u_mat, optiter,subpath)
           USE global_variables  
           IMPLICIT NONE
           REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: u_mat
 
           INTEGER, INTENT(IN) :: optiter
-      
+          CHARACTER(len=*), INTENT(IN) :: subpath
+
           CHARACTER(200) :: filename
           CHARACTER(4) :: optchar
  
           WRITE(optchar, '(i4)') optiter
 
-          filename = TRIM(scratch_pathname)//"Uvec_fwdTE_"//trim(adjustl(optchar))//".nc"
+          filename = TRIM(scratch_pathname)//trim(subpath)//"/Uvec_fwdTE_"//trim(adjustl(optchar))//".nc"
 
           CALL save_field_R3toR3_ncdf2(u_mat, "Ux", "Uy", "Uz", filename, "netCDF")
         END SUBROUTINE save_velocity
@@ -409,17 +410,18 @@ MODULE data_ops
         !============================
         !    SAVE VORTICITY
         !============================
-       SUBROUTINE save_vorticity(w_mat, optiter)
+       SUBROUTINE save_vorticity(w_mat, optiter, subpath)
           USE global_variables  
           IMPLICIT NONE
           REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: w_mat
           
           INTEGER, INTENT(IN) :: optiter
+          CHARACTER(len=*), INTENT(IN) :: subpath
           CHARACTER(200) :: filename
           CHARACTER(4) :: optchar
           WRITE(optchar, '(i4)') optiter
           
-          filename = TRIM(scratch_pathname)//"Wvec_fwdTE_"//trim(adjustl(optchar))//".nc"
+          filename = TRIM(scratch_pathname)//trim(subpath)//"/Wvec_fwdTE_"//trim(adjustl(optchar))//".nc"
 
 
           CALL save_field_R3toR3_ncdf2(w_mat,"Wx", "Wy", "Wz", filename, "netCDF")

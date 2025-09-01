@@ -56,10 +56,10 @@ FFTW_DIR   =                          # Include FFTW3 Library
 FFTW_LIB   = -lfftw3_mpi -lfftw3 -lm  # Load FFTW3 Library
 nCDF_DIR   =                          # Include nCDF Library
 nCDF_LIB   = -lnetcdff -lnetcdf       # Load nCDF Library
-#FFTW_DIR   = -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/fftw-mpi/3.3.8/include/                            # Include FFTW3 Library
-#FFTW_LIB   = -L/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/fftw-mpi/3.3.8/lib -lfftw3_mpi -lfftw3 -lm         # Load FFTW3 Library
-#nCDF_DIR   = -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include                   # Include nCDF Library
-#nCDF_LIB   = -L/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/lib -lnetcdff -lnetcdf    # Load nCDF Library
+#FFTW_DIR   = -I/cvmfs/soft.computecanada.ca/easybuild/software/2023/avx2/MPI/intel2020/openmpi4/fftw-mpi/3.3.8/include                            # Include FFTW3 Library
+#FFTW_LIB   = -L/cvmfs/soft.computecanada.ca/easybuild/software/2023/avx2/MPI/intel2020/openmpi4/fftw-mpi/3.3.8/lib -lfftw3_mpi -lfftw3 -lm         # Load FFTW3 Library
+#nCDF_DIR   = -I/cvmfs/soft.computecanada.ca/easybuild/software/2023/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.6.0/include                   # Include nCDF Library
+#nCDF_LIB   = -L/cvmfs/soft.computecanada.ca/easybuild/software/2023/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.6.0/lib -lnetcdff -lnetcdf    # Load nCDF Library
 
 # Compilation options: the below options are usually used to compile FORTRAN
 #                      code. You can assign other values than those suggested
@@ -69,7 +69,7 @@ nCDF_LIB   = -lnetcdff -lnetcdf       # Load nCDF Library
 #CompilationOptions= -g
 # Remove the below "#" to use "gprof", which indicates the computation time in
 #    each subroutine
-CompilationOptions= -fopenmp -O3 -pg
+CompilationOptions= -fopenmp -O3 -pg #-ffree-line-length-none
 
 # List of routines to compile: here we list all object files that are needed.
 # Put a "\" at the end of each line that if you want to continue the list of

@@ -288,7 +288,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
 !=======================================
 ! save2binary2
 !=======================================
-   SUBROUTINE save2binary2( myfield,myindex,mysystem )
+   SUBROUTINE save2binary2( myfield,myindex,mysystem,subpath )
       USE global_variables
       IMPLICIT NONE 
       INCLUDE "mpif.h"
@@ -296,6 +296,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: myfield
       INTEGER, INTENT(IN) :: myindex
       CHARACTER(len=*), INTENT(IN) :: mysystem
+      CHARACTER(len=*), INTENT(IN) :: subpath
 
       CHARACTER(2) :: E0txt
       CHARACTER(5) :: indexchar
@@ -308,10 +309,10 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       SELECT CASE (mysystem)
          case("fwdTE")
            
-            filename = TRIM(scratch_pathname)//"_Uvec_fwdTE"//trim(adjustl(indexchar))
+            filename = TRIM(scratch_pathname)//TRIM(subpath)//"/_Uvec_fwdTE"//trim(adjustl(indexchar))
          case("bwdADJ")
            
-            filename = TRIM(scratch_pathname)//"_Uvec_bwdADJ"//trim(adjustl(indexchar))
+            filename = TRIM(scratch_pathname)//TRIM(subpath)//"/_Uvec_bwdADJ"//trim(adjustl(indexchar))
       end select
 
       IF (rank == 0) THEN   
@@ -326,14 +327,12 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       do nn = 1, 3
          call mpi_gather(myfield(:,:,:,nn), total_local_size, mpi_double_precision, global_u, total_local_size, mpi_double_precision, 0, mpi_comm_world, statinfo)
          if (rank == 0) then            
-           
             do i = 0, np-1
                write(20,rec=i+1+(nn-1)*np) global_u(:,:,i*local_N+1:(i+1)*local_N)
             end do
          end if
          call MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
       end do
-
       if(rank == 0) then
          close(20)
          !deallocate(global_u)

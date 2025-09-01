@@ -9,6 +9,10 @@ or
 
 2) Graham: module load StdEnv/2020 fftw-mpi/3.3.8 netcdf-fortran-mpi/4.5.2
 
+or
+
+3) Trillium: module load StdEnv/2023 fftw-mpi/3.3.10 netcdf-fortran-mpi/4.6.1 intel/2023.2.1
+
 compile:
 
 make test_solver
