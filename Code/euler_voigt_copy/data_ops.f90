@@ -7,13 +7,14 @@ MODULE data_ops
         !============================
         ! SAVE DIAGNOSTIC FIELDS 
         !============================
-        SUBROUTINE save_diagnosticFields(myfield, num_fields, myindex, mynames, mysystem)
+        SUBROUTINE save_diagnosticFields(myfield, num_fields, myindex, mynames, mysystem, subpath)
           USE global_variables  
           IMPLICIT NONE
 
           REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:num_fields), INTENT(IN) :: myfield
          INTEGER, INTENT(IN) :: num_fields, myindex
           CHARACTER(len=*), INTENT(IN) :: mynames, mysystem
+          character(len=*), intent(in) :: subpath
 
           CHARACTER(2) :: E0txt
           CHARACTER(4) :: optchar
@@ -25,7 +26,7 @@ MODULE data_ops
           SELECT CASE (mysystem)
             CASE ("maxET")
               !filename = TRIM(work_pathname)//"_E"//E0txt//"_diagnosticFields_fwdTE0_OPT"//trim(adjustl(optchar))//".nc"
-              filename = TRIM(scratch_pathname)//"_diagnosticFields_fwdTE0_OPT"//trim(adjustl(optchar))//".nc"
+              filename = TRIM(scratch_pathname)//TRIM(subpath)//"_diagnosticFields_fwdTE0_OPT"//trim(adjustl(optchar))//".nc"
               CALL save_field_R3toRn_ncdf(myfield, num_fields, mynames, filename)
  
           END SELECT 
@@ -36,7 +37,7 @@ MODULE data_ops
 
         ! Save the minimal vortex magnitude and save the locations.   Add by Di Kang in Aug 2019
 
-	Subroutine save_Wmin( myindex, time, dt,E,Wmin, Wmean,  Wminloc, optindex,iiii) 
+	Subroutine save_Wmin( myindex, time, dt,E,Wmin, Wmean,  Wminloc, optindex,iiii,subpath) 
            USE global_variables  
          
           USE fftwfunction
@@ -51,6 +52,7 @@ MODULE data_ops
            REAL(pr), INTENT(IN) :: dt        ! Newly added to save time step, on Aug 4, 2017
            INTEGER, INTENT(IN) :: optindex   ! Feb 20, 2018
 	   REAL(pr), DIMENSION(1:3),Intent(In) :: Wminloc
+           character(len=*), intent(in) :: subpath
            CHARACTER(2) :: K0txt
            CHARACTER(2) :: E0txt
            CHARACTER(2) :: NUtxt
@@ -66,7 +68,7 @@ MODULE data_ops
 
  
                  !filename = TRIM(work_pathname)//"_E"//E0txt//"_fwdTE_OPT"//trim(adjustl(optchar))//".dat"
-                 filename = TRIM(scratch_pathname)//"_Wmin"//trim(adjustl(optchar))//".dat"
+                 filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Wmin"//trim(adjustl(optchar))//".dat"
                  IF ((myindex==iniIndex) .and. (iiii==1)) THEN
                     OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'REPLACE')
                  ELSE
@@ -85,7 +87,7 @@ MODULE data_ops
         !====================================
         ! SAVE GLOBAL DIAGNOSTICS OF FIELDS 
         !====================================
-        SUBROUTINE save_diagnosticScalars(mysystem, myindex, time, dt, K, E, dEdt, divU, Umax, Wmax, magUmax, magWmax, H,L3,hnorm, Lqnorm, maxHel, minHel, vorCoreData, optindex,hhalf)
+        SUBROUTINE save_diagnosticScalars(mysystem, myindex, time, dt, K, E, dEdt, divU, Umax, Wmax, magUmax, magWmax, H,L3,hnorm,Lqnorm, maxHel, minHel, vorCoreData, optindex,hhalf,subpath)
            USE global_variables  
            IMPLICIT NONE
 
@@ -97,6 +99,7 @@ MODULE data_ops
            REAL(pr), INTENT(IN) :: time, divU, magUmax, magWmax, H, maxHel, minHel, Lqnorm , hhalf , L3, hnorm
            REAL(pr), INTENT(IN) :: dt        ! Newly added to save time step, on Aug 4, 2017
            INTEGER, INTENT(IN) :: optindex   ! Feb 20, 2018
+           character(len=*), intent(in) :: subpath
 
            CHARACTER(2) :: K0txt
            CHARACTER(2) :: E0txt
@@ -114,7 +117,7 @@ MODULE data_ops
            SELECT CASE (mysystem)
               case("fwdTE")
                  !filename = TRIM(work_pathname)//"_E"//E0txt//"_fwdTE_OPT"//trim(adjustl(optchar))//".dat"
-                 filename = TRIM(scratch_pathname)//"_fwdTE_OPT"//trim(adjustl(optchar))//".dat"
+                 filename = TRIM(scratch_pathname)//TRIM(subpath)//"_fwdTE_OPT"//trim(adjustl(optchar))//".dat"
                  IF (myindex==iniIndex) THEN
                     OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'REPLACE')
                  ELSE
@@ -122,7 +125,7 @@ MODULE data_ops
                  END IF
               case("bwdADJ")
                  !filename = TRIM(work_pathname)//"_E"//E0txt//"_bwdADJ_OPT"//trim(adjustl(optchar))//".dat"
-                 filename = TRIM(scratch_pathname)//"_bwdADJ_OPT"//trim(adjustl(optchar))//".dat"
+                 filename = TRIM(scratch_pathname)//TRIM(subpath)//"_bwdADJ_OPT"//trim(adjustl(optchar))//".dat"
                  IF (myindex==final_time_iter) THEN
                     OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'REPLACE')
                  ELSE
@@ -135,7 +138,7 @@ MODULE data_ops
            CLOSE(10)
            IF (myindex==iniIndex) THEN
               !filename = TRIM(work_pathname)//"_E"//E0txt//"_fwdTE0_diagnosticScalars_OPT"//trim(adjustl(optchar))//".dat"
-              filename = TRIM(scratch_pathname)//"_fwdTE0_diagnosticScalars_OPT"//trim(adjustl(optchar))//".dat"
+              filename = TRIM(scratch_pathname)//TRIM(subpath)//"_fwdTE0_diagnosticScalars_OPT"//trim(adjustl(optchar))//".dat"
               OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'REPLACE')
               WRITE(10,*) "# K, E, Umax, Wmax, magUmax, magWmax, H, MaxminH, MaxminS "
               WRITE(10,*) "# x   y   z "
@@ -238,7 +241,7 @@ MODULE data_ops
  
           WRITE(optchar, '(i4)') optiter
 
-          filename = TRIM(scratch_pathname)//trim(subpath)//"/Uvec_fwdTE_"//trim(adjustl(optchar))//".nc"
+          filename = TRIM(scratch_pathname)//trim(subpath)//"Uvec_fwdTE_"//trim(adjustl(optchar))//".nc"
 
           CALL save_field_R3toR3_ncdf2(u_mat, "Ux", "Uy", "Uz", filename, "netCDF")
         END SUBROUTINE save_velocity
@@ -246,13 +249,15 @@ MODULE data_ops
         !=================================
         !    SAVE VELOCITY FROM NS SYSTEM
         !=================================
-        SUBROUTINE save_velocity_cx(u_cx, myiter)
+        SUBROUTINE save_velocity_cx(u_cx, myiter, subpath)
           USE global_variables  
           IMPLICIT NONE
           INCLUDE "mpif.h"
           
           complex(pr), DIMENSION(1:n(1)/2+1,1:n(2),1:local_N,1:3), INTENT(IN) :: u_cx
           INTEGER, INTENT(IN) :: myiter
+          character(len=*), INTENT(IN) :: subpath
+
           CHARACTER(200) :: filename
           CHARACTER(4) :: optchar
           complex(pr), DIMENSION(:,:,:), allocatable :: aux_cx
@@ -263,7 +268,7 @@ MODULE data_ops
   
           WRITE(optchar, '(i4)') myiter
          
-          filename = TRIM(scratch_pathname)//"_Uvec_fwdTE0_OPT_CX_"//trim(adjustl(optchar))//".dat"
+          filename = TRIM(scratch_pathname)//trim(subpath)//"_Uvec_fwdTE0_OPT_CX_"//trim(adjustl(optchar))//".dat"
           
           if(rank == 0) then
              allocate(aux_cx(1:n(1)/2+1, 1:n(2), 1:n(3)))
@@ -327,13 +332,14 @@ MODULE data_ops
         !=================================
         !    SAVE VELOCITY FROM NS SYSTEM
         !=================================
-        SUBROUTINE save_velocity_cx_mpi(u_cx, myiter)
+        SUBROUTINE save_velocity_cx_mpi(u_cx, myiter, subpath)
           USE global_variables  
           IMPLICIT NONE
           INCLUDE "mpif.h"
           
           complex(pr), DIMENSION(1:n(1)/2+1,1:n(2),1:local_N,1:3), INTENT(IN) :: u_cx
           INTEGER, INTENT(IN) :: myiter
+          character(len=*), intent(in) :: subpath
           CHARACTER(200) :: filename
           CHARACTER(4) :: optchar
           integer :: file_handle
@@ -347,7 +353,7 @@ MODULE data_ops
           
           WRITE(optchar, '(i4)') myiter
          
-          filename = TRIM(scratch_pathname)//"_Uvec_fwdTE0_OPT_CX"//trim(adjustl(optchar))//".bin"
+          filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_fwdTE0_OPT_CX"//trim(adjustl(optchar))//".bin"
 
 
 
@@ -387,13 +393,15 @@ MODULE data_ops
         !=================================
         !    SAVE VELOCITY FROM NS SYSTEM
         !=================================
-        SUBROUTINE save_NS_velocity_bk(u_mat, myindex, myformat, optiter)
+        SUBROUTINE save_NS_velocity_bk(u_mat, myindex, myformat, optiter, subpath)
           USE global_variables  
           IMPLICIT NONE
           REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: u_mat
           INTEGER, INTENT(IN) :: myindex
           CHARACTER(len=*), INTENT(IN) :: myformat
           INTEGER, INTENT(IN) :: optiter
+          character(len=*), intent(in) :: subpath
+
           CHARACTER(2) :: E0txt
           CHARACTER(4) :: indexchar
           CHARACTER(200) :: filename
@@ -402,7 +410,7 @@ MODULE data_ops
           WRITE(indexchar, '(i4.4)') myindex 
           WRITE(optchar, '(i4)') optiter
           !filename = TRIM(work_pathname)//"_E"//E0txt//"_Uvec_fwdTE0_OPT"//trim(adjustl(optchar))//".nc"
-          filename = TRIM(scratch_pathname)//"_Uvec_bkdTE0_OPT"//trim(adjustl(optchar))//".nc"
+          filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_bkdTE0_OPT"//trim(adjustl(optchar))//".nc"
           CALL save_field_R3toR3_ncdf(U_mat(:,:,:,1), U_mat(:,:,:,2), U_mat(:,:,:,3), "Ux", "Uy", "Uz", filename, "netCDF")
           !CALL save_field_R3toRn_ncdf(u_mat, 3, "Ux,Uy,Uz", filename)
         END SUBROUTINE save_NS_velocity_bk
@@ -421,7 +429,7 @@ MODULE data_ops
           CHARACTER(4) :: optchar
           WRITE(optchar, '(i4)') optiter
           
-          filename = TRIM(scratch_pathname)//trim(subpath)//"/Wvec_fwdTE_"//trim(adjustl(optchar))//".nc"
+          filename = TRIM(scratch_pathname)//trim(subpath)//"Wvec_fwdTE_"//trim(adjustl(optchar))//".nc"
 
 
           CALL save_field_R3toR3_ncdf2(w_mat,"Wx", "Wy", "Wz", filename, "netCDF")
@@ -433,13 +441,14 @@ MODULE data_ops
         !============================
         !    SAVE H3 seminorm field
         !============================
-       SUBROUTINE save_NS_Uob(myfield, myindex, myformat, optiter)
+       SUBROUTINE save_NS_Uob(myfield, myindex, myformat, optiter, subpath)
           USE global_variables  
           IMPLICIT NONE
           REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N), INTENT(IN) :: myfield
           INTEGER, INTENT(IN) :: myindex
           CHARACTER(len=*), INTENT(IN) :: myformat
           INTEGER, INTENT(IN) :: optiter
+          character(len=*), intent(in) :: subpath
           CHARACTER(4) :: indexchar
           CHARACTER(4) :: optchar
           CHARACTER(200) :: filename
@@ -447,7 +456,7 @@ MODULE data_ops
           WRITE(indexchar, '(i4.4)') myindex 
           WRITE(optchar, '(i4)') optiter
 
-          filename = TRIM(scratch_pathname)//"_UOBvec_fwdTE0_OPT"//trim(adjustl(optchar))//".nc"
+          filename = TRIM(scratch_pathname)//TRIM(subpath)//"_UOBvec_fwdTE0_OPT"//trim(adjustl(optchar))//".nc"
           CALL save_field_R3toR1_ncdf2(myfield, "Uob", filename)
           
         END SUBROUTINE save_NS_Uob
@@ -1296,7 +1305,7 @@ MODULE data_ops
         !============================================================
         !          SAVE SPECTRAL DATA
         !============================================================
-        SUBROUTINE save_spectral_data(mydata, myindex, mysystem, optindex)
+        SUBROUTINE save_spectral_data(mydata, myindex, mysystem, optindex, subpath)
           USE global_variables
           IMPLICIT NONE
  
@@ -1304,6 +1313,7 @@ MODULE data_ops
           INTEGER, INTENT(IN) :: myindex
           CHARACTER(len=*), INTENT(IN) :: mysystem
           INTEGER, INTENT(IN) :: optindex
+          character(len=*), intent(in) :: subpath
           CHARACTER(2) :: K0txt
           CHARACTER(2) :: E0txt
           CHARACTER(4) :: indexchar
@@ -1318,17 +1328,17 @@ MODULE data_ops
              case("fwdTE")
                 !filename = TRIM(work_pathname)//"_E"//E0txt//"_spectrum_fwdTE"//trim(adjustl(indexchar))//"_OPT"//trim(adjustl(optchar))//".dat"
                 !filename = TRIM(work_pathname)//"_E"//E0txt//"_spectrum_fwdTE"//trim(adjustl(indexchar))//".dat"
-                filename = TRIM(scratch_pathname)//"_spectrum_fwdTE"//trim(adjustl(indexchar))//".dat"
+                filename = TRIM(scratch_pathname)//TRIM(subpath)//"_spectrum_fwdTE"//trim(adjustl(indexchar))//".dat"
              case("bwdADJ")
                 !filename = TRIM(work_pathname)//"_E"//E0txt//"_spectrum_bwdADJ"//trim(adjustl(indexchar))//"_OPT"//trim(adjustl(optchar))//".dat"
                 !filename = TRIM(work_pathname)//"_E"//E0txt//"_spectrum_bwdADJ"//trim(adjustl(indexchar))//".dat"
-                filename = TRIM(scratch_pathname)//"_spectrum_bwdADJ"//trim(adjustl(indexchar))//".dat"
+                filename = TRIM(scratch_pathname)//TRIM(subpath)//"_spectrum_bwdADJ"//trim(adjustl(indexchar))//".dat"
              case("before_CUT")
-                filename = TRIM(scratch_pathname)//"_spectrum_bwdADJ_before_CUT_OPT"//trim(adjustl(optchar))//".dat"
+                filename = TRIM(scratch_pathname)//TRIM(subpath)//"_spectrum_bwdADJ_before_CUT_OPT"//trim(adjustl(optchar))//".dat"
              case("after_CUT")
-                filename = TRIM(scratch_pathname)//"_spectrum_bwdADJ_after_CUT_OPT"//trim(adjustl(optchar))//".dat"
+                filename = TRIM(scratch_pathname)//TRIM(subpath)//"_spectrum_bwdADJ_after_CUT_OPT"//trim(adjustl(optchar))//".dat"
              case("readbinary")
-                filename = TRIM(scratch_pathname)//"_spectrum_bwdADJ"//trim(adjustl(indexchar))//"_OPT"//trim(adjustl(optchar))//".dat"
+                filename = TRIM(scratch_pathname)//TRIM(subpath)//"_spectrum_bwdADJ"//trim(adjustl(indexchar))//"_OPT"//trim(adjustl(optchar))//".dat"
           END SELECT
           OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'REPLACE')
           DO i=1,n(1)/2
@@ -2891,19 +2901,20 @@ SUBROUTINE read_field_R3toR3_ncdf2(myfield, filename, Fx_txt, Fy_txt, Fz_txt)
         !==========================================
         !     SAVE OPTIMIZATION DIAGNOSTICS
         !==========================================
-        SUBROUTINE save_diagnostics_optim(myOptimType, iter, tau, beta, J, ener, ens, dEdt_visc, dEdt_NL)   ! Feb 15, 2018
+        SUBROUTINE save_diagnostics_optim(myOptimType, iter, tau, beta, J, ener, ens, dEdt_visc, dEdt_NL, subpath)   ! Feb 15, 2018
           USE global_variables
           IMPLICIT NONE
           CHARACTER(len=*), INTENT(IN) :: myOptimType
           REAL(pr), DIMENSION(1:3), INTENT(IN) :: ener, ens
           REAL(pr), INTENT(IN) :: tau, beta, J, dEdt_visc, dEdt_NL
           INTEGER, INTENT(IN) :: iter
+          character(len=*), intent(in) :: subpath
 
           CHARACTER(100) :: filename
           CHARACTER(2) :: E0txt
           WRITE(E0txt, '(i2.2)') E0_index
           !filename = TRIM(work_pathname)//"_E"//E0txt//"_maxETiterinfo.dat"   ! Newly added on May 8, 2017
-          filename = TRIM(scratch_pathname)//"_maxETiterinfo.dat"
+          filename = TRIM(scratch_pathname)//TRIM(subpath)//"_maxETiterinfo.dat"
           IF (iter == 0) THEN
              OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'REPLACE')
              WRITE(10,*) "# Iter  Tau  Beta  J  Ener  Ens  LPSnorm  LPSoverT" 
@@ -2920,7 +2931,7 @@ SUBROUTINE read_field_R3toR3_ncdf2(myfield, filename, Fx_txt, Fy_txt, Fz_txt)
         !============================================
         ! SAVE LINE MINIMIZATION DATA
         !============================================
-        SUBROUTINE save_linemin_data(tA, tB, tC, FA, FB, FC, iter, mymode, myindex)
+        SUBROUTINE save_linemin_data(tA, tB, tC, FA, FB, FC, iter, mymode, myindex, subpath)
           USE global_variables
           IMPLICIT NONE
           INCLUDE "mpif.h"
@@ -2929,6 +2940,7 @@ SUBROUTINE read_field_R3toR3_ncdf2(myfield, filename, Fx_txt, Fy_txt, Fz_txt)
           INTEGER, INTENT(IN) :: iter
           !CHARACTER(len=*), INTENT(IN) :: mysystem
           CHARACTER(len=*), INTENT(IN) :: mymode
+          CHARACTER(len=*), INTENT(IN) :: subpath
           INTEGER, INTENT(IN) :: myindex
           CHARACTER(100) :: filename
           CHARACTER(2) :: E0txt, IGtxt
@@ -2939,7 +2951,7 @@ SUBROUTINE read_field_R3toR3_ncdf2(myfield, filename, Fx_txt, Fy_txt, Fz_txt)
           IF (rank==0) THEN
              !filename = "/work/yund0050/MultiObjective_095_01/WEIGHT"//WEIGHTtxt//"_E"//E0txt//"_"//mysystem//"_IG"//IGtxt//"_lineMin_info.dat"
              !filename = work_pathname//"_E"//E0txt//"_lineMin_OPT"//trim(adjustl(indextxt))//".dat"
-             filename = "./LOGFILES/maxET_E"//"_mnbrak_LineMin_OPT"//trim(adjustl(indextxt))//".dat"
+             filename = "./LOGFILES/"//TRIM(subpath)//"maxET_E"//"_mnbrak_LineMin_OPT"//trim(adjustl(indextxt))//".dat"
              SELECT CASE (mymode)
                CASE ("replace")
                  OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'REPLACE')
@@ -3046,13 +3058,14 @@ SUBROUTINE read_field_R3toR3_ncdf2(myfield, filename, Fx_txt, Fy_txt, Fz_txt)
 !==========================================
 ! SAVE FIELD IN R3
 !==========================================
-        SUBROUTINE coarse(idx0, idx1, step, ratio)
+        SUBROUTINE coarse(idx0, idx1, step, ratio, subpath)
           USE global_variables
           USE netcdf
           IMPLICIT NONE
           INCLUDE "mpif.h"
 
           integer, intent(in) :: idx0, idx1, step, ratio
+          character(len=*), intent(in) :: subpath
           CHARACTER(2) :: Fx_txt, Fy_txt, Fz_txt
           CHARACTER(200) :: f_in, f_out
           CHARACTER(4) :: optchar
@@ -3073,12 +3086,12 @@ SUBROUTINE read_field_R3toR3_ncdf2(myfield, filename, Fx_txt, Fy_txt, Fz_txt)
              WRITE(optchar, '(i4)') idx
 
              ! save Uvec
-             f_in = TRIM(scratch_pathname)//"_Uvec_fwdTE0_OPT"//trim(adjustl(optchar))//".nc"
+             f_in = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_fwdTE0_OPT"//trim(adjustl(optchar))//".nc"
              Fx_txt = "Ux"
              Fy_txt = "Uy"
              Fz_txt = "Uz"
              CALL read_field_R3toR3_ncdf2(Uvec, f_in, Fx_txt, Fy_txt, Fz_txt)
-             f_out = TRIM(scratch_pathname)//"_Uvec_fwdTE0_OPT_coarse"//trim(adjustl(optchar))//".nc"
+             f_out = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_fwdTE0_OPT_coarse"//trim(adjustl(optchar))//".nc"
              if (rank ==0 ) then
                 ncout = nf90_create(f_out, NF90_CLOBBER, ncid)
              IF (ncout /= NF90_NOERR) CALL ncdf_error_handle(ncout)
@@ -3133,12 +3146,12 @@ SUBROUTINE read_field_R3toR3_ncdf2(myfield, filename, Fx_txt, Fy_txt, Fz_txt)
        
           
              ! save Wvec
-             f_in = TRIM(scratch_pathname)//"_Wvec_fwdTE0_OPT"//trim(adjustl(optchar))//".nc"
+             f_in = TRIM(scratch_pathname)//TRIM(subpath)//"_Wvec_fwdTE0_OPT"//trim(adjustl(optchar))//".nc"
              Fx_txt = "Wx"
              Fy_txt = "Wy"
              Fz_txt = "Wz"
              CALL read_field_R3toR3_ncdf2(Wvec, f_in, Fx_txt, Fy_txt, Fz_txt)
-             f_out = TRIM(scratch_pathname)//"_Wvec_fwdTE0_OPT_coarse"//trim(adjustl(optchar))//".nc"
+             f_out = TRIM(scratch_pathname)//TRIM(subpath)//"_Wvec_fwdTE0_OPT_coarse"//trim(adjustl(optchar))//".nc"
              if (rank ==0 ) then
                 ncout = nf90_create(f_out, NF90_CLOBBER, ncid)
              IF (ncout /= NF90_NOERR) CALL ncdf_error_handle(ncout)
@@ -3194,11 +3207,11 @@ SUBROUTINE read_field_R3toR3_ncdf2(myfield, filename, Fx_txt, Fy_txt, Fz_txt)
           
 
              ! save Uob
-             f_in = TRIM(scratch_pathname)//"_UOBvec_fwdTE0_OPT"//trim(adjustl(optchar))//".nc"
+             f_in = TRIM(scratch_pathname)//TRIM(subpath)//"_UOBvec_fwdTE0_OPT"//trim(adjustl(optchar))//".nc"
              Fob_txt = "Uob"
              
              call read_field_R3toR1_ncdf2(Uvec(:,:,:,1), f_in, Fob_txt)
-             f_out = TRIM(scratch_pathname)//"_UOBvec_fwdTE0_OPT_coarse"//trim(adjustl(optchar))//".nc"
+             f_out = TRIM(scratch_pathname)//TRIM(subpath)//"_UOBvec_fwdTE0_OPT_coarse"//trim(adjustl(optchar))//".nc"
              if (rank ==0 ) then
                 ncout = nf90_create(f_out, NF90_CLOBBER, ncid)
              IF (ncout /= NF90_NOERR) CALL ncdf_error_handle(ncout)

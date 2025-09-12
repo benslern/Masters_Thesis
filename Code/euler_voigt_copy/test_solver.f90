@@ -51,7 +51,8 @@ PROGRAM EULER_VOIGT
    CHARACTER(len=32) :: arg_char
    call get_command_argument(1,arg_char)
    READ (arg_char, '(I13)') arg
-
+   arg_char = TRIM(arg_char)//"/"
+   
    !=============================================
    ! MPI
    !=============================================
@@ -109,7 +110,7 @@ PROGRAM EULER_VOIGT
 
    
    IF (rank==0) THEN
-      OPEN(10, FILE="./LOGFILES/maxET_parameter_info_"//TRIM(arg_char)//".log", STATUS='REPLACE')
+      OPEN(10, FILE="./LOGFILES/"//TRIM(arg_char)//"maxET_parameter_info.log", STATUS='REPLACE')
       WRITE(10,*) "======================================= "
       WRITE(10,*) "  Resolution N      = ", n(1)
       WRITE(10,*) "  Energy K0         = ", K0
@@ -160,11 +161,11 @@ PROGRAM EULER_VOIGT
    !=======================================================
    if (0) then
       stepper = 3
-      call solvers_allocate(stepper)
+      call solvers_allocate(stepper, arg_char)
       do i = 0,10
          visc = 10.0_pr**(-i)
          call set_initial(Uvec0,4,11111,2222,31234)
-         call fwd_3D(Uvec0, fix_dt1, 1, stepper, i, arg_char)
+         call fwd_3D(Uvec0, fix_dt1, 1, stepper, i)
       end do
       call solvers_deallocate()
    end if
@@ -177,12 +178,28 @@ PROGRAM EULER_VOIGT
       endTime = 25.0_pr
       stepper = 3
       visc = 0.0_pr
-      alpha = 16.0_pr/256.0_pr
+      alpha = (2.0_pr**(arg))/256.0_pr
       fix_dt1 = 2.0_pr**(-5)
+
+      IF (rank==0) THEN
+        OPEN(10, FILE="./LOGFILES/"//TRIM(arg_char)//"maxET_parameter_info.log", STATUS='REPLACE')
+        WRITE(10,*) "======================================= "
+        WRITE(10,*) "  Resolution N      = ", n(1)
+        WRITE(10,*) "  Energy K0         = ", K0
+        WRITE(10,*) "  Enstrophy E0      = ", E0
+        WRITE(10,*) "  Initial time      = ", iniTime
+        WRITE(10,*) "  Final time        = ", endTime
+        WRITE(10,*) "  Viscosity         = ", visc
+        WRITE(10,*) "  Processors        = ", np
+        WRITE(10,*) "  Alpha             = ", alpha
+        WRITE(10,*) "  Initial condition = ", IC_type
+        WRITE(10,*) "======================================= "
+        CLOSE(10)
+      END IF
       
       ! Allocate
-      call solvers_allocate(stepper)
-      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
+      call solvers_allocate(stepper, arg_char)
+      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper, arg_char)
 
       ! set 3D Taylor Green Initial Condition
       call set_initial(Uvec0, 2, 11111,2222,31234)
@@ -193,7 +210,7 @@ PROGRAM EULER_VOIGT
       tau_brack(2) = 500000.0_pr
       
       ! maximize
-      call maximization_RCG(tau_brack, arg_char)
+      call maximization_RCG(tau_brack)
 
       ! Deallocate
       call optimization_deallocate()
@@ -212,15 +229,15 @@ PROGRAM EULER_VOIGT
       fix_dt1 = 2.0_pr**(-5)
       
       ! Allocate
-      call solvers_allocate(stepper)
-      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
+      call solvers_allocate(stepper, arg_char)
+      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper, arg_char)
 
       !set 3D Taylor Green Initial Conditions
       call set_initial(Uvec0, 2, 11111,2222,31234)
       call rescale_H1(Uvec0,PHI1)
 
       ! compute projected gradient
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1, arg_char)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1)
       call compute_gradPHI(Uvec0, fix_dt2, 0, gradPHI_opt, 1)
       call projection(Uvec0, gradPHI_opt, d_opt, norm2_grad)
 
@@ -228,30 +245,30 @@ PROGRAM EULER_VOIGT
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 500000.0_pr
       i = 0
-      tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), i, 1, arg_char)
+      tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), i, 1)
       
       ! report PHI
-      call report_PHI(Uvec0,tau_brack, 100, fix_dt1, 0, arg_char)
+      call report_PHI(Uvec0,tau_brack, 100, fix_dt1, 0)
 
       ! reset 3D Taylor Green Initial Conditions
       call set_initial(Uvec0, 2, 11111,2222,31234)
       call rescale_H1(Uvec0,PHI1)
 
       ! compute projected gradient
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1, arg_char)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1)
       call compute_gradPHI(Uvec0, fix_dt2, 0, gradPHI_opt, 1)
       call projection(Uvec0, gradPHI_opt, d_opt, norm2_grad)
 
       ! find peak tau and phi
       i = 1
-      tau = brent(i, "maxET", Uvec0, d_opt, tau_brack, arg_char)
+      tau = brent(i, "maxET", Uvec0, d_opt, tau_brack)
       Uvec0 = Uvec0 + tau*d_opt
       call rescale_H1(Uvec0,PHI1)
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, i, 0, 1, arg_char)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, i, 0, 1)
       
       ! record peak phi
       if (rank == 0) then
-            filename = TRIM(scratch_pathname)//"peak_cost"//".dat"
+            filename = TRIM(scratch_pathname)//TRIM(arg_char)//"peak_cost"//".dat"
             open(10, file = filename, status = 'REPLACE')
             write(10, "(2 G20.12)"), tau, PHI1
             close(10)
@@ -274,25 +291,25 @@ PROGRAM EULER_VOIGT
       fix_dt1 = 2.0_pr**(-5)
       
       ! Allocate
-      call solvers_allocate(stepper)
-      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
+      call solvers_allocate(stepper, arg_char)
+      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper, arg_char)
       
       ! Set 3D Taylor Green Initial Condition
       call set_initial(Uvec0, 2, 11111, 2222, 31234)
       call rescale_H1(Uvec0, PHI1)
       
       ! Compute Projected Gradient
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1, arg_char)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, 1, 0, 1)
       call compute_gradPHI(Uvec0, fix_dt2, 0, gradPHI_opt, 1)
       call projection(Uvec0, gradPHI_opt, d_opt, norm2_grad)      
       ! Minimize Taubrak
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 500000.0_pr
       i = 0
-      tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), i, 1, arg_char)
+      tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), i, 1)
       
       !report PHI
-      call report_PHI(Uvec0, tau_brack, 100, fix_dt1, 0, arg_char)
+      call report_PHI(Uvec0, tau_brack, 100, fix_dt1, 0)
 
       ! Deallocate
       call optimization_deallocate()
@@ -312,8 +329,8 @@ PROGRAM EULER_VOIGT
       fix_dt1 = 2.0_pr**(-7)
 
       ! Allocate
-      call solvers_allocate(stepper)
-      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
+      call solvers_allocate(stepper, arg_char)
+      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper, arg_char)
       
       ! Set 3D Taylor Green Initial Condition
       call set_initial(Uvec0, 2, 11111,2222,31234)
@@ -322,7 +339,7 @@ PROGRAM EULER_VOIGT
       ! Report Phi
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 50000.0_pr
-      call report_PHI(Uvec0, tau_brack, 100, fix_dt1, 1, arg_char)
+      call report_PHI(Uvec0, tau_brack, 100, fix_dt1, 1)
 
       ! Deallocate
       call optimization_deallocate()
@@ -334,14 +351,25 @@ PROGRAM EULER_VOIGT
    !=======================================================
    if (1) then
       ! Set Constants
-      endTime = 5.0_pr
+      endTime = 25.0_pr
       stepper = 3
       visc = 0.0_pr
-      alpha = (2.0_pr**(arg+1))/256.0_pr
+      alpha = (2.0_pr**(arg))/256.0_pr
       fix_dt1 = 2.0_pr**(-5)
 
+      ! Allocate
+      call solvers_allocate(stepper, arg_char)
+      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper, arg_char)
+
+      ! Set 3D Taylor Green Initial Condition
+      call set_initial(Uvec0, 2, 11111,2222,31234)
+      call rescale_H1(Uvec0, PHI1)
+
+      ! Evolve forward
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, arg, 0, 1)
+
       IF (rank==0) THEN
-        OPEN(10, FILE="./LOGFILES/maxET_parameter_info_"//TRIM(arg_char)//".log", STATUS='REPLACE')
+        OPEN(10, FILE="./LOGFILES/"//TRIM(arg_char)//"maxET_parameter_info.log", STATUS='REPLACE')
         WRITE(10,*) "======================================= "
         WRITE(10,*) "  Resolution N      = ", n(1)
         WRITE(10,*) "  Energy K0         = ", K0
@@ -352,20 +380,11 @@ PROGRAM EULER_VOIGT
         WRITE(10,*) "  Processors        = ", np
         WRITE(10,*) "  Alpha             = ", alpha
         WRITE(10,*) "  Initial condition = ", IC_type
+        WRITE(10,*) "  Time Step         = ", fix_dt1
         WRITE(10,*) "======================================= "
+        WRITE(10,*) "  Phi               = ", PHI1
         CLOSE(10)
       END IF
-
-      ! Allocate
-      call solvers_allocate(stepper)
-      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
-
-      ! Set 3D Taylor Green Initial Condition
-      call set_initial(Uvec0, 2, 11111,2222,31234)
-      call rescale_H1(Uvec0, PHI1)
-
-      ! Evolve forward
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, arg, 0, 1, arg_char)
 
       ! Deallocate
       call optimization_deallocate()
@@ -382,20 +401,20 @@ PROGRAM EULER_VOIGT
       alpha = 4.0_pr/256.0_pr
 
       ! Allocate
-      call solvers_allocate(stepper)
+      call solvers_allocate(stepper, arg_char)
 
       ! Iterate over time step size
       do i = 4,11
          fix_dt1 = 2.0_pr**(-i)
          if (rank == 0) then
             WRITE(indexchar, '(i4)') i
-            filename = TRIM(scratch_pathname)//"kappa_test_error"//trim(adjustl(indexchar))//".dat"
+            filename = TRIM(scratch_pathname)//TRIM(arg_char)//"kappa_test_error"//trim(adjustl(indexchar))//".dat"
             open(30, file = filename, status = 'replace')
             close(30)
          endif
          
          ! call kappa tests
-         call kappa_test(Uvec0,adj_Uvec0_direction,fix_dt1,1,stepper,i, arg_char)
+         call kappa_test(Uvec0,adj_Uvec0_direction,fix_dt1,1,stepper,i)
       end do
       
       ! Deallocate
@@ -408,11 +427,11 @@ PROGRAM EULER_VOIGT
    if (0) then
       visc = 0.0e-2_pr
       stepper = 3
-      call solvers_allocate(stepper)
+      call solvers_allocate(stepper, arg_char)
       do i = 2,16,2
          fix_dt1 = 2.0_pr**(-i)
          call set_initial(Uvec0,3,123456,7778446,5213445)
-         call fwd_3D(Uvec0, fix_dt1, 1, stepper, i, arg_char)         
+         call fwd_3D(Uvec0, fix_dt1, 1, stepper, i)         
       end do
       call solvers_deallocate()
    end if

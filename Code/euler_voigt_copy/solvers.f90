@@ -59,7 +59,7 @@ module solvers
   real(pr), dimension(1:3) :: E_component
   integer :: mm = 10 ! vorticity moments
   real(pr), dimension(:), allocatable :: Omega ! vorticity_moments
-
+  character(10) :: subpath
  
 
 CONTAINS
@@ -68,10 +68,13 @@ CONTAINS
   !
   ! allocate the variables needed for solver
   !=========================================================
-  SUBROUTINE solvers_allocate(stepper)
+  SUBROUTINE solvers_allocate(stepper, subpath_)
     use global_variables
     IMPLICIT NONE
     integer, intent(in) :: stepper
+    character(len=*), intent(in) :: subpath_
+    
+    subpath = subpath_
     if (.not. allocated(ff_temp1)) allocate(ff_temp1(1:n(1), 1:n(2), 1:local_N, 1:3))
     
     if (.not. allocated(temp1_solver)) allocate(temp1_solver(1:n(1), 1:n(2), 1:local_N, 1:3))
@@ -1227,7 +1230,7 @@ CONTAINS
   !  5: RK45
   !=================================================== 
   
-  SUBROUTINE fwd_3D(inifield,mydt,savesign,stepper,myindex,subpath)
+  SUBROUTINE fwd_3D(inifield,mydt,savesign,stepper,myindex)
   
     USE global_variables
     USE fftwfunction
@@ -1239,7 +1242,6 @@ CONTAINS
     REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: inifield
     REAL(pr), INTENT(IN) :: mydt
     integer, INTENT(IN) :: savesign, stepper, myindex
-    CHARACTER(len=*), INTENT(IN) :: subpath
 
     REAL(pr) ::  dt, time
     INTEGER :: Time_iter
@@ -1271,8 +1273,8 @@ CONTAINS
 
     
     IF (savesign == 1) THEN
-       file_spectrum = TRIM(scratch_pathname)//trim(subpath)//"/spectrum_fwd_"//trim(adjustl(indexchar))//".dat"
-       file_energy = TRIM(scratch_pathname)//trim(subpath)//"/energy_fwd_"//trim(adjustl(indexchar))//".dat"
+       file_spectrum = TRIM(scratch_pathname)//trim(subpath)//"spectrum_fwd_"//trim(adjustl(indexchar))//".dat"
+       file_energy = TRIM(scratch_pathname)//trim(subpath)//"energy_fwd_"//trim(adjustl(indexchar))//".dat"
       
 
        if (rank == 0) then
@@ -1296,11 +1298,11 @@ CONTAINS
        call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, Uvec, 3)
 
-       call save2binary2(Uvec,Time_iter, "fwdTE", subpath)
+       !!!call save2binary2(Uvec,Time_iter, "fwdTE", subpath)
   
        
 
-       call save_velocity(Uvec, Time_iter, subpath)
+       !!!call save_velocity(Uvec, Time_iter, subpath)
 
 !       if (parallel_data) then
 !          call save_velocity_cx(temp1_solver_cx, myindex)
@@ -1331,7 +1333,7 @@ CONTAINS
       
      
       
-       call save_vorticity(Wvec, Time_iter, subpath) 
+       !!!call save_vorticity(Wvec, Time_iter, subpath) 
        call calculate_total_energy(Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
        call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy)
 
@@ -1376,7 +1378,7 @@ CONTAINS
        
 
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-       IF (savesign == 1) THEN !  .and. MODULO(Time_iter,50)==0) THEN
+       IF (savesign == 1 .and. MODULO(Time_iter,32)==0) THEN
            
           
           !temp1_solver_cx = HatU
@@ -1388,7 +1390,7 @@ CONTAINS
           end if
 
           
-          call save2binary2(Uvec,Time_iter, "fwdTE", subpath)
+          !!!call save2binary2(Uvec,Time_iter, "fwdTE", subpath)
        
          
           
@@ -1397,7 +1399,6 @@ CONTAINS
           call save_spectrum(spectral_data, file_spectrum)
 
           call L2_grad(temp1_solver_cx, H1_norm)
-          
    
        
 
@@ -1446,7 +1447,7 @@ CONTAINS
   ! test the backward solver
   !===================================================
 
-  SUBROUTINE reverse_test(inifield,mydt,stepper,myindex,subpath)
+  SUBROUTINE reverse_test(inifield,mydt,stepper,myindex)
   
     USE global_variables
     USE fftwfunction
@@ -1458,7 +1459,6 @@ CONTAINS
     REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: inifield
     REAL(pr), INTENT(IN) :: mydt
     integer, INTENT(IN) :: stepper, myindex
-    character(len=*), INTENT(IN) :: subpath
 
     REAL(pr) ::  time
     integer :: nn
@@ -1471,11 +1471,11 @@ CONTAINS
 
     WRITE(indexchar, '(i4)') myindex
     
-    call fwd_3D(inifield, mydt, 1, stepper, myindex, subpath)
+    call fwd_3D(inifield, mydt, 1, stepper, myindex)
     
 
 
-    file_error = TRIM(scratch_pathname)//"reverse_error"//trim(adjustl(indexchar))//".dat"
+    file_error = TRIM(scratch_pathname)//TRIM(subpath)//"reverse_error"//trim(adjustl(indexchar))//".dat"
 
     if (rank == 0) then
        open(17, file = file_error, status = 'replace')
@@ -1487,7 +1487,7 @@ CONTAINS
     fwdindex = final_time_iter - reverse_iter
     
     adj_Uvec = Uvec
-    call read4binary2(fwdindex, fwd_field1, "fwdTE")
+    call read4binary2(fwdindex, fwd_field1, "fwdTE", subpath)
     temp1_solver = adj_Uvec - fwd_field1
     call L2_product(temp1_solver, temp1_solver, val1)
     call L2_product(fwd_field1, fwd_field1, val2)
@@ -1508,7 +1508,7 @@ CONTAINS
        reverse_iter =reverse_iter + 1
        fwdindex = final_time_iter - reverse_iter
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-       call read4binary2(fwdindex, fwd_field1, "fwdTE")
+       call read4binary2(fwdindex, fwd_field1, "fwdTE", subpath)
        temp1_solver = adj_Uvec - fwd_field1
        call L2_product(temp1_solver, temp1_solver, val1)
        call L2_product(fwd_field1, fwd_field1, val2)
@@ -1943,6 +1943,7 @@ CONTAINS
     REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(INOUT) :: inifield
     REAL(pr), INTENT(IN) :: mydt
     integer, INTENT(IN) :: savesign, stepper, myindex
+
     REAL(pr) ::  dt, time
     INTEGER :: adj_Time_iter, fwdindex
     integer :: nn
@@ -1964,8 +1965,8 @@ CONTAINS
     adj_Uvec = inifield
     
     IF (savesign == 1) THEN
-       file_spectrum = TRIM(scratch_pathname)//"spectrum_bkd_"//trim(adjustl(indexchar))//".dat"
-       file_energy = TRIM(scratch_pathname)//"energy_bkd_"//trim(adjustl(indexchar))//".dat"
+       file_spectrum = TRIM(scratch_pathname)//TRIM(subpath)//"spectrum_bkd_"//trim(adjustl(indexchar))//".dat"
+       file_energy = TRIM(scratch_pathname)//TRIM(subpath)//"energy_bkd_"//trim(adjustl(indexchar))//".dat"
     
 
        if (rank == 0) then
@@ -2031,8 +2032,8 @@ CONTAINS
        if (parallel_data) then
           fwdindex      = final_time_iter - adj_Time_iter
           fwd_Field1 = fwd_Field2
-          call read4binary2(fwdindex, fwd_Field1, "fwdTE")
-          call read4binary2(fwdindex-1, fwd_Field2, "fwdTE")
+          call read4binary2(fwdindex, fwd_Field1, "fwdTE", subpath)
+          call read4binary2(fwdindex-1, fwd_Field2, "fwdTE", subpath)
 
           ! evolve the euler equation backwards
           !fwd_Field1 = fwd_Field2
@@ -2043,8 +2044,8 @@ CONTAINS
         
        else
           fwdindex      = final_time_iter - adj_Time_iter
-          call read4binary2(fwdindex, fwd_Field1, "fwdTE")
-          call read4binary2(fwdindex-1, fwd_Field2, "fwdTE")
+          call read4binary2(fwdindex, fwd_Field1, "fwdTE", subpath)
+          call read4binary2(fwdindex-1, fwd_Field2, "fwdTE", subpath)
        end if
        
        ! time stepper       
@@ -2135,7 +2136,7 @@ CONTAINS
   !  4: RK5
   !=================================================== 
   
-  SUBROUTINE kappa_test(inifield,direction,mydt,savesign,stepper,myindex,subpath)
+  SUBROUTINE kappa_test(inifield,direction,mydt,savesign,stepper,myindex)
   
     USE global_variables
     USE fftwfunction
@@ -2148,7 +2149,6 @@ CONTAINS
     REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(INOUT) :: direction
     REAL(pr), INTENT(IN) :: mydt
     integer, INTENT(IN) :: savesign, stepper, myindex
-    CHARACTER(len=*), INTENT(IN) :: subpath
 
     character(4) :: indexchar
     character(200) :: file_error
@@ -2159,7 +2159,7 @@ CONTAINS
 
     WRITE(indexchar, '(i4)') myindex
     
-    file_error = TRIM(scratch_pathname)//"kappa_test_error"//trim(adjustl(indexchar))//".dat"
+    file_error = TRIM(scratch_pathname)//TRIM(subpath)//"kappa_test_error"//trim(adjustl(indexchar))//".dat"
 
     
     call set_initial(inifield,2,5346689, 123455, 662341)
@@ -2178,7 +2178,7 @@ CONTAINS
     
     
     
-    call fwd_3D(inifield, mydt, savesign, stepper,myindex,subpath)
+    call fwd_3D(inifield, mydt, savesign, stepper,myindex)
     call fftfwd_m(Uvec, temp1_solver_cx, 3)
     call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 1.0_pr)
     call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, val)
@@ -2207,7 +2207,7 @@ CONTAINS
        inifield = inifield + epsilon*direction
        
        
-       call fwd_3D(inifield, mydt, savesign, stepper, myindex, subpath)
+       call fwd_3D(inifield, mydt, savesign, stepper, myindex)
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 1.0_pr)
        call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, val1)

@@ -29,25 +29,27 @@ MODULE optimization
   real(pr), dimension(:,:,:,:), allocatable :: gradPHI_backup, gradPHI_pre_backup
   real(pr), dimension(:,:,:,:), allocatable :: gradPHI_backup_2, gradPHI_pre_backup_2
   real(pr), dimension(:,:,:,:), allocatable :: d_opt, d1_opt
-  
+  character(10) :: subpath
+
 CONTAINS
 !=======================================
 ! SUBROUTINE optimization_allocate(norm_const_, sigma_, stepper_)
 ! allocation    
 !=======================================
   
-  SUBROUTINE optimization_allocate(norm_constr_,l_, s_, sigma_, stepper_)
+  SUBROUTINE optimization_allocate(norm_constr_,l_, s_, sigma_, stepper_, subpath_)
     implicit none
     real(pr), intent(in) :: norm_constr_
     real(pr), intent(in) :: l_, s_, sigma_
     integer, intent(in) :: stepper_
-    
+    character(len=*), intent(in) :: subpath_
 
     norm_constr = norm_constr_
     l = l_
     s = s_
     sigma = sigma_
     stepper_opt = stepper_
+    subpath = subpath_
     if (.not. allocated(gradJ_opt)) allocate(gradJ_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(gradJ_pre_opt)) allocate(gradJ_pre_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(gradPHI_opt)) allocate(gradPHI_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
@@ -89,7 +91,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 !=======================================
 ! maximize the cost function
 !=======================================
-  SUBROUTINE maximization(tau_brack, subpath)
+  SUBROUTINE maximization(tau_brack)
     USE global_variables
     use fftwfunction
     USE data_ops
@@ -103,7 +105,6 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
     character(200) :: file_cost, file_grad
     INTEGER :: iter, mnbrak_flag, FixConstr_flag , i
     real(pr), dimension(1:3), intent(inout) :: tau_brack
-    character(len=*), intent(in) :: subpath
     real(pr) :: val1, val2
     real(pr) :: norm2_grad
 
@@ -113,10 +114,10 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 !- Initialize; Start iteration;
 !======================================================
     if (rank == 0) then
-       file_cost = TRIM(scratch_pathname)//TRIM(subpath)//"/maximization_cost"//".dat"
+       file_cost = TRIM(scratch_pathname)//TRIM(subpath)//"maximization_cost"//".dat"
        OPEN(3, FILE = file_cost, STATUS = 'REPLACE')
        close(3)
-       file_grad = TRIM(scratch_pathname)//TRIM(subpath)//"/maximization_grad"//".dat"
+       file_grad = TRIM(scratch_pathname)//TRIM(subpath)//"maximization_grad"//".dat"
        OPEN(4, FILE = file_grad, STATUS = 'REPLACE')
        close(4)
     end if
@@ -132,7 +133,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
        print *, "eval_J; main_iter =", iter
     end if
 
-    PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1, subpath)
+    PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1)
 
     if (rank == 0) then
        open(3, file = file_cost, status = 'old', position = 'append')
@@ -170,7 +171,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
        if (rank==0) then
           print *, "Start mnbrak; main_iter =", iter
        end if
-       tau_brack = mnbrak(Uvec0, gradPHI_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter, subpath)
+       tau_brack = mnbrak(Uvec0, gradPHI_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)
        IF (mnbrak_flag /= 0) THEN
           if (rank ==0) then
              print *, "mnbrack iteration beyond maximum, the maxdEdt stops iterating ... " , mnbrak_flag
@@ -182,7 +183,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
        if (rank==0) then
           print *, "Start brent; main_iter =", iter
        end if
-       tau = brent(iter, "maxET", Uvec0, gradPHI_opt, tau_brack, subpath)
+       tau = brent(iter, "maxET", Uvec0, gradPHI_opt, tau_brack)
        tau_brack(1) = 0.0_pr
        tau_brack(2) = 2.0_pr*tau
        IF (tau == TAU_MAX) THEN
@@ -203,7 +204,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
           print *, "eval_PHI; main_iter =", iter
        end if
 
-       PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1, subpath)
+       PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1)
 
 
 
@@ -242,7 +243,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 !=======================================
 ! maximize the cost function using RCG
 !=======================================
-  SUBROUTINE maximization_RCG(tau_brack, subpath)
+  SUBROUTINE maximization_RCG(tau_brack)
     USE global_variables
     use fftwfunction
     USE databinary_handle
@@ -257,7 +258,6 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
     character(200) :: file_cost, file_grad
     INTEGER :: iter, mnbrak_flag, FixConstr_flag , i
     real(pr), dimension(1:3), intent(inout) :: tau_brack
-    character(len=*), intent(in) :: subpath
 
     real(pr) :: norm2_grad, norm2_grad_pre
     real(pr) :: val1, val2, val3, beta
@@ -274,10 +274,10 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 !- Initialize; Start iteration;
 !======================================================
     if (rank == 0) then
-       file_cost = TRIM(scratch_pathname)//TRIM(subpath)//"/maximization_cost"//".dat"
+       file_cost = TRIM(scratch_pathname)//TRIM(subpath)//"maximization_cost"//".dat"
        OPEN(3, FILE = file_cost, STATUS = 'REPLACE')
        close(3)
-       file_grad = TRIM(scratch_pathname)//TRIM(subpath)//"/maximization_grad"//".dat"
+       file_grad = TRIM(scratch_pathname)//TRIM(subpath)//"maximization_grad"//".dat"
        OPEN(4, FILE = file_grad, STATUS = 'REPLACE')
        close(4)
     end if
@@ -297,9 +297,9 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
        print *, "eval_PHI; main_iter =", iter
     end if
 
-    PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1, subpath)
+    PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1)
     if (0) then
-       call read4binary2(iter+1, Uvec, "fwdTE")
+       call read4binary2(iter+1, Uvec, "fwdTE", subpath)
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
        call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, PHI1)
@@ -351,12 +351,12 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
           call save2binary2(Uvec, iter, "fwdTE", subpath)
           exit
        else if (0) then
-          call read4binary2(iter, Uvec, "fwdTE")
+          call read4binary2(iter, Uvec, "fwdTE", subpath)
           call compute_gradPHI(Uvec0, fix_dt2, 1, gradJ_opt, iter)
           call save2binary2(gradJ_opt, iter+1, "fwdTE", subpath)
           exit
        else if (0) then
-          call read4binary2(iter+1, gradPHI_opt, "fwdTE")
+          call read4binary2(iter+1, gradPHI_opt, "fwdTE", subpath)
 
        end if
 
@@ -372,8 +372,8 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
           ! save intermediate results
           if (0) then
              ! norm2_grad_pre = 1.0_pr
-             call read4binary2(iter+2, gradPHI_pre_opt, "fwdTE")
-             call read4binary2(iter+3, d1_opt, "fwdTE")
+             call read4binary2(iter+2, gradPHI_pre_opt, "fwdTE", subpath)
+             call read4binary2(iter+3, d1_opt, "fwdTE", subpath)
              call projection_RCG(Uvec0, gradPHI_opt, gradPHI_pre_opt, d1_opt, d_opt, norm2_grad, norm2_grad_pre, beta, 2, restart_flag)
              call save2binary2(gradPHI_opt, iter+2, "fwdTE", subpath)
              call save2binary2(d1_opt, iter+3, "fwdTE", subpath)
@@ -404,7 +404,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
           print *, "Start mnbrak; main_iter =", iter
        end if
        call rescale_H1(Uvec0, val1)
-       tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter, subpath)
+       tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)
        IF (mnbrak_flag /= 0) THEN
           if (rank ==0) then
              print *, "mnbrack iteration beyond maximum, the maxdEdt stops iterating ... " , mnbrak_flag
@@ -416,7 +416,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
        if (rank==0) then
           print *, "Start brent; main_iter =", iter
        end if
-       tau = brent(iter, "maxET", Uvec0, d_opt, tau_brack, subpath)
+       tau = brent(iter, "maxET", Uvec0, d_opt, tau_brack)
        tau_brack(1) = 0.0_pr
        tau_brack(2) = 2.0_pr*tau
        IF (tau == TAU_MAX) THEN
@@ -439,7 +439,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
           print *, "eval_PHI; main_iter =", iter
        end if
 
-       PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1, subpath)
+       PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1)
        if (1) then
           call save2binary2(Uvec, iter, "fwdTE", subpath)
        end if
@@ -843,7 +843,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 ! USE:
 ! Uvec, temp1_solver_cx
 !=========================================================
-     FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag, evolve_flag, subpath) RESULT(PHI)
+     FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag, evolve_flag) RESULT(PHI)
        USE global_variables
        USE fftwfunction
        USE function_ops
@@ -853,7 +853,6 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), intent(inout) :: myfield
        REAL(pr), INTENT(IN) :: mydt
        integer, INTENT(IN) :: savesign, myiter, constr_flag, evolve_flag
-       character(len=*), intent(in) :: subpath
        real(pr) :: val
 
 
@@ -863,7 +862,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 
        if(constr_flag .ne. 0) call rescale_H1(myfield, val)
 
-       if(evolve_flag .ne. 0) call fwd_3D(myfield, mydt, savesign, stepper_opt, myiter, subpath)
+       if(evolve_flag .ne. 0) call fwd_3D(myfield, mydt, savesign, stepper_opt, myiter)
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call L2_grad(temp1_solver_cx,PHI)
 
@@ -980,7 +979,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 ! USE:
 ! Uvec, gradPHI_opt
 !==========================================================
-    SUBROUTINE report_PHI(myfield,tau_brack, count, mydt, iter, subpath)
+    SUBROUTINE report_PHI(myfield,tau_brack, count, mydt, iter)
       USE global_variables
       USE data_ops
       USE function_ops
@@ -993,7 +992,6 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       real(pr), intent(in) :: mydt
       character(200) :: file_name
       integer, intent(in) :: iter
-      character(len=*), intent(in) :: subpath
       Real(pr) :: A, B, tau, dtau, PHI, val
       integer :: i
       real(pr) :: norm2_grad
@@ -1006,13 +1004,13 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       WRITE(itertxt, '(i4)') iter
 
       if (rank == 0) then
-         file_name = TRIM(scratch_pathname)//TRIM(subpath)//"/report_cost_"//trim(adjustl(itertxt))//".dat"
+         file_name = TRIM(scratch_pathname)//TRIM(subpath)//"report_cost_"//trim(adjustl(itertxt))//".dat"
          OPEN(10, FILE = file_name, STATUS = 'REPLACE')
          close(10)
       end if
 
       PHI = 0.0_pr
-      PHI = compute_PHI_L2(myfield, mydt, 1, 1, 0, 1, subpath)
+      PHI = compute_PHI_L2(myfield, mydt, 1, 1, 0, 1)
       tau = 0.0_pr 
       gradPHI_opt = 0.0_pr
       
@@ -1027,7 +1025,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
          !PHI 4
          Uvec = myfield + tau*d_opt
          CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-         PHI = compute_PHI_L2(Uvec, fix_dt1, 0, i, 1, 1, subpath)
+         PHI = compute_PHI_L2(Uvec, fix_dt1, 0, i, 1, 1)
 
          if (rank == 0) then
             open(10, file = file_name, status = 'old', position = 'append')
@@ -1067,7 +1065,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       dtau = (B-A)/count
       
       if (rank == 0) then
-         file_name = TRIM(scratch_pathname)//"report_cost"//".dat"
+         file_name = TRIM(scratch_pathname)//TRIM(subpath)//"report_cost"//".dat"
          OPEN(10, FILE = file_name, STATUS = 'REPLACE')
          close(10)
       end if
@@ -1121,7 +1119,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 !
 ! Use: Uvec
 !================================================
-    FUNCTION mnbrak(myfield, gradPHI, tA0, tB0, myflag, myindex, subpath) RESULT (tau_brack)
+    FUNCTION mnbrak(myfield, gradPHI, tA0, tB0, myflag, myindex) RESULT (tau_brack)
       USE global_variables
       USE fftwfunction
       USE data_ops
@@ -1135,7 +1133,6 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       REAL(pr), INTENT(IN) :: tA0, tB0
       INTEGER, INTENT(INOUT) :: myflag
       INTEGER, INTENT(IN) :: myindex
-      character(len=*), intent(in) :: subpath
       REAL(pr), DIMENSION(1:3) :: tau_brack
       REAL(pr) :: aux, tP, FP, Pmax, R, Q
       REAL(pr) :: FA, FB, FC, tA, tB, tC
@@ -1153,7 +1150,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       
       REAL(pr), PARAMETER :: mnbrak_TOL = 1E-10  ! Mar 3, 2018
       WRITE(itertxt, '(i4)') myindex
-      filename1 = "./LOGFILES/"//TRIM(subpath)//"/maxET_brakbrent_OPT"//trim(adjustl(itertxt))//".dat"
+      filename1 = "./LOGFILES/"//TRIM(subpath)//"maxET_brakbrent_OPT"//trim(adjustl(itertxt))//".dat"
 
       saveLineMin = .TRUE.
 
@@ -1165,7 +1162,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       tB = MAX(tB0, MACH_EPSILON)
       
       Uvec = myfield + tA*gradPHI
-      FA = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1, subpath)
+      FA = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
       FA = -FA 
       !call fftfwd_m(Uvec, temp1_solver_cx, 3)
       !call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
@@ -1183,7 +1180,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       FuncEval = FuncEval+1
 
       Uvec = myfield + tB*gradPHI
-      FB = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1, subpath)
+      FB = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
       FB = -FB
       if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1192,7 +1189,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
          end if
       FuncEval = FuncEval+1
 
-      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "replace", myindex)
+      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "replace", myindex, subpath)
 
       DO WHILE ((FB > FA) .AND. (tB > MACH_EPSILON) .AND. (abs(FB-FA)/abs(FA) > mnbrak_TOL)) 
         tB = CGOLD*tB/10.0_pr
@@ -1200,7 +1197,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
          if (rank == 0 ) then
             print *, "      mnbrak; do while NO. 1 ... FuncEval =", FuncEval
          end if
-         FB = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1, subpath)
+         FB = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
          FB = -FB
          if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1208,7 +1205,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
             CLOSE(10)
          end if
          FuncEval = FuncEval+1
-         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "append", myindex)
+         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "append", myindex, subpath)
       END DO
 
       IF ((tB .LE. MACH_EPSILON) .OR. (abs(FB-FA)/abs(FA) .LE. mnbrak_TOL)) THEN
@@ -1218,7 +1215,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       
       tC = GOLD*tB
       Uvec = myfield + tC*gradPHI
-      FC = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1, subpath)
+      FC = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
       FC = -FC
       if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1226,7 +1223,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
             CLOSE(10)
          end if
       FuncEval = FuncEval+1
-      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "append", myindex)
+      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "append", myindex, subpath)
       DO WHILE (FB>=FC .AND. iter<ITMAX)
          if (rank == 0 ) then
             print *, "      mnbrak; do while NO. 2 ... mnbrak_iter =", iter
@@ -1243,7 +1240,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
                print *, "            mnbrak; do while NO. 2; case 1"
             end if
            Uvec = myfield + tP*gradPHI
-            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1, subpath)
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
             FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1269,7 +1266,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
             END IF
             tP = tC + GOLD*(tC-tB)
             Uvec = myfield + tP*gradPHI
-            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1, subpath)
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
             FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1281,7 +1278,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
                print *, "            mnbrak; do while NO. 2; case 2"
             end if
             Uvec = myfield + tP*gradPHI
-            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1, subpath)
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
             FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1296,7 +1293,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
                FC = FP
                tP = tC+GOLD*(tC-tB)
                Uvec = myfield + tP*gradPHI
-               FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1, subpath)
+               FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
                FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1310,7 +1307,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
             end if
             tP = Pmax
             Uvec = myfield + tP*gradPHI
-            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1, subpath)
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
             FP = -FP 
           if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1323,7 +1320,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
             end if
             tP = tC + GOLD*(tC-tB)
             Uvec = myfield + tP*gradPHI
-            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1, subpath)
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
             FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1337,7 +1334,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
          FA = FB
          FB = FC
          FC = FP        
-         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "append", myindex)
+         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "append", myindex, subpath)
 
         
       END DO
@@ -1379,7 +1376,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 ! USE: 
 ! Uvec
 !====================================================
-    FUNCTION brent(iteration, mysystem, myfield, gradPHI, tau_brack, subpath) RESULT (X)  
+    FUNCTION brent(iteration, mysystem, myfield, gradPHI, tau_brack) RESULT (X)  
       USE global_variables
       USE data_ops
       USE function_ops
@@ -1388,7 +1385,6 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       CHARACTER(len=*), INTENT(IN) :: mysystem
       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: myfield, gradPHI
       REAL(pr), DIMENSION(1:3), INTENT(IN) :: tau_brack
-      character(len=*), intent(in) :: subpath
 
       REAL(pr) :: X
       REAL(pr) :: X_old, FX_old                 ! Mar 3, 2018
@@ -1408,7 +1404,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       CHARACTER(100) :: filename, filename1 
       WRITE(E0txt, '(i2.2)') E0_index
       WRITE(itertxt, '(i4)') iteration
-      filename1 = "./LOGFILES"//TRIM(subpath)//"/maxET_brakbrent_OPT"//trim(adjustl(itertxt))//".dat"
+      filename1 = "./LOGFILES/"//TRIM(subpath)//"maxET_brakbrent_OPT"//trim(adjustl(itertxt))//".dat"
        
 
       D = 0.0_pr
@@ -1423,10 +1419,10 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       X = V 
       E = 0.0_pr
       Uvec = myfield + D*gradPHI
-      FX = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1, subpath)
+      FX = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1)
       FX = -FX
       if (rank==0) then
-         filename = "./LOGFILES"//TRIM(subpath)//"/maxET_brent_OPT"//trim(adjustl(itertxt))//".dat"
+         filename = "./LOGFILES/"//TRIM(subpath)//"maxET_brent_OPT"//trim(adjustl(itertxt))//".dat"
          OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'REPLACE')
          WRITE(10,*) "# Tau J" 
          WRITE(10, "(G20.12, G20.12)") D, -FX
@@ -1434,7 +1430,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
       end if
       
       Uvec = myfield + X*gradPHI
-      FX = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1, subpath)
+      FX = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1)
       FX = -FX
        if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
@@ -1505,7 +1501,7 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
          END IF
     
          Uvec = myfield + U*gradPHI
-         FU = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1, subpath)
+         FU = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1)
          FU = -FU
           if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
