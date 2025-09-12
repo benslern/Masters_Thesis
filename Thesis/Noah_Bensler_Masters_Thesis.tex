@@ -44,12 +44,18 @@
 \def\u{\boldsymbol u}
 \def\v{\boldsymbol v}
 \def\x{\boldsymbol x}
+\def\k{\boldsymbol k}
+\def\z{\boldsymbol z}
 \def\j{\boldsymbol j}
+\def\n{\boldsymbol n}
+\def\w{\boldsymbol w}
+\def\bx{\boldsymbol \xi}
+\def\bp{\boldsymbol \varphi}
 \def\ua{\boldsymbol u_\alpha}
 \def\upa{\boldsymbol u'_\alpha}
 \def\usa{\boldsymbol u^*_\alpha}
-\def\uhk{\hat{\boldsymbol u}_k}
-\def\uhpk{\hat{\boldsymbol u}'_k}
+\def\uhk{\hat{\boldsymbol u}_{\boldsymbol k}}
+\def\uhpk{\hat{\boldsymbol u}'_{\boldsymbol k}}
 \def\bn{\boldsymbol \nabla}
 \def\be{\boldsymbol \eta}
 \def\bea{\boldsymbol \eta_\alpha}
@@ -61,6 +67,8 @@
 \def\M{\mathcal{M}}
 \def\T{\mathcal{T}}
 \def\L{\mathcal{L}}
+\def\P{\mathbf{P}}
+\def\R{\mathbf{R}}
 
 \DeclareMathOperator*{\argmax}{argmax}
 
@@ -240,12 +248,12 @@ The formation of a singularity in a fluid flow given smooth initial conditions w
 The Euler-Voigt equations are an inviscid regularization of the Euler equations (\ref{eq:Euler}) which have been shown to be globally well-posed and so do not form singularities given smooth initial conditions \cite{cao_global_2006}. The Euler-Voigt equations on the torus $\Omega = \mathbb{T}_L^3 := [0,L]^3$ and time interval $[0,T]$ are defined as
 \begin{subequations}\label{eq:Euler:Voigt}
 \begin{align}
--\alpha^2\partial_t\Delta\ua + \partial_t \ua + \ua\cdot \bn\ua + \bn p &= 0 \qquad\text{ in } \Omega\times (0,T],\\
+-\alpha^2\partial_t\Delta\ua + \partial_t \ua + \ua\cdot \bn\ua + \bn p &= 0 \qquad\text{ in } \Omega\times (0,T],\\ 
 \bn \cdot \ua &= 0 \qquad\text{ in } \Omega\times (0,T],\\
 \ua(x,0) &= \bea.
 \end{align}
 \end{subequations}
-where $\ua$ is the velocity field of the Euler-Voigt flow. The $p$ and $\bn$ symbols have the same definitions as systems (\ref{eq:Navier:Stokes}) and (\ref{eq:Euler}). The regularization of the Euler-Voigt equations is accomplished with the addition of the term $-\alpha^2\partial_t \Delta \ua$ where $\alpha >0$ is the regularization parameter. This term is used to stabilize simulations without adding artificial viscosity, which would remove energy from the system \cite{larios_computational_2018}. The property of constant energy, known as the '$\alpha$-energy' can be used to test the validity of the simulations. The $\alpha$-energy is defined as
+where $\ua$ is the velocity field of the Euler-Voigt flow. The regularization of the Euler-Voigt equations is accomplished with the addition of the term $-\alpha^2\partial_t \Delta \ua$ where $\alpha >0$ is the regularization parameter. This term is used to stabilize simulations without adding artificial viscosity, which would remove energy from the system \cite{larios_computational_2018}. The property of constant energy, known as the '$\alpha$-energy' can be used to test the validity of the simulations. The $\alpha$-energy is defined as
 \begin{equation}\label{eq:alpha:Energy}
 E_\alpha(t):=\|\ua(t)\|_{L^2}^2 + \alpha^2\|\bn\ua(t)\|_{L^2}^2 = E_\alpha(0).
 \end{equation}
@@ -259,46 +267,47 @@ We study the Euler-Voigt equations because they are faster and let us explore th
 \subsection{Initial Conditions}
 The specific initial conditions that will be used in our simulations are described in section NUMBER. However, in order to formulate our optimization problem we must first describe the properties that each initial condition must have. Firstly, the pseudospectral methods used in this study require the functions to be smooth and real-analytic in order to have exponential convergence. A requirement of the Euler-Voigt equations is that the initial conditions are divergence free. Additionally, we assume without loss of generality that the initial conditions have a mean of zero. \textit{This is important because REASON.}
 \\~\\
-In order to identify initial conditions that satisfy these conditions, we consider analytic initial conditions that belong to the following Gevrey class
+In order to identify initial conditions that satisfy these criteria, we consider analytic initial conditions that belong to the following Gevrey class
 \begin{equation}\label{eq:Gevrey:Class}
-G^\sigma := \lb \v\in H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\sigma}^{1/2}<\infty \rb, s\geq 3, \sigma > 0,
+G^\sigma := \lb \v\in H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\sigma}^{1/2}<\infty \rb, \quad s\geq 3, \quad \sigma > 0.
 \end{equation}
-with the inner product
+We select the following inner product, expressed in both summation and integral form,
 \begin{subequations}\label{eq:Gevrey:def}
 \begin{align}
 \forall \v,\u \in G^\sigma, \quad \la \v,\u \ra_{G^\sigma} :=& \sum_{\j\in \ZZ^3} (1+|2\pi \j|^2)^se^{4\pi\sigma|\j|}\hat{\v}_{\j}\cdot \overline{\hat{\u}}_{\j} \\
-=& \int_{\TT^3}(1+|D|^2)^se^{2\sigma |D|}\v\cdot \u \, dx,
+=& \int_{\TT^3}(1+|D|^2)^se^{2\sigma |D|}\v\cdot \u \, d\x,
 \end{align}
 \end{subequations}
-where overbar denotes complex conjugation, whereas the operators $|D|$ and $e^{\sigma|D|}$ are defined via
+where hat denotes the Fourier coefficient, overbar denotes complex conjugation, and the operators $|D|$ and $e^{\sigma|D|}$ are defined via
 \begin{equation}\label{eq:D}
 \left[ \widehat{|D|\boldsymbol v} \right]_{\boldsymbol j} := 2\pi|\boldsymbol j|\boldsymbol{\hat{v}_j}, \qquad \left[ \widehat{e^{\sigma |D|}\boldsymbol v} \right]_{\boldsymbol j} := e^{2\pi|\boldsymbol j|}\boldsymbol{\hat{v}_j}.
 \end{equation}
-Since the initial conditions of (\ref{eq:Euler:Voigt}) need to be divergence free and the mean is an invariant of motion, we introduce the following subspace in which optimal initial conditions will be sought
+The parameter $\sigma$ determines the size of the Gevrey space
+\begin{equation}\label{eq:Gevrey:size}
+G^{\sigma_2} \subset G^{\sigma_1} \subset G^0 = H^s, \quad 0 < \sigma_1 < \sigma_2,
+\end{equation}
+which is proved in Appendix (\ref{app:Gevrey:size}). The value of $\sigma$ is chosen in section NUMBER. The initial conditions of (\ref{eq:Euler:Voigt}) must be divergence free in order to satisfy (\ref{eq:Euler:Voigt} (b)). Additionally, the mean of the velocity field is an invariant of motion for incompressible fluid flows. We assume without loss of generality that the mean of the velocity is zero. Therefore, we introduce the following subspace in which optimal initial conditions will be sought
 \begin{equation}
-V := \{\boldsymbol v \in G^\sigma : \boldsymbol \nabla \cdot \boldsymbol v = 0, \int_{\mathbb{T}^3}\boldsymbol v\, dx = 0\}.
+V := \{\boldsymbol v \in G^\sigma : \boldsymbol \nabla \cdot \boldsymbol v = 0, \quad \int_{\mathbb{T}^3}\boldsymbol v\, d\x = 0\}.
 \end{equation}
 Due to the time scaling property of the Euler-Voigt equations (\ref{eq:time:scaling}), we can restrict our discussion to initial conditions with unit $\dot{H}^1$ seminorm which belong to a closed manifold $\M_1\subset V$ defined as
 \begin{equation}
 \M_1 = \{\v \in V : \|\v\|_{\hdo} = 1 \}.
 \end{equation}
-The $\hdo$ seminorm is defined as
-\begin{equation}
-\|v\|_{\hdo} = (2\pi)^3\sum_{k\in\dot{\ZZ}^3}|k|^2|\uhk|^2
-\end{equation}
-where
-$$\dot{ZZ}^3 := \lb k\in \ZZ^3 : |k|\neq 0\rb.$$
+In order to select initial conditions within this manifold, we will first select initial conditions $\be\in V$ and then apply a retraction function (RETRACTION FUNCTION IN 2.3) to ensure it has a unit $\dot{H}^1$ seminorm.
+
+
 \subsection{Finite Time Blow-up Criteria}
 
-As previously mentioned, the behaviour of the Euler-Voigt equations as $\alpha\rightarrow 0^+$ can be used to to determine whether solutions of the Euler equations will develop a finite time singularity. This was proved in the following theorem from \cite{larios_computational_2018}.
+As previously mentioned, the behaviour of the Euler-Voigt equations as $\alpha$ approaches zero can be used to determine whether solutions of the Euler equations will develop a finite time singularity. This was proved by the following theorem from \cite{larios_computational_2018}.
 \begin{thm}\label{thm:Theorem:1.1}
-Let $\eta_\alpha\in H^s$,$s\geq 3$ with $\nabla \cdot \ea = 0$ and let $\u_\alpha$ be the corresponding unique solution of the Euler-Voigt equations. Suppose that there exists a time $T^*>0$ such that
+Let $\bea\in H^s$, $s\geq 3$ with $\bn \cdot \ea = 0$ and let $\ua$ be the corresponding unique solution of (\ref{eq:Euler:Voigt}). Suppose that there exists a time $T^*>0$ such that
 \begin{equation}
 \limsup_{\alpha \rightarrow 0^+} \left( \alpha \sup_{t\in[0,T^*]} \|\bn \ua(t)\|_{L^2}\right) > 0.
 \end{equation}
-Then the Euler equations with the initial condition $\be_\alpha$ must develop a singularity within the interval $[0,T^*]$.
+Then the Euler equations (\ref{eq:Euler}) with the initial condition $\be_\alpha$ must develop a singularity within the interval $[0,T^*]$.
 \end{thm}
-\noindent Theorem 5.1 in \cite{larios_higher-order_2010} states that
+\noindent Based on this theorem one could utilize the value $\|\bn\ua(t)\|_{L^2}$ to identify singularity formation, as is used in \cite{larios_computational_2018}. However, we modify the value slightly in order to simplify the calculation of the objective functional gradient, which will be shown in Section (\ref{sec:Gateaux Directional Differential}). We start with Theorem 5.1 in \cite{larios_higher-order_2010}
 \begin{thm}\label{thm:Theorem:1.2}
 Given initial data $\be,\bea \in H^s(\TT^3)$ for some $s\geq 3$, let $\u,\ua \in C([0,T],H^s(\TT^3))\cap C^1([0,T],H^{s-1}(\TT^3))$ be the corresponding solutions to (\ref{eq:Euler}) and (\ref{eq:Euler:Voigt}), respectively, where $0<T<T_{\text{max}}$ and $T_{\text{max}}$ is the maximal time for which a solution to (\ref{eq:Euler}) exists and is unique. For all $t\in[0,T]$, we have 
 \begin{equation}
@@ -307,7 +316,6 @@ Given initial data $\be,\bea \in H^s(\TT^3)$ for some $s\geq 3$, let $\u,\ua \in
 \end{aligned}
 \end{equation}
 \end{thm}
-
 \noindent Based on this theorem we know that if
 \begin{equation}
 \|\be-\bea\|_{L^2}^2+\alpha^2\|\bn(\be-\bea)\|_{L^2}^2 \rightarrow 0, \quad \text{as } \alpha\rightarrow 0,
@@ -316,15 +324,15 @@ then for all $t\in [0,T]$,
 \begin{equation}
 \|\u(t)-\ua(t)\|_{L^2}^2 + \alpha^2\|\bn(\u(t)-\ua(t))\|_{L^2}^2 \rightarrow 0.
 \end{equation}
-Finally, we slightly modify Theorem 5.2 in \cite{larios_higher-order_2010} as follows.
+Finally, we slightly modify Theorem 5.2 from \cite{larios_higher-order_2010} as follows.
 \begin{thm}\label{thm:Theorem:1.3}
 Given initial data $\be,\bea \in H^s(\TT^3)$ for some $s\geq 3$ satisfying
 \begin{equation}
-\|\be-\bea\|_{L^2}^2+\alpha^2\|\bn(\be-\bea)\|_{L^2}^2 \rightarrow 0, \quad \text{as} \alpha\rightarrow 0,
+\|\be-\bea\|_{L^2}^2+\alpha^2\|\bn(\be-\bea)\|_{L^2}^2 \rightarrow 0, \quad \text{as } \alpha\rightarrow 0,
 \end{equation} 
 let $\u,\ua \in C([0,T],H^s(\TT^3))\cap C^1([0,T],H^{s-1}(\TT^3))$ be the corresponding solutions to (\ref{eq:Euler}) and (\ref{eq:Euler:Voigt}), respectively. If there exists a finite time $T^*>0$ such that the solutions $\ua$ satisfies
 \begin{equation}
-\limsup_{\alpha^2 \rightarrow 0^+} \left( \alpha \sup_{t\in[0,T^*]} \|\bn \ua(t)\|_{L^2}^2\right) > 0,
+\limsup_{\alpha \rightarrow 0} \left( \alpha^2 \sup_{t\in[0,T^*]} \|\bn \ua(t)\|_{L^2}^2\right) > 0,
 \end{equation}
 then $\u$ develops a singularity in the interval $[0,T^*]$.
 \end{thm}
@@ -332,17 +340,17 @@ then $\u$ develops a singularity in the interval $[0,T^*]$.
 \begin{proof}
 Suppose that the solution $\u$ of the Euler equations (\ref{eq:Euler}) with the initial condition $\be$ is regular on $[0,T^*]$. Since the Euler-Voigt equations are globally well-posed, we have
 \begin{equation}
-\|\ua(t)\|_{L^2}^2 + \alpha^2\|\bn\ua(t)\|_{L^2}^2  = \|\bea\|_{L^2}^2+\alpha^2\|\bn(\bea)\|_{L^2}^2,
+\|\ua(t)\|_{L^2}^2 + \alpha^2\|\bn\ua(t)\|_{L^2}^2  = \|\bea\|_{L^2}^2+\alpha^2\|\bn\bea\|_{L^2}^2,
 \end{equation}
 thus
 \begin{equation}
-\alpha^2\|\bn\ua(t)\|_{L^2}^2  = \|\bea\|_{L^2}^2+\alpha^2\|\bn(\bea)\|_{L^2}^2 - \|\ua(t)\|_{L^2}^2.
+\alpha^2\|\bn\ua(t)\|_{L^2}^2  = \|\bea\|_{L^2}^2+\alpha^2\|\bn\bea\|_{L^2}^2 - \|\ua(t)\|_{L^2}^2.
 \end{equation}
 Taking the supremum over $t\in[0,T^*]$ of the above equation, we obtain that
 \begin{equation}
 \sup_{t\in[0,T^*]}\alpha^2\|\bn\ua(t)\|_{L^2}^2  = \|\bea\|_{L^2}^2+\alpha^2\|\bn(\bea)\|_{L^2}^2 - \inf_{t\in[0,T^*]} \|\ua(t)\|_{L^2}^2.
 \end{equation}
-Taking the limsup when $\alpha\rightarrow 0$ of the above equation, we obtain that
+Taking the limsup as $\alpha\rightarrow 0$, we obtain that
 \begin{equation}
 \limsup_{\alpha\rightarrow 0}\left(\sup_{t\in[0,T^*]}\alpha^2\|\bn\ua(t)\|_{L^2}^2\right)  = \limsup_{\alpha\rightarrow 0}\left(\|\bea\|_{L^2}^2+\alpha^2\|\bn(\bea)\|_{L^2}^2 - \inf_{t\in[0,T^*]} \|\ua(t)\|_{L^2}^2\right).
 \end{equation}
@@ -359,34 +367,34 @@ which contradicts the hypothesis in the theorem that the above expression is pos
 
 \section{The Optimization Problem}
 
-
 \subsection{Formulation of the Problem}
-With our initial conditions and blowup criteria defined, we can now define the objection function $\Phi_{\alpha,T}: V\rightarrow \RR^+$ as
+With our initial conditions and blowup criteria defined, we now define the objection function $\pat: V\rightarrow \RR^+$ as
 \begin{align}\label{eq:objective:functional}
-\pat(\be) := \|\nabla \ua(T;\be)\|_{L^2}^2 = \|\ua(T;\be)\|_{\hdo}^2,
+\pat(\be) := \|\nabla \ua(T;\bea)\|_{L^2}^2 = \|\ua(T;\bea)\|_{\hdo}^2,
 \end{align}
-where $\ua(T;\be)$ is the solution of the Euler-Voigt equations obtained with the initial condition $\be \in V$.
-We can now formulate our optimization problem. Given $\alpha, T\in\mathbb{R}_+$, find
+where $\ua(T;\bea)$ is the solution of the Euler-Voigt equations obtained at time $T$ with the initial condition $\bea\in V$ and regularization parameter $\alpha$. We can now formulate our optimization problem. Given $\alpha, T\in\mathbb{R}_+$, find
 \begin{align}
-\tilde{\be}_{\alpha,T} = \argmax_{\be \in M_1}\pat(\be).
+\tilde{\be}_{\alpha,T} = \argmax_{\bea \in M_1}\pat(\bea).
 \end{align}
-The objective function is maximized using an iterative relation
-\begin{align}\label{eq:iterative}
-\be_{\alpha,T}^{n+1} = \be_{\alpha,T}^n + \tau_n\nabla\Phi_T\left(\be_{\alpha,T}^n\right), \quad \be_{\alpha,T}^{(0)} = \be_{\alpha,0}, \quad n=0,1,...
-\end{align}
-where $\nabla \Phi_{T}$ is the gradient of the objective functional evaluated at the element $\eta_T^n$, $\tau_n$ is the step size along the gradient direction, and $\eta_0$ is the first initial condition. The solution to the problem is the limit as $n\rightarrow \infty$. Our goal is to first fix T and solve the optimization problem for a sequence of decrease values of $\alpha$ that converge to 0. 
-\subsection{G\^{a}teaux (Directional) Differential}
-We compute the gradient $\nabla\pat(\be)$ of the objection functional using an adjoint method which depends on solving a properly defined adjoint system backwards in time. We first introduce the G\^{a}teaux (directional) differential $\ppat(\be;\be'): V\times V \rightarrow \mathbb{R}$. The equation for the Gateaux differential is,
+The objective function is maximized using an iterative relation described in Section (\ref{sec:Riemannian Conjugate Gradient Method}). The solution to the problem is the value of $\be_{\alpha,T}^n$ as the iteration number $n\rightarrow \infty$. Our goal is to first fix $T$ and solve the optimization problem for a sequence of decrease values of $\alpha$ that converge to 0. 
+\\~\\
+\textit{If the initial condition causes a singularity to form in the time interval $[0,T]$, then $\pat({\tilde{\be}_{\alpha,T}})$ should diverge as $\alpha\rightarrow 0$.} 
+\subsection{G\^{a}teaux (Directional) Differential} \label{sec:Gateaux Directional Differential}
+The optimization problem is solved using an iterative relation which uses an optimal search direction and distance to create the next iteration's initial condition. We compute the optimal search direction using the gradient of the objection functional $\nabla\pat(\bea)$. This value is computed using an adjoint method which depends on solving a properly defined adjoint system backwards in time. We first introduce the G\^{a}teaux (directional) differential $\ppat(\bea;\bea'): V\times V \rightarrow \mathbb{R}$. The first order finite difference equation for the Gateaux differential is,
 \begin{align}\label{eq:Gateaux:differential}
-\ppat(\be;\be'):=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}\pat(\be+\epsilon\be')-\pat(\be)].
+\ppat(\bea;\bea'):=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}\left[\pat(\bea+\epsilon\bea')-\pat(\bea)\right].
 \end{align}
-Substituting the second definition of the objective functional (\ref{eq:objective:functional}) into the G\^{a}teaux differential, we derive the G\^{a}teaux differential in the form of the $\hdo$ inner product and the $L^2$ inner product,
+This can also be represented as an inner product on the Gevrey space using the Riesz representation theorem \cite{luenberger_optimization_nodate}
+\begin{equation}\label{eq:Gateaux:differential:riesz}
+\ppat(\bea;\bea') = \la \nabla\pat(\bea),\bea'\ra_{G^\sigma}.
+\end{equation}
+Substituting the second definition of the objective functional (\ref{eq:objective:functional}) into the finite difference form of the G\^{a}teaux differential, we derive the G\^{a}teaux differential in the form of the $\hdo$ inner product and the $L^2$ inner product,
 \begin{align}\label{eq:Gateaux:differential:inner:product}
 \ppat(\be;\be')=  2\la \ua(\cdot,T),\upa(\cdot,T)\ra_{\hdo} = 2\la \usa(\cdot,0),\upa(\cdot,0)\ra_{L^2}
 \end{align}
-The complete derivations for both forms are shown in Appendix \ref{app:gateaux}. In (\ref{eq:Gateaux:differential:inner:product}) the value $\upa$ is the solution of the linearization of the Euler-Voigt system (\ref{eq:Euler:Voigt}) around its solution $\ua$. The linearization of the Euler-Voigt system is defined as
-\begin{equation}\label{eq:Euler-Voigt:linearization}
-\begin{aligned}
+The complete derivations for both forms are shown in Appendix (\ref{app:gateaux}). In (\ref{eq:Gateaux:differential:inner:product}) the value $\upa$ is the solution of the linearization of the Euler-Voigt system (\ref{eq:Euler:Voigt}) around its solution $\ua$. The linearization of the Euler-Voigt system is defined as
+\begin{subequations}\label{eq:Euler-Voigt:linearization}
+\begin{align}
 \L\begin{bmatrix}
 \upa \\
 p'
@@ -398,26 +406,28 @@ p'
 0\\
 0
 \end{bmatrix}\\
-\upa(x,0) =& \be'
-\end{aligned}
-\end{equation}
-where $\be'$ and $p'$ are the perturbtionations of the initial condition and pressure, respectively. The value $\usa$ is the solution of the adjoint system
-\begin{equation}\label{eq:Euler-Voigt:adjoint}
-\begin{aligned}
+\upa(x,0) =& \bea'
+\end{align}
+\end{subequations}
+where $\bea'$ and $p'$ are the perturbations of the initial condition and pressure, respectively. The derivation of the linearized form of the Euler-Voigt equations is shown in Appendix (\ref{app:lin:euler}). The value $\usa$ in (\ref{eq:Gateaux:differential:inner:product}) is the solution of the adjoint system
+\small
+\begin{subequations}\label{eq:Euler-Voigt:adjoint}
+\begin{align}
 \L^*\begin{bmatrix}
 \usa\\
 p_{\alpha}^*
 \end{bmatrix} :=& \begin{bmatrix}
--\partial_t\usa-(\bn (I-\alpha^2)^{-1}\usa + (\bn (I-\alpha^2)^{-1}\usa)^T)\ua-\bn p_{\alpha}^*\\
+-\partial_t\usa-(\bn (I-\alpha^2)^{-1}\usa + (\bn (I-\alpha^2)^{-1}\usa)^{\intercal})\ua-\bn p_{\alpha}^*\\
 -\bn \cdot \usa
 \end{bmatrix} = \begin{bmatrix}
 0\\
 0
 \end{bmatrix}\\
-\usa(x,T) =& 2|D|^2\ua(\x.T),'
-\end{aligned}
-\end{equation}
-which is derived by performing integration by parts, in both space and time, on the following duality-pairing relation (\ref{app:adjoint})
+\usa(\x,T) =& 2|D|^2\ua(\x,T)
+\end{align}
+\end{subequations}
+\normalsize
+which is derived in Appendix (\ref{app:adjoint}) by performing integration by parts, in both space and time, on the following duality-pairing relation 
 \begin{equation}\label{eq:duality:pairing}
 \begin{aligned}
 \left(\L\begin{bmatrix}
@@ -432,41 +442,73 @@ p'
 \end{bmatrix}, \begin{bmatrix}
 \usa\\
 p^*
-\end{bmatrix} \,dx\,dt \\
+\end{bmatrix} \,d\x\,dt \\[3pt]
 =& \left( \begin{bmatrix}
 \upa\\
 p'
 \end{bmatrix},\L^*\begin{bmatrix}
 \usa\\
 p^*
-\end{bmatrix} \right) + \int_{\TT^3} \upa(\x,T)\cdot \usa(\x,T)\,dx \\ 
- - \int_{\TT^3}\be'(\x)\cdot \usa(\x,0) \,dx \\
-=& 0.
+\end{bmatrix} \right) + \int_{\TT^3} \upa(\x,T)\cdot \usa(\x,T)\,d\x \\[3pt]
+&- \int_{\TT^3}\be'(\x)\cdot \usa(\x,0) \,d\x \\
+=& \, 0.
 \end{aligned}
 \end{equation}
-
-Using the adjoint system we can now define the gradient. We take the G\^{a}teaux differential (\ref{eq:Gateaux:differential:inner:product}) and the Riesz representation form
+Using the adjoint system we can now define the gradient. We take the G\^{a}teaux differential in the form of the $L^2$ inner product  (\ref{eq:Gateaux:differential:inner:product}) and in the Riesz representation form (\ref{eq:Gateaux:differential:riesz})
 \begin{equation}
-\ppat(\be;\be') = 2\la \usa(\cdot,0),\upa(\cdot,0)\ra_{L^2} = \la \nabla\pat(\be),\be' \ra.
+\ppat(\bea;\bea') = 2\la \usa(\cdot,0),\upa(\cdot,0)\ra_{L^2} = \la \nabla\pat(\bea),\bea' \ra_{G^\sigma}.
 \end{equation}
 Expressing the $L^2$ inner product in its integral form,
-
+\begin{subequations}
 \begin{align}
-\la \nabla\pat(\be),\be' \ra &= \int_{\TT^3} \usa(x,0)\cdot \be'(x) \,dx \\
+\la \nabla\pat(\be),\be' \ra_{G^\sigma} &= \int_{\TT^3} \usa(x,0)\cdot \be'(x) \,dx \\
 &= \int_{\TT^3} (1+|D|^2)^3e^{2\sigma|D|}\left[(1+|D|^2)^{-3}e^{-2\sigma|D|}\usa(x,0)\right]\cdot \be'(x) \,dx \\
-\la (1+|D|^2)^{-3}e^{-2\sigma|D|} \usa(x,0),\be'(x) \ra_{G^\sigma}
+&= \la (1+|D|^2)^{-3}e^{-2\sigma|D|} \usa(x,0),\be'(x) \ra_{G^\sigma}
 \end{align}
+\end{subequations}
+This gives us the G\^{a}teaux differential in the form of the Gevrey inner product
+\begin{equation}
+\la \nabla\pat(\be),\be' \ra_{G^\sigma} = \la (1+|D|^2)^{-3}e^{-2\sigma|D|} \usa(x,0),\be'(x) \ra_{G^\sigma}.
+\end{equation}
 Therefore, the gradient of the objective functional is
-$$\nabla \pat(\be) = (1+|D|^2)^{-3}e^{-2\sigma|D|}\usa(x,0)$$
+\begin{equation}\label{eq:gradient}
+\nabla \pat(\bea) = (1+|D|^2)^{-3}e^{-2\sigma|D|}\usa(x,0)
+\end{equation}
  
-\subsection{Riemannian Conjugate Gradient Method}
+\subsection{Riemannian Conjugate Gradient Method}\label{sec:Riemannian Conjugate Gradient Method}
 
-The optimization looks for an initial condition $\be \in M_1$ that maximizes our objective functional. Therefore, not only must our first initial condition $\be^0_{\alpha,T}$ have a unit $\dot{H}^1$ seminorm, but so to must each following iteration $\be_{\alpha,T}^{n+1}$. This will not be true in general given the iterative relation (\ref{eq:iterative}). We ensure this constraint is upheld using a Riemannian conjugate gradient method modified from the method used in \cite{protas_systematic_2022}. This method has three steps: 
+The optimization solution looks for an initial condition $\bea \in M_1$ that maximizes our objective functional. Therefore, not only must our first initial condition $\be^0_{\alpha,T}$ have a unit $\hdo$ seminorm, but so to must each following iteration $\be_{\alpha,T}^{n+1}$. We ensure this constraint is upheld using a Riemannian conjugate gradient method modified from the method used in \cite{protas_systematic_2022} and \cite{danaila_computation_2017}. This method has three steps: 
 \begin{enumerate}
-  \item Project the gradient $\nabla\Phi_T(\be)$ onto the tangent space to $\M_1$ at $\be$
+  \item Project the gradient $\nabla\Phi_T(\bea)$ onto the tangent space to $\M_1$ at $\bea$
   \item Perform a suitable vector transport operation in order to construct a Riemannian conjugate ascent direction using the previous search direction
   \item Retract the resulting state back to the constraint manifold $\M_1$
 \end{enumerate}
+We first define the tangent space to $\M_1$ as
+$$\T_{\v}\M_1 = \lb \z\in V : \la \v,\z\ra_{\hdo}=0\rb.$$.
+For any $\z\in \T_{\v}\M_1$, this condition can be expressed as
+\begin{subequations}
+\begin{align}
+\la \v,\z\ra_{\hdo} &= \int_{\TT^3}|D|\v\cdot|D|\z d\x \\
+&= \int_{\TT^3} (1+|D|^2)^3e^{2\sigma|D|}\left((1+|D|^2)^{-3}e^{-2\sigma|D|}|D|^2\v\right)\cdot\z \,d\x \\
+&= \la (1+|D|^2)^{-3}e^{-2\sigma|D|}|D|^2\v,\z\ra_{G^\sigma} = 0.
+\end{align}
+\end{subequations}
+Thus, at each point $\v\in M_1$, the tangent space $\T_{\v},\M_1$ can be characterized using the unit 'normal' vector given by 
+\begin{equation}
+\n_{\v} = \frac{(1+|D|^2)^{-3}e^{-2\sigma|D|}|D|^2\v}{\|(1+|D|^2)^{-3}e^{-2\sigma|D|}|D|^2\v\|_{G^\sigma}}
+\end{equation}
+which allows us to construct the projection operator $\P_{\T_{\v}M_1}: V \rightarrow \T_{\v}\M_1$, 
+\begin{equation}
+\forall \w \in V, \quad \P_{\T_{\v}\M_1}\w = \w - \la \n_{\v}, \w \ra_{G^\sigma}\n_{\v}.
+\end{equation}
+As stated previously, the initial conditions at each iteration must have a unit $\hdo$. In order to ensure this we introduce the Retraction operator
+\begin{equation}
+\R(\v) = \frac{\v}{\|\v\|_{\hdo}}, \qquad \v\neq \boldsymbol 0.
+\end{equation}
+The Reimannian method uses the search direction of the $n$-th iteration to compute the search direction of the $(n+1)$-th iteration. This is done by a linear combination of the current direction and a 'momentum' term based on the previous iteration's search direction. However, the two search directions belong to different tangent spaces to $\M_1$ and thus cannot be directly added. In order to allow algebraic operations to be performed on the vectors of the two tangent spaces we introduce the vector transport operation
+$$\T\M_1 \oplus \T\M_1 \rightarrow \T\M_1: (\bp,\bx)\mapsto \Gamma_{\bp}(\bx)\in \T\M_1, $$
+where $\T\M_1 = \bigcup_{\v\in\M_1}\T_v\M_1$ is the tangent bundle on $\M_1$. The operation transports the vector field $\bx$ along the manifold $M_1$ in the direction of $\bp$ [CITATION]. This allows us to map search directions between the tangent spaces of two consecutive iterations.
+
 \section{Numerical Methods}
 \subsection{Spatial Discretization \& Spectral Methods}
 define the domain and mathematical tools used
@@ -475,16 +517,69 @@ define the domain and mathematical tools used
 what time stepping methods are there.
 which time stepping method will we use.
 
+\subsection{Spectrum Validation}
+
+USING SPECTRUM VALIDATE THE FUNCTION REMAINS SMOOTH AND REAL ANALYTIC.
+\\~\\
+The Energy vs wavenumber graph of the initial condition shown below demonstrates the exponential decay expected by a analytic function. As the solution evolves in time the rate of decay decreases due to aliasing. While this can be reduced by anti-aliasing techniques, it cannot be entirely prevented
+\\~\\
+Low resolution and small alpha simulations are especially vulnerable to aliasing errors and the solutions stop being analytic before the chosen timescale.
+\\~\\
+The chosen timescales, alphas, and resolutions are validated in the graphs below which show that the spectral decay remains exponential and thus the solutions remain analytic.
+
 \subsection{Kappa Test Validation}
 
-The Euler-voigt equations (\ref{eq:Euler:Voigt}) and adjoint system () are descritized in space using METHOD and time using METHOD. The kappa test is a means of validating these descritization methods based on the validation method of \cite{Adjoint-based enforcement of state constraints in PDE
-optimization problems}. We define the value $\kappa$ as
-\begin{equation}
-\kappa(\epsilon) = \frac{1}{\epsilon}\frac{\left[ \pat(\be+\epsilon\be)-\pat(\be) \right]}{\la \nabla\pat(\be),\be' \ra}
+The simulations are discretized in space using a psuedospectral method and time using a fourth order Runge Kutta method. The kappa test is a means of validating these discretization methods based on the validation method of \cite{matharu_adjoint_based_2024}. We define the value $\kappa$ as
+\begin{equation}\label{eq:kappa}
+\kappa(\epsilon) = \frac{\epsilon^{-1}\left[ \pat(\be+\epsilon\be')-\pat(\be) \right]}{\la \nabla\pat(\be),\be' \ra}
 \end{equation}
-where $\pat$ is the objective functional (\ref{eq:objective:functional}), $\be$ is the initial condition, and $\nabla\pat$ is the gradient of the objective functional (). The value $\eta$ is the 
+where $\pat$ is the objective functional (\ref{eq:objective:functional}), $\be$ is the initial condition, and $\nabla\pat$ is the gradient of the objective functional (\ref{eq:gradient}). The numerator is the first order finite difference approximation of the Gateaux differential. The denominator is the Reisz form of the differential that utilizes the adjoint system (\ref{eq:Euler-Voigt:adjoint}). If the numerical approximation methods are accurate, then we expect $\kappa\approx 1$.
+\\~\\
+A log-log plot of $|\kappa-1|$ vs $\epsilon$ can be broken up into three regions, each dominated by different error sources. These are the discretization errors, round off errors, and truncation errors. The round off errors are caused by finite precision numerical representation and so are approximately of order $O(\epsilon^{-1})$. Therefore, we expect the value of $\kappa$ to be dominated by round off errors for small $\epsilon$ values. The truncation errors are caused by using a first order finite difference formula to calculate the derivative. The truncation errors are of order $O(\epsilon)$. Therefore, we expect the value of $\kappa$ to be dominated by the truncation errors for large values of $\epsilon$. Between these two regions the value of $\kappa$ will be determined by the discretization errors in the numerical solutions, which are themselves a product of the spatial and temporal resolution. With smaller values of $\Delta x$ and $\Delta t$ causing the error to decrease. This will cause the value of $\log_{10}|kappa-1|$ to decrease as the resolution increases. Additionally, an increase in the resolution will decrease the range of $\epsilon$ over which the discretization errors dominate. Therefore, we expect the plot of $\kappa$ vs $\epsilon$ to be of the general form shown in the graph below. 
+\\~\\
+\begin{figure}[!htbp]
+\centering
+\includegraphics[scale=0.8]{"../KappaTest/KappaTheory.png"}
+\caption{Plot showing the expected $\kappa$ behaviour for different spatial and temporal resolution where $\delta$ represents a small arbitrary constant.}
+\end{figure}
 
+\noindent The following $\kappa$ test graphs were generated using a fixed spacial resolution of 128 and with varying temporal resolutions $\Delta t \in [2^{-4},2^{-12}]$. The initial conditions used are the 3D Taylor Green, 3D ABC, and 3D ABC Mixture, each with a random initial perturbation. The simulations were run for timescales of $T=1$ and $T=3$. The results are shown below.
+\\~\\
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{"../KappaTest/kappa_test_init1/t1_result.png"}
+\includegraphics[scale=0.4]{"../KappaTest/kappa_test_init1/t3_result.png"}
+\end{figure}
+
+\noindent The results from the 3D Taylor-Green $\kappa$ test show the expected behaviour from the theoretical kappa test graph. The value of kappa increases at very small and large values of epsilon. The value of kappa approaches 1 as $\Delta t$ decreases, and so the plateau region lowers and decreases in width. The T=1 time scale results follow very closely to the expected results while the T=3 time scale simulations show deviations from the the expected behaviour. These differences are due to the random initial direction of each simulation having more time to deviate from one another.
+\\~\\
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{"../KappaTest/kappa_test_init2/t1_result.png"}
+\includegraphics[scale=0.4]{"../KappaTest/kappa_test_init2/t3_result.png"}
+\end{figure}
+
+The kappa test results for the 3D ABC initial condition exhibit the same lowering of kappa as the time step decreases. However, unlike the Taylor Green initial condition, the results from the 3D ABC $\kappa$ test have little to no plateau region. This indicates that the 3D ABC initial condition simulations are much more sensitive to the round off and truncation errors.
+\\~\\
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{"../KappaTest/kappa_test_init3/t1_result.png"}
+\includegraphics[scale=0.4]{"../KappaTest/kappa_test_init3/t3_result.png"}
+\end{figure}
+
+The results from the 3D ABC Mixture $\kappa$ test show the same expected behaviour as the 3D Taylor Green kappa test.
+\\~\\
+The three kappa test results align well with the expected theoretical result. Therefore, we conclude that the discretization and time stepping techniques used in this analysis are valid and accurate.
+
+\pagebreak
+
+\subsection{Initial Conditions}\label{Inital Conditions}
+TEXT
 \section{Results}
+ALPHAS, RESOLUTIONS, DT, T, SIGMA, 
 \subsection{Results for $\boldsymbol{\alpha= }$value 1}
 TEXT
 \subsection{Results for $\boldsymbol{\alpha= }$value 2}
@@ -498,38 +593,38 @@ TEXT
 \section{Appendix}
 \subsection{Derivation of the Gateaux Directional Differential}\label{app:gateaux}
 
-The equation for the Gateaux differential (\ref{eq:Gateaux:differential}) is,
+The equation for the Gateaux differential (\ref{eq:Gateaux:differential}) is
 $$\ppat(\be;\be'):=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}[\pat(\be+\epsilon\be')-\pat(\be)].$$
 The objective functional (\ref{eq:objective:functional}) is defined as,
 $$\pat(\be):=\|\nabla \ua(T;\be)\|_{L^2}^2 = \|\ua(T;\be)\|_{\hdo}^2.$$
 Substituting the second definition of (\ref{eq:objective:functional}) into (\ref{eq:Gateaux:differential}),
 $$\ppat(\be;\be')=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}[\|\ua(T;\be+\epsilon\be')\|_{\hdo}^2-\|\ua(T;\be)\|_{\hdo}^2].$$
-The equation for the $\hdo$ seminorm is,
-$$\|u\|_{\hdo} = (2\pi)^3\sum_{k\in\ZZ^3}|k|^2|\uhk |^2.$$
-Substituting in the equation for the $\dot{H}^1$ seminorm,
+The equation for the $\hdo$ seminorm is
+$$\|u\|_{\hdo}^2 = (2\pi)^3\sum_{k\in\ZZ^3}|k|^2|\uhk |^2.$$
+Substituting in the equation for the $\dot{H}^1$ seminorm
 $$\ppat(\be;\be')=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}[(2\pi)^3\sum_{k\in\ZZ^3}|k|^2|\uhk +\epsilon\uhpk |^2-(2\pi)^3\sum_{k\in\ZZ^3}|k|^2|\uhk |^2].$$
-This simplifies to,
+This simplifies to
 $$\ppat(\be;\be')=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}[(2\pi)^3\sum_{k\in\ZZ^3}|k|^22\epsilon|\uhk\uhpk|+(2\pi)^3\sum_{k\in\ZZ^3}|k|^2\epsilon^2|\uhpk|^2].$$
-Taking the limit $\epsilon\rightarrow 0$,
+Taking the limit $\epsilon\rightarrow 0$
 $$\ppat(\be;\be')=2(2\pi)^3\sum_{k\in\ZZ^3}|k|^2|\uhk\uhpk|.$$
-This can be expressed in the integral form, 
+This can be expressed in the integral form 
 $$\ppat(\be;\be')=2\int_{\TT^3}\sum_{k\in\ZZ^3}|k|^2\uhk\uhpk e^{2ikx}dx.$$
-Which is equivalent to the inner product,
-$$\ppat(\be;\be')=2\la\sum_{k\in\ZZ^3}|k|\uhk e^{ikx},\sum_{k\in\ZZ^3}|k|\uhpk e^{ikx}\ra$$
-This gives us the Gateaux differential in the form of the $\hdo$ inner product,
-$$\ppat(\be;\be')=  2\la\ua(\cdot,T),\upa(\cdot,T)\ra_{\hdo}$$
+Which is equivalent to the inner product
+$$\ppat(\be;\be')=2\la\sum_{k\in\ZZ^3}|k|\uhk e^{ikx},\sum_{k\in\ZZ^3}|k|\uhpk e^{ikx}\ra_{L^2}.$$
+This gives us the Gateaux differential in the form of the $\hdo$ inner product
+$$\ppat(\be;\be')=  2\la\ua(\cdot,T),\upa(\cdot,T)\ra_{\hdo}.$$
 The integral form of the $\hdo$ inner product is
-$$\la \u, \v \ra_{\hdo} = \int_{\TT^3} |D|\u\cdot |D|\v dx.$$
-where D is the operator defined in (\ref{eq:D}). Therefore, the Gateaux differential can be expressed as
-$$\ppat(\be;\be')= 2\int_{\TT^3}|D|\ua(x,T)\cdot|D|\upa(x,T)dx,$$
+$$\la \u, \v \ra_{\hdo} = \int_{\TT^3} |D|\u\cdot |D|\v \, dx,$$
+where $|D|$ is the operator defined in (\ref{eq:D}). Therefore, the Gateaux differential can be expressed as
+$$\ppat(\be;\be')= 2\int_{\TT^3}|D|\ua(x,T)\cdot|D|\upa(x,T)\,dx,$$
 which can be rearranged to the form
-$$\ppat(\be;\be')= \int_{\TT^3}2|D|^2\ua(x,T)\cdot\upa(x,T)dx.$$
+$$\ppat(\be;\be')= \int_{\TT^3}2|D|^2\ua(x,T)\cdot\upa(x,T)\,dx.$$
 We now make use of the adjoint system terminal condition derived in Appendix (\ref{app:adjoint})
 $$\usa(x,T) = 2|D|^2\ua(x,T).$$
 Therefore
-$$\ppat(\be;\be') = \int_{\TT^3}\usa(x,T)\cdot\upa(x,T)dx.$$
+$$\ppat(\be;\be') = \int_{\TT^3}\usa(x,T)\cdot\upa(x,T)\,dx.$$
 Now using the duality-pairing defined in Appendix (\ref{app:adjoint})
-$$\ppat(\be;\be') = \int_{\TT^3}\be'(x)\cdot\usa(x,0)dx.$$
+$$\ppat(\be;\be') = \int_{\TT^3}\be'(x)\cdot\usa(x,0)\,dx.$$
 This is the inner product
 $$\ppat(\be;\be') = \la \usa(x,0), \be'(x)\ra_{L^2}.$$
 Therefore,
@@ -538,42 +633,43 @@ $$\ppat(\be;\be') = 2\la\ua(\cdot,T),\upa(\cdot,T)\ra_{\hdo} = \la \usa(x,0), \b
 \subsection{Linearization of the Euler-Voigt System}\label{app:lin:euler}
 Euler-Voigt Equations,
 \begin{equation}
+\notag
 \begin{cases}
-      -\alpha^2\partial_t\Delta u_\alpha + \partial_t u_\alpha + (u_\alpha\cdot\nabla)u_\alpha+\nabla p = 0\\
-      \nabla\cdot u_\alpha = 0\\
-      \left.u_\alpha\right\vert_{t=0} = \eta.\\
+      -\alpha^2\partial_t\Delta \ua + \partial_t \ua + (\ua\cdot\bn)\ua+\bn p = 0\\
+      \bn\cdot \ua = 0\\
+      \left.\ua\right\vert_{t=0} = \be.\\
     \end{cases}
 \end{equation}
-Substituting in $u_\alpha=u_\alpha+u_\alpha'$, $\eta=\eta+\eta'$, and $p=p+p'$,
+Substituting in $\ua=\ua+\ua'$, $\be=\be+\be'$, and $p=p+p'$,
 $$\begin{cases}
-      -\alpha^2\partial_t\Delta (u_\alpha+u_\alpha') + \partial_t (u_\alpha+u_\alpha') + ((u_\alpha+u_\alpha')\cdot\nabla)(u_\alpha+u_\alpha')+\nabla (p+p') = 0\\
-      \nabla\cdot (u_\alpha+u_\alpha') = 0\\
-      \left.(u_\alpha+u_\alpha')\right\vert_{t=0} = \eta+\eta'.\\
+      -\alpha^2\partial_t\Delta (\ua+\ua') + \partial_t (\ua+\ua') + ((\ua+\ua')\cdot\bn)(\ua+\ua')+\bn (p+p') = 0\\
+      \bn\cdot (\ua+\ua') = 0\\
+      \left.(\ua+\ua')\right\vert_{t=0} = \be+\be'.\\
     \end{cases}$$
-Expanding,
+Expanding
 $$\begin{cases}
-      -\alpha^2\partial_t\Delta u_\alpha-\alpha^2\partial_t\Delta u_\alpha' + \partial_t u_\alpha+\partial_tu_\alpha' + u_\alpha\cdot\nabla u_\alpha + u_\alpha\cdot\nabla u_\alpha' +u_\alpha'\cdot\nabla u_\alpha + u_\alpha'\cdot\nabla u_\alpha' +\nabla p+ \nabla p' = 0\\
-      \nabla\cdot (u_\alpha+u_\alpha') = 0\\
-      \left.(u_\alpha+u_\alpha')\right\vert_{t=0} = \eta+\eta'.\\
+      -\alpha^2\partial_t\Delta \ua-\alpha^2\partial_t\Delta \ua' + \partial_t \ua+\partial_t\ua' + \ua\cdot\bn \ua + \\ \ua\cdot\bn \ua' +\ua'\cdot\bn \ua + \ua'\cdot\bn \ua' +\bn p+ \bn p' = 0\\
+      \bn\cdot (\ua+\ua') = 0\\
+      \left.(\ua+\ua')\right\vert_{t=0} = \be+\be'.\\
     \end{cases}$$
-Substituting in the equations from (3),
+Substituting in the Euler-Voigt equations we simplify to
 $$\begin{cases}
-      -\alpha^2\partial_t\Delta u_\alpha' + \partial_tu_\alpha' + u_\alpha\cdot\nabla u_\alpha' +u_\alpha'\cdot\nabla u_\alpha + u_\alpha'\cdot\nabla u_\alpha' + \nabla p' = 0\\
-      \nabla\cdot u_\alpha' = 0\\
-      \left.u_\alpha'\right\vert_{t=0} = \eta'.\\
+      -\alpha^2\partial_t\Delta \ua' + \partial_t\ua' + \ua\cdot\bn \ua' +\ua'\cdot\bn \ua + \ua'\cdot\bn \ua' + \bn p' = 0\\
+      \bn\cdot \ua' = 0\\
+      \left.\ua'\right\vert_{t=0} = \be'.\\
     \end{cases}$$
-Linearizing the system by removing non-linear terms, we derive the Linearized system,
+Linearizing the system by removing non-linear terms, we derive the Linearized Euler-Voigt system
 $$\begin{cases}
-      -\alpha^2\partial_t\Delta u_\alpha' + \partial_tu_\alpha' + u_\alpha\cdot\nabla u_\alpha' +u_\alpha'\cdot\nabla u_\alpha + \nabla p' = 0\\
-      \nabla\cdot u_\alpha' = 0\\
-      \left.u_\alpha'\right\vert_{t=0} = \eta'.\\
+      -\alpha^2\partial_t\Delta \ua' + \partial_t\ua' + \ua\cdot\bn \ua' +\ua'\cdot\bn \ua + \bn p' = 0\\
+      \bn\cdot \ua' = 0\\
+      \left.\ua'\right\vert_{t=0} = \be'.\\
     \end{cases}$$
-This can be rearranged to the form,
+This can be rearranged to the form
 \begin{equation}
 \begin{cases}
-      \partial_t u_\alpha'+(I-\alpha^2\Delta)^{-1}(u_\alpha\cdot\nabla u_\alpha'+u_\alpha'\cdot\nabla u_\alpha+\nabla p')=0\\
-      \nabla\cdot u_\alpha' = 0\\
-      \left.u_\alpha'\right\vert_{t=0} = \eta'.\\
+      \partial_t \ua'+(I-\alpha^2\Delta)^{-1}(\ua\cdot\bn \ua'+\ua'\cdot\bn \ua+\bn p')=0\\
+      \bn\cdot \ua' = 0\\
+      \left.\ua'\right\vert_{t=0} = \be'.\\
     \end{cases}
 \end{equation}
 
@@ -653,6 +749,33 @@ $$ = 2\int_{\TT^3}|D|u(x,T)\u'(x,T) dx$$
 $$ = \int_{\TT^3}2|D|^2u(x,T)\u'(x,T)dx$$
 Therefore,
 $$\u^*(x,T) = 2|D|^2u(x,T)$$
+
+\subsection{Proof of (\ref{eq:Gevrey:size})}\label{app:Gevrey:size}
+
+\begin{proof}
+The definition of the Gevrey class (\ref{eq:Gevrey:Class}) is
+$$
+G^\sigma := \lb \v\in H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\sigma}^{1/2}<\infty \rb, \quad s\geq 3, \quad \sigma > 0.
+$$
+The definition of the inner product is
+$$\forall \v,\u \in G^\sigma, \quad \la \v,\u \ra_{G^\sigma} := \int_{\TT^3}(1+|D|^2)^se^{2\sigma |D|}\v\cdot \u \, d\x.$$
+Let $\sigma_1, \sigma_2$ be defined such that
+$$0 < \sigma_1 < \sigma_2.$$
+Therefore,
+\begin{align}
+\notag
+\|\v\|_{G^{\sigma_2}} &=\left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D|}\v\cdot \v \, d\x\right]^{1/2}\\
+\notag
+&> \left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2 \sigma_1 |D|}\v\cdot \v \, d\x\right]^{1/2} \\
+\notag
+&> \left[ \int_{\TT^3}(1+|D|^2)^{s}e^{0}\v\cdot \v \, d\x\right]^{1/2} = \|\v\|_{H^s}
+\end{align}
+Thus
+$$\|\v\|_{G^{\sigma_2}} > \|\v\|_{G^{\sigma_1}} > \|\v\|_{G^{0}}.$$
+It follows from this that if $\|\v\|_{G^{\sigma_2}} < \infty$ then $\|\v\|_{G^{\sigma_1}} < \infty$ and if $\|\v\|_{G^{\sigma_1}} < \infty$ then $\|\v\|_{G^{0}} < \infty$. Therefore, 
+$$G^{\sigma_2} \subset G^{\sigma_1} \subset G^0 = H^s$$
+\end{proof}
+
 
 \bibliographystyle{plain}
 \bibliography{references}

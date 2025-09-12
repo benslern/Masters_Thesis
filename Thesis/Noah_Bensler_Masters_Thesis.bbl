@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{cao_global_2006}
 Yanping Cao, Evelyn~M. Lunasin, and Edriss~S. Titi.
@@ -13,6 +13,14 @@ Hyuntae Cho, Yesom Park, and Myungjoo Kang.
 \newblock Solving incompressible {Navier}–{Stokes} equations on irregular
   domains and quadtrees by monolithic approach.
 \newblock {\em Journal of Computational Physics}, 463:111304, August 2022.
+
+\bibitem{danaila_computation_2017}
+Ionut Danaila and Bartosz Protas.
+\newblock Computation of {Ground} {States} of the {Gross}-{Pitaevskii}
+  {Functional} via {Riemannian} {Optimization}.
+\newblock {\em SIAM Journal on Scientific Computing}, 39(6):B1102--B1129,
+  January 2017.
+\newblock arXiv:1703.07693 [math].
 
 \bibitem{doering_3d_2009}
 Charles~R. Doering.
@@ -31,9 +39,20 @@ Adam Larios, Mark~R. Petersen, Edriss~S. Titi, and Beth Wingate.
 \bibitem{larios_higher-order_2010}
 Adam Larios and Edriss~S. Titi.
 \newblock On the {Higher}-{Order} {Global} {Regularity} of the {Inviscid}
-  {Voigt}-{Regularization} of {Three}-{Dimensional} {Hydrodynamic} {Models}.
-\newblock February 2010.
+  {Voigt}-{Regularization} of {Three}-{Dimensional} {Hydrodynamic} {Models},
+  February 2010.
 \newblock arXiv:0910.3354 [math].
+
+\bibitem{luenberger_optimization_nodate}
+David~G. Luenberger.
+\newblock {\em Optimization by {Vector} {Space} {Methods}}.
+
+\bibitem{matharu_adjoint_based_2024}
+Pritpal Matharu and Bartosz Protas.
+\newblock Adjoint-{Based} {Enforcement} of {State} {Constraints} in {PDE}
+  {Optimization} {Problems}.
+\newblock {\em Journal of Computational Physics}, 517:113298, November 2024.
+\newblock arXiv:2312.01929 [math].
 
 \bibitem{moffatt_singularities_2019}
 H.~K. Moffatt.
