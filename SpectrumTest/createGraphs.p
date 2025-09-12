@@ -28,6 +28,7 @@ do for [k=3:5] {
     set xlabel "Time"
     set ylabel "Phi"
     set grid
+    set xrange [0:25]
     plot "alpha_".alpha."_256/resol_".(2**i)."/energy_fwd_".alpha.".dat" u 1:6 w l title "resol: ".(2**i)
   }
 }
