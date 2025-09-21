@@ -292,7 +292,8 @@ CONTAINS
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
        call fftfwd_m(inifield, temp1_solver_cx, 3)
        call div_free_fourier(temp1_solver_cx)
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, inifield,3)
 
     case (3)
@@ -316,7 +317,8 @@ CONTAINS
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
        call fftfwd_m(inifield, temp1_solver_cx, 3)
        call div_free_fourier(temp1_solver_cx)
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, inifield,3)
 
     case(4)
@@ -337,7 +339,8 @@ CONTAINS
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
        call fftfwd_m(inifield, temp1_solver_cx, 3)
        call div_free_fourier(temp1_solver_cx)
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, inifield,3)
 
     case(5)
@@ -361,7 +364,8 @@ CONTAINS
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo) 
        call fftfwd_m(inifield, temp1_solver_cx, 3)
        call div_free_fourier(temp1_solver_cx)
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, inifield,3)
 
     case(6)
@@ -507,7 +511,8 @@ CONTAINS
 
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
        call div_free_fourier(temp1_solver_cx)
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, inifield,3)
 
        deallocate(random1)
@@ -594,7 +599,8 @@ CONTAINS
           end do
           call vort2vel_fourier(temp1_solver_cx, temp2_solver_cx)
           call div_free_fourier(temp2_solver_cx)
-          call dealiasing_fourier_m(temp2_solver_cx, 3)
+          call dealiasing_cutoff_m(temp2_solver_cx, 3)
+          !call dealiasing_fourier_m(temp2_solver_cx, 3)
           call fftbwd_m(temp2_solver_cx, inifield,3)
 
        case (8)
@@ -652,7 +658,8 @@ CONTAINS
              end do
           end do
           call div_free_fourier(temp1_solver_cx)
-          call dealiasing_fourier_m(temp1_solver_cx, 3)
+          call dealiasing_cutoff_m(temp1_solver_cx, 3)
+          !call dealiasing_fourier_m(temp1_solver_cx, 3)
           call fftbwd_m(temp1_solver_cx, inifield,3)
 
           
@@ -831,7 +838,8 @@ CONTAINS
     
        
        call div_free_fourier(temp1_solver_cx);
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
 
     
        call fftbwd_m(temp1_solver_cx, Umid, 3)
@@ -845,8 +853,8 @@ CONTAINS
        
        call div_free_fourier(temp1_solver_cx);
    
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
-       !call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
     
        call fftbwd_m(temp1_solver_cx,U,3)
     else if (mod(iter_count+1, 2) == 1) then
@@ -858,8 +866,8 @@ CONTAINS
        
        
        call div_free_fourier(temp1_solver_cx);
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
-       !call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
     
     
        call fftbwd_m(temp1_solver_cx, Umid,3)
@@ -902,7 +910,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
 
 
@@ -952,7 +961,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
     
      
@@ -1018,7 +1028,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
     
      
@@ -1116,8 +1127,8 @@ CONTAINS
           
           
           call div_free_fourier(temp1_solver_cx);
-          call dealiasing_fourier_m(temp1_solver_cx, 3)
-          
+          !call dealiasing_fourier_m(temp1_solver_cx, 3)
+          call dealiasing_cutoff_m(temp1_solver_cx, 3)
           
           call fftbwd_m(temp1_solver_cx, U,3)
           if (rank == 0) then
@@ -1211,7 +1222,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
     
      
@@ -1295,7 +1307,8 @@ CONTAINS
        ! temp1_solver_cx = HatU
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call div_free_fourier(temp1_solver_cx)
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, Uvec, 3)
 
        !!!call save2binary2(Uvec,Time_iter, "fwdTE", subpath)
@@ -1674,8 +1687,8 @@ CONTAINS
     
        
        call div_free_fourier(temp1_solver_cx);
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
-       !call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
     
        call fftbwd_m(temp1_solver_cx, Umid, 3)
     else if (mod(iter_count+1, 2) == 0) then
@@ -1688,8 +1701,8 @@ CONTAINS
        
        call div_free_fourier(temp1_solver_cx);
    
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
-       !call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
     
        call fftbwd_m(temp1_solver_cx,U,3)
     else if (mod(iter_count+1, 2) == 1) then
@@ -1701,8 +1714,8 @@ CONTAINS
        
        
        call div_free_fourier(temp1_solver_cx);
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
-       !call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
     
     
        call fftbwd_m(temp1_solver_cx, Umid,3)
@@ -1748,7 +1761,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
 
 
@@ -1801,7 +1815,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
     
      
@@ -1873,7 +1888,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
 
     
@@ -1913,8 +1929,9 @@ CONTAINS
 
  
     !call div_free_fourier(temp1_solver_cx)
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
-
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
+    
     call fftbwd_m(temp1_solver_cx, inifield,3)
     
     END SUBROUTINE adj_initialize

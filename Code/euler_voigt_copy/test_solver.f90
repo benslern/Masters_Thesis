@@ -351,10 +351,10 @@ PROGRAM EULER_VOIGT
    !=======================================================
    if (1) then
       ! Set Constants
-      endTime = 25.0_pr
+      endTime = 1500.0_pr
       stepper = 3
       visc = 0.0_pr
-      alpha = (2.0_pr**(arg))/256.0_pr
+      alpha = (2.0_pr**(arg-1))/256.0_pr
       fix_dt1 = 2.0_pr**(-5)
 
       ! Allocate

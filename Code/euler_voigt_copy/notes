@@ -30,6 +30,8 @@ check the status of the job:
 
 scontrol show job -dd
 
-
+To clear output files from /scratch/noahb/Research
+find . -name "*.log" -type f -delete
+find . -name "*.dat" -type f -delete
 
 

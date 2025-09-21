@@ -96,6 +96,12 @@ SUBROUTINE initialize
 
   kkmax = ceiling(sqrt(real(n(1),pr)**2/4_pr+real(n(2),pr)**2/4_pr+real(n(3),pr)**2/4_pr)) 
 
+  !IF (rank==0) THEN
+  !   OPEN(10, FILE="./LOGFILES/test", STATUS="REPLACE")
+  !   write(10, *) kkmax, Kcut, n(1), n(2), n(3), n(1)/3.0_pr*2.0_pr*PI
+  !   close(10)
+  !END IF
+
   ! Unused Flags
   !kappaTest = .FALSE.
   !toDealias = .TRUE.
