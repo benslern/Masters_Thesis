@@ -1,14 +1,14 @@
 getValue(row,col,filename) = system('awk ''{if (NR == '.row.') print $'.col.'}'' '.filename.'')
 
 
-do for [k=0:2] {
-  do for [i=7:7] {
+do for [k=0:5] {
+  do for [i=8:8] {
     alpha=2**k
 
     reset
     set terminal png size 640,384
     set output 'alpha_'.alpha.'_256/resol_'.(2**i).'/spectrum_plot.png'
-    set title "Spectrum - alpha=".alpha."/256, dt=2^{-9}, RESOL=".(2**i)
+    set title "Spectrum - alpha=".alpha."/256, dt=2^{-13}, RESOL=".(2**i)
     unset key
     set logscale y
     set yrange [1E-70:1]
@@ -21,12 +21,12 @@ do for [k=0:2] {
       scale = 887
     }
     set arrow from scale*2*pi*2/3, graph 0 to scale*2*pi*2/3, graph 1 nohead lc rgb "red" lw 2
-    plot for [j=0:100:10] "alpha_".alpha."_256/resol_".(2**i)."/spectrum_fwd_".alpha.".dat" every ::(j*scale)::((j+1)*scale)-1 u 1:2 w l title "resol: ".(2**i)
+    plot for [j=0:100:1] "alpha_".alpha."_256/resol_".(2**i)."/spectrum_fwd_".alpha.".dat" every ::(j*scale)::((j+1)*scale)-1 u 1:2 w l title "resol: ".(2**i)
     
     reset
     set terminal png size 640,384
     set output 'alpha_'.alpha.'_256/resol_'.(2**i).'/enstrophy_plot.png'
-    set title "Enstrophy vs Time - alpha=".alpha."/256, dt=2^{-9}, RESOL=".(2**i)
+    set title "Enstrophy vs Time - alpha=".alpha."/256, dt=2^{-13}, RESOL=".(2**i)
     set xlabel "Time"
     set grid
     set xrange [0:100]
@@ -37,7 +37,7 @@ do for [k=0:2] {
     reset
     set terminal png size 640,384
     set output 'alpha_'.alpha.'_256/resol_'.(2**i).'/phi_plot.png'
-    set title "Phi vs Time - alpha=".alpha."/256, dt=2^{-9}, RESOL=".(2**i)
+    set title "Phi vs Time - alpha=".alpha."/256, dt=2^{-13}, RESOL=".(2**i)
     set xlabel "Time"
     set ylabel "Phi"
     set grid
@@ -48,7 +48,7 @@ do for [k=0:2] {
     reset
     set terminal png size 640,384
     set output 'alpha_'.alpha.'_256/resol_'.(2**i).'/epsilon_plot.png'
-    set title "alpha energy error vs Time - alpha=".alpha."/256, dt=2^{-9}, RESOL=".(2**i)
+    set title "alpha energy error vs Time - alpha=".alpha."/256, dt=2^{-13}, RESOL=".(2**i)
     set xlabel "Time"
     set ylabel "epsilon"
     set grid
