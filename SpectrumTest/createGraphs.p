@@ -1,5 +1,5 @@
-do for [k=3:5] {
-  do for [i=7:10] {
+do for [k=0:5] {
+  do for [i=7:7] {
     alpha=2**k
 
     reset
@@ -22,13 +22,22 @@ do for [k=3:5] {
     
     reset
     set terminal png size 640,384
+    set output 'alpha_'.alpha.'_256/resol_'.(2**i).'/enstrophy_plot.png'
+    set title "Enstrophy vs Time - alpha=".alpha."/256, dt=2^{-5}, RESOL=".(2**i)
+    set xlabel "Time"
+    set grid
+    set xrange [0:100]
+    plot "alpha_".alpha."_256/resol_".(2**i)."/energy_fwd_".alpha.".dat" u 1:(($3*0.015625)) w l title "a*a*enstrophy", "alpha_".alpha."_256/resol_".(2**i)."/energy_fwd_".alpha.".dat" u 1:($2) w l title "energy", "alpha_".alpha."_256/resol_".(2**i)."/energy_fwd_".alpha.".dat" u 1:($2+($3*0.015625)) w l title "sum"
+    
+    reset
+    set terminal png size 640,384
     set output 'alpha_'.alpha.'_256/resol_'.(2**i).'/phi_plot.png'
     set title "Phi vs Time - alpha=".alpha."/256, dt=2^{-5}, RESOL=".(2**i)
-    set key bottom right
     set xlabel "Time"
     set ylabel "Phi"
     set grid
-    set xrange [0:25]
-    plot "alpha_".alpha."_256/resol_".(2**i)."/energy_fwd_".alpha.".dat" u 1:6 w l title "resol: ".(2**i)
+    unset key
+    set xrange [0:100]
+    plot "alpha_".alpha."_256/resol_".(2**i)."/energy_fwd_".alpha.".dat" u 1:6 w l
   }
 }

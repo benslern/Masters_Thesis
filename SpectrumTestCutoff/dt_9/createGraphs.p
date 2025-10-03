@@ -1,9 +1,9 @@
 getValue(row,col,filename) = system('awk ''{if (NR == '.row.') print $'.col.'}'' '.filename.'')
 
 
-do for [k=0:5] {
-  do for [i=8:8] {
-    alpha=2**k
+do for [k=0:0] {
+  do for [i=9:9] {
+    alpha=0
 
     reset
     set terminal png size 640,384
