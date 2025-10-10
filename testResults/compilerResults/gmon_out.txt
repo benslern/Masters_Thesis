@@ -1,0 +1,387 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 23.87     60.23    60.23      640     0.09     0.24  solvers_mp_fft_
+ 14.58     97.01    36.78     7680     0.00     0.00  function_ops_mp_derivative_fourier_
+ 14.20    132.83    35.82                             __intel_avx_rep_memcpy
+ 12.41    164.13    31.30      964     0.03     0.03  fftwfunction_mp_fftfwd_m_
+  7.15    182.17    18.04      963     0.02     0.02  fftwfunction_mp_fftbwd_m_
+  4.76    194.17    12.00                             __intel_avx_rep_memset
+  4.48    205.48    11.31     1280     0.01     0.01  fftwfunction_mp_fftfwd_
+  4.30    216.32    10.84      160     0.07     1.11  solvers_mp_rk4_
+  4.17    226.84    10.52      803     0.01     0.01  function_ops_mp_div_free_fourier_
+  2.81    233.94     7.10      161     0.04     0.04  function_ops_mp_vel2vort_fourier_
+  2.79    240.99     7.05      162     0.04     0.04  function_ops_mp_l2_grad_
+  2.73    247.88     6.89      640     0.01     0.01  function_ops_mp_g_alpha_fourier_
+  1.17    250.83     2.95      161     0.02     0.02  function_ops_mp_calculate_total_energy_
+  0.27    251.52     0.69      161     0.00     0.00  function_ops_mp_calculate_spectrum_
+  0.22    252.07     0.55      162     0.00     0.00  function_ops_mp_dealiasing_cutoff_m_
+  0.04    252.17     0.10                             __libm_floor_y8
+  0.01    252.20     0.03                             __real_memcpy_impl_setup
+  0.01    252.22     0.02        1     0.02   204.08  solvers_mp_fwd_3d_
+  0.00    252.23     0.01        1     0.01     0.01  function_ops_mp_abs_deriv_fourier_
+  0.00    252.24     0.01        1     0.01     0.01  function_ops_mp_l2_product_fourier_
+  0.00    252.25     0.01        1     0.01     0.08  optimization_mp_rescale_h1_
+  0.00    252.26     0.01                             __libm_sse2_sincos
+  0.00    252.27     0.01                             _init
+  0.00    252.28     0.01                             exp
+  0.00    252.29     0.01        1     0.01     0.01  optimization_mp_optimization_allocate_
+  0.00    252.29     0.01                             optimization._
+  0.00    252.29     0.00      161     0.00     0.00  databinary_handle_mp_save2binary2_
+  0.00    252.29     0.00        3     0.00     0.00  data_ops_mp_nse_msg_handle_
+  0.00    252.29     0.00        2     0.00     0.00  data_ops_mp_save_field_r3tor3_ncdf2_
+  0.00    252.29     0.00        1     0.00   204.31  MAIN__
+  0.00    252.29     0.00        1     0.00     0.00  data_ops_mp_save_velocity_
+  0.00    252.29     0.00        1     0.00     0.00  data_ops_mp_save_vorticity_
+  0.00    252.29     0.00        1     0.00     0.00  fftwfunction_mp_fft_deallocate_
+  0.00    252.29     0.00        1     0.00     0.00  fftwfunction_mp_init_fft_
+  0.00    252.29     0.00        1     0.00     0.00  function_ops_mp_function_ops_allocate_
+  0.00    252.29     0.00        1     0.00     0.00  function_ops_mp_function_ops_deallocate_
+  0.00    252.29     0.00        1     0.00     0.00  initialize_
+  0.00    252.29     0.00        1     0.00   204.16  optimization_mp_compute_phi_l2_
+  0.00    252.29     0.00        1     0.00     0.00  optimization_mp_optimization_deallocate_
+  0.00    252.29     0.00        1     0.00     0.07  solvers_mp_set_initial_
+  0.00    252.29     0.00        1     0.00     0.00  solvers_mp_solvers_allocate_
+  0.00    252.29     0.00        1     0.00     0.00  solvers_mp_solvers_deallocate_
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2023 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 0.00% of 252.29 seconds
+
+index % time    self  children    called     name
+                0.00  204.31       1/1           main [2]
+[1]     81.0    0.00  204.31       1         MAIN__ [1]
+                0.00  204.16       1/1           optimization_mp_compute_phi_l2_ [3]
+                0.01    0.07       1/1           optimization_mp_rescale_h1_ [21]
+                0.00    0.07       1/1           solvers_mp_set_initial_ [22]
+                0.01    0.00       1/1           optimization_mp_optimization_allocate_ [29]
+                0.00    0.00       3/3           data_ops_mp_nse_msg_handle_ [32]
+                0.00    0.00       1/1           initialize_ [40]
+                0.00    0.00       1/1           function_ops_mp_function_ops_allocate_ [38]
+                0.00    0.00       1/1           fftwfunction_mp_init_fft_ [37]
+                0.00    0.00       1/1           solvers_mp_solvers_allocate_ [42]
+                0.00    0.00       1/1           solvers_mp_solvers_deallocate_ [43]
+                0.00    0.00       1/1           optimization_mp_optimization_deallocate_ [41]
+                0.00    0.00       1/1           fftwfunction_mp_fft_deallocate_ [36]
+                0.00    0.00       1/1           function_ops_mp_function_ops_deallocate_ [39]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]     81.0    0.00  204.31                 main [2]
+                0.00  204.31       1/1           MAIN__ [1]
+-----------------------------------------------
+                0.00  204.16       1/1           MAIN__ [1]
+[3]     80.9    0.00  204.16       1         optimization_mp_compute_phi_l2_ [3]
+                0.02  204.06       1/1           solvers_mp_fwd_3d_ [4]
+                0.04    0.00       1/162         function_ops_mp_l2_grad_ [15]
+                0.03    0.00       1/964         fftwfunction_mp_fftfwd_m_ [9]
+-----------------------------------------------
+                0.02  204.06       1/1           optimization_mp_compute_phi_l2_ [3]
+[4]     80.9    0.02  204.06       1         solvers_mp_fwd_3d_ [4]
+               10.84  167.20     160/160         solvers_mp_rk4_ [5]
+                7.10    0.00     161/161         function_ops_mp_vel2vort_fourier_ [14]
+                7.01    0.00     161/162         function_ops_mp_l2_grad_ [15]
+                5.23    0.00     161/964         fftwfunction_mp_fftfwd_m_ [9]
+                3.03    0.00     162/963         fftwfunction_mp_fftbwd_m_ [10]
+                2.95    0.00     161/161         function_ops_mp_calculate_total_energy_ [17]
+                0.69    0.00     161/161         function_ops_mp_calculate_spectrum_ [18]
+                0.01    0.00       1/803         function_ops_mp_div_free_fourier_ [13]
+                0.00    0.00       1/162         function_ops_mp_dealiasing_cutoff_m_ [19]
+                0.00    0.00     161/161         databinary_handle_mp_save2binary2_ [31]
+                0.00    0.00       1/1           data_ops_mp_save_velocity_ [34]
+                0.00    0.00       1/1           data_ops_mp_save_vorticity_ [35]
+-----------------------------------------------
+               10.84  167.20     160/160         solvers_mp_fwd_3d_ [4]
+[5]     70.6   10.84  167.20     160         solvers_mp_rk4_ [5]
+               60.23   96.13     640/640         solvers_mp_fft_ [6]
+                5.20    0.00     160/964         fftwfunction_mp_fftfwd_m_ [9]
+                3.00    0.00     160/963         fftwfunction_mp_fftbwd_m_ [10]
+                2.10    0.00     160/803         function_ops_mp_div_free_fourier_ [13]
+                0.54    0.00     160/162         function_ops_mp_dealiasing_cutoff_m_ [19]
+-----------------------------------------------
+               60.23   96.13     640/640         solvers_mp_rk4_ [5]
+[6]     62.0   60.23   96.13     640         solvers_mp_fft_ [6]
+               36.78    0.00    7680/7680        function_ops_mp_derivative_fourier_ [7]
+               20.78    0.00     640/964         fftwfunction_mp_fftfwd_m_ [9]
+               11.99    0.00     640/963         fftwfunction_mp_fftbwd_m_ [10]
+               11.31    0.00    1280/1280        fftwfunction_mp_fftfwd_ [12]
+                8.38    0.00     640/803         function_ops_mp_div_free_fourier_ [13]
+                6.89    0.00     640/640         function_ops_mp_g_alpha_fourier_ [16]
+-----------------------------------------------
+               36.78    0.00    7680/7680        solvers_mp_fft_ [6]
+[7]     14.6   36.78    0.00    7680         function_ops_mp_derivative_fourier_ [7]
+-----------------------------------------------
+                                                 <spontaneous>
+[8]     14.2   35.82    0.00                 __intel_avx_rep_memcpy [8]
+-----------------------------------------------
+                0.03    0.00       1/964         solvers_mp_set_initial_ [22]
+                0.03    0.00       1/964         optimization_mp_rescale_h1_ [21]
+                0.03    0.00       1/964         optimization_mp_compute_phi_l2_ [3]
+                5.20    0.00     160/964         solvers_mp_rk4_ [5]
+                5.23    0.00     161/964         solvers_mp_fwd_3d_ [4]
+               20.78    0.00     640/964         solvers_mp_fft_ [6]
+[9]     12.4   31.30    0.00     964         fftwfunction_mp_fftfwd_m_ [9]
+-----------------------------------------------
+                0.02    0.00       1/963         solvers_mp_set_initial_ [22]
+                3.00    0.00     160/963         solvers_mp_rk4_ [5]
+                3.03    0.00     162/963         solvers_mp_fwd_3d_ [4]
+               11.99    0.00     640/963         solvers_mp_fft_ [6]
+[10]     7.2   18.04    0.00     963         fftwfunction_mp_fftbwd_m_ [10]
+-----------------------------------------------
+                                                 <spontaneous>
+[11]     4.8   12.00    0.00                 __intel_avx_rep_memset [11]
+-----------------------------------------------
+               11.31    0.00    1280/1280        solvers_mp_fft_ [6]
+[12]     4.5   11.31    0.00    1280         fftwfunction_mp_fftfwd_ [12]
+-----------------------------------------------
+                0.01    0.00       1/803         solvers_mp_fwd_3d_ [4]
+                0.01    0.00       1/803         solvers_mp_set_initial_ [22]
+                0.01    0.00       1/803         optimization_mp_rescale_h1_ [21]
+                2.10    0.00     160/803         solvers_mp_rk4_ [5]
+                8.38    0.00     640/803         solvers_mp_fft_ [6]
+[13]     4.2   10.52    0.00     803         function_ops_mp_div_free_fourier_ [13]
+-----------------------------------------------
+                7.10    0.00     161/161         solvers_mp_fwd_3d_ [4]
+[14]     2.8    7.10    0.00     161         function_ops_mp_vel2vort_fourier_ [14]
+-----------------------------------------------
+                0.04    0.00       1/162         optimization_mp_compute_phi_l2_ [3]
+                7.01    0.00     161/162         solvers_mp_fwd_3d_ [4]
+[15]     2.8    7.05    0.00     162         function_ops_mp_l2_grad_ [15]
+-----------------------------------------------
+                6.89    0.00     640/640         solvers_mp_fft_ [6]
+[16]     2.7    6.89    0.00     640         function_ops_mp_g_alpha_fourier_ [16]
+-----------------------------------------------
+                2.95    0.00     161/161         solvers_mp_fwd_3d_ [4]
+[17]     1.2    2.95    0.00     161         function_ops_mp_calculate_total_energy_ [17]
+-----------------------------------------------
+                0.69    0.00     161/161         solvers_mp_fwd_3d_ [4]
+[18]     0.3    0.69    0.00     161         function_ops_mp_calculate_spectrum_ [18]
+-----------------------------------------------
+                0.00    0.00       1/162         solvers_mp_fwd_3d_ [4]
+                0.00    0.00       1/162         solvers_mp_set_initial_ [22]
+                0.54    0.00     160/162         solvers_mp_rk4_ [5]
+[19]     0.2    0.55    0.00     162         function_ops_mp_dealiasing_cutoff_m_ [19]
+-----------------------------------------------
+                                                 <spontaneous>
+[20]     0.0    0.10    0.00                 __libm_floor_y8 [20]
+-----------------------------------------------
+                0.01    0.07       1/1           MAIN__ [1]
+[21]     0.0    0.01    0.07       1         optimization_mp_rescale_h1_ [21]
+                0.03    0.00       1/964         fftwfunction_mp_fftfwd_m_ [9]
+                0.01    0.00       1/803         function_ops_mp_div_free_fourier_ [13]
+                0.01    0.00       1/1           function_ops_mp_abs_deriv_fourier_ [24]
+                0.01    0.00       1/1           function_ops_mp_l2_product_fourier_ [25]
+-----------------------------------------------
+                0.00    0.07       1/1           MAIN__ [1]
+[22]     0.0    0.00    0.07       1         solvers_mp_set_initial_ [22]
+                0.03    0.00       1/964         fftwfunction_mp_fftfwd_m_ [9]
+                0.02    0.00       1/963         fftwfunction_mp_fftbwd_m_ [10]
+                0.01    0.00       1/803         function_ops_mp_div_free_fourier_ [13]
+                0.00    0.00       1/162         function_ops_mp_dealiasing_cutoff_m_ [19]
+-----------------------------------------------
+                                                 <spontaneous>
+[23]     0.0    0.03    0.00                 __real_memcpy_impl_setup [23]
+-----------------------------------------------
+                0.01    0.00       1/1           optimization_mp_rescale_h1_ [21]
+[24]     0.0    0.01    0.00       1         function_ops_mp_abs_deriv_fourier_ [24]
+-----------------------------------------------
+                0.01    0.00       1/1           optimization_mp_rescale_h1_ [21]
+[25]     0.0    0.01    0.00       1         function_ops_mp_l2_product_fourier_ [25]
+-----------------------------------------------
+                                                 <spontaneous>
+[26]     0.0    0.01    0.00                 exp [26]
+-----------------------------------------------
+                                                 <spontaneous>
+[27]     0.0    0.01    0.00                 __libm_sse2_sincos [27]
+-----------------------------------------------
+                                                 <spontaneous>
+[28]     0.0    0.01    0.00                 _init [28]
+-----------------------------------------------
+                0.01    0.00       1/1           MAIN__ [1]
+[29]     0.0    0.01    0.00       1         optimization_mp_optimization_allocate_ [29]
+-----------------------------------------------
+                                                 <spontaneous>
+[30]     0.0    0.01    0.00                 optimization._ [30]
+-----------------------------------------------
+                0.00    0.00     161/161         solvers_mp_fwd_3d_ [4]
+[31]     0.0    0.00    0.00     161         databinary_handle_mp_save2binary2_ [31]
+-----------------------------------------------
+                0.00    0.00       3/3           MAIN__ [1]
+[32]     0.0    0.00    0.00       3         data_ops_mp_nse_msg_handle_ [32]
+-----------------------------------------------
+                0.00    0.00       1/2           data_ops_mp_save_velocity_ [34]
+                0.00    0.00       1/2           data_ops_mp_save_vorticity_ [35]
+[33]     0.0    0.00    0.00       2         data_ops_mp_save_field_r3tor3_ncdf2_ [33]
+-----------------------------------------------
+                0.00    0.00       1/1           solvers_mp_fwd_3d_ [4]
+[34]     0.0    0.00    0.00       1         data_ops_mp_save_velocity_ [34]
+                0.00    0.00       1/2           data_ops_mp_save_field_r3tor3_ncdf2_ [33]
+-----------------------------------------------
+                0.00    0.00       1/1           solvers_mp_fwd_3d_ [4]
+[35]     0.0    0.00    0.00       1         data_ops_mp_save_vorticity_ [35]
+                0.00    0.00       1/2           data_ops_mp_save_field_r3tor3_ncdf2_ [33]
+-----------------------------------------------
+                0.00    0.00       1/1           MAIN__ [1]
+[36]     0.0    0.00    0.00       1         fftwfunction_mp_fft_deallocate_ [36]
+-----------------------------------------------
+                0.00    0.00       1/1           MAIN__ [1]
+[37]     0.0    0.00    0.00       1         fftwfunction_mp_init_fft_ [37]
+-----------------------------------------------
+                0.00    0.00       1/1           MAIN__ [1]
+[38]     0.0    0.00    0.00       1         function_ops_mp_function_ops_allocate_ [38]
+-----------------------------------------------
+                0.00    0.00       1/1           MAIN__ [1]
+[39]     0.0    0.00    0.00       1         function_ops_mp_function_ops_deallocate_ [39]
+-----------------------------------------------
+                0.00    0.00       1/1           MAIN__ [1]
+[40]     0.0    0.00    0.00       1         initialize_ [40]
+-----------------------------------------------
+                0.00    0.00       1/1           MAIN__ [1]
+[41]     0.0    0.00    0.00       1         optimization_mp_optimization_deallocate_ [41]
+-----------------------------------------------
+                0.00    0.00       1/1           MAIN__ [1]
+[42]     0.0    0.00    0.00       1         solvers_mp_solvers_allocate_ [42]
+-----------------------------------------------
+                0.00    0.00       1/1           MAIN__ [1]
+[43]     0.0    0.00    0.00       1         solvers_mp_solvers_deallocate_ [43]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2023 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+   [1] MAIN__                 [10] fftwfunction_mp_fftbwd_m_ [25] function_ops_mp_l2_product_fourier_
+   [8] __intel_avx_rep_memcpy [12] fftwfunction_mp_fftfwd_ [14] function_ops_mp_vel2vort_fourier_
+  [11] __intel_avx_rep_memset  [9] fftwfunction_mp_fftfwd_m_ [40] initialize_
+  [20] __libm_floor_y8        [37] fftwfunction_mp_init_fft_ [30] optimization._
+  [27] __libm_sse2_sincos     [24] function_ops_mp_abs_deriv_fourier_ [3] optimization_mp_compute_phi_l2_
+  [23] __real_memcpy_impl_setup [18] function_ops_mp_calculate_spectrum_ [29] optimization_mp_optimization_allocate_
+  [28] _init                  [17] function_ops_mp_calculate_total_energy_ [41] optimization_mp_optimization_deallocate_
+  [32] data_ops_mp_nse_msg_handle_ [19] function_ops_mp_dealiasing_cutoff_m_ [21] optimization_mp_rescale_h1_
+  [33] data_ops_mp_save_field_r3tor3_ncdf2_ [7] function_ops_mp_derivative_fourier_ [6] solvers_mp_fft_
+  [34] data_ops_mp_save_velocity_ [13] function_ops_mp_div_free_fourier_ [4] solvers_mp_fwd_3d_
+  [35] data_ops_mp_save_vorticity_ [38] function_ops_mp_function_ops_allocate_ [5] solvers_mp_rk4_
+  [31] databinary_handle_mp_save2binary2_ [39] function_ops_mp_function_ops_deallocate_ [22] solvers_mp_set_initial_
+  [26] exp                    [16] function_ops_mp_g_alpha_fourier_ [42] solvers_mp_solvers_allocate_
+  [36] fftwfunction_mp_fft_deallocate_ [15] function_ops_mp_l2_grad_ [43] solvers_mp_solvers_deallocate_
