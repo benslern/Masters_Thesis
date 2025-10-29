@@ -1311,11 +1311,11 @@ CONTAINS
        !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, Uvec, 3)
 
-       !!!call save2binary2(Uvec,Time_iter, "fwdTE", subpath)
+       call save2binary2(Uvec,Time_iter, "fwdTE", subpath)
   
        
 
-       !!!call save_velocity(Uvec, Time_iter, subpath)
+       call save_velocity(Uvec, Time_iter, subpath)
 
 !       if (parallel_data) then
 !          call save_velocity_cx(temp1_solver_cx, myindex)
@@ -1346,7 +1346,7 @@ CONTAINS
       
      
       
-       !!!call save_vorticity(Wvec, Time_iter, subpath) 
+       call save_vorticity(Wvec, Time_iter, subpath) 
        call calculate_total_energy(Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
        call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy)
 
@@ -1391,7 +1391,7 @@ CONTAINS
        
 
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-       IF (savesign == 1 .and. MODULO(Time_iter,32)==0) THEN
+       IF (savesign == 1) THEN ! .and. MODULO(Time_iter,32)==0) THEN
            
           
           !temp1_solver_cx = HatU
@@ -1403,7 +1403,7 @@ CONTAINS
           end if
 
           
-          !!!call save2binary2(Uvec,Time_iter, "fwdTE", subpath)
+          call save2binary2(Uvec,Time_iter, "fwdTE", subpath)
        
          
           
