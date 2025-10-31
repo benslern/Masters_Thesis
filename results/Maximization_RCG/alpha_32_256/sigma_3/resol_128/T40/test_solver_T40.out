@@ -1,0 +1,79 @@
+ norm =    29.6088132032681      norm_constr =    1.00000000000000     
+ eval_PHI; main_iter =           0
+ norm =    1.00000000000000      norm_constr =    1.00000000000000     
+ solvers; time =   40.0000000000000     
+ maximization_RCG; main_iter =           1
+ eval_grad_PHI; main_iter =           1
+ adj_solvers; time =  6.400000000000111E-002
+ gradPHI: inner product =   5.692061405548898E-019
+ norm2_grad =   1.926875240468096E-005
+ Start mnbrak; main_iter =           1
+ norm =    1.00000000000000      norm_constr =    1.00000000000000     
+ norm =    1.00000000000000      norm_constr =    1.00000000000000     
+ norm =    31.4008813210181      norm_constr =    1.00000000000000     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =    1.11612103376677      norm_constr =    1.00000000000000     
+       mnbrak; do while NO. 1 ... FuncEval =           3
+ norm =    1.00044354288090      norm_constr =    1.00000000000000     
+       mnbrak; do while NO. 1 ... FuncEval =           4
+ norm =    1.00000169418305      norm_constr =    1.00000000000000     
+       mnbrak; do while NO. 1 ... FuncEval =           5
+ norm =    1.00000000647120      norm_constr =    1.00000000000000     
+       mnbrak; do while NO. 1 ... FuncEval =           6
+ norm =    1.00000000002472      norm_constr =    1.00000000000000     
+       mnbrak; do while NO. 1 ... FuncEval =           7
+ norm =    1.00000000000009      norm_constr =    1.00000000000000     
+       mnbrak; do while NO. 1 ... FuncEval =           8
+ norm =    1.00000000000000      norm_constr =    1.00000000000000     
+       mnbrak; do while NO. 1 ... FuncEval =           9
+ norm =    1.00000000000000      norm_constr =    1.00000000000000     
+ mnbrack iteration beyond maximum, the maxdEdt stops iterating ...            1
+ Start brent; main_iter =           1
+ norm =    1.00000000000000      norm_constr =    1.00000000000000     
+ norm =    1.00000000000000      norm_constr =    1.00000000000000     
+ eval_PHI; main_iter =           1
+ norm =    1.00000000000000      norm_constr =    1.00000000000000     
+ solvers; time =   40.0000000000000     
+ exit normally
+ stepper =            3
+ execution time =   0.126365440555556     
+job 1 finished
+
+scontrol show job 389209
+JobId=389209 JobName=opttest
+   UserId=noahb(3138520) GroupId=noahb(3138520) MCS_label=N/A
+   Priority=1127157 Nice=0 Account=def-bprotas QOS=normal
+   JobState=COMPLETING Reason=None Dependency=(null)
+   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:50:23 TimeLimit=1-00:00:00 TimeMin=N/A
+   SubmitTime=2025-10-30T09:57:36 EligibleTime=2025-10-30T09:57:36
+   AccrueTime=2025-10-30T09:57:36
+   StartTime=2025-10-30T09:57:37 EndTime=2025-10-30T10:48:00 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2025-10-30T09:57:37 Scheduler=Main
+   Partition=compute AllocNode:Sid=tri-login02:3058071
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=tri0050
+   BatchHost=tri0050
+   NumNodes=1 NumCPUs=192 NumTasks=128 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=128,mem=767000M,node=1,billing=128
+   AllocTRES=cpu=192,mem=767000M,node=1,billing=192
+   Socks/Node=* NtasksPerN:B:S:C=128:0:*:* CoreSpec=*
+   MinCPUsNode=128 MinMemoryNode=767000M MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=NO Contiguous=0 Licenses=(null) Network=(null)
+   Command=/scratch/noahb/Research/test_solver_1.sh
+   WorkDir=/scratch/noahb/Research
+   Comment=/opt/slurm/bin/sbatch --export=NONE --get-user-env=L test_solver_1.sh 
+   StdErr=/scratch/noahb/Research/test_solver_389209.out
+   StdIn=/dev/null
+   StdOut=/scratch/noahb/Research/test_solver_389209.out
+   TresPerTask=cpu=1
+   
+
+sacct -j 389209
+JobID           JobName    Account    Elapsed  MaxVMSize     MaxRSS  SystemCPU    UserCPU ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- ---------- ---------- -------- 
+389209          opttest def-bprot+   00:50:23                         00:00:00   00:00:00      0:0 
+389209.batch      batch def-bprot+   00:50:23                         00:00:00   00:00:00      0:0 
+389209.exte+     extern def-bprot+   00:50:23                         00:00:00   00:00:00      0:0 
+
