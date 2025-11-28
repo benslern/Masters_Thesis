@@ -55,7 +55,7 @@ module solvers
  !needed for report
   real(pr), dimension(:,:), allocatable :: spectral_data
 
-  real(pr) :: K_total, E_total, H_total, maxW_global, H1_norm
+  real(pr) :: K_total, E_total, H_total, maxW_global, H1_norm, H1_seminorm, H2_seminorm, H3_seminorm
   real(pr), dimension(1:3) :: E_component
   integer :: mm = 10 ! vorticity moments
   real(pr), dimension(:), allocatable :: Omega ! vorticity_moments
@@ -1333,7 +1333,15 @@ CONTAINS
        call L2_grad(temp1_solver_cx, H1_norm)
 
                      
- 
+        !h1 seminorm
+         call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 1.0_pr)
+         call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H1_seminorm)
+         !h2 seminorm
+         call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 2.0_pr)
+         call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H2_seminorm)
+         !h3 seminorm
+         call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 3.0_pr)
+         call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H3_seminorm) 
 
 
        ! temp2_solver_cx = HatW
@@ -1348,17 +1356,8 @@ CONTAINS
       
        call save_vorticity(Wvec, Time_iter, subpath) 
        call calculate_total_energy(Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
-       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy)
+       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, H1_seminorm, H2_seminorm, H3_seminorm)
 
-      
-       
- 
-
-       
-
-       
-
-       
        
     END IF
 
@@ -1391,7 +1390,7 @@ CONTAINS
        
 
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-       IF (savesign == 1) THEN ! .and. MODULO(Time_iter,32)==0) THEN
+       IF (savesign == 1 .and. MODULO(Time_iter,32)==0) THEN
            
           
           !temp1_solver_cx = HatU
@@ -1412,8 +1411,16 @@ CONTAINS
           call save_spectrum(spectral_data, file_spectrum)
 
           call L2_grad(temp1_solver_cx, H1_norm)
-   
-       
+
+          !h1 seminorm
+         call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 1.0_pr)
+         call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H1_seminorm)
+         !h2 seminorm
+         call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 2.0_pr)
+         call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H2_seminorm)
+         !h3 seminorm
+         call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 3.0_pr)
+         call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H3_seminorm)
 
           ! temp2_solver_cx = HatW
           call vel2vort_fourier(temp1_solver_cx, temp2_solver_cx)
@@ -1424,13 +1431,8 @@ CONTAINS
           !if (mod(Time_iter, 32) == 0) call save_vorticity(Wvec, Time_iter)
 
 
-
-
-       
-
-
           call calculate_total_energy(Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
-          call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy)
+          call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, H1_seminorm, H2_seminorm, H3_seminorm)
 
     
               
@@ -2010,30 +2012,14 @@ CONTAINS
 
        call L2_grad(temp1_solver_cx, H1_norm)
 
-                     
- 
-
-
        ! temp2_solver_cx = HatW
        call vel2vort_fourier(temp1_solver_cx, temp2_solver_cx)
        ! temp2_solver_cx = W
        call fftbwd_m(temp2_solver_cx, Wvec, 3)
     
 
-
-      
-          
-
        call calculate_total_energy(adj_Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
-       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy)
-       
-       
- 
-
-       
-
-       
-
+       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, H1_norm, H1_norm, H1_norm)
        
        
     END IF
@@ -2109,9 +2095,7 @@ CONTAINS
           call save_spectrum(spectral_data, file_spectrum)
 
          call L2_grad(temp1_solver_cx, H1_norm)
-          
-   
-       
+         
 
           ! temp2_solver_cx = HatW
           call vel2vort_fourier(temp1_solver_cx, temp2_solver_cx)
@@ -2122,7 +2106,7 @@ CONTAINS
      
 
            call calculate_total_energy(adj_Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
-       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy)
+       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, H1_norm, H1_norm, H1_norm)
        
           
               
@@ -2276,15 +2260,15 @@ CONTAINS
   ! SUBROUTINE: SAVE_ENERGY(K_total_, E_total_, H_total_, maxW_global_, filename)
   ! input: K_total_, E_total_, H_total_, maxW_global_, filename
   !=========================================================
-  SUBROUTINE save_energy(K_total_, E_total_, H_total_, maxW_global_, H1_norm_, E_component_, time_, filename)
+  SUBROUTINE save_energy(K_total_, E_total_, H_total_, maxW_global_, H1_norm_, E_component_, time_, filename, H1_seminorm, H2_seminorm, H3_seminorm)
     USE global_variables
     IMPLICIT NONE  
-    real(pr), intent(in) :: K_total_, E_total_, H_total_, maxW_global_, H1_norm_, time_
+    real(pr), intent(in) :: K_total_, E_total_, H_total_, maxW_global_, H1_norm_, time_, H1_seminorm, H2_seminorm, H3_seminorm
     real(pr), dimension(1:3), intent(in) :: E_component_
     character(len = *), intent(in) :: filename
     if (rank == 0) then
        open(21, file = filename, status = 'old', position = 'append')    
-       write(21, "(9 G20.12)") time_, K_total_, E_total_, H_total_, maxW_global_, H1_norm_, E_component_(1), E_component_(2), E_component_(3)
+       write(21, "(12 G20.12)") time_, K_total_, E_total_, H_total_, maxW_global_, H1_norm_, E_component_(1), E_component_(2), E_component_(3), H1_seminorm, H2_seminorm, H3_seminorm
        close(21)
     end if
     

@@ -173,12 +173,12 @@ PROGRAM EULER_VOIGT
    !=======================================================
    !- Maximization Test: Euler-Voigt Simulations
    !=======================================================
-   if (1) then
+   if (0) then
       ! Set Constants
       endTime = 10.0_pr*arg;
       stepper = 3
       visc = 0.0_pr
-      alpha = 32.0_pr/256.0_pr ! (2.0_pr**(arg-1))/256.0_pr
+      alpha = 16.0_pr/256.0_pr ! (2.0_pr**(arg-1))/256.0_pr
       fix_dt1 = 2.0_pr**(-5)
 
       IF (rank==0) THEN
@@ -199,7 +199,7 @@ PROGRAM EULER_VOIGT
       
       ! Allocate
       call solvers_allocate(stepper, arg_char)
-      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper, arg_char)
+      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.1_pr, stepper, arg_char)
 
       ! set 3D Taylor Green Initial Condition
       call set_initial(Uvec0, 2, 11111,2222,31234)
@@ -349,12 +349,12 @@ PROGRAM EULER_VOIGT
    !=======================================================
    !- Timescale Test: Euler-Voigt Simulations
    !=======================================================
-   if (0) then
+   if (1) then
       ! Set Constants
-      endTime = 5.0_pr
+      endTime = 10.0_pr
       stepper = 3
       visc = 0.0_pr
-      alpha = 32.0_pr/256.0_pr ! (2.0_pr**(arg-1))/256.0_pr
+      alpha = 0.0_pr ! (2.0_pr**(arg-1))/256.0_pr
       fix_dt1 = 2.0_pr**(-5)
 
       ! Allocate
@@ -363,10 +363,10 @@ PROGRAM EULER_VOIGT
 
       ! Set 3D Taylor Green Initial Condition
       call set_initial(Uvec0, 2, 11111,2222,31234)
-      call rescale_H1(Uvec0, PHI1)
+      !call rescale_H1(Uvec0, PHI1)
 
       ! Evolve forward
-      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 0, arg, 0, 1)
+      PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, arg, 0, 1)
 
       IF (rank==0) THEN
         OPEN(10, FILE="./LOGFILES/"//TRIM(arg_char)//"maxET_parameter_info.log", STATUS='REPLACE')
