@@ -1330,19 +1330,21 @@ CONTAINS
        
        
        call save_spectrum(spectral_data, file_spectrum)
-       call L2_grad(temp1_solver_cx, H1_norm)
+       call L2_grad(temp1_solver_cx, H1_norm) !H1_norm = PHI VALUE
 
                      
         !h1 seminorm
          call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 1.0_pr)
          call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H1_seminorm)
+         H1_seminorm = sqrt(H1_seminorm)
          !h2 seminorm
          call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 2.0_pr)
          call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H2_seminorm)
+         H2_seminorm = sqrt(H2_seminorm)
          !h3 seminorm
          call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 3.0_pr)
          call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H3_seminorm) 
-
+        H3_seminorm = sqrt(H3_seminorm)
 
        ! temp2_solver_cx = HatW
        call vel2vort_fourier(temp1_solver_cx, temp2_solver_cx)
@@ -1390,7 +1392,7 @@ CONTAINS
        
 
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-       IF (savesign == 1 .and. MODULO(Time_iter,32)==0) THEN
+       IF ((savesign == 1) .and. MODULO(Time_iter,64)==0) THEN
            
           
           !temp1_solver_cx = HatU
@@ -1415,12 +1417,15 @@ CONTAINS
           !h1 seminorm
          call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 1.0_pr)
          call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H1_seminorm)
+         H1_seminorm = sqrt(H1_seminorm)
          !h2 seminorm
          call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 2.0_pr)
          call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H2_seminorm)
+         H2_seminorm = sqrt(H2_seminorm)
          !h3 seminorm
          call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 3.0_pr)
          call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H3_seminorm)
+         H3_seminorm = sqrt(H3_seminorm)
 
           ! temp2_solver_cx = HatW
           call vel2vort_fourier(temp1_solver_cx, temp2_solver_cx)

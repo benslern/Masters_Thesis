@@ -354,16 +354,16 @@ PROGRAM EULER_VOIGT
       endTime = 10.0_pr
       stepper = 3
       visc = 0.0_pr
-      alpha = 0.0_pr ! (2.0_pr**(arg-1))/256.0_pr
-      fix_dt1 = 2.0_pr**(-5)
+      alpha = 0.0_pr !(2.0_pr**(arg-1))/256.0_pr
+      fix_dt1 = 2.0_pr**(-11)
 
       ! Allocate
       call solvers_allocate(stepper, arg_char)
-      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper, arg_char)
+      call optimization_allocate(sqrt(3*(PI**2)),1.0_pr, 3.0_pr, 0.001_pr, stepper, arg_char)
 
       ! Set 3D Taylor Green Initial Condition
       call set_initial(Uvec0, 2, 11111,2222,31234)
-      !call rescale_H1(Uvec0, PHI1)
+      call rescale_H1(Uvec0, PHI1)
 
       ! Evolve forward
       PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, arg, 0, 1)
