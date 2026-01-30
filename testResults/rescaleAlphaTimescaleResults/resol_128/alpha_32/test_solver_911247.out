@@ -1,0 +1,54 @@
+
+Lmod is automatically replacing "gcc/12.3" with "intel/2023.2.1".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) aocl-blas/5.1       4) fftw/3.3.10         7) netcdf-fortran-mpi/4.6.1
+  2) aocl-lapack/5.1     5) flexiblas/3.3.1     8) netcdf-mpi/4.9.2
+  3) fftw-mpi/3.3.10     6) hdf5-mpi/1.14.2     9) openmpi/4.1.5
+
+ norm =    29.6088132032681      norm_constr =    5.44139809270265     
+ solvers; time =   10.0000000000000     
+ exit normally
+ stepper =            3
+ execution time =   1.834957500000000E-003
+job 1 finished
+
+scontrol show job 911247
+JobId=911247 JobName=sigma_test_4
+   UserId=noahb(3138520) GroupId=noahb(3138520) MCS_label=N/A
+   Priority=1329652 Nice=0 Account=def-bprotas QOS=normal
+   JobState=COMPLETING Reason=None Dependency=(null)
+   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:01:10 TimeLimit=01:00:00 TimeMin=N/A
+   SubmitTime=2026-01-28T10:33:34 EligibleTime=2026-01-28T10:33:34
+   AccrueTime=2026-01-28T10:33:34
+   StartTime=2026-01-28T10:34:01 EndTime=2026-01-28T10:35:11 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-01-28T10:34:01 Scheduler=Main
+   Partition=compute AllocNode:Sid=tri-login04:2939992
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=tri0248
+   BatchHost=tri0248
+   NumNodes=1 NumCPUs=192 NumTasks=192 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=192,mem=767000M,node=1,billing=192
+   AllocTRES=cpu=192,mem=767000M,node=1,billing=192
+   Socks/Node=* NtasksPerN:B:S:C=192:0:*:* CoreSpec=*
+   MinCPUsNode=192 MinMemoryNode=767000M MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=NO Contiguous=0 Licenses=(null) Network=(null)
+   Command=/scratch/noahb/Research/test_solver_1.sh
+   WorkDir=/scratch/noahb/Research
+   Comment=/opt/slurm/bin/sbatch --export=NONE --get-user-env=L test_solver_1.sh 
+   StdErr=/scratch/noahb/Research/test_solver_911247.out
+   StdIn=/dev/null
+   StdOut=/scratch/noahb/Research/test_solver_911247.out
+   TresPerTask=cpu=1
+   
+
+sacct -j 911247
+JobID           JobName    Account    Elapsed  MaxVMSize     MaxRSS  SystemCPU    UserCPU ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- ---------- ---------- -------- 
+911247       sigma_tes+ def-bprot+   00:01:10                        04:40.917   02:10:07      0:0 
+911247.batch      batch def-bprot+   00:01:10          0  10115420K  04:40.917   02:10:07      0:0 
+911247.exte+     extern def-bprot+   00:01:10          0          0   00:00:00   00:00:00      0:0 
+
