@@ -1,0 +1,27 @@
+\chapter{Proof of Gevrey Class size}
+\label{app:Gevrey:size}
+
+\begin{proof}
+The definition of the Gevrey class (\ref{eq:Gevrey:Class}) is
+$$
+G^\sigma := \lb \v\in H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\sigma}^{1/2}<\infty \rb, \quad s\geq 3, \quad \sigma > 0.
+$$
+The definition of the Gevrey inner product (\ref{eq:Gevrey:Inner:Product}) is
+$$\forall \v,\u \in G^\sigma, \quad \la \v,\u \ra_{G^\sigma} := \int_{\TT^3}(1+|D|^2)^se^{2\sigma |D|}\v\cdot \u \, d\x.$$
+Let $\sigma_1, \sigma_2$ be defined such that
+$$0 < \sigma_1 < \sigma_2.$$
+Therefore,
+\begin{align}
+\notag
+\|\v\|_{G^{\sigma_2}} &=\left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D|}\v\cdot \v \, d\x\right]^{1/2}\\
+\notag
+&> \left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2 \sigma_1 |D|}\v\cdot \v \, d\x\right]^{1/2} = \|v\|_{G^{\sigma_1}} \\
+\notag
+&> \left[ \int_{\TT^3}(1+|D|^2)^{s}e^{0}\v\cdot \v \, d\x\right]^{1/2} = \|\v\|_{G^{0}} \\
+&= \left[ \int_{\TT^3}(1+|D|^2)^{s}\v\cdot \v \, d\x\right]^{1/2}= \|v\|_{H^s}
+\end{align}
+Thus,
+$$\|\v\|_{G^{\sigma_2}} > \|\v\|_{G^{\sigma_1}} > \|\v\|_{G^{0}}.$$
+It follows from this that if $\|\v\|_{G^{\sigma_2}} < \infty$ then $\|\v\|_{G^{\sigma_1}} < \infty$ and so if $v\in G^{\sigma_2}$ then $v\in G^{\sigma_1}$. However it does not follow from this that if $\|\v\|_{G^{\sigma_1}} < \infty$ then $\|\v\|_{G^{\sigma_2}} < \infty$, and so it is not required that if $v\in G^{\sigma_1}$ then $v\in G^{\sigma_2}$. The same argument shows that if $v\in G^{\sigma_1}$ then $v\in G^0$ which is equivalent to $v\in H^s$. Therefore, 
+$$G^{\sigma_2} \subset G^{\sigma_1} \subset G^0 = H^s$$
+\end{proof}

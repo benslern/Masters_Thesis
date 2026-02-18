@@ -1,0 +1,12 @@
+goal is to find a worst case initial condition as alpha goes to zero
+
+we use Gevrey space to ensure functions are analytic
+
+1.14 in xinyu notes add inf to last term
+or
+1.13 >= instead of = and no inf on right side
+
+iso-1-2 initial condition
+taylor green initial condition
+
+Nick White - Adam Larios student

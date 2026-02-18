@@ -1,0 +1,210 @@
+\chapter{Statement of the Optimization Problem}
+
+\section{Formulation of the Problem}
+With our initial conditions and blowup criteria defined, we now define the objection function $\pat: V\rightarrow \RR^+$ as
+\begin{align}\label{eq:objective:functional}
+\pat(\be) := \|\nabla \ua(T;\bea)\|_{L^2}^2 = \|\ua(T;\bea)\|_{\hdo}^2,
+\end{align}
+where $\ua(T;\bea)$ is the solution of the Euler-Voigt equations obtained at time $T$ with the initial condition $\bea\in V$ and regularization parameter $\alpha$. We can now formulate our optimization problem. Given $\alpha, T\in\mathbb{R}_+$, find
+\begin{align}
+\tilde{\be}_{\alpha,T} = \argmax_{\bea \in M_1}\pat(\bea).
+\end{align}
+The objective function is maximized using an iterative relation described in Section (\ref{sec:Riemannian Conjugate Gradient Method}). The solution to the problem is the value of $\be_{\alpha,T}^n$ as the iteration number $n\rightarrow \infty$. Our goal is to first fix $T$ and solve the optimization problem for a sequence of decrease values of $\alpha$ that converge to 0. 
+\\~\\
+\textit{If the initial condition causes a singularity to form in the time interval $[0,T]$, then $\pat({\tilde{\be}_{\alpha,T}})$ should diverge as $\alpha\rightarrow 0$.} 
+\section{Gradient of Objective Function} \label{sec:Gateaux Directional Differential}
+The optimization problem is solved using an iterative relation which uses an optimal search direction and distance to create the next iteration's initial condition. We compute the optimal search direction using the gradient of the objection functional $\nabla\pat(\bea)$. This value is computed using an adjoint method which depends on solving a properly defined adjoint system backwards in time. We first introduce the G\^{a}teaux (directional) differential $\ppat(\bea;\bea'): V\times V \rightarrow \mathbb{R}$. The first order finite difference equation for the Gateaux differential is,
+\begin{align}\label{eq:Gateaux:differential}
+\ppat(\bea;\bea'):=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}\left[\pat(\bea+\epsilon\bea')-\pat(\bea)\right].
+\end{align}
+This can also be represented as an inner product on the Gevrey space using the Riesz representation theorem \cite{luenberger_optimization_nodate}
+\begin{equation}\label{eq:Gateaux:differential:riesz}
+\ppat(\bea;\bea') = \la \nabla\pat(\bea),\bea'\ra_{G^\sigma}.
+\end{equation}
+Substituting the second definition of the objective functional (\ref{eq:objective:functional}) into the finite difference form of the G\^{a}teaux differential, we derive the G\^{a}teaux differential in the form of the $\hdo$ inner product and the $L^2$ inner product,
+\begin{align}\label{eq:Gateaux:differential:inner:product}
+\ppat(\be;\be')=  2\la \ua(\cdot,T),\upa(\cdot,T)\ra_{\hdo} = 2\la \usa(\cdot,0),\upa(\cdot,0)\ra_{L^2}
+\end{align}
+The complete derivations for both forms are shown in Appendix (\ref{app:gateaux}). In (\ref{eq:Gateaux:differential:inner:product}) the value $\upa$ is the solution of the linearization of the Euler-Voigt system (\ref{eq:Euler:Voigt}) around its solution $\ua$. The linearization of the Euler-Voigt system is defined as
+\begin{subequations}\label{eq:Euler-Voigt:linearization}
+\begin{align}
+\L\begin{bmatrix}
+\upa \\
+p'
+\end{bmatrix} :=& 
+\begin{bmatrix}
+\partial_t \upa +(I-\alpha^2\Delta)^{-1}(\ua\cdot\bn\upa +\upa\cdot\bn \ua+\bn p')=0\\
+      \nabla\cdot \upa = 0\\
+\end{bmatrix} = \begin{bmatrix}
+0\\
+0
+\end{bmatrix}\\
+\upa(x,0) =& \bea'
+\end{align}
+\end{subequations}
+where $\bea'$ and $p'$ are the perturbations of the initial condition and pressure, respectively. The derivation of the linearized form of the Euler-Voigt equations is shown in Appendix (\ref{app:lin:euler}). The value $\usa$ in (\ref{eq:Gateaux:differential:inner:product}) is the solution of the adjoint system
+\small
+\begin{subequations}\label{eq:Euler-Voigt:adjoint}
+\begin{align}
+\L^*\begin{bmatrix}
+\usa\\
+p_{\alpha}^*
+\end{bmatrix} :=& \begin{bmatrix}
+-\partial_t\usa-(\bn (I-\alpha^2)^{-1}\usa + (\bn (I-\alpha^2)^{-1}\usa)^{\intercal})\ua-\bn p_{\alpha}^*\\
+-\bn \cdot \usa
+\end{bmatrix} = \begin{bmatrix}
+0\\
+0
+\end{bmatrix}\\
+\usa(\x,T) =& 2|D|^2\ua(\x,T)
+\end{align}
+\end{subequations}
+\normalsize
+which is derived in Appendix (\ref{app:adjoint}) by performing integration by parts, in both space and time, on the following duality-pairing relation 
+\begin{equation}\label{eq:duality:pairing}
+\begin{aligned}
+\left(\L\begin{bmatrix}
+\upa\\
+p'
+\end{bmatrix}, \begin{bmatrix}
+\usa\\
+p^*
+\end{bmatrix} \right) :=& \int_0^T\int_{\TT^3} \L\begin{bmatrix}
+\upa\\
+p'
+\end{bmatrix}, \begin{bmatrix}
+\usa\\
+p^*
+\end{bmatrix} \,d\x\,dt \\[3pt]
+=& \left( \begin{bmatrix}
+\upa\\
+p'
+\end{bmatrix},\L^*\begin{bmatrix}
+\usa\\
+p^*
+\end{bmatrix} \right) + \int_{\TT^3} \upa(\x,T)\cdot \usa(\x,T)\,d\x \\[3pt]
+&- \int_{\TT^3}\be'(\x)\cdot \usa(\x,0) \,d\x \\
+=& \, 0.
+\end{aligned}
+\end{equation}
+Using the adjoint system we can now define the gradient. We take the G\^{a}teaux differential in the form of the $L^2$ inner product  (\ref{eq:Gateaux:differential:inner:product}) and in the Riesz representation form (\ref{eq:Gateaux:differential:riesz})
+\begin{equation}
+\ppat(\bea;\bea') = 2\la \usa(\cdot,0),\upa(\cdot,0)\ra_{L^2} = \la \nabla\pat(\bea),\bea' \ra_{G^\sigma}.
+\end{equation}
+Expressing the $L^2$ inner product in its integral form,
+\begin{subequations}
+\begin{align}
+\la \nabla\pat(\be),\be' \ra_{G^\sigma} &= \int_{\TT^3} \usa(x,0)\cdot \be'(x) \,dx \\
+&= \int_{\TT^3} (1+|D|^2)^3e^{2\sigma|D|}\left[(1+|D|^2)^{-3}e^{-2\sigma|D|}\usa(x,0)\right]\cdot \be'(x) \,dx \\
+&= \la (1+|D|^2)^{-3}e^{-2\sigma|D|} \usa(x,0),\be'(x) \ra_{G^\sigma}
+\end{align}
+\end{subequations}
+This gives us the G\^{a}teaux differential in the form of the Gevrey inner product
+\begin{equation}
+\la \nabla\pat(\be),\be' \ra_{G^\sigma} = \la (1+|D|^2)^{-3}e^{-2\sigma|D|} \usa(x,0),\be'(x) \ra_{G^\sigma}.
+\end{equation}
+Therefore, the gradient of the objective functional is
+\begin{equation}\label{eq:gradient}
+\nabla \pat(\bea) = (1+|D|^2)^{-3}e^{-2\sigma|D|}\usa(x,0)
+\end{equation}
+ 
+\section{Riemannian Conjugate Gradient Method}\label{sec:Riemannian Conjugate Gradient Method}
+
+The optimization solution looks for an initial condition $\bea \in M_1$ that maximizes our objective functional. Therefore, not only must our first initial condition $\be^0_{\alpha,T}$ have a unit $\hdo$ seminorm, but so to must each following iteration $\be_{\alpha,T}^{n+1}$. We ensure this constraint is upheld using a Riemannian conjugate gradient method modified from the method used in \cite{protas_systematic_2022} and \cite{danaila_computation_2017}. This method has three steps: 
+\begin{enumerate}
+  \item Project the gradient $\nabla\Phi_T(\bea)$ onto the tangent space to $\M_1$ at $\bea$
+  \item Perform a suitable vector transport operation in order to construct a Riemannian conjugate ascent direction using the previous search direction
+  \item Retract the resulting state back to the constraint manifold $\M_1$
+\end{enumerate}
+We first define the tangent space to $\M_1$ as
+$$\T_{\v}\M_1 = \lb \z\in V : \la \v,\z\ra_{\hdo}=0\rb.$$.
+For any $\z\in \T_{\v}\M_1$, this condition can be expressed as
+\begin{subequations}
+\begin{align}
+\la \v,\z\ra_{\hdo} &= \int_{\TT^3}|D|\v\cdot|D|\z d\x \\
+&= \int_{\TT^3} (1+|D|^2)^3e^{2\sigma|D|}\left((1+|D|^2)^{-3}e^{-2\sigma|D|}|D|^2\v\right)\cdot\z \,d\x \\
+&= \la (1+|D|^2)^{-3}e^{-2\sigma|D|}|D|^2\v,\z\ra_{G^\sigma} = 0.
+\end{align}
+\end{subequations}
+Thus, at each point $\v\in M_1$, the tangent space $\T_{\v},\M_1$ can be characterized using the unit 'normal' vector given by 
+\begin{equation}
+\n_{\v} = \frac{(1+|D|^2)^{-3}e^{-2\sigma|D|}|D|^2\v}{\|(1+|D|^2)^{-3}e^{-2\sigma|D|}|D|^2\v\|_{G^\sigma}}
+\end{equation}
+which allows us to construct the projection operator $\P_{\T_{\v}M_1}: V \rightarrow \T_{\v}\M_1$, 
+\begin{equation}
+\forall \w \in V, \quad \P_{\T_{\v}\M_1}\w = \w - \la \n_{\v}, \w \ra_{G^\sigma}\n_{\v}.
+\end{equation}
+As stated previously, the initial conditions at each iteration must have a unit $\hdo$. In order to ensure this we introduce the Retraction operator
+\begin{equation}
+\R(\v) = \frac{\v}{\|\v\|_{\hdo}}, \qquad \v\neq \boldsymbol 0.
+\end{equation}
+The Reimannian method uses the search direction of the $n$-th iteration to compute the search direction of the $(n+1)$-th iteration. This is done by a linear combination of the current direction and a 'momentum' term based on the previous iteration's search direction. However, the two search directions belong to different tangent spaces to $\M_1$ and thus cannot be directly added. In order to allow algebraic operations to be performed on the vectors of the two tangent spaces we introduce the vector transport operation
+$$\T\M_1 \oplus \T\M_1 \rightarrow \T\M_1: (\bp,\bx)\mapsto \Gamma_{\bp}(\bx)\in \T\M_1, $$
+where $\T\M_1 = \bigcup_{\v\in\M_1}\T_v\M_1$ is the tangent bundle on $\M_1$. The operation transports the vector field $\bx$ along the manifold $M_1$ in the direction of $\bp$ [CITATION]. This allows us to map search directions between the tangent spaces of two consecutive iterations.
+
+\section{Spatial Discretization \& Spectral Methods}
+define the domain and mathematical tools used
+
+\subsection{Time Stepping}
+what time stepping methods are there.
+which time stepping method will we use.
+
+\section{Spectrum Validation}
+
+USING SPECTRUM VALIDATE THE FUNCTION REMAINS SMOOTH AND REAL ANALYTIC.
+\\~\\
+The Energy vs wavenumber graph of the initial condition shown below demonstrates the exponential decay expected by a analytic function. As the solution evolves in time the rate of decay decreases due to aliasing. While this can be reduced by anti-aliasing techniques, it cannot be entirely prevented
+\\~\\
+Low resolution and small alpha simulations are especially vulnerable to aliasing errors and the solutions stop being analytic before the chosen timescale.
+\\~\\
+The chosen timescales, alphas, and resolutions are validated in the graphs below which show that the spectral decay remains exponential and thus the solutions remain analytic.
+
+\section{Kappa Test Validation}
+
+The simulations are discretized in space using a psuedospectral method and time using a fourth order Runge Kutta method. The kappa test is a means of validating these discretization methods based on the validation method of \cite{matharu_adjoint_based_2024}. We define the value $\kappa$ as
+\begin{equation}\label{eq:kappa}
+\kappa(\epsilon) = \frac{\epsilon^{-1}\left[ \pat(\be+\epsilon\be')-\pat(\be) \right]}{\la \nabla\pat(\be),\be' \ra}
+\end{equation}
+where $\pat$ is the objective functional (\ref{eq:objective:functional}), $\be$ is the initial condition, and $\nabla\pat$ is the gradient of the objective functional (\ref{eq:gradient}). The numerator is the first order finite difference approximation of the Gateaux differential. The denominator is the Reisz form of the differential that utilizes the adjoint system (\ref{eq:Euler-Voigt:adjoint}). If the numerical approximation methods are accurate, then we expect $\kappa\approx 1$.
+\\~\\
+A log-log plot of $|\kappa-1|$ vs $\epsilon$ can be broken up into three regions, each dominated by different error sources. These are the discretization errors, round off errors, and truncation errors. The round off errors are caused by finite precision numerical representation and so are approximately of order $O(\epsilon^{-1})$. Therefore, we expect the value of $\kappa$ to be dominated by round off errors for small $\epsilon$ values. The truncation errors are caused by using a first order finite difference formula to calculate the derivative. The truncation errors are of order $O(\epsilon)$. Therefore, we expect the value of $\kappa$ to be dominated by the truncation errors for large values of $\epsilon$. Between these two regions the value of $\kappa$ will be determined by the discretization errors in the numerical solutions, which are themselves a product of the spatial and temporal resolution. With smaller values of $\Delta x$ and $\Delta t$ causing the error to decrease. This will cause the value of $\log_{10}|kappa-1|$ to decrease as the resolution increases. Additionally, an increase in the resolution will decrease the range of $\epsilon$ over which the discretization errors dominate. Therefore, we expect the plot of $\kappa$ vs $\epsilon$ to be of the general form shown in the graph below. 
+\\~\\
+\begin{figure}[!htbp]
+\centering
+\includegraphics[scale=0.8]{"../../KappaTest/KappaTheory.png"}
+\caption{Plot showing the expected $\kappa$ behaviour for different spatial and temporal resolution where $\delta$ represents a small arbitrary constant.}
+\end{figure}
+
+\noindent The following $\kappa$ test graphs were generated using a fixed spacial resolution of 128 and with varying temporal resolutions $\Delta t \in [2^{-4},2^{-12}]$. The initial conditions used are the 3D Taylor Green, 3D ABC, and 3D ABC Mixture, each with a random initial perturbation. The simulations were run for timescales of $T=1$ and $T=3$. The results are shown below.
+\\~\\
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{"../../KappaTest/kappa_test_init1/t1_result.png"}
+\includegraphics[scale=0.4]{"../../KappaTest/kappa_test_init1/t3_result.png"}
+\end{figure}
+
+\noindent The results from the 3D Taylor-Green $\kappa$ test show the expected behaviour from the theoretical kappa test graph. The value of kappa increases at very small and large values of epsilon. The value of kappa approaches 1 as $\Delta t$ decreases, and so the plateau region lowers and decreases in width. The T=1 time scale results follow very closely to the expected results while the T=3 time scale simulations show deviations from the the expected behaviour. These differences are due to the random initial direction of each simulation having more time to deviate from one another.
+\\~\\
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{"../../KappaTest/kappa_test_init2/t1_result.png"}
+\includegraphics[scale=0.4]{"../../KappaTest/kappa_test_init2/t3_result.png"}
+\end{figure}
+
+The kappa test results for the 3D ABC initial condition exhibit the same lowering of kappa as the time step decreases. However, unlike the Taylor Green initial condition, the results from the 3D ABC $\kappa$ test have little to no plateau region. This indicates that the 3D ABC initial condition simulations are much more sensitive to the round off and truncation errors.
+\\~\\
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{"../../KappaTest/kappa_test_init3/t1_result.png"}
+\includegraphics[scale=0.4]{"../../KappaTest/kappa_test_init3/t3_result.png"}
+\end{figure}
+
+The results from the 3D ABC Mixture $\kappa$ test show the same expected behaviour as the 3D Taylor Green kappa test.
+\\~\\
+The three kappa test results align well with the expected theoretical result. Therefore, we conclude that the discretization and time stepping techniques used in this analysis are valid and accurate.
+
+\pagebreak
+

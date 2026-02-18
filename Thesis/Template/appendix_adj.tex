@@ -1,0 +1,61 @@
+\chapter{Derivation of the Adjoint System}
+\label{app:adjoint}
+
+For this derivation we will exclude the $\alpha$ subscript on the $u_{\alpha}$, $u_{\alpha}'$, and $u_{\alpha}^*$ terms for the sake of simplicity. Additionally, we substitute the integration with the following notation
+$$\int_0^T\int_{\TT^3} u \,dt = \int_D u \,dt$$
+We derive the adjoint system using the following duality pairing relation, 
+$$(L[u'],u^*):=\int_D L[u']u^* dx dt = (u',L[u^*])+\int_a^b u'u^*|_{t=T}-\int_a^b u'u^*|_{t=0} dx = 0.$$
+Substituting in the equation from the Euler-Voigt perturbation system,
+$$(L[u'],u^*):= \int_D (\partial_t u'+(I-\alpha^2\Delta)^{-1}(u_\cdot\nabla u'+u'\cdot\nabla u_+\nabla p'))u^*+(\nabla \cdot u')p^* dx\,dt.$$
+This integral can be split into five parts. Solving the first part with integration by parts, with $u=u^*$ and $v'=\partial_t u'$
+$$\int_D u^*\partial_t u'dx\, dt = \int_{\mathbb{T}^3}u^*u'|_{t=0}^{t=T} dx - \int_D u'\partial_t u^* dx\, dt.$$
+Starting with the second part and expressing it in Einstein Summation notation,
+$$\left[(I-\alpha^2\Delta)^{-1}u\cdot\nabla u'\right]\cdot u^* dx\, dt = \left[(I-\alpha^2\Delta)^{-1}u_{j}\frac{\partial u_i'}{\partial x_j}\right]u^*_i dx\, dt.$$
+Using the derivative product rule and the fact that $\nabla \cdot u = 0$,
+$$\frac{\partial}{\partial x_j}(u_ju_i') = \frac{\partial u_j}{\partial x_j}u_i' + u_j\frac{\partial u_i'}{\partial x_j} = u_j\frac{\partial u_i'}{\partial x_j}.$$
+Substituting this into the integral,
+$$\left[(I-\alpha^2\Delta)^{-1}u\cdot\nabla u'\right]\cdot u^* dx\, dt = \left[(I-\alpha^2\Delta)^{-1} \frac{\partial}{\partial x_j}(u_j u_i') \right]u^*_i dx \,dt.$$
+Using the periodic boundaries of the system, we can now apply integration by parts with $u=[(I-\alpha^2\Delta)^{-1}u_i^*]$ and $v'= \frac{\partial}{\partial x_j}(u_j u_i')$,
+$$\left[(I-\alpha^2\Delta)^{-1}u\cdot\nabla u'\right]\cdot u^* dx\, dt = - u_j u_i' \frac{\partial}{\partial x_j}\left[(I-\alpha^2\Delta)^{-1}u^*_i \right] dx \,dt.$$
+Converting back to vector notation,
+$$\left[(I-\alpha^2\Delta)^{-1}u\cdot\nabla u'\right]\cdot u^* dx\, dt = - u' \cdot \left[u \cdot \nabla\left[(I-\alpha^2\Delta)^{-1}u^* \right]\right] dx \,dt.$$
+Starting with the third part and expressing it in Einstein Summation notation,
+$$\left[(I-\alpha^2\Delta)^{-1}u'\cdot\nabla u\right]\cdot u^* dx\, dt = \left[(I-\alpha^2\Delta)^{-1}u'_{j}\frac{\partial u_i}{\partial x_j}\right]u^*_i dx\, dt.$$
+Applying integration by parts with $u=[(I-\alpha^2\Delta)^{-1}u_i^*]$ and $v'= \frac{\partial}{\partial x_j}(u_j' u_i)$
+$$\left[(I-\alpha^2\Delta)^{-1}u'\cdot\nabla u\right]\cdot u^* dx\, dt = -u_j'u_i\frac{\partial}{\partial x_j} \left[ (I-\alpha^2\Delta)^{-1} u_i^* \right] dx \,dt.$$
+Because the goal is to extract $u'$ and $v\cdot w = v^T \cdot w^T$, we can apply a transpose to the above equation and so swap the indices to,
+$$\left[(I-\alpha^2\Delta)^{-1}u'\cdot\nabla u\right]\cdot u^* dx\, dt = -u_i'u_j\frac{\partial}{\partial x_i} \left[ (I-\alpha^2\Delta)^{-1} u_j^* \right] dx \,dt.$$
+Converting back to vector notation,
+$$\left[(I-\alpha^2\Delta)^{-1}u'\cdot\nabla u\right]\cdot u^* dx\, dt = -u' \cdot \left[ u \cdot \left[ \nabla (I-\alpha^2\Delta)^{-1} u^* \right]^T \right] dx \,dt.$$
+Starting with the fourth part of the integral and expressing it in Einstein Summation notation,
+$$ \nabla p' \cdot u^* dx\,dt=  \frac{\partial p'}{\partial x_i}u_i^* dx\,dt.$$
+Applying integration by parts with $u=u_i^*$ and $v'=\partial x_i p'$,
+$$ \nabla p' \cdot u^* dx\,dt= - p'\frac{\partial u_i^*}{\partial x_i} dx\,dt.$$
+Converting back to vector notation,
+$$ \nabla p' \cdot u^* dx\,dt= - p'(\nabla \cdot u^*) dx\,dt.$$
+Starting with the final part of the integral and expressing it in Einstein Summation notation,
+$$(\nabla \cdot u')p^* dx\,dt =  \frac{\partial u_i'}{\partial x_i} p^* dx\,dt.$$
+Applying integration by parts with $u=p^*$ and $v'=\partial x_i u_i'$,
+$$(\nabla \cdot u')p^* dx\,dt = - \frac{\partial p^*}{\partial x_i} u_i' dx\,dt.$$
+Converting back to vector notation,
+$$(\nabla \cdot u')p^* dx\,dt = - u'\cdot \nabla p^* dx\,dt.$$
+Combining the integrals,
+$$\int_{\mathbb{T}^3}u^*u'|_{t=0}^{t=T} dx -  u'\left[\partial_t u^* - \left[u \cdot \nabla\left[(I-\alpha^2\Delta)^{-1}u^* \right]\right]-\left[ u \cdot \left[ \nabla (I-\alpha^2\Delta)^{-1} u^* \right]^T \right] - \nabla p^* \right] - p'(\nabla \cdot u^*)$$
+This gives us our adjoint system,
+$$\mathbb{L}^*\begin{bmatrix}
+u_{\alpha}^*\\
+p_{\alpha}^*
+\end{bmatrix} := \begin{bmatrix}
+-\partial_tu^*-(\nabla (I-\alpha^2)^{-1}u_{\alpha}^* + (\nabla (I-\alpha^2)^{-1}u_{\alpha}^*)^T)u_{\alpha}-\nabla p_{\alpha}^*\\
+-\nabla \cdot u_{\alpha}^*
+\end{bmatrix} = \begin{bmatrix}
+0\\
+0
+\end{bmatrix}$$
+
+To derive the terminal condition of the adjoint system we compare the second term of the duality pairing to the objective functional.
+$$\int_{\TT^3}u'(x,T)\u^*(x,T) dx = 2\la u(x,T),u'(x,T)\ra_{\hdo}$$
+$$ = 2\int_{\TT^3}|D|u(x,T)\u'(x,T) dx$$
+$$ = \int_{\TT^3}2|D|^2u(x,T)\u'(x,T)dx$$
+Therefore,
+$$\u^*(x,T) = 2|D|^2u(x,T)$$

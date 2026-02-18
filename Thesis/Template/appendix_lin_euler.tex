@@ -1,0 +1,44 @@
+\chapter{Linearization of the Euler-Voigt System}
+\label{app:lin:euler}
+
+Euler-Voigt Equations,
+\begin{equation}
+\notag
+\begin{cases}
+      -\alpha^2\partial_t\Delta \ua + \partial_t \ua + (\ua\cdot\bn)\ua+\bn p = 0\\
+      \bn\cdot \ua = 0\\
+      \left.\ua\right\vert_{t=0} = \be.\\
+    \end{cases}
+\end{equation}
+Substituting in $\ua=\ua+\ua'$, $\be=\be+\be'$, and $p=p+p'$,
+$$\begin{cases}
+      -\alpha^2\partial_t\Delta (\ua+\ua') + \partial_t (\ua+\ua') + ((\ua+\ua')\cdot\bn)(\ua+\ua')+\bn (p+p') = 0\\
+      \bn\cdot (\ua+\ua') = 0\\
+      \left.(\ua+\ua')\right\vert_{t=0} = \be+\be'.\\
+    \end{cases}$$
+Expanding
+$$\begin{cases}
+      -\alpha^2\partial_t\Delta \ua-\alpha^2\partial_t\Delta \ua' + \partial_t \ua+\partial_t\ua' + \ua\cdot\bn \ua + \\ \ua\cdot\bn \ua' +\ua'\cdot\bn \ua + \ua'\cdot\bn \ua' +\bn p+ \bn p' = 0\\
+      \bn\cdot (\ua+\ua') = 0\\
+      \left.(\ua+\ua')\right\vert_{t=0} = \be+\be'.\\
+    \end{cases}$$
+Substituting in the Euler-Voigt equations we simplify to
+$$\begin{cases}
+      -\alpha^2\partial_t\Delta \ua' + \partial_t\ua' + \ua\cdot\bn \ua' +\ua'\cdot\bn \ua + \ua'\cdot\bn \ua' + \bn p' = 0\\
+      \bn\cdot \ua' = 0\\
+      \left.\ua'\right\vert_{t=0} = \be'.\\
+    \end{cases}$$
+Linearizing the system by removing non-linear terms, we derive the Linearized Euler-Voigt system
+$$\begin{cases}
+      -\alpha^2\partial_t\Delta \ua' + \partial_t\ua' + \ua\cdot\bn \ua' +\ua'\cdot\bn \ua + \bn p' = 0\\
+      \bn\cdot \ua' = 0\\
+      \left.\ua'\right\vert_{t=0} = \be'.\\
+    \end{cases}$$
+This can be rearranged to the form
+\begin{equation}
+\begin{cases}
+      \partial_t \ua'+(I-\alpha^2\Delta)^{-1}(\ua\cdot\bn \ua'+\ua'\cdot\bn \ua+\bn p')=0\\
+      \bn\cdot \ua' = 0\\
+      \left.\ua'\right\vert_{t=0} = \be'.\\
+    \end{cases}
+\end{equation}

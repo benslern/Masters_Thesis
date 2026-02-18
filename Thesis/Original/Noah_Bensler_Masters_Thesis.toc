@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Singularity Formation in 3D Fluid Flows}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}3D Euler-Voigt Equations}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Initial Conditions}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Finite Time Blow-up Criteria}{5}{subsection.1.4}%
+\contentsline {section}{\numberline {2}The Optimization Problem}{8}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Formulation of the Problem}{8}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}G\^{a}teaux (Directional) Differential}{9}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Riemannian Conjugate Gradient Method}{11}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Numerical Methods}{13}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Spatial Discretization \& Spectral Methods}{13}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Time Stepping}{13}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Spectrum Validation}{13}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Kappa Test Validation}{14}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Initial Conditions}{19}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Results}{19}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Results for $\boldsymbol {\alpha = }$value 1}{20}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Results for $\boldsymbol {\alpha = }$value 2}{20}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Results for $\boldsymbol {\alpha = }$value 3}{20}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Conclusion}{20}{section.5}%
+\contentsline {section}{\numberline {6}Appendix}{20}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Derivation of the Gateaux Directional Differential}{20}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Linearization of the Euler-Voigt System}{23}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Derivation of the Adjoint System}{24}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Proof of (\ref {eq:Gevrey:size})}{28}{subsection.6.4}%

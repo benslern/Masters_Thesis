@@ -1,0 +1,5 @@
+Running euler model for taylor green to check if blow-up occurs at ~4.4
+
+Becomes under-resolved at t<1 when scaled to init h1=3pi^2
+
+Blowup doesn't occur for t<5 when scaled to init h3=1

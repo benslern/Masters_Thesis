@@ -1,0 +1,1278 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  1 FEB 2026 11:20
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./Noah_Bensler_Masters_Thesis_Template.tex
+(Noah_Bensler_Masters_Thesis_Template.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
+Document Class: report 2023/05/17 v1.4n Standard LaTeX document class
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
+File: size12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count187
+\c@chapter=\count188
+\c@section=\count189
+\c@subsection=\count190
+\c@subsubsection=\count191
+\c@paragraph=\count192
+\c@subparagraph=\count193
+\c@figure=\count194
+\c@table=\count195
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+)
+(gscale_thesis_doublespace.sty) (fancyheadings.sty
+\fancy@headwidth=\skip50
+\f@ncyO@elh=\skip51
+\f@ncyO@erh=\skip52
+\f@ncyO@olh=\skip53
+\f@ncyO@orh=\skip54
+\f@ncyO@elf=\skip55
+\f@ncyO@erf=\skip56
+\f@ncyO@olf=\skip57
+\f@ncyO@orf=\skip58
+) (natbib.sty
+Package: natbib 2000/07/24 7.0a (PWD)
+\bibhang=\skip59
+\bibsep=\skip60
+LaTeX Info: Redefining \cite on input line 508.
+\c@NAT@ctr=\count196
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\titlesec.sty
+Package: titlesec 2025/01/04 v2.17 Sectioning titles
+\ttl@box=\box51
+\beforetitleunit=\skip61
+\aftertitleunit=\skip62
+\ttl@plus=\dimen141
+\ttl@minus=\dimen142
+\ttl@toksa=\toks17
+\titlewidth=\dimen143
+\titlewidthlast=\dimen144
+\titlewidthfirst=\dimen145
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks18
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
+fg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen146
+\Gin@req@width=\dimen147
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen148
+\captionmargin=\dimen149
+\caption@leftmargin=\dimen150
+\caption@rightmargin=\dimen151
+\caption@width=\dimen152
+\caption@indent=\dimen153
+\caption@parindent=\dimen154
+\caption@hangindent=\dimen155
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count197
+\c@continuedfloat=\count198
+)
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count199
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count266
+) (C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
+\col@sep=\dimen156
+\ar@mcellbox=\box52
+\extrarowheight=\dimen157
+\NC@list=\toks19
+\extratabsurround=\skip63
+\backup@length=\skip64
+\ar@cellbox=\box53
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen158
+\lightrulewidth=\dimen159
+\cmidrulewidth=\dimen160
+\belowrulesep=\dimen161
+\belowbottomsep=\dimen162
+\aboverulesep=\dimen163
+\abovetopsep=\dimen164
+\cmidrulesep=\dimen165
+\cmidrulekern=\dimen166
+\defaultaddspace=\dimen167
+\@cmidla=\count267
+\@cmidlb=\count268
+\@aboverulesep=\dimen168
+\@belowrulesep=\dimen169
+\@thisruleclass=\count269
+\@lastruleclass=\count270
+\@thisrulewidth=\dimen170
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty
+Package: longtable 2023-11-01 v4.19 Multi-page Table package (DPC)
+\LTleft=\skip65
+\LTright=\skip66
+\LTpre=\skip67
+\LTpost=\skip68
+\LTchunksize=\count271
+\LTcapwidth=\dimen171
+\LT@head=\box54
+\LT@firsthead=\box55
+\LT@foot=\box56
+\LT@lastfoot=\box57
+\LT@gbox=\box58
+\LT@cols=\count272
+\LT@rows=\count273
+\c@LT@tables=\count274
+\c@LT@chunks=\count275
+\LT@p@ftn=\toks20
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count276
+\float@exts=\toks21
+\float@box=\box59
+\@float@everytoks=\toks22
+\@floatcapt=\box60
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/tools\enumerate.sty
+Package: enumerate 2023/07/04 v3.00 enumerate extensions (DPC)
+\@enLab=\toks23
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip69
+\enit@outerparindent=\dimen172
+\enit@toks=\toks24
+\enit@inbox=\box61
+\enit@count@id=\count277
+\enitdp@description=\count278
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/ncctools\extdash.sty
+Package: extdash 2018/06/24 v1.3 Extended Dash Package (NCC)
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2023/05/13 v2.17o AMS math features
+\@mathmargin=\skip70
+
+For additional information on amsmath, use the `?' option.
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks25
+\ex@=\dimen173
+))
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen174
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count279
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count280
+\leftroot@=\count281
+LaTeX Info: Redefining \overline on input line 399.
+LaTeX Info: Redefining \colon on input line 410.
+\classnum@=\count282
+\DOTSCASE@=\count283
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box62
+\strutbox@=\box63
+LaTeX Info: Redefining \big on input line 722.
+LaTeX Info: Redefining \Big on input line 723.
+LaTeX Info: Redefining \bigg on input line 724.
+LaTeX Info: Redefining \Bigg on input line 725.
+\big@size=\dimen175
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count284
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count285
+\dotsspace@=\muskip16
+\c@parentequation=\count286
+\dspbrk@lvl=\count287
+\tag@help=\toks26
+\row@=\count288
+\column@=\count289
+\maxfields@=\count290
+\andhelp@=\toks27
+\eqnshift@=\dimen176
+\alignsep@=\dimen177
+\tagshift@=\dimen178
+\tagwidth@=\dimen179
+\totwidth@=\dimen180
+\lineht@=\dimen181
+\@envbody=\toks28
+\multlinegap=\skip71
+\multlinetaggap=\skip72
+\mathdisplay@stack=\toks29
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
+Package xcolor Info: Model `RGB' extended on input line 1366.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
+) (C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks30
+\thm@bodyfont=\toks31
+\thm@headfont=\toks32
+\thm@notefont=\toks33
+\thm@headpunct=\toks34
+\thm@preskip=\skip73
+\thm@postskip=\skip74
+\thm@headsep=\skip75
+\dth@everypar=\toks35
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+Package: hyperref 2023-11-26 v7.01g Hypertext links for LaTeX
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+))
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro\letltxmacro
+.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count291
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count292
+)
+\@linkdim=\dimen182
+\Hy@linkcounter=\count293
+\Hy@pagecounter=\count294
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2023-11-26 v7.01g Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count295
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
+File: puenc.def 2023-11-26 v7.01g Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4181.
+Package hyperref Info: Link nesting OFF on input line 4186.
+Package hyperref Info: Hyper index ON on input line 4189.
+Package hyperref Info: Plain pages OFF on input line 4196.
+Package hyperref Info: Backreferencing OFF on input line 4201.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4448.
+\c@Hy@tempcnt=\count296
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4786.
+\XeTeXLinkMargin=\dimen183
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count297
+\Field@Width=\dimen184
+\Fld@charsize=\dimen185
+Package hyperref Info: Hyper figures OFF on input line 6065.
+Package hyperref Info: Link nesting OFF on input line 6070.
+Package hyperref Info: Hyper index ON on input line 6073.
+Package hyperref Info: backreferencing OFF on input line 6080.
+Package hyperref Info: Link coloring OFF on input line 6085.
+Package hyperref Info: Link coloring with OCG OFF on input line 6090.
+Package hyperref Info: PDF/A mode OFF on input line 6095.
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count298
+\c@Item=\count299
+\c@Hfootnote=\count300
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2023-11-26 v7.01g Hyperref driver for pdfTeX
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/base\atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+)
+\Fld@listcount=\count301
+\c@bookmark@seq@number=\count302
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
+echeck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
+ounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+85.
+)
+\Hy@SectionHShift=\skip76
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 40.
+\c@thm=\count303
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def
+File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count304
+\l__pdf_internal_box=\box64
+) (Noah_Bensler_Masters_Thesis_Template.aux (definitions.aux)
+(layabstr.aux) (abstr.aux) (dedic.aux) (acknowledgements.aux) (notation.aux)
+(introduction.aux) (chapter_2_theory.aux) (chapter_3_results.aux)
+(conclusion.aux) (appendix_gateaux.aux) (appendix_lin_euler.aux)
+(appendix_adj.aux) (appendix_gevrey.aux) (appendix_tg_seminorm_2pi.aux)
+(appendix_tg_seminorm_1.aux) (appendix_tg_seminorm_1_scaled.aux)
+(appendix_tg_vorticity_2pi.aux) (appendix_tg_vorticity_1.aux)
+(appendix_tg_vorticity_1_scaled.aux))
+\openout1 = `Noah_Bensler_Masters_Thesis_Template.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
+ii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count305
+\scratchdimen=\dimen186
+\scratchbox=\box65
+\nofMPsegments=\count306
+\nofMParguments=\count307
+\everyMPshowfont=\toks36
+\MPscratchCnt=\count308
+\MPscratchDim=\dimen187
+\MPnumerator=\count309
+\makeMPintoPDFobject=\count310
+\everyMPtoPDFconversion=\toks37
+)
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
+ase.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
+fg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)
+Package caption Info: End \AtBeginDocument code.
+Package hyperref Info: Link coloring ON on input line 90.
+
+(Noah_Bensler_Masters_Thesis_Template.out)
+(Noah_Bensler_Masters_Thesis_Template.out)
+\@outlinefile=\write3
+\openout3 = `Noah_Bensler_Masters_Thesis_Template.out'.
+
+\openout2 = `definitions.aux'.
+
+ (definitions.tex)
+Package hyperref Info: Option `pageanchor' set `false' on input line 92.
+ [1
+
+
+
+
+{C:/Users/bensl/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [1]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 92.
+
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 92.
+
+
+(C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+[2]
+\openout2 = `layabstr.aux'.
+
+ (layabstr.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 3--93
+
+ []
+
+[3
+
+
+]
+\openout2 = `abstr.aux'.
+
+ (abstr.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 3--94
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--94
+
+ []
+
+[4
+
+
+
+
+] [5]
+\openout2 = `dedic.aux'.
+
+ (dedic.tex) [6
+
+
+
+]
+\openout2 = `acknowledgements.aux'.
+
+ (acknowledgements.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--9
+
+ []
+
+) [7
+
+
+
+
+] (Noah_Bensler_Masters_Thesis_Template.toc [8
+
+
+
+])
+\tf@toc=\write4
+\openout4 = `Noah_Bensler_Masters_Thesis_Template.toc'.
+
+ [9]
+(Noah_Bensler_Masters_Thesis_Template.lof)
+\tf@lof=\write5
+\openout5 = `Noah_Bensler_Masters_Thesis_Template.lof'.
+
+ [10
+
+]
+(Noah_Bensler_Masters_Thesis_Template.lot)
+\tf@lot=\write6
+\openout6 = `Noah_Bensler_Masters_Thesis_Template.lot'.
+
+ [11
+
+]
+\openout2 = `notation.aux'.
+
+ (notation.tex) [12
+
+
+]
+(academicachievementdeclaration.tex)
+Package hyperref Info: Option `pageanchor' set `true' on input line 103.
+ [13
+
+
+
+]
+\openout2 = `introduction.aux'.
+
+ (introduction.tex
+Chapter 1.
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--8
+
+ []
+
+[1
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 12--20
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--20
+
+ []
+
+[2] [3] [4] [5]
+Overfull \hbox (23.09978pt too wide) detected at line 107
+[][][][] [] \OT1/cmr/m/n/12 = [] [] \OML/cmm/m/it/12 :
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 121--124
+
+ []
+
+[7] [8] [9]) [10]
+\openout2 = `chapter_2_theory.aux'.
+
+ (chapter_2_theory.tex
+Chapter 2.
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--15
+
+ []
+
+[11
+
+
+
+
+] [12] [13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 154--161
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--161
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--161
+
+ []
+
+[17]
+
+Package natbib Warning: Citation `matharu_adjoint_based_2024' on page 18 undefi
+ned on input line 164.
+
+<../../KappaTest/KappaTheory.png, id=444, 462.528pt x 346.896pt>
+File: ../../KappaTest/KappaTheory.png Graphic file (type png)
+<use ../../KappaTest/KappaTheory.png>
+Package pdftex.def Info: ../../KappaTest/KappaTheory.png  used on input line 17
+4.
+(pdftex.def)             Requested size: 370.02289pt x 277.51717pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--177
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--177
+
+ []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 178--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--180
+
+ []
+
+<../../KappaTest/kappa_test_init1/t1_result.png, id=451, 1001.7425pt x 536.0025
+pt>
+File: ../../KappaTest/kappa_test_init1/t1_result.png Graphic file (type png)
+<use ../../KappaTest/kappa_test_init1/t1_result.png>
+Package pdftex.def Info: ../../KappaTest/kappa_test_init1/t1_result.png  used o
+n input line 183.
+(pdftex.def)             Requested size: 400.6899pt x 214.3972pt.
+<../../KappaTest/kappa_test_init1/t3_result.png, id=452, 1001.7425pt x 536.0025
+pt>
+File: ../../KappaTest/kappa_test_init1/t3_result.png Graphic file (type png)
+<use ../../KappaTest/kappa_test_init1/t3_result.png>
+Package pdftex.def Info: ../../KappaTest/kappa_test_init1/t3_result.png  used o
+n input line 184.
+(pdftex.def)             Requested size: 400.6899pt x 214.3972pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 187--189
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 187--189
+
+ []
+
+[19] [20 <../../KappaTest/KappaTheory.png>]
+<../../KappaTest/kappa_test_init2/t1_result.png, id=462, 1001.7425pt x 536.0025
+pt>
+File: ../../KappaTest/kappa_test_init2/t1_result.png Graphic file (type png)
+<use ../../KappaTest/kappa_test_init2/t1_result.png>
+Package pdftex.def Info: ../../KappaTest/kappa_test_init2/t1_result.png  used o
+n input line 192.
+(pdftex.def)             Requested size: 400.6899pt x 214.3972pt.
+<../../KappaTest/kappa_test_init2/t3_result.png, id=463, 1001.7425pt x 536.0025
+pt>
+File: ../../KappaTest/kappa_test_init2/t3_result.png Graphic file (type png)
+<use ../../KappaTest/kappa_test_init2/t3_result.png>
+Package pdftex.def Info: ../../KappaTest/kappa_test_init2/t3_result.png  used o
+n input line 193.
+(pdftex.def)             Requested size: 400.6899pt x 214.3972pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 196--198
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 196--198
+
+ []
+
+[21 <../../KappaTest/kappa_test_init1/t1_result.png> <../../KappaTest/kappa_tes
+t_init1/t3_result.png>]
+<../../KappaTest/kappa_test_init3/t1_result.png, id=469, 1001.7425pt x 536.0025
+pt>
+File: ../../KappaTest/kappa_test_init3/t1_result.png Graphic file (type png)
+<use ../../KappaTest/kappa_test_init3/t1_result.png>
+Package pdftex.def Info: ../../KappaTest/kappa_test_init3/t1_result.png  used o
+n input line 201.
+(pdftex.def)             Requested size: 400.6899pt x 214.3972pt.
+<../../KappaTest/kappa_test_init3/t3_result.png, id=470, 1001.7425pt x 536.0025
+pt>
+File: ../../KappaTest/kappa_test_init3/t3_result.png Graphic file (type png)
+<use ../../KappaTest/kappa_test_init3/t3_result.png>
+Package pdftex.def Info: ../../KappaTest/kappa_test_init3/t3_result.png  used o
+n input line 202.
+(pdftex.def)             Requested size: 400.6899pt x 214.3972pt.
+ [22 <../../KappaTest/kappa_test_init2/t1_result.png> <../../KappaTest/kappa_te
+st_init2/t3_result.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 205--208
+
+ []
+
+[23 <../../KappaTest/kappa_test_init3/t1_result.png> <../../KappaTest/kappa_tes
+t_init3/t3_result.png>] [24])
+\openout2 = `chapter_3_results.aux'.
+
+ (chapter_3_results.tex
+Chapter 3.
+) [25
+
+
+
+
+]
+\openout2 = `conclusion.aux'.
+
+ (conclusion.tex
+Chapter 4.
+) [26
+
+
+
+
+]
+\openout2 = `appendix_gateaux.aux'.
+
+ (appendix_gateaux.tex
+Appendix A.
+[27
+
+
+
+
+] [28] [29]) [30]
+\openout2 = `appendix_lin_euler.aux'.
+
+ (appendix_lin_euler.tex
+Appendix B.
+[31
+
+
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{equation.B.0.
+43}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.38 \begin{equation}
+                     
+pdfTeX warning (ext4): destination with the same identifier (name{equation.B.0.
+43}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.38 \begin{equation}
+                     
+pdfTeX warning (ext4): destination with the same identifier (name{equation.B.0.
+43}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.38 \begin{equation}
+                     
+pdfTeX warning (ext4): destination with the same identifier (name{equation.B.0.
+43}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.38 \begin{equation}
+                     ) [32]
+\openout2 = `appendix_adj.aux'.
+
+ (appendix_adj.tex
+Appendix C.
+[33
+
+
+
+
+] [34] [35]
+Overfull \hbox (58.67862pt too wide) detected at line 43
+[][] \OML/cmm/m/it/12 u[]u[]\OMS/cmsy/m/n/12 j[]\OML/cmm/m/it/12 dx \OMS/cmsy/m
+/n/12 ^^@ \OML/cmm/m/it/12 u[] [] \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 p[]\OT1
+/cmr/m/n/12 (\OMS/cmsy/m/n/12 r ^^A \OML/cmm/m/it/12 u[]\OT1/cmr/m/n/12 )
+ []
+
+[36]) [37]
+\openout2 = `appendix_gevrey.aux'.
+
+ (appendix_gevrey.tex
+Appendix D.
+[38
+
+
+
+
+]) [39]
+\openout2 = `appendix_tg_seminorm_2pi.aux'.
+
+ (appendix_tg_seminorm_2pi.tex
+Appendix E.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\pi' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+[40
+
+
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 25--29
+
+ []
+
+) [41]
+\openout2 = `appendix_tg_seminorm_1.aux'.
+
+ (appendix_tg_seminorm_1.tex
+Appendix F.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+[42
+
+
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 25--29
+
+ []
+
+) [43]
+\openout2 = `appendix_tg_seminorm_1_scaled.aux'.
+
+ (appendix_tg_seminorm_1_scaled.tex
+Appendix G.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+[44
+
+
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 25--29
+
+ []
+
+) [45]
+\openout2 = `appendix_tg_vorticity_2pi.aux'.
+
+ (appendix_tg_vorticity_2pi.tex
+Appendix H.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\|' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\nabla' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\times' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\eta' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\|' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\infty' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\pi' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--19
+
+ []
+
+[46
+
+
+
+
+]) [47]
+\openout2 = `appendix_tg_vorticity_1.aux'.
+
+ (appendix_tg_vorticity_1.tex
+Appendix I.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\|' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\nabla' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\times' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\eta' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\|' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\infty' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--19
+
+ []
+
+[48
+
+
+
+
+]) [49]
+\openout2 = `appendix_tg_vorticity_1_scaled.aux'.
+
+ (appendix_tg_vorticity_1_scaled.tex
+Appendix J.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\|' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\nabla' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\times' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\eta' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\|' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\infty' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--19
+
+ []
+
+[50
+
+
+
+
+]) [51] (Noah_Bensler_Masters_Thesis_Template.bbl [52
+
+
+
+])
+
+Package natbib Warning: There were undefined citations.
+
+[53] (Noah_Bensler_Masters_Thesis_Template.aux (definitions.aux) (layabstr.aux)
+(abstr.aux) (dedic.aux) (acknowledgements.aux) (notation.aux) (introduction.aux
+) (chapter_2_theory.aux) (chapter_3_results.aux) (conclusion.aux)
+(appendix_gateaux.aux) (appendix_lin_euler.aux) (appendix_adj.aux)
+(appendix_gevrey.aux) (appendix_tg_seminorm_2pi.aux)
+(appendix_tg_seminorm_1.aux) (appendix_tg_seminorm_1_scaled.aux)
+(appendix_tg_vorticity_2pi.aux) (appendix_tg_vorticity_1.aux)
+(appendix_tg_vorticity_1_scaled.aux))
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
+ ***********
+Package rerunfilecheck Info: File `Noah_Bensler_Masters_Thesis_Template.out' ha
+s not changed.
+(rerunfilecheck)             Checksum: FDCB7CA01699186B85618035FF2AB014;5832.
+ ) 
+Here is how much of TeX's memory you used:
+ 14075 strings out of 474486
+ 236548 string characters out of 5743755
+ 1941542 words of memory out of 5000000
+ 35842 multiletter control sequences out of 15000+600000
+ 577207 words of font info for 105 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 75i,18n,79p,1405b,722s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
+1440.pk><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmbsy10.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmbx12.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/bensl/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/bensl/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/bensl/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/bensl
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Use
+rs/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mmib10.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cmextra/cmmib6.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cmextra/cmmib8.pfb><C:/Users/bensl/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/bensl/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/bensl/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/bensl/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users
+/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C
+:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl
+12.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmsy10.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmsy6.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmsy8.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/bensl/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/bensl/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/bensl/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Noah_Bensler_Masters_Thesis_Template.pdf (67 pages, 814250 by
+tes).
+PDF statistics:
+ 763 PDF objects out of 1000 (max. 8388607)
+ 178 named destinations out of 1000 (max. 500000)
+ 276 words of extra memory for PDF output out of 10000 (max. 10000000)
+

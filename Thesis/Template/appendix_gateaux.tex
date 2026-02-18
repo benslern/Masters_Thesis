@@ -1,0 +1,39 @@
+\chapter{Derivation of the Gateaux Directional Differential}
+\label{app:gateaux}
+
+The equation for the Gateaux differential (\ref{eq:Gateaux:differential}) is
+$$\ppat(\be;\be'):=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}[\pat(\be+\epsilon\be')-\pat(\be)].$$
+The objective functional (\ref{eq:objective:functional}) is defined as,
+$$\pat(\be):=\|\nabla \ua(T;\be)\|_{L^2}^2 = \|\ua(T;\be)\|_{\hdo}^2.$$
+Substituting the second definition of (\ref{eq:objective:functional}) into (\ref{eq:Gateaux:differential}),
+$$\ppat(\be;\be')=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}[\|\ua(T;\be+\epsilon\be')\|_{\hdo}^2-\|\ua(T;\be)\|_{\hdo}^2].$$
+The equation for the $\hdo$ seminorm is
+$$\|u\|_{\hdo}^2 = (2\pi)^3\sum_{k\in\ZZ^3}|k|^2|\uhk |^2.$$
+Substituting in the equation for the $\dot{H}^1$ seminorm
+$$\ppat(\be;\be')=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}[(2\pi)^3\sum_{k\in\ZZ^3}|k|^2|\uhk +\epsilon\uhpk |^2-(2\pi)^3\sum_{k\in\ZZ^3}|k|^2|\uhk |^2].$$
+This simplifies to
+$$\ppat(\be;\be')=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}[(2\pi)^3\sum_{k\in\ZZ^3}|k|^22\epsilon|\uhk\uhpk|+(2\pi)^3\sum_{k\in\ZZ^3}|k|^2\epsilon^2|\uhpk|^2].$$
+Taking the limit $\epsilon\rightarrow 0$
+$$\ppat(\be;\be')=2(2\pi)^3\sum_{k\in\ZZ^3}|k|^2|\uhk\uhpk|.$$
+This can be expressed in the integral form 
+$$\ppat(\be;\be')=2\int_{\TT^3}\sum_{k\in\ZZ^3}|k|^2\uhk\uhpk e^{2ikx}dx.$$
+Which is equivalent to the inner product
+$$\ppat(\be;\be')=2\la\sum_{k\in\ZZ^3}|k|\uhk e^{ikx},\sum_{k\in\ZZ^3}|k|\uhpk e^{ikx}\ra_{L^2}.$$
+This gives us the Gateaux differential in the form of the $\hdo$ inner product
+$$\ppat(\be;\be')=  2\la\ua(\cdot,T),\upa(\cdot,T)\ra_{\hdo}.$$
+The integral form of the $\hdo$ inner product is
+$$\la \u, \v \ra_{\hdo} = \int_{\TT^3} |D|\u\cdot |D|\v \, dx,$$
+where $|D|$ is the operator defined in (\ref{eq:D}). Therefore, the Gateaux differential can be expressed as
+$$\ppat(\be;\be')= 2\int_{\TT^3}|D|\ua(x,T)\cdot|D|\upa(x,T)\,dx,$$
+which can be rearranged to the form
+$$\ppat(\be;\be')= \int_{\TT^3}2|D|^2\ua(x,T)\cdot\upa(x,T)\,dx.$$
+We now make use of the adjoint system terminal condition derived in Appendix (\ref{app:adjoint})
+$$\usa(x,T) = 2|D|^2\ua(x,T).$$
+Therefore
+$$\ppat(\be;\be') = \int_{\TT^3}\usa(x,T)\cdot\upa(x,T)\,dx.$$
+Now using the duality-pairing defined in Appendix (\ref{app:adjoint})
+$$\ppat(\be;\be') = \int_{\TT^3}\be'(x)\cdot\usa(x,0)\,dx.$$
+This is the inner product
+$$\ppat(\be;\be') = \la \usa(x,0), \be'(x)\ra_{L^2}.$$
+Therefore,
+$$\ppat(\be;\be') = 2\la\ua(\cdot,T),\upa(\cdot,T)\ra_{\hdo} = \la \usa(x,0), \be'(x)\ra_{L^2}.$$

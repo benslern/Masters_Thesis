@@ -1,0 +1,10 @@
+A Mathematical Introduction to Fluid Mechanics
+pg: 2 
+In what follows we shall assume that the functions u and p (and others 
+to be introduced later) are smooth enough so that the standard operations of calculus 
+may be performed on them. This assumption is open to criticism and indeed we 
+shall come back and analyze it in detail later. 
+The assumption that p exists is a continuum assumption. Clearly it 
+does not hold if the molecular structure of matter is taken into account. For most 
+macroscopic phenomena occurring in nature, it is believed that this assumption is 
+extremely accurate.

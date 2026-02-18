@@ -1,0 +1,11 @@
+ - prep aims seminar
+
+ - https://sites.google.com/view/aims-lab-seminar/winter-2026
+
+rescale 512 to 3pi^2
+
+also run lower resolutions for 3pi^2
+
+euler 2048 resolution
+
+ - euler-voigt 3pi^2 timescale vs resolution well resolved

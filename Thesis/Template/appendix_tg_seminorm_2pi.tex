@@ -1,0 +1,29 @@
+\chapter{Taylor Green $\hdo$ in $[0,2\pi]^3$ domain}
+\label{app:tg:seminorm:2pi}
+
+The 3D Taylor Green initial condition on the domain $[0,2\pi]^3$ is
+$$\eta_{TG} = \begin{bmatrix}
+           \sin(x)\cos(y)\cos(z) \\
+           -\cos(x)\sin(y)\cos(z) \\
+           0.
+         \end{bmatrix}$$
+The formula for the H1 seminorm is
+$$\|\eta\|_{\hdo} = \|\nabla\eta\|_{L^2} = \left[ \sum_{i,j=1}^3 \int_{\Omega} (\partial_i\eta_j)^2 \,dx \right]^{1/2}.$$
+Because the z component of $\eta_{TG}$ is zero, the partial derivative is also zero. This leaves us with six integrals to evaluate.
+\begin{align*}
+\sum_{i,j=1}^3 \int_{\Omega} (\partial_i\eta_j)^2 \,dx &= \int_{\Omega} (\partial_x\eta_x)^2 \, dx + \int_{\Omega} (\partial_y\eta_x)^2 \, dx \\
+&+ \int_{\Omega} (\partial_z\eta_x)^2 \, dx + \int_{\Omega} (\partial_x\eta_y)^2 \, dx \\ 
+&+ \int_{\Omega} (\partial_y\eta_y)^2 \, dx + \int_{\Omega} (\partial_z\eta_y)^2 \, dx.
+\end{align*}
+Evaluating each partial derivative
+\begin{align*}
+\sum_{i,j=1}^3 \int_{\Omega} (\partial_i\eta_j)^2 \,dx &= \int_{\Omega} (\cos(x)\cos(y)\cos(z))^2 \, dx + \int_{\Omega} (-\sin(x)\sin(y)\cos(z))^2 \, dx \\
+&+ \int_{\Omega} (-\sin(x)\cos(y)\sin(z))^2 \, dx + \int_{\Omega} (\sin(x)\sin(y)\cos(z))^2 \, dx \\ 
+&+ \int_{\Omega} (-\cos(x)\cos(y)\cos(z))^2 \, dx + \int_{\Omega} (\cos(x)\sin(y)\sin(z))^2 \, dx.
+\end{align*}
+Evaluating each integral
+$$\sum_{i,j=1}^3 \int_{\Omega} (\partial_i\eta_j)^2 \,dx = \pi^3 + \pi^3 + \pi^3 + \pi^3 + \pi^3 + \pi^3 = 6\pi^3. $$
+\\
+Substituting into the formula for the H1 seminorm
+\\
+$$\|\eta\|_{\hdo} = \left[ 6\pi^3 \right]^{1/2}.$$

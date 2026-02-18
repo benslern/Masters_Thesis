@@ -1,0 +1,1154 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  13 JAN 2026 11:32
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./appendix_gevrey.tex
+(appendix_gevrey.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
+! Undefined control sequence.
+l.1 \chapter
+            {Proof of Gevrey Class size}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \chapter{P
+              roof of Gevrey Class size}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no P in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no G in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no e in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--3
+[]
+ []
+
+
+! LaTeX Error: Environment proof undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 \begin{proof}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 T
+     he definition of the Gevrey class (\ref{eq:Gevrey:Class}) is
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no T in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no G in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no ( in font nullfont!
+! Undefined control sequence.
+<write> ...nce `eq:Gevrey:Class' on page \thepage 
+                                                  \space undefined\on@line .
+l.5 ... of the Gevrey class (\ref{eq:Gevrey:Class}
+                                                  ) is
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `eq:Gevrey:Class' on page  undefined on input line 5.
+
+Missing character: There is no ) in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 5--6
+[]
+ []
+
+
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 5--6
+[]
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 6.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 6.
+! Undefined control sequence.
+l.7 G^\sigma := \lb
+                    \v\in H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 7.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 7.
+
+LaTeX Font Info:    Trying to load font information for +cmr on input line 7.
+LaTeX Font Info:    No file cmr.fd. on input line 7.
+
+LaTeX Font Warning: Font shape `/cmr/m/n' undefined
+(Font)              using `/cmr/m/n' instead on input line 7.
+
+! Corrupted NFSS tables.
+wrong@fontshape ...message {Corrupted NFSS tables}
+                                                  error@fontshape else let f...
+l.7 G^\sigma := \lb \v\in
+                          H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\...
+This error message was generated by an \errmessage
+command, so I can't give any explicit help.
+Pretend that you're Hercule Poirot: Examine all clues,
+and deduce the truth by order and method.
+
+
+LaTeX Font Warning: Font shape `/cmr/m/n' undefined
+(Font)              using `OT1/cmr/m/n' instead on input line 7.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.7 G^\sigma := \lb \v\in
+                          H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Improper \spacefactor.
+<recently read> \spacefactor 
+                             
+l.7 G^\sigma := \lb \v\in
+                          H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\...
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+! Extra }, or forgotten $.
+\add@accent ... \accent@spacefactor \spacefactor }
+                                                  \let \maybe@load@fontshape...
+l.7 G^\sigma := \lb \v\in
+                          H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.7 G^\sigma := \lb \v\in
+                          H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again> 
+                   \edef 
+l.7 G^\sigma := \lb \v\in
+                          H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Extra }, or forgotten $.
+\UseTextAccent  ...e@text@encoding \@curr@enc #3}}
+                                                  
+l.7 G^\sigma := \lb \v\in
+                          H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Undefined control sequence.
+l.7 G^\sigma := \lb \v\in H^s(\TT
+                                 ^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 7.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 7.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.7 G^\sigma := \lb \v\in H^s(\TT^3) : \|\v\|
+                                             _{G^\sigma} = \la \v,\v\ra_{G^\...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Improper \spacefactor.
+<recently read> \spacefactor 
+                             
+l.7 G^\sigma := \lb \v\in H^s(\TT^3) : \|\v\|
+                                             _{G^\sigma} = \la \v,\v\ra_{G^\...
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+! Extra }, or forgotten $.
+\add@accent ... \accent@spacefactor \spacefactor }
+                                                  \let \maybe@load@fontshape...
+l.7 G^\sigma := \lb \v\in H^s(\TT^3) : \|\v\|
+                                             _{G^\sigma} = \la \v,\v\ra_{G^\...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.7 G^\sigma := \lb \v\in H^s(\TT^3) : \|\v\|
+                                             _{G^\sigma} = \la \v,\v\ra_{G^\...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again> 
+                   \edef 
+l.7 G^\sigma := \lb \v\in H^s(\TT^3) : \|\v\|
+                                             _{G^\sigma} = \la \v,\v\ra_{G^\...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.7 ... \v\in H^s(\TT^3) : \|\v\|_{G^\sigma} = \la
+                                                   \v,\v\ra_{G^\sigma}^{1/2}...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 7.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 7.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.7 ...in H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,
+                                                  \v\ra_{G^\sigma}^{1/2}<\in...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again> 
+                   \edef 
+l.7 ...in H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,
+                                                  \v\ra_{G^\sigma}^{1/2}<\in...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 7.
+
+! Undefined control sequence.
+<argument> \ra 
+               
+l.7 ...s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra
+                                                  _{G^\sigma}^{1/2}<\infty \...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.7 ...s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra
+                                                  _{G^\sigma}^{1/2}<\infty \...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Undefined control sequence.
+<argument> \ra 
+               
+l.7 ...s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra
+                                                  _{G^\sigma}^{1/2}<\infty \...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing { inserted.
+<to be read again> 
+                   \egroup 
+l.7 ...s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra
+                                                  _{G^\sigma}^{1/2}<\infty \...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.7 ... = \la \v,\v\ra_{G^\sigma}^{1/2}<\infty \rb
+                                                  , \quad s\geq 3, \quad \si...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.8 $
+     $
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.8 $
+     $
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Undefined control sequence.
+<write> ...Gevrey:Inner:Product' on page \thepage 
+                                                  \space undefined\on@line .
+l.9 ...nner product (\ref{eq:Gevrey:Inner:Product}
+                                                  ) is
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `eq:Gevrey:Inner:Product' on page  undefined on input 
+line 9.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 10.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 10.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.10 $$\forall \v,
+                  \u \in G^\sigma, \quad \la \v,\u \ra_{G^\sigma} := \int_{\...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again> 
+                   \edef 
+l.10 $$\forall \v,
+                  \u \in G^\sigma, \quad \la \v,\u \ra_{G^\sigma} := \int_{\...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+LaTeX Warning: Command \u invalid in math mode on input line 10.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.10 $$\forall \v,\u \in
+                         G^\sigma, \quad \la \v,\u \ra_{G^\sigma} := \int_{\...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Improper \spacefactor.
+<recently read> \spacefactor 
+                             
+l.10 $$\forall \v,\u \in
+                         G^\sigma, \quad \la \v,\u \ra_{G^\sigma} := \int_{\...
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+! Extra }, or forgotten $.
+\add@accent ... \accent@spacefactor \spacefactor }
+                                                  \let \maybe@load@fontshape...
+l.10 $$\forall \v,\u \in
+                         G^\sigma, \quad \la \v,\u \ra_{G^\sigma} := \int_{\...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.10 $$\forall \v,\u \in
+                         G^\sigma, \quad \la \v,\u \ra_{G^\sigma} := \int_{\...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Extra }, or forgotten $.
+\add@accent ...spaces \relax \accent #1 #2\egroup 
+                                                  \ifmmode \else \spacefacto...
+l.10 $$\forall \v,\u \in
+                         G^\sigma, \quad \la \v,\u \ra_{G^\sigma} := \int_{\...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Undefined control sequence.
+l.10 $$\forall \v,\u \in G^\sigma, \quad \la
+                                             \v,\u \ra_{G^\sigma} := \int_{\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 10.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.10 $$\forall \v,\u \in G^\sigma, \quad \la \v,
+                                                \u \ra_{G^\sigma} := \int_{\...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+
+LaTeX Warning: Command \u invalid in math mode on input line 10.
+
+! Undefined control sequence.
+<argument> \ra 
+               
+l.10 ...ll \v,\u \in G^\sigma, \quad \la \v,\u \ra
+                                                  _{G^\sigma} := \int_{\TT^3...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.10 ...ll \v,\u \in G^\sigma, \quad \la \v,\u \ra
+                                                  _{G^\sigma} := \int_{\TT^3...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Undefined control sequence.
+<argument> \ra 
+               
+l.10 ...ll \v,\u \in G^\sigma, \quad \la \v,\u \ra
+                                                  _{G^\sigma} := \int_{\TT^3...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing { inserted.
+<to be read again> 
+                   \egroup 
+l.10 ...ll \v,\u \in G^\sigma, \quad \la \v,\u \ra
+                                                  _{G^\sigma} := \int_{\TT^3...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.10 ...quad \la \v,\u \ra_{G^\sigma} := \int_{\TT
+                                                  ^3}(1+|D|^2)^se^{2\sigma |...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 10.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.10 ...t_{\TT^3}(1+|D|^2)^se^{2\sigma |D|}\v\cdot
+                                                   \u \, d\x.$$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Improper \spacefactor.
+<recently read> \spacefactor 
+                             
+l.10 ...t_{\TT^3}(1+|D|^2)^se^{2\sigma |D|}\v\cdot
+                                                   \u \, d\x.$$
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+! Extra }, or forgotten $.
+\add@accent ... \accent@spacefactor \spacefactor }
+                                                  \let \maybe@load@fontshape...
+l.10 ...t_{\TT^3}(1+|D|^2)^se^{2\sigma |D|}\v\cdot
+                                                   \u \, d\x.$$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.10 ...t_{\TT^3}(1+|D|^2)^se^{2\sigma |D|}\v\cdot
+                                                   \u \, d\x.$$
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Extra }, or forgotten $.
+\add@accent ...spaces \relax \accent #1 #2\egroup 
+                                                  \ifmmode \else \spacefacto...
+l.10 ...t_{\TT^3}(1+|D|^2)^se^{2\sigma |D|}\v\cdot
+                                                   \u \, d\x.$$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+LaTeX Warning: Command \u invalid in math mode on input line 10.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.10 ...^3}(1+|D|^2)^se^{2\sigma |D|}\v\cdot \u \,
+                                                   d\x.$$
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again> 
+                   \mskip 
+l.10 ...^3}(1+|D|^2)^se^{2\sigma |D|}\v\cdot \u \,
+                                                   d\x.$$
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.10 ...1+|D|^2)^se^{2\sigma |D|}\v\cdot \u \, d\x
+                                                  .$$
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.10 ...|D|^2)^se^{2\sigma |D|}\v\cdot \u \, d\x.$
+                                                  $
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.11 Let $\sigma
+                _1, \sigma_2$ be defined such that
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.12 $$0 < \sigma
+                 _1 < \sigma_2.$$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+! LaTeX Error: Environment align undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 \begin{align}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+l.15 \notag
+           
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 16.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.16 \|\v\|
+           _{G^{\sigma_2}} &=\left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Improper \spacefactor.
+<recently read> \spacefactor 
+                             
+l.16 \|\v\|
+           _{G^{\sigma_2}} &=\left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D...
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+! Extra }, or forgotten $.
+\add@accent ... \accent@spacefactor \spacefactor }
+                                                  \let \maybe@load@fontshape...
+l.16 \|\v\|
+           _{G^{\sigma_2}} &=\left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.16 \|\v\|
+           _{G^{\sigma_2}} &=\left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Extra }, or forgotten $.
+\add@accent ...spaces \relax \accent #1 #2\egroup 
+                                                  \ifmmode \else \spacefacto...
+l.16 \|\v\|
+           _{G^{\sigma_2}} &=\left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Misplaced alignment tab character &.
+l.16 \|\v\|_{G^{\sigma_2}} &
+                            =\left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+l.16 \|\v\|_{G^{\sigma_2}} &=\left[ \int_{\TT
+                                             ^3}(1+|D|^2)^{s}e^{2\sigma_2 |D...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 16.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.16 ...TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D|}\v\cdot
+                                                   \v \, d\x\right]^{1/2}\\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Improper \spacefactor.
+<recently read> \spacefactor 
+                             
+l.16 ...TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D|}\v\cdot
+                                                   \v \, d\x\right]^{1/2}\\
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+! Extra }, or forgotten $.
+\add@accent ... \accent@spacefactor \spacefactor }
+                                                  \let \maybe@load@fontshape...
+l.16 ...TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D|}\v\cdot
+                                                   \v \, d\x\right]^{1/2}\\
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.16 ...TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D|}\v\cdot
+                                                   \v \, d\x\right]^{1/2}\\
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Extra }, or forgotten $.
+\add@accent ...spaces \relax \accent #1 #2\egroup 
+                                                  \ifmmode \else \spacefacto...
+l.16 ...TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D|}\v\cdot
+                                                   \v \, d\x\right]^{1/2}\\
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 16.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.16 ...1+|D|^2)^{s}e^{2\sigma_2 |D|}\v\cdot \v \,
+                                                   d\x\right]^{1/2}\\
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again> 
+                   \mskip 
+l.16 ...1+|D|^2)^{s}e^{2\sigma_2 |D|}\v\cdot \v \,
+                                                   d\x\right]^{1/2}\\
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.16 ...|^2)^{s}e^{2\sigma_2 |D|}\v\cdot \v \, d\x
+                                                  \right]^{1/2}\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.16 ...s}e^{2\sigma_2 |D|}\v\cdot \v \, d\x\right
+                                                  ]^{1/2}\\
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Extra \right.
+l.16 ...}e^{2\sigma_2 |D|}\v\cdot \v \, d\x\right]
+                                                  ^{1/2}\\
+I'm ignoring a \right that had no matching \left.
+
+! Undefined control sequence.
+<recently read> \notag 
+                       
+l.17 \notag
+           
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Misplaced alignment tab character &.
+l.18 &
+      > \left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2 \sigma_1 |D|}\v\cdot \v \, d\x\...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+l.18 &> \left[ \int_{\TT
+                        ^3}(1+|D|^2)^{s}e^{2 \sigma_1 |D|}\v\cdot \v \, d\x\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 18.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.18 ...T^3}(1+|D|^2)^{s}e^{2 \sigma_1 |D|}\v\cdot
+                                                   \v \, d\x\right]^{1/2} = ...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Improper \spacefactor.
+<recently read> \spacefactor 
+                             
+l.18 ...T^3}(1+|D|^2)^{s}e^{2 \sigma_1 |D|}\v\cdot
+                                                   \v \, d\x\right]^{1/2} = ...
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+! Extra }, or forgotten $.
+\add@accent ... \accent@spacefactor \spacefactor }
+                                                  \let \maybe@load@fontshape...
+l.18 ...T^3}(1+|D|^2)^{s}e^{2 \sigma_1 |D|}\v\cdot
+                                                   \v \, d\x\right]^{1/2} = ...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.18 ...T^3}(1+|D|^2)^{s}e^{2 \sigma_1 |D|}\v\cdot
+                                                   \v \, d\x\right]^{1/2} = ...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Extra }, or forgotten $.
+\add@accent ...spaces \relax \accent #1 #2\egroup 
+                                                  \ifmmode \else \spacefacto...
+l.18 ...T^3}(1+|D|^2)^{s}e^{2 \sigma_1 |D|}\v\cdot
+                                                   \v \, d\x\right]^{1/2} = ...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 18.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.18 ...+|D|^2)^{s}e^{2 \sigma_1 |D|}\v\cdot \v \,
+                                                   d\x\right]^{1/2} = \|v\|_...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again> 
+                   \mskip 
+l.18 ...+|D|^2)^{s}e^{2 \sigma_1 |D|}\v\cdot \v \,
+                                                   d\x\right]^{1/2} = \|v\|_...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.18 ...^2)^{s}e^{2 \sigma_1 |D|}\v\cdot \v \, d\x
+                                                  \right]^{1/2} = \|v\|_{G^{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.18 ...}e^{2 \sigma_1 |D|}\v\cdot \v \, d\x\right
+                                                  ]^{1/2} = \|v\|_{G^{\sigma...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Extra \right.
+l.18 ...e^{2 \sigma_1 |D|}\v\cdot \v \, d\x\right]
+                                                  ^{1/2} = \|v\|_{G^{\sigma_...
+I'm ignoring a \right that had no matching \left.
+
+! Undefined control sequence.
+<recently read> \notag 
+                       
+l.19 \notag
+           
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Misplaced alignment tab character &.
+l.20 &
+      > \left[ \int_{\TT^3}(1+|D|^2)^{s}e^{0}\v\cdot \v \, d\x\right]^{1/2} ...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+l.20 &> \left[ \int_{\TT
+                        ^3}(1+|D|^2)^{s}e^{0}\v\cdot \v \, d\x\right]^{1/2} ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 20.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.20 ...eft[ \int_{\TT^3}(1+|D|^2)^{s}e^{0}\v\cdot
+                                                   \v \, d\x\right]^{1/2} = ...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Improper \spacefactor.
+<recently read> \spacefactor 
+                             
+l.20 ...eft[ \int_{\TT^3}(1+|D|^2)^{s}e^{0}\v\cdot
+                                                   \v \, d\x\right]^{1/2} = ...
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+! Extra }, or forgotten $.
+\add@accent ... \accent@spacefactor \spacefactor }
+                                                  \let \maybe@load@fontshape...
+l.20 ...eft[ \int_{\TT^3}(1+|D|^2)^{s}e^{0}\v\cdot
+                                                   \v \, d\x\right]^{1/2} = ...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.20 ...eft[ \int_{\TT^3}(1+|D|^2)^{s}e^{0}\v\cdot
+                                                   \v \, d\x\right]^{1/2} = ...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Extra }, or forgotten $.
+\add@accent ...spaces \relax \accent #1 #2\egroup 
+                                                  \ifmmode \else \spacefacto...
+l.20 ...eft[ \int_{\TT^3}(1+|D|^2)^{s}e^{0}\v\cdot
+                                                   \v \, d\x\right]^{1/2} = ...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 20.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.20 ...int_{\TT^3}(1+|D|^2)^{s}e^{0}\v\cdot \v \,
+                                                   d\x\right]^{1/2} = \|\v\|...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again> 
+                   \mskip 
+l.20 ...int_{\TT^3}(1+|D|^2)^{s}e^{0}\v\cdot \v \,
+                                                   d\x\right]^{1/2} = \|\v\|...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Undefined control sequence.
+l.20 ...{\TT^3}(1+|D|^2)^{s}e^{0}\v\cdot \v \, d\x
+                                                  \right]^{1/2} = \|\v\|_{G^...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.20 ...}(1+|D|^2)^{s}e^{0}\v\cdot \v \, d\x\right
+                                                  ]^{1/2} = \|\v\|_{G^{0}} \\
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Extra \right.
+l.20 ...(1+|D|^2)^{s}e^{0}\v\cdot \v \, d\x\right]
+                                                  ^{1/2} = \|\v\|_{G^{0}} \\
+I'm ignoring a \right that had no matching \left.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 20.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.20 ...{0}\v\cdot \v \, d\x\right]^{1/2} = \|\v\|
+                                                  _{G^{0}} \\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Improper \spacefactor.
+<recently read> \spacefactor 
+                             
+l.20 ...{0}\v\cdot \v \, d\x\right]^{1/2} = \|\v\|
+                                                  _{G^{0}} \\
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+! Extra }, or forgotten $.
+\add@accent ... \accent@spacefactor \spacefactor }
+                                                  \let \maybe@load@fontshape...
+l.20 ...{0}\v\cdot \v \, d\x\right]^{1/2} = \|\v\|
+                                                  _{G^{0}} \\
+(That makes 100 errors; please try again.) 
+Here is how much of TeX's memory you used:
+ 35 strings out of 474486
+ 665 string characters out of 5743755
+ 1925542 words of memory out of 5000000
+ 22420 multiletter control sequences out of 15000+600000
+ 558377 words of font info for 37 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 23i,33n,32p,185b,310s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+!  ==> Fatal error occurred, no output PDF file produced!

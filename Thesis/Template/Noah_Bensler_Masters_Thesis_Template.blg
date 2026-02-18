@@ -1,0 +1,80 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Noah_Bensler_Masters_Thesis_Template.aux
+Reallocating 'name_of_file' (item size: 1) to 16 items.
+A level-1 auxiliary file: definitions.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+A level-1 auxiliary file: layabstr.aux
+Reallocating 'name_of_file' (item size: 1) to 10 items.
+A level-1 auxiliary file: abstr.aux
+Reallocating 'name_of_file' (item size: 1) to 10 items.
+A level-1 auxiliary file: dedic.aux
+Reallocating 'name_of_file' (item size: 1) to 21 items.
+A level-1 auxiliary file: acknowledgements.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+A level-1 auxiliary file: notation.aux
+Reallocating 'name_of_file' (item size: 1) to 17 items.
+A level-1 auxiliary file: introduction.aux
+Reallocating 'name_of_file' (item size: 1) to 21 items.
+A level-1 auxiliary file: chapter_2_theory.aux
+Reallocating 'name_of_file' (item size: 1) to 22 items.
+A level-1 auxiliary file: chapter_3_results.aux
+Reallocating 'name_of_file' (item size: 1) to 15 items.
+A level-1 auxiliary file: conclusion.aux
+Reallocating 'name_of_file' (item size: 1) to 21 items.
+A level-1 auxiliary file: appendix_gateaux.aux
+Reallocating 'name_of_file' (item size: 1) to 23 items.
+A level-1 auxiliary file: appendix_lin_euler.aux
+Reallocating 'name_of_file' (item size: 1) to 17 items.
+A level-1 auxiliary file: appendix_adj.aux
+Reallocating 'name_of_file' (item size: 1) to 20 items.
+A level-1 auxiliary file: appendix_gevrey.aux
+Reallocating 'name_of_file' (item size: 1) to 6 items.
+The style file: plain.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Database file #1: references.bib
+Warning--I didn't find a database entry for "matharu_adjoint_based_2024"
+Warning--empty publisher in luenberger_optimization_nodate
+Warning--empty year in luenberger_optimization_nodate
+You've used 10 entries,
+            2118 wiz_defined-function locations,
+            581 strings with 6319 characters,
+and the built_in function-call counts, 3081 in all, are:
+= -- 302
+> -- 120
+< -- 0
++ -- 51
+- -- 38
+* -- 235
+:= -- 521
+add.period$ -- 34
+call.type$ -- 10
+change.case$ -- 48
+chr.to.int$ -- 0
+cite$ -- 12
+duplicate$ -- 103
+empty$ -- 258
+format.name$ -- 38
+if$ -- 625
+int.to.chr$ -- 0
+int.to.str$ -- 10
+missing$ -- 9
+newline$ -- 57
+num.names$ -- 20
+pop$ -- 47
+preamble$ -- 1
+purify$ -- 39
+quote$ -- 0
+skip$ -- 69
+stack$ -- 0
+substring$ -- 225
+swap$ -- 10
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 38
+warning$ -- 2
+while$ -- 31
+width$ -- 12
+write$ -- 116
+(There were 3 warnings)

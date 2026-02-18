@@ -1,0 +1,986 @@
+\documentclass{beamer}
+%\documentclass[handout]{beamer}
+\mode<presentation>
+{
+%  \usetheme{Darmstadt}%default Warsaw
+  \setbeamercovered{transparent}
+}
+
+\usepackage{beamerthemesplit}
+\usepackage{epsfig,graphics}
+\usepackage{amsmath,amsfonts,amssymb,color,array,subfigure,rotating,texdraw} 
+\usepackage{multimedia}
+\usepackage{psfrag}
+\usepackage{subfigure}
+%\usepackage{unicode-math}
+%\usepackage[dvips]{color}
+
+\newcommand{\bDiamond}{\mathbin{\Diamond}}
+\newcommand{\bLozenge}{\mathbin{\blacklozenge}}
+
+\makeatletter
+\newcommand\bigDiamond{\mathop{\mathpalette\bigDi@mond\relax}}
+\newcommand\bigDi@mond[2]{%
+  \vcenter{\hbox{\m@th
+    \scalebox{\ifx#1\displaystyle 2\else1.2\fi}{$#1\Diamond$}%
+  }}%
+}
+\newcommand\bigLozenge{\mathop{\mathpalette\bigL@zenge\relax}}
+\newcommand\bigL@zenge[2]{%
+  \vcenter{\hbox{\m@th
+    \scalebox{\ifx#1\displaystyle 2\else1.2\fi}{$#1\blacklozenge$}%
+  }}%
+}
+\makeatother
+
+
+
+\definecolor{greenn}{rgb}{0.1,0.4,0.1}
+\def\Dpartial#1#2{ {\partial #1 \over \partial #2} }
+\def\Dpartialmix#1#2#3{ {\partial^2 #1 \over \partial #2\,\partial #3} }
+\def\Dpartialn#1#2#3{ {\partial^{#3} #1 \over \partial #2^{#3}} }
+\def\Txtint{ {\textstyle\int} }
+\def\Txtiint{ {\textstyle\iint} }
+\def\Bmp#1{ \begin{minipage}{#1} }
+\def\Emp{ \end{minipage} }
+\def\Bmpc#1{ \begin{minipage}[c]{#1} }
+\def\Bmpt#1{ \begin{minipage}[t]{#1} }
+\def\Bmpb#1{ \begin{minipage}[b]{#1} }
+\newcommand{\stitle}[1]{\centering{{\sc \Large #1 }}\vskip .5cm}
+\def\H{{\mathcal{H}}}
+\def\J{{\mathcal{J}}}
+
+\def\A{{\mathcal{A}}}
+\def\B{{\mathcal{B}}}
+\def\K{{\mathcal{K}}}
+\def\L{{\mathcal{L}}}
+\def\M{{\mathcal{M}}}
+\def\O{{\mathcal{O}}}
+\def\F{{\mathcal{F}}}
+\def\N{{\mathcal{N}}}
+\def\T{{\mathcal{T}}}
+\def\R{{\mathcal{R}}}
+\def\G{{\mathcal{G}}}
+\def\E{{\mathcal{E}}}
+\def\K{{\mathcal{K}}}
+\def\C{{\mathcal{C}}}
+\def\U{{\mathcal{U}}}
+\def\S{{\mathcal{S}}}
+\def\DD{{\mathcal{D}}}
+\def\QQ{{\mathcal{Q}}}
+\def\NS{{\mathcal{NS}}}
+\def\l{{\ell}}
+
+\def\BB{{\mathbb{B}}}
+\def\CC{{\mathbb{C}}}
+\def\KK{{\mathbb{K}}}
+\def\RR{{\mathbb{R}}}
+\def\TT{{\mathbb{T}}}
+
+\def\tu{{\tilde{u}}}
+\def\ta{{\tilde{a}}}
+\def\tb{{\tilde{b}}}
+
+\def\magenta#1{{\color{magenta}{ #1 }}}
+\def\red#1{{\color{red}{ #1 }}}
+\def\blue#1{{\color{blue}{ #1 }}}
+\def\green#1{{\color{green}{ #1 }}}
+\def\white#1{{\color{white}{ #1 }}}
+\def\black#1{{\color{black}{ #1 }}}
+
+\def\bA{{\bf A}}
+\def\bB{{\bf B}}
+\def\bC{{\bf C}}
+\def\bF{{\bf F}}
+\def\bF{{\bf F}}
+\def\bK{{\bf K}}
+\def\bM{{\bf M}}
+\def\bZ{{\bf Z}}
+
+
+\def\P{{\mathcal{P}}}
+\def\b{{\bf b}}
+\def\q{{\bf q}}
+\def\r{{\bf r}}
+\def\v{{\bf v}}
+\def\z{{\bf z}}
+\def\y{{\bf y}}
+\def\k{{\bf k}}
+\def\x{{\bf x}}
+\def\m{{\bf m}}
+\def\l{{\bf l}}
+\def\n{{\bf n}}
+\def\t{{\bf t}}
+\def\e{{\bf e}}
+\def\D{{\bf D}}
+\def\X{{\bf X}}
+\def\Q{{\bf Q}}
+\def\g{{\bf g}}
+\def\f{{\bf f}}
+\def\u{{\bf u}}
+\def\y{{\bf y}}
+\def\0{{\mathbf{0}}}
+\def\V{{\mathbf{V}}}
+\def\W{{\mathbf{W}}}
+\def\Z{{\mathbf{Z}}}
+
+\def\tT{{\tilde{\mathcal{T}}}}
+\def\tZ{{\tilde{\mathcal{Z}}}}
+\def\tM{{\tilde{M}}}
+
+\newcommand{\bds}{\boldsymbol}
+\newcommand{\mbb}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+
+
+\def\btau{{\bf \tau}}
+\def\hu{{\hat{u}}}
+\def\bnabla{\boldsymbol{\nabla}}
+\def\bphi{\boldsymbol{\phi}}
+\def\bDelta{\boldsymbol{\Delta}}
+\def\bPhi{\boldsymbol{\Phi}}
+\def\bxi{\boldsymbol{\xi}}
+\def\etab{\boldsymbol{\eta}}
+\def\control{{\phi}}
+\def\controlpert{{\phi'}}
+\def\bsigma{\boldsymbol{\sigma}}
+\def\tomega{{\widetilde{\omega}}}
+\def\oomega{{\overline{\omega}}}
+\def\tpsi{{\widetilde{\psi}}}
+
+\newcommand{\sigdis}{\sigma_{\text{disc}}}
+\newcommand{\sigess}{\sigma_{\text{ess}}}
+\def\sigp{\sigma_{\text{p}}}
+\def\mumax{\mu_{\text{max}}}
+
+\newcommand{\argmin}{\operatorname{argmin}}
+\newcommand{\argmax}{\operatorname{argmax}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Range}{\operatorname{Range}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[On Instabilities of the Taylor-Green Vortex in 2D Euler Flows]
+{On Instabilities of the Taylor-Green Vortex \\ in 2D Euler Flows}
+%\subtitle{Extreme Vortex States and \\ the Hydrodynamic Blow-Up Problem}
+\author[X.~Zhao, \underline{B.~Protas} and R.~Shvydkoy]{Xinyu Zhao$^{1,2}$, \underline{Bartosz Protas}$^{2}$ and Roman Shvydkoy$^{3}$}
+\institute{
+$^{1}$Department of Mathematics \& Statistics \\
+McMaster University, Hamilton, Ontario, Canada \\ \vspace*{0.3cm}
+$^2$Department of Mathematical Sciences, New Jersey Institute of Technology, \\
+Newark, NJ 07103, USA \\ \vspace*{0.3cm}
+$^3$Department of Mathematics, Statistics and Computer Science, \\
+University of Illinois at Chicago, Chicago, IL 60607, USA \\ \vspace*{0.25cm}
+%\footnotesize
+Funded by NSERC (Canada), Computing Time Provided by {\sc Compute Canada} \vspace*{-0.25cm} }
+
+\date{\scriptsize %\vspace*{-1.0cm}
+ Mathematical Congress of the Americas, \quad Miami, FL \quad July 12--25, 2025 \\
+ Session {\it "New Developments in Mathematical Fluid Dynamics"}}
+
+
+
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{
+%\frametitle{References}
+\centering
+\medskip
+\includegraphics[width=1.0\textwidth]{Figs9/zps24a2.png}
+\bigskip\smallskip
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame
+{
+\hspace*{-1.0cm}
+\Bmp{12.5cm}
+\raggedright
+\frametitle{Vortex Rings in Nature and Technology}
+
+\centering
+\includegraphics[width=0.9\textwidth]{Figs12/vringX}
+\Emp
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section[Agenda]{}
+\frame{
+\frametitle{Agenda}
+\tableofcontents
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\subsection{Taylor-Green Vortex}
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+\vspace*{0.1cm}
+\begin{itemize}
+\item<1-> 2D Euler system on a periodic domain
+\begin{equation*}
+\begin{aligned}
+\partial_t \omega + (\bds u \cdot \nabla)\omega = 0&, &\qquad &(\bds x, t) \in 
+ \mbb T^2 \times (0, T], \\
+ \omega|_{t = 0}  = \omega_0 &, &\qquad &\bds x \in \mbb T^2,
+\end{aligned}
+\end{equation*}
+where 
+\begin{itemize}
+\item<2-> $\blue{\omega  = \nabla\times \bds u}$ is the scalar vorticity field satisfying 
+$\int_{\mbb T^2} \omega \; d\bds x = 0$
+\smallskip
+\item<2-> Biot-Savart law: $\bds u = \nabla^\perp \Delta^{-1} \omega, \qquad \nabla^\perp = (-\partial_y, \partial_x)$
+\end{itemize}
+
+\medskip
+\item<3-> An equilibrium solution --- the 2D Taylor-Green vortex: 
+
+\mbox{
+\Bmpb{0.5\textwidth}
+%\bigskip
+\vspace*{-1.5cm}
+\blue{
+\begin{align*} 
+\bds u_s & = (-\cos(x_1)\sin(x_2), \sin(x_1)\cos(x_2)) \\ \\
+\omega_s & = 2\cos(x_1)\cos(x_2)
+\end{align*}}
+\Emp
+\Bmpb{0.5\textwidth}
+\centering
+\visible<3->{\includegraphics[width=0.8\textwidth] {./Figs9/TaylorGreen.png}}
+\Emp} 
+
+\end{itemize}
+
+     
+\Emp
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Linearized Euler Operator}
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1-> Linearize the 2D Euler system around a steady solution $(\omega_s, \bds u_s)$ $\Longrightarrow$
+\begin{align*}
+\partial_t w &= {\blue \L} w, \qquad w|_{t = 0} = w_0, \qquad \text{where} \\
+{\color {blue} \L w} :&= -(\bds u_s\cdot \nabla) w -(\bds u \cdot \nabla) \omega_s \\
+& = {\color{blue} \left[-\bds u_s \cdot \nabla - \nabla\omega_s\cdot (\nabla^\perp \Delta^{-2})\right] w}, \qquad w \in H^m_0(\mbb T^2)
+\end{align*}
+
+%\smallskip
+\item<2-> Linear stability of the equilibria determined by the spectrum of the operator $\L$
+\blue{
+\begin{align*}
+\sigma(\L) := & \left\{ \lambda \in \CC \; : \; \text{$(\L - \lambda)$ is not bounded from below in $\mathcal{X}$} \right\} \\ 
+= & \ \sigma_{\text{disc}}(\L) \cup \sigma_{\text{ess}} (\L)
+\end{align*}}
+\small \vspace*{-0.4cm}
+\begin{itemize}
+\item<3-> A point $z  \in \sigdis(\L)$ if
+\begin{itemize}
+\item<3->[(1)] $z$ is an isolated point in $\sigma(\L)$;
+\item<3->[(2)]$z$ has finite multiplicity, i.e., $\bigcup_{r=1}^\infty
+    \mathrm{Ker}(z - \L)^r$ is finite dimensional;
+\item<3->[(3)] The range of $z-\L$ is closed. 
+\end{itemize}
+\smallskip
+\item<4-> Otherwise, $z  \in \sigess(\L)$
+\end{itemize}
+
+\end{itemize}
+
+     
+\Emp
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Spectrum}
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1-> 
+The set of eigenvalues of $\L$ forms its point spectrum
+\begin{equation*}
+\blue{{\sigp(\L) := \left\{ \lambda \in \CC \; : \; \exists \phi (\x) \neq 0,  \quad \L \phi (\x) = \lambda \phi (\x), \quad \x \in \TT^2  \right\}}}
+\end{equation*}
+
+\bigskip
+\item<2->
+In finite dimensions linear operators can only have point spectrum
+
+\bigskip
+\item<3-> In infinite dimensions the situation is complicated by the
+  presence of the essential spectrum $\sigess(\L)$, which may also contain
+  eigenvalues of $\L$ that are not in $\sigdis(\L)$
+
+\end{itemize}
+
+     
+\Emp
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1-> For the 2D linear Euler operator $\L$ the essential spectrum
+  $\sigess(\L)$ is well understood (Friedlander et al.~1997, Shvydkoy
+  \& Latushkin 2003)
+\begin{equation*}
+  \blue{\sigess(\L; H^{m}_0) = \{ z\in \CC: |\Re(z)| \leq |m| \, \mumax \}},
+\end{equation*}
+where 
+\begin{equation*}
+\mumax :=  \lim_{t\to\infty} \frac{1}{t}\log \sup_{\bds x\in\mbb T^2} ||\nabla \varphi_t(\bds x)||
+\end{equation*}
+is the maximal Lyapunov exponent corresponding
+to the Lagrangian flow $\varphi_t: \bxi \to \bds x(t; \bxi)$ generated
+by the steady state via $\partial_t \bds x(t) = \bds u_s (\bds x(t))$
+
+\medskip
+\item<2-> If $z \in \sigess(\L)$, then there exists a sequence of
+  weak-null unit vectors
+  ${\{f_n\} \in H^m_0(\TT^2)}$,\/\blue{approximate eigenvectors,}\/such
+  that
+  \blue{$$\|(\L - z) f_n \|_{H^m} \rightarrow 0, \qquad n \rightarrow
+    \infty$$} and $\{f_n\}$ does not contain any convergent
+  subsequence
+\end{itemize}
+
+     
+\Emp
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1->
+The the maximal Lyapunov exponent is determined by the hyperbolic stagnation point 
+\begin{equation*}
+\mumax = \max\left[ \lambda\left(\bnabla\u_s({\x_s}) \right)\right]
+\end{equation*}
+
+\medskip
+\item<2->
+  In the Taylor-Green vortex: \qquad \red{$\mumax = 1$} \\
+  \medskip
+  
+  \centering
+\visible<2->{\includegraphics[width=0.6\textwidth] {./Figs9/TaylorGreen.png}}
+
+\end{itemize}
+
+     
+\Emp
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1-> No general results available about the discrete spectrum $\sigdis(\L)$
+
+\smallskip
+\item<2-> Unstable eigenvalues found for shear flows (Drazin \& Reid
+  1981; Friedlander et al.~1997), Kolmogorov flows (Friedlander et
+  al.~1997) and the cellular ``cat’s-eye'' flow (Friedlander et
+  al.~2000).
+
+\medskip
+\item<3->
+  The problem remains open for the Taylor-Green vortex
+  \smallskip
+\begin{itemize}
+\item<4-> Some work in the viscous setting (Sipp \&
+  Jacquin 1998; Leblanc \& Godeferd 1999; Hattori \& Hirota
+  2023). However, in that case the vortex decays as
+  $\mathcal{O}(e^{-\nu t})$ and\/\blue{$\sigess(\L) = \emptyset$}
+\end{itemize}
+
+\smallskip
+\item<5->
+{\red{\sc Question:}} \ \blue{does $\L$ have unstable eigenvalues and, if
+  so, do they belong to $\sigdis (\L)$ or $\sigess (\L)$?} \\ \vspace*{-0.3cm}
+  \Bmp{\textwidth}
+  \hspace*{5.0cm} 
+\visible<5->{\includegraphics[width=0.35\textwidth]{Figs12/piess_01.pdf}}
+\Emp
+\end{itemize}
+
+     
+\Emp
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+\footnotesize
+\begin{theorem}[Lin 2004]
+  Suppose there exists an exponentially growing solution
+  $e^{\lambda t} w_0$ of the linearized system $\partial_t w = \L w$
+  with $\Re(\lambda) > 0$ and let\/\blue{$w_0 \in L^2(\TT^2)$.} Then we have
+  the following
+\begin{itemize}
+\item[(i)] [regularity of growing modes] \red{$w_0 \in W^{1,p}(\TT^2)
+  \bigcap L^q(\TT^2)$} for all $1 \le p < p^*$ and $1 \le q < \infty$,
+  where
+  \begin{equation*}
+    p^* = \begin{cases}
+      \red{\frac{\mumax}{\mumax - \Re(\lambda)}} = \frac{1}{1 -\Re(\lambda)}, \qquad & \mumax > \Re(\lambda) \\
+      \infty, & \mumax \le \Re(\lambda)
+      \end{cases}
+    \end{equation*}
+
+  \item[(ii)] [nonlinear instability] if there exists $\epsilon > 0$,
+    such that for any $\delta > 0$ there is a solution $w^\delta(t)$
+    of the 2D Euler system corresponding to the initial condition
+    $\omega_0^{\delta}$, such that
+\begin{equation*}
+ \| \omega_0^{\delta} - \omega_s \|_{L^q} +  \| \omega_0^{\delta} - \omega_s \|_{W^{1,p}} \le \delta,
+\end{equation*}
+and
+\begin{equation*}
+{\sup_{0 < t < T_\delta} \|\omega^\delta(t) - \omega_s\|_{H^m} \geq \epsilon,}
+\end{equation*}
+%
+where $T_\delta = O(|\ln(\delta)|)$, $q \in [1, \infty)$, $p =
+[1,p^*)$ and $m \ge -1$.
+\end{itemize}
+\end{theorem}
+
+     
+\Emp
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Modal Growth of Perturbations}
+\subsection{Unstable Eigenvalues and Eigenvectors}
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1-> Numerical solution of the eigenvalue problem \blue{$\L \phi
+    (\x) = \lambda \phi (\x)$}
+
+ \medskip
+\item<2->  Discretize $\L$ using the basis
+  \footnotesize
+\begin{equation*}
+\begin{gathered}
+\varphi_{j_1, j_2} = \frac{1}{\sqrt{2} \pi}\cos(j_1x + j_2y), \qquad 
+\psi_{j_1, j_2} = -\frac{1}{\sqrt{2} \pi}\sin(j_1x + j_2y), \\
+\qquad (j_1, j_2) \in \{(0, j_2), 1\leq j_2 \leq N\} \bigcup 
+\{(j_1, j_2), 1\leq j_1 \leq N, -N\leq j_2\leq N\}
+\end{gathered}
+\end{equation*}
+\normalsize
+to obtain a sparse algebraic eigenvalue problem  \quad \blue{$\mathbf{L} \,
+  \phi = \lambda \phi$}
+
+\medskip
+\item<3-> The spectrum of $\mathbf{L}$
+\mbox{
+  \visible<3->{\includegraphics[width=0.4\textwidth]{./Figs9/spectrum_TG}} \qquad
+  \visible<4->{\includegraphics[width=0.4\textwidth]{./Figs9/eigs_Krylov}}}
+\end{itemize}
+
+     
+\Emp
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1-> The unstable eigenvalue: \quad \red{$\lambda_+^{3000} =
+    0.1424 + 0.5875i$}
+
+  \medskip
+\item<2-> The corresponding eigenvectors $\Re\left[\phi_+^N\right]$ are
+  $L^2$ integrable
+\visible<2->{\mbox{
+  \includegraphics[width=0.425\textwidth]{./Figs9/eigfun3000} \quad
+  \includegraphics[width=0.425\textwidth]{./Figs9/vort_section}}
+}
+
+% \medskip
+\vspace*{-0.25cm}
+\item<3-> From the theorem of Lin (2004):
+  \small \vspace*{-0.25cm}
+  \begin{equation*}
+\phi_+ \in W^{1,p^*}(\TT^2), \qquad \text{where} \qquad \blue{p^* = \frac{1}{1 -
+    0.14} = 1.16}
+\end{equation*}
+
+\normalsize
+\item<3-> From the Sobolev embedding  $W^{1,p^*} \hookrightarrow H^s$ with
+  $1/p^* - 1/2 = 1/2 - s / 2$, we have
+    \small \vspace*{-0.35cm}
+  \begin{equation*}
+\qquad \qquad \qquad \qquad \blue{\phi_+ \in H^{0.28}(\TT^2)}
+\end{equation*}
+  
+\end{itemize}
+
+     
+\Emp
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+
+The Fourier spectrum of the eigenfunction $\phi$
+\\ \vspace*{-0.4cm}
+\begin{equation*}
+e(k) := \frac{1}{2}\sum_{k \leq |\bds j| < k+1} |\widehat\phi_{\bds j}|^2, \qquad k \in \mbb N
+\end{equation*}
+\vspace*{-0.3cm}
+
+\centering
+\includegraphics[width=0.65\textwidth]{./Figs9/ori_eigfun_spec_s_0} \\
+\small
+$e(k) = \mathcal{O}\left(k^{-1}\right)$ implies $L^2$ summability;
+$e(k) = \mathcal{O}\left(k^{-1.65}\right)$ means \blue{$\phi_+ \in H^{0.28}(\TT^2)$}
+
+     
+\Emp
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Exponential Growth}
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+
+Exponential growth of the perturbation
+\bigskip
+
+\centering
+\mbox{
+  \includegraphics[width=0.475\textwidth]{./Figs9/eig_linear_growth} \quad
+  \includegraphics[width=0.475\textwidth]{./Figs9/eig_linear_growthrate}}
+\\
+\medskip
+The actual growth rate is within 0.01\% equal $\Re(\lambda_+^{3000})$
+
+\Emp
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Nonlinear Instability}
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+\centering
+
+\mbox{
+\includegraphics[width=0.45\textwidth]{./Figs9/growth_nonlinear}\qquad
+\includegraphics[width=0.45\textwidth]{./Figs9/growth_rate_nonlinear}
+}
+\small
+\medskip
+
+The time-dependence of (left) the norm
+{$\| \omega^{\delta}(t) - \omega_s\|_{H^{-1}}$} and (right) the growth
+rate $(d/dt) \ln (\| \omega^{\delta}(t) - \omega_s\|_{H^{-1}})$ in the
+solution of the nonlinear problem with the initial condition given in
+terms of the eigenfunction $\phi_+^{200}$ as
+$\omega_0 = \omega_s + \delta \cdot
+\Re\left(\phi_+^{200}\right)/||\Re\left(\phi_+^{200}\right)||_{H^{-1}}$
+with different indicated magnitudes $\delta$.
+
+\Emp
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Nonmodal Growth of Perturbations}
+\subsection{Optimization Formulation}
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1-> The growth rate of the eigenfunction with $\Re(\lambda_+0)
+  \approx 0.1424$ does not saturate the bound on the growth of the
+  semigroup
+\begin{equation*}
+\blue{ \left \| e^{\L t} w_0 \right \|_{H^{m}} \le \left \| w_0 \right \|_{H^{m}} e^{\mumax t}, \qquad \mumax = 1, \quad m = \pm 1}
+\end{equation*}
+
+\bigskip
+\item<2-> How to find initial data $w_0$ realizing this growth?
+
+ \bigskip
+\item<3->
+  Given $T > 0$, define the objective functional $J_m \; : \;
+  {H_0^m(\TT^2)} \rightarrow \RR$
+\begin{equation*}
+\blue{  J_m (w_0) = \left|\left|e^{T\L} w_0 \right|\right|^2_{H^m},
+\qquad m = \pm 1}
+\end{equation*}
+  
+
+\end{itemize}
+\Emp
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1-> []
+\begin{problem}[Optimization]
+\vspace*{-0.5cm}
+\blue{\small
+\begin{align*}
+& \max_{w_0 \in \mc M} J_m (w_0), \quad \text{where}  \ m = \pm 1  \ \text{and} \\
+& \qquad \mc M := \{w_0 \in H^m_0(\TT^2):  \|w_0\|_{H^m} =   1\}. \\ \\
+& \text{subject to:} \quad  \left\{
+\begin{aligned}
+&\partial_tw - \L w = 0,  && \text{in} \ \TT^2\times(0,T] \\ 
+&w = w_0                 &&  \text{in} \ \TT^2 \ \text{at} \ t=0 \\
+&\textrm{Periodic Boundary Conditions}                  &&  
+\end{aligned}
+%\label{eq:NS}
+\right.
+\end{align*}
+}
+\end{problem}
+
+\item<2->
+  Riemannian optimization problem \\ \qquad $\Longrightarrow$ \quad solution with a discretized gradient flow
+\end{itemize}
+\Emp
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1-> Riemannian conjugate-gradient method: \quad $\widetilde{w}_{0} = \lim_{n \rightarrow \infty} w^{(n)} _0$
+ \begin{equation*} 
+\red{w^{(n+1)}_0  = \R\Big[w^{(n)} _0+ \tau_n d^{(n)}\Big]}, \qquad n=0,1,\dots,
+\end{equation*}
+where
+\begin{itemize}
+\item<2-> retraction $\R \; : \; H^{m} \rightarrow \M$, \qquad  $\R (w) := \frac{w}{||w||_{H^{m}}}$, \quad $m=\pm 1$
+
+\smallskip
+\item<3->{}
+descent direction  \quad $d^{(n)} = \P_n  \blue{\nabla J\left(w^{(n)}_0\right)}+ \beta_n \Gamma_{\tau_{n-1} d^{(n-1)}}\left({d^{(n-1)}}\right)${}
+
+\smallskip
+\item<4->{}
+gradient \quad \blue{$\nabla J(w_0) = 2 (1+|D|^2) e^{T\L^*} (1+|D|^2)^{-1} e^{T\L} w_0$} \\
+obtained by solving the adjoint system (a terminal-value problem)
+\blue{
+\begin{align*}
+- \partial_t w & = \L^* w, \qquad \L^*w = \u_s\cdot \nabla w + |D|^{-2}(\nabla w_s \cdot \nabla^\perp w), \\
+\qquad w|_{t = T} & = (1+|D|^2)^{-1} e^{T\L} w_0
+\end{align*}}
+\vspace*{-0.5cm}
+
+\item<5-> orthogonal projection onto tangent subspace \quad $\P_n \; : \; H^{m} \rightarrow \T_{w^{(n)} _0}\M${}
+
+\smallskip
+\item<6-> vector transport \qquad 
+$\Gamma_{\tau_{n-1} d^{(n-1)}} \; : \; \T_{w^{(n-1)} _0}\M  \rightarrow \T_{w^{(n)} _0}\M$
+  
+
+\end{itemize}
+
+  
+
+\end{itemize}
+\Emp
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+\frametitle{Riemannian Conjugate-Gradient Method \\ (Absil et al., 2008)}
+\centering{}
+
+\includegraphics[width=1.0\textwidth]{./Figs9/rcg}
+
+\Emp
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Flows Saturating the Spectral Bound}
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+\centering
+
+\begin{figure}
+\mbox{\subfigure[$N=128$]{\includegraphics[width=0.325\textwidth]{./Figs9/s_1_128}}\qquad
+\subfigure[$N=256$]{\includegraphics[width=0.325\textwidth]{./Figs9/s_1_256}}}
+\mbox{\subfigure[$N=512$]{\includegraphics[width=0.325\textwidth]{./Figs9/s_1_512}}\qquad
+\subfigure[$N=1024$]{\includegraphics[width=0.325\textwidth]{./Figs9/s_1_1024}}}
+\end{figure}
+
+\small\vspace*{-0.3cm}
+\blue{[$m=1$]}  The optimal initial conditions $\widetilde{w}_0^N$ obtained using
+different resolutions $N$.
+
+\Emp
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+
+\mbox{
+\includegraphics[width=0.475\textwidth]{./Figs9/s_1_growth}
+\includegraphics[width=0.475\textwidth]{./Figs9/approx_s_1_crlt}}
+\centering
+\small
+\blue{[$m=1$]} (left) The growth rate
+  $(d/dt) \ln (\|w^N(t)\|_{H^{1}})$ versus $t$ for
+  the optimal initial conditions $\widetilde{w}_0^N$ obtained using increasing
+  spatial resolutions {$N^2$}. \\
+  (right) The time-dependence of the
+  autocorrelation function
+  \begin{equation*}
+\C^1_{\tau}(t) := \frac{\left\langle w(\tau), w(t) \right\rangle_{H^1}}{\| w(\tau) \|_{H^1} \| w(t) \|_{H^1}}, 
+\qquad t, \tau \ge 0
+\end{equation*}
+  corresponding to
+  $N = 1024$ and $\tau = 0, 0.25, 0.5, 0.75, 1$. \\
+  Similar results obtained for $m = -1$.
+\Emp
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame
+{
+\hspace*{-0.75cm}
+\Bmp{12cm}
+\raggedright
+\centering
+
+\movie[width=0.9\textwidth,loop,showcontrols]{\includegraphics[width=0.9\textwidth]{./Figs9/s_1_1024}}{../Euler2D_stability/Movies/Movie1.mov}
+
+%\movie[width=0.8\textwidth,loop,showcontrols]{\includegraphics[width=0.8\textwidth]{./Figs9/s_1_1024}}{../Euler2D_stability/Movies/movie1.mp4 }
+
+\Emp
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame
+{
+\frametitle{Conclusions}
+\vspace{-0.1cm}
+%\vspace*{0.0cm}
+\hspace*{-1.0cm}
+\Bmp{12cm}
+\raggedright
+\small
+\begin{itemize}
+\item<1-> The Taylor-Green vortex is linearly unstable
+  \begin{itemize}
+\item<2-> the unstable eigenvalue embedded in the essential spectrum, \\ \hfill \blue{$\lambda_{+} \in \sigma_{\text{ess}}(\L)$}
+\medskip
+\item<3-> the corresponding eigenfunction given by a distribution with the Sobolev
+  regularity consistent with Lin (2004)
+  \medskip 
+\item<4-> the equilibrium also exhibits a nonmodal growth mechanism involving a
+  continuous family of uncorrelated functions which saturates the
+  spectral bound
+ \begin{itemize}
+ \item<5-> intrinsically related to the $\infty$-dimensional nature of the operator $\L$ 
+ \smallskip
+ \item<6-> the mechanism is consistent with the WKB analysis based on
+   the bicharacteristic equation
+\end{itemize}
+\end{itemize}
+
+  \bigskip
+\item<7-> \blue{\sc Open Question:} stability of equilibria in 3D
+\end{itemize}
+\Emp
+}
+
+
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{
+  \hspace*{-1.0cm}
+ \frametitle{References}
+\Bmp{12cm}
+\raggedright
+%\centering
+%\vspace{-3.5cm}
+\begin{itemize}
+\item<1-> A.~Elcrat and B.~Protas, ``A Framework for Linear Stability
+  Analysis of Finite-Area Vortices'', {\em Proceedings of the Royal
+    Society A}, {\bf{469}}, 20120709, 2013.
+
+ \bigskip
+\item<1-> B.~Protas and A.~Elcrat, ``Linear Stability of Hill's Vortex
+  to Axisymmetric Perturbations'', {\em Journal of Fluid Mechanics}
+  {\bf{799}}, 579--602, 2016.
+
+ \bigskip
+\item<1-> B.~Protas, ``Linear Stability of Inviscid Vortex Rings to
+  Axisymmetric Perturbations'', {\em Journal of Fluid Mechanics},
+  {\bf{874}}, 1115--1146, 2019.
+
+\end{itemize}
+
+\Emp
+}
+
+
+
+
