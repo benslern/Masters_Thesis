@@ -1,0 +1,246 @@
+
+Lmod is automatically replacing "gcc/12.3" with "intel/2023.2.1".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) aocl-blas/5.1       4) fftw/3.3.10         7) netcdf-fortran-mpi/4.6.1
+  2) aocl-lapack/5.1     5) flexiblas/3.3.1     8) netcdf-mpi/4.9.2
+  3) fftw-mpi/3.3.10     6) hdf5-mpi/1.14.2     9) openmpi/4.1.5
+
+ norm =    29.6088132032681      norm_constr =   0.866025403784439     
+ eval_PHI; main_iter =           0
+ norm =   0.750000000000000      norm_constr =   0.866025403784439     
+ solvers; time =   7.50000000000000     
+ maximization_RCG; main_iter =           1
+ eval_grad_PHI; main_iter =           1
+ adj_solvers; time =  1.199999999999996E-002
+ eval_grad_PHI; main_iter =           1
+ gradPHI: inner product =  -3.930232875259954E-018
+ norm2_grad =   2.037541194547411E-005
+ Start mnbrak; main_iter =           1
+ norm =   0.750000000000000      norm_constr =   0.866025403784439     
+ norm =   0.750000000000000      norm_constr =   0.866025403784439     
+ norm =    28.4633479309503      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.855855569675715      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           3
+ norm =   0.750404332297174      norm_constr =   0.866025403784439     
+ norm =   0.751058555696755      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 2
+ norm =   0.756669341408297      norm_constr =   0.866025403784439     
+ norm =   0.775972864332298      norm_constr =   0.866025403784439     
+ Start brent; main_iter =           1
+ norm =   0.751058555696755      norm_constr =   0.866025403784439     
+ norm =   0.756669341408297      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.762550811566316      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.753956387840696      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.756778426948085      norm_constr =   0.866025403784439     
+       brent; do iteration; case 5 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.756750599538972      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.756751949899382      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           5
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.756749249313609      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           6
+ eval_PHI; main_iter =           1
+ norm =   0.756750599538972      norm_constr =   0.866025403784439     
+ solvers; time =   7.50000000000000     
+ maximization_RCG; main_iter =           2
+ eval_grad_PHI; main_iter =           2
+ adj_solvers; time =  1.204999999999995E-002
+ eval_grad_PHI; main_iter =           2
+ gradJpre: inner product =  -7.209944447028604E-018
+ dJ: inner product =  -7.209944447028604E-018
+ gradJ: inner product =   1.585645677260050E-017
+ Start mnbrak; main_iter =           2
+ norm =   0.750000000000001      norm_constr =   0.866025403784439     
+ norm =   0.750000000000000      norm_constr =   0.866025403784439     
+ norm =   0.768838164150603      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750071955384199      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           3
+ norm =   0.750000274845112      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           4
+ norm =   0.750000001049813      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           5
+ norm =   0.750000000004008      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           6
+ norm =   0.750000000000015      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           7
+ norm =   0.750000000000001      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           8
+ norm =   0.750000000000000      norm_constr =   0.866025403784439     
+ mnbrack iteration beyond maximum, the maxdEdt stops iterating ...            1
+ Start brent; main_iter =           2
+ norm =   0.750738499071932      norm_constr =   0.866025403784439     
+ norm =   0.754652851480102      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.758756046301684      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.752760165343692      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.751836112088049      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.751358861422359      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.751099750139691      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           5
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750953302455901      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           6
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750868022648054      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           7
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750817314448355      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           8
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750786738080159      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           9
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750768132293939      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =          10
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750756744609011      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =          11
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750749749154336      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =          12
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750745441967371      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =          13
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750742786183215      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =          14
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750741147187956      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =          15
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750740135138286      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =          16
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750739510002899      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =          17
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750739123780032      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =          18
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750738885131606      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =          19
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750738737314168      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =          20
+ eval_PHI; main_iter =           2
+ norm =   0.750738737314168      norm_constr =   0.866025403784439     
+ solvers; time =   7.50000000000000     
+ exit normally
+ stepper =            3
+ execution time =    6.63537405138889     
+job 1 finished
+
+scontrol show job 1008906
+JobId=1008906 JobName=sigma_test_5
+   UserId=noahb(3138520) GroupId=noahb(3138520) MCS_label=N/A
+   Priority=611152 Nice=0 Account=def-bprotas QOS=normal
+   JobState=COMPLETING Reason=None Dependency=(null)
+   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=12:35:59 TimeLimit=1-00:00:00 TimeMin=N/A
+   SubmitTime=2026-02-14T10:01:45 EligibleTime=2026-02-14T10:01:45
+   AccrueTime=2026-02-14T10:01:45
+   StartTime=2026-02-14T10:24:27 EndTime=2026-02-14T23:00:26 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-02-14T10:24:27 Scheduler=Backfill
+   Partition=compute AllocNode:Sid=tri-login02:2011331
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=tri0963
+   BatchHost=tri0963
+   NumNodes=1 NumCPUs=192 NumTasks=192 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=192,mem=767000M,node=1,billing=192
+   AllocTRES=cpu=192,mem=767000M,node=1,billing=192
+   Socks/Node=* NtasksPerN:B:S:C=192:0:*:* CoreSpec=*
+   MinCPUsNode=192 MinMemoryNode=767000M MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=NO Contiguous=0 Licenses=(null) Network=(null)
+   Command=/scratch/noahb/Research/test_solver_1.sh
+   WorkDir=/scratch/noahb/Research
+   Comment=/opt/slurm/bin/sbatch --export=NONE --get-user-env=L test_solver_1.sh 
+   StdErr=/scratch/noahb/Research/test_solver_1008906.out
+   StdIn=/dev/null
+   StdOut=/scratch/noahb/Research/test_solver_1008906.out
+   TresPerTask=cpu=1
+   
+
+sacct -j 1008906
+JobID           JobName    Account    Elapsed  MaxVMSize     MaxRSS  SystemCPU    UserCPU ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- ---------- ---------- -------- 
+1008906      sigma_tes+ def-bprot+   12:35:59                         00:00:00   00:00:00      0:0 
+1008906.bat+      batch def-bprot+   12:35:59                         00:00:00   00:00:00      0:0 
+1008906.ext+     extern def-bprot+   12:35:59                         00:00:00   00:00:00      0:0 
+
