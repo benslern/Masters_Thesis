@@ -158,8 +158,8 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
        end if
        gradPHI_opt = 0.0_pr
        call compute_gradPHI(Uvec0, fix_dt2, 0, gradPHI_opt, iter)
-       call projection(Uvec0, gradPHI_opt, d_opt, norm2_grad)
-       gradPHI_opt = d_opt
+       call projection(Uvec0, gradPHI_opt, gradPHI_opt, norm2_grad)
+       !gradPHI_opt = d_opt
 
 
 
@@ -253,7 +253,6 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
     IMPLICIT NONE
     INCLUDE "mpif.h"
 
-
     REAL(pr) :: PHI0, PHI1, deltaPHI, tau
     character(200) :: file_cost, file_grad
     INTEGER :: iter, mnbrak_flag, FixConstr_flag , i
@@ -296,7 +295,9 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
     if (rank == 0) then
        print *, "eval_PHI; main_iter =", iter
     end if
-
+!======================================================
+!- Save initial condition at iter 0
+!======================================================
     PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1)
     if (0) then
        call read4binary2(iter+1, Uvec, "fwdTE", subpath)
@@ -307,18 +308,21 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
        final_time_iter = floor(endTime/fix_dt2)
     else if (1) THEN
        call save2binary2(Uvec, iter, "fwdTE", subpath)
-
     end if
 
-
+!======================================================
+!- save maximization data at iter 0
+!======================================================
     if (rank == 0) then
        open(3, file = file_cost, status = 'old', position = 'append')
        write(3, "(6 G20.12)"), iter, PHI1, norm2_grad, tau, beta, restart_flag
        close(3)
     end if
 
+!======================================================
+!- start iteration
+!======================================================
     iter = 1
-
     DO WHILE ( (ABS(deltaPHI) > OPTIM_TOL) .AND. (iter<=MAX_ITER) )
 
        restart_flag = 0
@@ -328,13 +332,11 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
 
 
        if (0) then
-
           if (mod(iter,sigma_freq) == 0) then
              sigma = sigma/2.0_pr
              if (rank == 0) print *, "sigma =: ", sigma
           end if
        end if
-
 
 !======================================================
 !- compute the gradient
@@ -343,10 +345,9 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
           print *, "eval_grad_PHI; main_iter =", iter
        end if
 
-       ! save gradJ for one iteration
+       ! save gradPHI for one iteration
        if (1) then
           call compute_gradPHI(Uvec0, fix_dt2, 1, gradPHI_opt, iter)
-
        else if (0) then
           call save2binary2(Uvec, iter, "fwdTE", subpath)
           exit
@@ -357,12 +358,15 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
           exit
        else if (0) then
           call read4binary2(iter+1, gradPHI_opt, "fwdTE", subpath)
-
        end if
 
+!=====================================================
+!- first iteration gradPHI or restart
+!=====================================================
        if (iter == 1 .or. mod(iter, restart_freq) == 0) then
           restart_flag = 3
           beta = 0.0_pr
+          !project gradPHI
           call projection(Uvec0, gradPHI_opt, d_opt, norm2_grad)
           if (rank == 0) then
              print *, "norm2_grad = ", norm2_grad
@@ -532,10 +536,18 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
   END SUBROUTINE project_field
   
 !================================================= 
-! SUBROUTINE: projection(myfield, gradJ, norm2)
-! project gradJ to the tangent space of myfield
-! gradJ: L2 gradient
-! norm2: <gradJ, gradJ>_Gsimga 
+! SUBROUTINE: projection(myfield, gradPHI, dPHI_actual, norm2)
+! project gradient to the tangent space of myfield
+!
+! INPUT:
+! myfield: project gradient onto the tangent space of myfield
+! gradPHI: u*(t=0)
+!
+! OUTPUT:
+! gradPHI: 'half' projection
+! dPHI_actual: projected gradient
+! norm2: <gradPHI, gradPHI>_G^simga
+
 ! USE: solvers.f90: temp1_solver, temp1_solver_cx, temp2_solver_cx      
 !=================================================
       SUBROUTINE projection(myfield, gradPHI, dPHI_actual, norm2)
@@ -557,46 +569,47 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
         ! temp2_solver_cx = (1+|D|^2)^(-s)exp(-2sigma|D|) |D|^2 v
         call G_l_s_sigma_fourier(temp1_solver_cx, temp2_solver_cx, l, -s, -2.0_pr*sigma)
         
-        ! norm = ||(1+|D|^2)^(-s)exp(-2sigma|D|) |D|^2 v ||_G^sigma
+        ! norm = || |(1+|D|^2)^(-s)exp(-2sigma|D|) |D|^2 v ||_G^sigma
         call L2_product_fourier(temp1_solver_cx, temp2_solver_cx, norm)
         norm = sqrt(norm)
 
-        !temp1_solver_cx = n_v
+        !temp1_solver_cx = |D|^2 v/norm
         temp1_solver_cx = temp1_solver_cx/norm
 
-        ! temp1_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) n_v
+        ! temp1_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) |D|^2 v/norm
         call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -0.5_pr*s, -sigma)
 
+        ! temp2_solver = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) |D|^2 v/norm
         call fftbwd_m(temp1_solver_cx, temp2_solver, 3)
 
-        !temp2_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)gradJ(L2)
+        !temp2_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)u*(t=0)
         call fftfwd_m(gradPHI, temp2_solver_cx, 3)
         call G_l_s_sigma_fourier(temp2_solver_cx, temp2_solver_cx, l, -0.5_pr*s, -sigma)
-        call L2_product_fourier(temp2_solver_cx,temp1_solver_cx,val)
-        temp2_solver_cx = temp2_solver_cx - val*temp1_solver_cx
 
+        ! val = <gradPHI, n_v>_G^sigma
+        call L2_product_fourier(temp2_solver_cx,temp1_solver_cx,val)
+
+        !temp2_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)u*(t=0) - <n_v, gradPHI>_G^sigma (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) |D|^2 v/norm
+        temp2_solver_cx = temp2_solver_cx - val*temp1_solver_cx
         call div_free_fourier(temp2_solver_cx)
         
-        
+        !gradPHI = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)u*(t=0) - <n_v, gradPHI>_G^sigma (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) |D|^2 v/norm
         call fftbwd_m(temp2_solver_cx, gradPHI, 3)
+
+        !norm2 = || (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)u*(t=0) - <n_v, gradPHI>_G^sigma (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) |D|^2 v/norm ||_{L^2}^2
         call L2_product(gradPHI, gradPHI, norm2)
 
+        !val = <gradPHI, (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)u*(t=0) - <n_v, gradPHI>_G^sigma (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) |D|^2 v/norm>
         call L2_product(gradPHI, temp2_solver, val)
         if (rank == 0) print *, "gradPHI: inner product = ", val
 
         
-        ! temp1_solver_cx = (1+l^2|D|^2)^(-s)exp(-2sigma|D|)gradJ(L2)
+        ! dPHI_actual = gradPHI - <n_v, gradPHI>_G^sigma n_v
         call G_l_s_sigma_fourier(temp2_solver_cx, temp1_solver_cx, l, -0.5_pr*s, -sigma)
-     
         call fftbwd_m(temp1_solver_cx, dPHI_actual, 3)
 
-        
-        !call rescale(dJ_actual, val)
-        
-
-       
- 
-        
+        ! rescale to change scale of tau_n
+        !call rescale(dJ_actual, val)        
         
       END SUBROUTINE projection
 
@@ -628,13 +641,11 @@ if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1
         ! RCG_flag =  2: polak-ribiere
 
         ! temp1_solver_cx = |D|^2 u_cx/norm
-
         call fftfwd_m(myfield, temp1_solver_cx, 3)
         call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 2.0_pr)
 
         ! temp2_solver_cx = n(u)_cx/norm
-        ! = (1+l^2|D|^2)^(-s)|D|^2u_cx/norm
-
+        ! = (1+l^2|D|^2)^(-s)exp(-2sigma|D|)|D|^2u_cx/norm
         call G_l_s_sigma_fourier(temp1_solver_cx, temp2_solver_cx, l, -s, -2.0_pr*sigma)
 
 

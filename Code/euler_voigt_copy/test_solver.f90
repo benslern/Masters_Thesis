@@ -351,7 +351,7 @@ PROGRAM EULER_VOIGT
    !=======================================================
    if (1) then
       ! Set Constants
-      endTime = 10.0_pr
+      endTime = 5.0_pr
       stepper = 3
       visc = 0.0_pr
       alpha = 0.0_pr !(2.0_pr**(arg-1))/256.0_pr
@@ -359,7 +359,12 @@ PROGRAM EULER_VOIGT
 
       ! Allocate
       call solvers_allocate(stepper, arg_char)
-      call optimization_allocate(sqrt(3*(PI**2)),1.0_pr, 3.0_pr, 0.001_pr, stepper, arg_char)
+      if (arg == 1) then !tc_1 
+        call optimization_allocate(sqrt(3.0_pr)/2.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper, arg_char)
+      end if
+      if (arg == 2) then !tc_2pi
+        call optimization_allocate(sqrt(3.0_pr*(PI**2)),1.0_pr, 3.0_pr, 0.001_pr, stepper, arg_char)
+      end if
 
       ! Set 3D Taylor Green Initial Condition
       call set_initial(Uvec0, 2, 11111,2222,31234)
