@@ -1,0 +1,1 @@
+plot for [i=1:2:1] "tc_1/resol_".(2**(6+i))."/energy_fwd_1.dat" u 1:5 w l title "rescale: ".i, for [i=1:2:1] "tc_2pi/resol_".(2**(6+i))."/energy_fwd_2.dat" u 1:5 w l title "rescale: ".i 
