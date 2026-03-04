@@ -11,24 +11,24 @@ Due to MODULEPATH changes, the following have been reloaded:
  solvers; time =   5.00000000000000     
  exit normally
  stepper =            3
- execution time =   0.947669046944444     
+ execution time =   1.453286805555556E-002
 job 1 finished
 
-scontrol show job 1097365
-JobId=1097365 JobName=fwd_test
+scontrol show job 1109689
+JobId=1109689 JobName=fwd_test
    UserId=noahb(3138520) GroupId=noahb(3138520) MCS_label=N/A
-   Priority=558482 Nice=0 Account=def-bprotas QOS=normal
+   Priority=580852 Nice=0 Account=def-bprotas QOS=normal
    JobState=COMPLETING Reason=None Dependency=(null)
    Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
-   RunTime=01:08:38 TimeLimit=02:00:00 TimeMin=N/A
-   SubmitTime=2026-03-03T10:41:55 EligibleTime=2026-03-03T10:41:55
-   AccrueTime=2026-03-03T10:41:55
-   StartTime=2026-03-03T14:55:15 EndTime=2026-03-03T16:03:53 Deadline=N/A
-   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-03-03T14:55:15 Scheduler=Backfill
-   Partition=compute AllocNode:Sid=tri-login04:3502081
+   RunTime=00:01:12 TimeLimit=00:30:00 TimeMin=N/A
+   SubmitTime=2026-03-04T09:23:28 EligibleTime=2026-03-04T09:23:28
+   AccrueTime=2026-03-04T09:23:28
+   StartTime=2026-03-04T09:25:26 EndTime=2026-03-04T09:26:38 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-03-04T09:25:26 Scheduler=Backfill
+   Partition=compute AllocNode:Sid=tri-login02:1717780
    ReqNodeList=(null) ExcNodeList=(null)
-   NodeList=tri0133
-   BatchHost=tri0133
+   NodeList=tri0273
+   BatchHost=tri0273
    NumNodes=1 NumCPUs=192 NumTasks=192 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
    ReqTRES=cpu=192,mem=767000M,node=1,billing=192
    AllocTRES=cpu=192,mem=767000M,node=1,billing=192
@@ -39,16 +39,16 @@ JobId=1097365 JobName=fwd_test
    Command=/scratch/noahb/Research/test_solver.sh
    WorkDir=/scratch/noahb/Research
    Comment=/opt/slurm/bin/sbatch --export=NONE --get-user-env=L test_solver.sh 
-   StdErr=/scratch/noahb/Research/./results/1/test_solver_1097365.out
+   StdErr=/scratch/noahb/Research/./results/1/test_solver_1109689.out
    StdIn=/dev/null
-   StdOut=/scratch/noahb/Research/./results/1/test_solver_1097365.out
+   StdOut=/scratch/noahb/Research/./results/1/test_solver_1109689.out
    TresPerTask=cpu=1
    
 
-sacct -j 1097365
+sacct -j 1109689
 JobID           JobName    Account    Elapsed  MaxVMSize     MaxRSS  SystemCPU    UserCPU ExitCode 
 ------------ ---------- ---------- ---------- ---------- ---------- ---------- ---------- -------- 
-1097365        fwd_test def-bprot+   01:08:38                         00:00:00   00:00:00      0:0 
-1097365.bat+      batch def-bprot+   01:08:38                         00:00:00   00:00:00      0:0 
-1097365.ext+     extern def-bprot+   01:08:38                         00:00:00   00:00:00      0:0 
+1109689        fwd_test def-bprot+   00:01:12                         00:00:00   00:00:00      0:0 
+1109689.bat+      batch def-bprot+   00:01:12                         00:00:00   00:00:00      0:0 
+1109689.ext+     extern def-bprot+   00:01:12                         00:00:00   00:00:00      0:0 
 
