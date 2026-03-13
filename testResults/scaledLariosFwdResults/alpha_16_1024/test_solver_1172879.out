@@ -1,0 +1,54 @@
+
+Lmod is automatically replacing "gcc/12.3" with "intel/2023.2.1".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) aocl-blas/5.1       4) fftw/3.3.10         7) netcdf-fortran-mpi/4.6.1
+  2) aocl-lapack/5.1     5) flexiblas/3.3.1     8) netcdf-mpi/4.9.2
+  3) fftw-mpi/3.3.10     6) hdf5-mpi/1.14.2     9) openmpi/4.1.5
+
+ norm =    29.6088132032681      norm_constr =    5.44139809270265     
+ solvers; time =   5.00000007450581     
+ exit normally
+ stepper =            3
+ execution time =   0.618603472222222     
+job 1 finished
+
+scontrol show job 1172879
+JobId=1172879 JobName=larios_fwd_test
+   UserId=noahb(3138520) GroupId=noahb(3138520) MCS_label=N/A
+   Priority=786793 Nice=0 Account=def-bprotas QOS=normal
+   JobState=COMPLETING Reason=None Dependency=(null)
+   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=01:59:27 TimeLimit=03:00:00 TimeMin=N/A
+   SubmitTime=2026-03-12T21:53:51 EligibleTime=2026-03-12T21:53:51
+   AccrueTime=2026-03-12T21:53:51
+   StartTime=2026-03-12T21:53:52 EndTime=2026-03-12T23:53:19 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-03-12T21:53:52 Scheduler=Main
+   Partition=compute AllocNode:Sid=tri-login06:2597713
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=tri0708
+   BatchHost=tri0708
+   NumNodes=1 NumCPUs=192 NumTasks=128 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=128,mem=767000M,node=1,billing=128
+   AllocTRES=cpu=192,mem=767000M,node=1,billing=192
+   Socks/Node=* NtasksPerN:B:S:C=128:0:*:* CoreSpec=*
+   MinCPUsNode=128 MinMemoryNode=767000M MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=NO Contiguous=0 Licenses=(null) Network=(null)
+   Command=/scratch/noahb/Research/test_solver.sh
+   WorkDir=/scratch/noahb/Research
+   Comment=/opt/slurm/bin/sbatch --export=NONE --get-user-env=L test_solver.sh 
+   StdErr=/scratch/noahb/Research/./results/test_solver_1172879.out
+   StdIn=/dev/null
+   StdOut=/scratch/noahb/Research/./results/test_solver_1172879.out
+   TresPerTask=cpu=1
+   
+
+sacct -j 1172879
+JobID           JobName    Account    Elapsed  MaxVMSize     MaxRSS  SystemCPU    UserCPU ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- ---------- ---------- -------- 
+1172879      larios_fw+ def-bprot+   01:59:27                         00:00:00   00:00:00      0:0 
+1172879.bat+      batch def-bprot+   01:59:27                         00:00:00   00:00:00      0:0 
+1172879.ext+     extern def-bprot+   01:59:27                         00:00:00   00:00:00      0:0 
+
