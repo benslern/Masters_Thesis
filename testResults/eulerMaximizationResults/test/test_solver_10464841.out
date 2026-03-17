@@ -1,0 +1,1701 @@
+
+Lmod is automatically replacing "gcc/12.3" with "intel/2023.2.1".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) fftw-mpi/3.3.10     4) hdf5-mpi/1.14.2              7) openmpi/4.1.5
+  2) fftw/3.3.10         5) netcdf-fortran-mpi/4.6.1
+  3) flexiblas/3.3.1     6) netcdf-mpi/4.9.2
+
+ eval_J; main_iter =           0
+ norm =    29.6088132032681      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =           1
+ eval_grad_J; main_iter =           1
+ eval_projection_J; main_iter =           1
+ gradJ: inner product =  -1.431146867680866E-017
+ norm =   1.155495334749492E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           1
+ norm =    1.50000000000010      norm_constr =   0.866025403784439     
+ norm =    2.71352549156268      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=   1.61803398874989     
+ Start brent; main_iter =           1
+ norm =    1.50000000000010      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =    1.03647452365535      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.859423536938063      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.965000005885536      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.952372082136298      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.942757232671615      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           5
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.944934585387843      norm_constr =   0.866025403784439     
+       brent; do iteration; case 5 ... 
+       brent; do iteration j =           6
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.945050061861362      norm_constr =   0.866025403784439     
+       brent; do iteration; case 5 ... 
+       brent; do iteration j =           7
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.945165584080841      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           8
+ tau=  0.509967400084014     
+ eval_J; main_iter =           1
+ norm =   0.945050061861362      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =           2
+ eval_grad_J; main_iter =           2
+ eval_projection_J; main_iter =           2
+ gradJ: inner product =  -1.138412281109780E-016
+ norm =   1.608479376577619E-009 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           2
+ norm =    1.53020024744765      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.752980099764939      norm_constr =   0.866025403784439     
+ norm =   0.757802002474471      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 2
+ norm =   0.849237546528449      norm_constr =   0.866025403784439     
+ norm =    1.21486979679264      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.101993480016803      tau_brack(2)=  0.787290540856235     
+ Start brent; main_iter =           2
+ norm =   0.849237546528449      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.957136610832848      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.802181029093854      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.817384681912727      norm_constr =   0.866025403784439     
+       brent; do iteration; case 5 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.817969437138271      norm_constr =   0.866025403784439     
+       brent; do iteration; case 5 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.817797317458804      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           5
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.817855988605613      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           6
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.817738671687740      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           7
+ tau=  0.300659979508661     
+ eval_J; main_iter =           2
+ norm =   0.817797317458804      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =           3
+ eval_grad_J; main_iter =           3
+ eval_projection_J; main_iter =           3
+ gradJ: inner product =  -2.541911993392265E-016
+ norm =   1.535891641797519E-009 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           3
+ norm =    1.02118926983543      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.751035850836924      norm_constr =   0.866025403784439     
+ norm =   0.752711892698349      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 2
+ norm =   0.791083487095277      norm_constr =   0.866025403784439     
+ norm =   0.949264440519699      norm_constr =   0.866025403784439     
+ tau_brack(1)=  6.013199590173215E-002 tau_brack(2)=  0.515447301566292     
+ Start brent; main_iter =           3
+ norm =   0.791083487095277      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.837483247165461      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.771071685055451      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.784632006878663      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.784280843833213      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.784203013518946      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           5
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.784164151316584      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           6
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.784241897811899      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           7
+ tau=  0.213550972896664     
+ eval_J; main_iter =           3
+ norm =   0.784203013518946      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =           4
+ eval_grad_J; main_iter =           4
+ eval_projection_J; main_iter =           4
+ gradJ: inner product =  -1.041161040303724E-015
+ norm =   1.034815066876591E-009 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           4
+ norm =   0.886812054076047      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750522575545854      norm_constr =   0.866025403784439     
+ norm =   0.751368120540747      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 2
+ norm =   0.776035109535362      norm_constr =   0.866025403784439     
+ norm =   0.881465852276629      norm_constr =   0.866025403784439     
+ tau_brack(1)=  4.271019457933288E-002 tau_brack(2)=  0.418673862373328     
+ Start brent; main_iter =           4
+ norm =   0.776035109535362      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.806747016369809      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.762961925694161      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.767391123632083      norm_constr =   0.866025403784439     
+       brent; do iteration; case 5 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.767479747766007      norm_constr =   0.866025403784439     
+       brent; do iteration; case 5 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.767449109679130      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           5
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.767422750281621      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           6
+ tau=  0.152530257890342     
+ eval_J; main_iter =           4
+ norm =   0.767449109679130      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =           5
+ eval_grad_J; main_iter =           5
+ eval_projection_J; main_iter =           5
+ gradJ: inner product =  -3.464025941091187E-016
+ norm =   7.406546311534820E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           5
+ norm =   0.819796438716280      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750266598672958      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           3
+ norm =   0.750001018316316      norm_constr =   0.866025403784439     
+ norm =   0.750002665986730      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750052501620407      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750083104607858      norm_constr =   0.866025403784439     
+ tau_brack(1)=  1.885377673780365E-003 tau_brack(2)=  1.052644972497083E-002
+ Start brent; main_iter =           5
+ norm =   0.750052501620407      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750026028559606      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750041304688537      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750062422202738      norm_constr =   0.866025403784439     
+       brent; do iteration; case 5 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750061048901900      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750059691011038      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  9.022113713864553E-003
+ eval_J; main_iter =           5
+ norm =   0.750061048901900      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =           6
+ eval_grad_J; main_iter =           6
+ eval_projection_J; main_iter =           6
+ gradJ: inner product =  -6.326861777539161E-016
+ norm =   3.376993599582362E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           6
+ norm =   0.750244195607596      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000932744220      norm_constr =   0.866025403784439     
+ norm =   0.750002441956074      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750004873225032      norm_constr =   0.866025403784439     
+ norm =   0.750010568658605      norm_constr =   0.866025403784439     
+ tau_brack(1)=  1.804422742772910E-003 tau_brack(2)=  3.753870643613674E-003
+ Start brent; main_iter =           6
+ norm =   0.750004873225032      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750006791679172      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750003846394717      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004497431842      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005264094788      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           4
+ tau=  2.549045581596947E-003
+ eval_J; main_iter =           6
+ norm =   0.750004873225032      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =           7
+ eval_grad_J; main_iter =           7
+ eval_projection_J; main_iter =           7
+ gradJ: inner product =  -1.684308074956231E-016
+ norm =   5.262441099810834E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           7
+ norm =   0.750019492900131      norm_constr =   0.866025403784439     
+ norm =   0.750051033075082      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.248884779793209E-003
+ Start brent; main_iter =           7
+ norm =   0.750019492900131      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007445625706      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750002843976104      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004988484015      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004608172997      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005383872502      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.579013768757017E-003
+ eval_J; main_iter =           7
+ norm =   0.750004988484015      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =           8
+ eval_grad_J; main_iter =           8
+ eval_projection_J; main_iter =           8
+ gradJ: inner product =  -6.073971620806917E-016
+ norm =   3.418364178060588E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           8
+ norm =   0.750019953936057      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000076217255      norm_constr =   0.866025403784439     
+ norm =   0.750000199539361      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750003929554355      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750004867705380      norm_constr =   0.866025403784439     
+ norm =   0.750006598171557      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.288974837731597E-003 tau_brack(2)=  2.966068454374118E-003
+ Start brent; main_iter =           8
+ norm =   0.750004867705380      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005497680417      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004492129874      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.547601585723449E-003
+ eval_J; main_iter =           8
+ norm =   0.750004867705380      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =           9
+ eval_grad_J; main_iter =           9
+ eval_projection_J; main_iter =           9
+ gradJ: inner product =  -2.530256820038046E-016
+ norm =   5.112632473551635E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           9
+ norm =   0.750019470821518      norm_constr =   0.866025403784439     
+ norm =   0.750050975272524      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.244211910987337E-003
+ Start brent; main_iter =           9
+ norm =   0.750019470821518      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007437192426      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750002840754876      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005005246164      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004624282459      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005401287468      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.583343096035922E-003
+ eval_J; main_iter =           9
+ norm =   0.750005005246164      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          10
+ eval_grad_J; main_iter =          10
+ eval_projection_J; main_iter =          10
+ gradJ: inner product =  -4.213751743364913E-016
+ norm =   3.481835810778163E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          10
+ norm =   0.750020020984655      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000076473357      norm_constr =   0.866025403784439     
+ norm =   0.750000200209846      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750003942758323      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750004884989754      norm_constr =   0.866025403784439     
+ norm =   0.750006623171495      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.292817283757193E-003 tau_brack(2)=  2.971682238727355E-003
+ Start brent; main_iter =          10
+ norm =   0.750004884989754      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005517749442      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004508733003      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.552120622784628E-003
+ eval_J; main_iter =          10
+ norm =   0.750004884989754      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          11
+ eval_grad_J; main_iter =          11
+ eval_projection_J; main_iter =          11
+ gradJ: inner product =   3.361026734705064E-016
+ norm =   4.967458191970721E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          11
+ norm =   0.750019539959020      norm_constr =   0.866025403784439     
+ norm =   0.750051156276851      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.258835822110157E-003
+ Start brent; main_iter =          11
+ norm =   0.750019539959020      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007463600603      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750002850841904      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005024642113      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004642924523      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005421437453      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.588343643370529E-003
+ eval_J; main_iter =          11
+ norm =   0.750005024642113      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          12
+ eval_grad_J; main_iter =          12
+ eval_projection_J; main_iter =          12
+ gradJ: inner product =   5.155381330168574E-017
+ norm =   3.546666707394033E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          12
+ norm =   0.750020098568447      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000076769699      norm_constr =   0.866025403784439     
+ norm =   0.750000200985683      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750003958036998      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750004903015976      norm_constr =   0.866025403784439     
+ norm =   0.750006646082342      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.297255463639156E-003 tau_brack(2)=  2.976817617306059E-003
+ Start brent; main_iter =          12
+ norm =   0.750004903015976      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005537577377      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004526050017      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.556825108871834E-003
+ eval_J; main_iter =          12
+ norm =   0.750004903015976      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          13
+ eval_grad_J; main_iter =          13
+ eval_projection_J; main_iter =          13
+ gradJ: inner product =   2.956348273824849E-016
+ norm =   4.824817309109617E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          13
+ norm =   0.750019612063913      norm_constr =   0.866025403784439     
+ norm =   0.750051345049911      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.274059858887555E-003
+ Start brent; main_iter =          13
+ norm =   0.750019612063913      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007491142223      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750002861361868      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005045851015      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004663310728      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005443469215      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.593800561311004E-003
+ eval_J; main_iter =          13
+ norm =   0.750005045851015      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          14
+ eval_grad_J; main_iter =          14
+ eval_projection_J; main_iter =          14
+ gradJ: inner product =  -9.760530057800754E-017
+ norm =   3.613470009058195E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          14
+ norm =   0.750020183404055      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000077093743      norm_constr =   0.866025403784439     
+ norm =   0.750000201834040      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750003974743785      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750004922533774      norm_constr =   0.866025403784439     
+ norm =   0.750006670545775      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.302098690150248E-003 tau_brack(2)=  2.982291238883077E-003
+ Start brent; main_iter =          14
+ norm =   0.750004922533774      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005558926268      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004544801385      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.561909124871769E-003
+ eval_J; main_iter =          14
+ norm =   0.750004922533774      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          15
+ eval_grad_J; main_iter =          15
+ eval_projection_J; main_iter =          15
+ gradJ: inner product =   1.090436334977296E-016
+ norm =   4.685119580702202E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          15
+ norm =   0.750019690135092      norm_constr =   0.866025403784439     
+ norm =   0.750051549442914      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.290512080262043E-003
+ Start brent; main_iter =          15
+ norm =   0.750019690135092      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007520962760      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750002872752298      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005069172845      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004685729883      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005467693903      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.599787900678952E-003
+ eval_J; main_iter =          15
+ norm =   0.750005069172845      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          16
+ eval_grad_J; main_iter =          16
+ eval_projection_J; main_iter =          16
+ gradJ: inner product =  -1.167956790310010E-016
+ norm =   3.682566257427649E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          16
+ norm =   0.750020276691385      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000077450070      norm_constr =   0.866025403784439     
+ norm =   0.750000202766915      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750003993114978      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750004943663759      norm_constr =   0.866025403784439     
+ norm =   0.750006696434550      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.307412686269313E-003 tau_brack(2)=  2.988072857253889E-003
+ Start brent; main_iter =          16
+ norm =   0.750004943663759      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005581830914      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004565103336      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.567401736797106E-003
+ eval_J; main_iter =          16
+ norm =   0.750004943663759      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          17
+ eval_grad_J; main_iter =          17
+ eval_projection_J; main_iter =          17
+ gradJ: inner product =   1.721170948820738E-016
+ norm =   4.547676334708330E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          17
+ norm =   0.750019774655035      norm_constr =   0.866025403784439     
+ norm =   0.750051770718995      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.308286545826458E-003
+ Start brent; main_iter =          17
+ norm =   0.750019774655035      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007553246510      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750002885083594      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005094779391      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004710347698      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005494289374      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.606345945158497E-003
+ eval_J; main_iter =          17
+ norm =   0.750005094779391      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          18
+ eval_grad_J; main_iter =          18
+ eval_projection_J; main_iter =          18
+ gradJ: inner product =  -1.438194181802022E-016
+ norm =   3.754394936580182E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          18
+ norm =   0.750020379117556      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000077841301      norm_constr =   0.866025403784439     
+ norm =   0.750000203791174      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750004013285895      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750004966740974      norm_constr =   0.866025403784439     
+ norm =   0.750006724486709      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.313233205329837E-003 tau_brack(2)=  2.994325012525929E-003
+ Start brent; main_iter =          18
+ norm =   0.750004966740974      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005606768638      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004587278217      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.573387126219654E-003
+ eval_J; main_iter =          18
+ norm =   0.750004966740974      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          19
+ eval_grad_J; main_iter =          19
+ eval_projection_J; main_iter =          19
+ gradJ: inner product =  -4.122949811419252E-016
+ norm =   4.412238180089013E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          19
+ norm =   0.750019866963905      norm_constr =   0.866025403784439     
+ norm =   0.750052012386754      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.327655672869631E-003
+ Start brent; main_iter =          19
+ norm =   0.750019866963905      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007588505362      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750002898551278      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005122858111      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004737345069      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005523449658      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.613518218755529E-003
+ eval_J; main_iter =          19
+ norm =   0.750005122858111      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          20
+ eval_grad_J; main_iter =          20
+ eval_projection_J; main_iter =          20
+ gradJ: inner product =  -9.820161177287456E-016
+ norm =   3.829292844963558E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          20
+ norm =   0.750020491432439      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000078270306      norm_constr =   0.866025403784439     
+ norm =   0.750000204914323      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750004035404211      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750004991991810      norm_constr =   0.866025403784439     
+ norm =   0.750006755083150      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.319598876576658E-003 tau_brack(2)=  3.001129376383198E-003
+ Start brent; main_iter =          20
+ norm =   0.750004991991810      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005634020887      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004611544116      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.579920363133053E-003
+ eval_J; main_iter =          20
+ norm =   0.750004991991810      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          21
+ eval_grad_J; main_iter =          21
+ eval_projection_J; main_iter =          21
+ gradJ: inner product =  -1.091249486606660E-015
+ norm =   4.278608521252296E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          21
+ norm =   0.750019967967239      norm_constr =   0.866025403784439     
+ norm =   0.750052276816921      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.348797671634501E-003
+ Start brent; main_iter =          21
+ norm =   0.750019967967239      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007627085203      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750002913287467      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005153585506      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004766892486      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005555357270      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.621344567726024E-003
+ eval_J; main_iter =          21
+ norm =   0.750005153585506      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          22
+ eval_grad_J; main_iter =          22
+ eval_projection_J; main_iter =          22
+ gradJ: inner product =  -6.037921898571774E-016
+ norm =   3.907572905061115E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          22
+ norm =   0.750020614342027      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000078739779      norm_constr =   0.866025403784439     
+ norm =   0.750000206143421      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750004059608954      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750005019628993      norm_constr =   0.866025403784439     
+ norm =   0.750006788581193      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.326545065108798E-003 tau_brack(2)=  3.008561382232308E-003
+ Start brent; main_iter =          22
+ norm =   0.750005019628993      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005663851921      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004638106115      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.587052117367952E-003
+ eval_J; main_iter =          22
+ norm =   0.750005019628993      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          23
+ eval_grad_J; main_iter =          23
+ eval_projection_J; main_iter =          23
+ gradJ: inner product =  -6.918836163716247E-016
+ norm =   4.146681596354678E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          23
+ norm =   0.750020078515974      norm_constr =   0.866025403784439     
+ norm =   0.750052566237263      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.371876513137456E-003
+ Start brent; main_iter =          23
+ norm =   0.750020078515974      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007669311066      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750002929416313      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005187140370      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004799162780      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005590196959      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.629864475511063E-003
+ eval_J; main_iter =          23
+ norm =   0.750005187140370      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          24
+ eval_grad_J; main_iter =          24
+ eval_projection_J; main_iter =          24
+ gradJ: inner product =  -3.848375611237298E-016
+ norm =   3.989527832655128E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          24
+ norm =   0.750020748561478      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000079252453      norm_constr =   0.866025403784439     
+ norm =   0.750000207485615      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750004086040965      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750005049845307      norm_constr =   0.866025403784439     
+ norm =   0.750006825273552      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.334106814012972E-003 tau_brack(2)=  3.016681079626464E-003
+ Start brent; main_iter =          24
+ norm =   0.750005049845307      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005696490374      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004667150272      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.594826983631328E-003
+ eval_J; main_iter =          24
+ norm =   0.750005049845307      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          25
+ eval_grad_J; main_iter =          25
+ eval_projection_J; main_iter =          25
+ gradJ: inner product =   5.318553757127642E-016
+ norm =   4.016396020831287E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          25
+ norm =   0.750020199381223      norm_constr =   0.866025403784439     
+ norm =   0.750052882666597      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.397036508881711E-003
+ Start brent; main_iter =          25
+ norm =   0.750020199381223      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007715477484      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750002947050315      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005223706835      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004834334080      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005628158866      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.639117740493137E-003
+ eval_J; main_iter =          25
+ norm =   0.750005223706835      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          26
+ eval_grad_J; main_iter =          26
+ eval_projection_J; main_iter =          26
+ gradJ: inner product =   3.100818213308543E-016
+ norm =   4.075446934637770E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          26
+ norm =   0.750020894827346      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000079811138      norm_constr =   0.866025403784439     
+ norm =   0.750000208948274      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750004114845290      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750005082828583      norm_constr =   0.866025403784439     
+ norm =   0.750006865429035      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.342319445898624E-003 tau_brack(2)=  3.025542162918925E-003
+ Start brent; main_iter =          26
+ norm =   0.750005082828583      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005732153295      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004698858031      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.603287301914328E-003
+ eval_J; main_iter =          26
+ norm =   0.750005082828583      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          27
+ eval_grad_J; main_iter =          27
+ eval_projection_J; main_iter =          27
+ gradJ: inner product =   6.995814517962717E-016
+ norm =   3.887722671695126E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          27
+ norm =   0.750020331314328      norm_constr =   0.866025403784439     
+ norm =   0.750053228071949      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.424414673956784E-003
+ Start brent; main_iter =          27
+ norm =   0.750020331314328      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007765871449      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750002966299099      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005263478737      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004872594023      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005669443032      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.649145456744980E-003
+ eval_J; main_iter =          27
+ norm =   0.750005263478737      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          28
+ eval_grad_J; main_iter =          28
+ eval_projection_J; main_iter =          28
+ gradJ: inner product =   3.917493499733249E-016
+ norm =   4.165624698834108E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          28
+ norm =   0.750021053914953      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000080418800      norm_constr =   0.866025403784439     
+ norm =   0.750000210539150      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750004146174617      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750005118767631      norm_constr =   0.866025403784439     
+ norm =   0.750006909303444      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.351219433350587E-003 tau_brack(2)=  3.035194325138872E-003
+ Start brent; main_iter =          28
+ norm =   0.750005118767631      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005771053835      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004733411936      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.612474594562181E-003
+ eval_J; main_iter =          28
+ norm =   0.750005118767631      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          29
+ eval_grad_J; main_iter =          29
+ eval_projection_J; main_iter =          29
+ gradJ: inner product =   4.043260951741567E-016
+ norm =   3.760652785287189E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          29
+ norm =   0.750020475070521      norm_constr =   0.866025403784439     
+ norm =   0.750053604430547      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.454145377494419E-003
+ Start brent; main_iter =          29
+ norm =   0.750020475070521      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007820781432      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750002987272847      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005306662111      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004914142165      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005714261961      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.659990504060395E-003
+ eval_J; main_iter =          29
+ norm =   0.750005306662111      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          30
+ eval_grad_J; main_iter =          30
+ eval_projection_J; main_iter =          30
+ gradJ: inner product =   3.409273731380669E-016
+ norm =   4.260367605150784E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          30
+ norm =   0.750021226648445      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000081078582      norm_constr =   0.866025403784439     
+ norm =   0.750000212266485      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750004180191248      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750005157857150      norm_constr =   0.866025403784439     
+ norm =   0.750006957150434      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.360844833850469E-003 tau_brack(2)=  3.045685567878488E-003
+ Start brent; main_iter =          30
+ norm =   0.750005157857150      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005813408261      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004771000370      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.622430717368745E-003
+ eval_J; main_iter =          30
+ norm =   0.750005157857150      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          31
+ eval_grad_J; main_iter =          31
+ eval_projection_J; main_iter =          31
+ gradJ: inner product =   1.059265522518338E-016
+ norm =   3.635190996441509E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          31
+ norm =   0.750020631428602      norm_constr =   0.866025403784439     
+ norm =   0.750054013781317      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.486364067688799E-003
+ Start brent; main_iter =          31
+ norm =   0.750020631428602      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007880504909      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750003010085187      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005353478165      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750004959192888      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005762843697      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.671698127708870E-003
+ eval_J; main_iter =          31
+ norm =   0.750005353478165      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          32
+ eval_grad_J; main_iter =          32
+ eval_projection_J; main_iter =          32
+ gradJ: inner product =   6.880346986593011E-016
+ norm =   4.359999980951695E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          32
+ norm =   0.750021413912656      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000081793868      norm_constr =   0.866025403784439     
+ norm =   0.750000214139126      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750004217069428      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750005200302026      norm_constr =   0.866025403784439     
+ norm =   0.750007009229710      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.371235804331369E-003 tau_brack(2)=  3.057063887695667E-003
+ Start brent; main_iter =          32
+ norm =   0.750005200302026      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005859441627      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004811821702      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.633198821737335E-003
+ eval_J; main_iter =          32
+ norm =   0.750005200302026      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          33
+ eval_grad_J; main_iter =          33
+ eval_projection_J; main_iter =          33
+ gradJ: inner product =   5.395803161917234E-016
+ norm =   3.511351048936635E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          33
+ norm =   0.750020801208104      norm_constr =   0.866025403784439     
+ norm =   0.750054458269824      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.521210385414367E-003
+ Start brent; main_iter =          33
+ norm =   0.750020801208104      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750007945354910      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750003034855684      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005404165514      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005007977564      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005815434100      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.684316303608174E-003
+ eval_J; main_iter =          33
+ norm =   0.750005404165514      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          34
+ eval_grad_J; main_iter =          34
+ eval_projection_J; main_iter =          34
+ gradJ: inner product =   6.693593162382383E-016
+ norm =   4.464868404322841E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          34
+ norm =   0.750021616662053      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000082568302      norm_constr =   0.866025403784439     
+ norm =   0.750000216166620      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750004256997130      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750005246320290      norm_constr =   0.866025403784439     
+ norm =   0.750007065812394      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.382434925282748E-003 tau_brack(2)=  3.069378307378067E-003
+ Start brent; main_iter =          34
+ norm =   0.750005246320290      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005909391599      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004856087168      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.644823948896354E-003
+ eval_J; main_iter =          34
+ norm =   0.750005246320290      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          35
+ eval_grad_J; main_iter =          35
+ eval_projection_J; main_iter =          35
+ gradJ: inner product =   5.866889005862186E-016
+ norm =   3.389153089649739E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          35
+ norm =   0.750020985281161      norm_constr =   0.866025403784439     
+ norm =   0.750054940179345      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.558830087148032E-003
+ Start brent; main_iter =          35
+ norm =   0.750020985281161      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750008015664565      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750003061711584      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005458982444      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005060746769      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005872299165      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.697896080284432E-003
+ eval_J; main_iter =          35
+ norm =   0.750005458982444      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          36
+ eval_grad_J; main_iter =          36
+ eval_projection_J; main_iter =          36
+ gradJ: inner product =  -1.288032180912779E-016
+ norm =   4.575345670205329E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          36
+ norm =   0.750021835929781      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000083405830      norm_constr =   0.866025403784439     
+ norm =   0.750000218359298      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750004300177806      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750005296145686      norm_constr =   0.866025403784439     
+ norm =   0.750007127185113      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.394487504253255E-003 tau_brack(2)=  3.082679594628392E-003
+ Start brent; main_iter =          36
+ norm =   0.750005296145686      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750005963511554      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004903485862      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.657353491987718E-003
+ eval_J; main_iter =          36
+ norm =   0.750005296145686      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          37
+ eval_grad_J; main_iter =          37
+ eval_projection_J; main_iter =          37
+ gradJ: inner product =   2.395815750649843E-016
+ norm =   3.268621769441434E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          37
+ norm =   0.750021184582746      norm_constr =   0.866025403784439     
+ norm =   0.750055461957662      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.599376540318698E-003
+ Start brent; main_iter =          37
+ norm =   0.750021184582746      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750008091791000      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750003090789297      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005518209471      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005117772787      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005933727637      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.712491958902221E-003
+ eval_J; main_iter =          37
+ norm =   0.750005518209471      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          38
+ eval_grad_J; main_iter =          38
+ eval_projection_J; main_iter =          38
+ gradJ: inner product =   1.166601537594403E-016
+ norm =   4.691834887605906E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          38
+ norm =   0.750022072837880      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000084310738      norm_constr =   0.866025403784439     
+ norm =   0.750000220728377      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750004346832423      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750005350030408      norm_constr =   0.866025403784439     
+ norm =   0.750007193654150      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.407441913142202E-003 tau_brack(2)=  3.097020966401204E-003
+ Start brent; main_iter =          38
+ norm =   0.750005350030408      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750006022073826      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750004954559569      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.670837673557167E-003
+ eval_J; main_iter =          38
+ norm =   0.750005350030408      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          39
+ eval_grad_J; main_iter =          39
+ eval_projection_J; main_iter =          39
+ gradJ: inner product =   1.924458856161770E-018
+ norm =   3.149785296806711E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          39
+ norm =   0.750021400121636      norm_constr =   0.866025403784439     
+ norm =   0.750056026245807      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.643012268498385E-003
+ Start brent; main_iter =          39
+ norm =   0.750021400121636      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750008174119535      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750003122236001      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005582151648      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005179351880      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750006000033373      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.728162177003865E-003
+ eval_J; main_iter =          39
+ norm =   0.750005582151648      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          40
+ eval_grad_J; main_iter =          40
+ eval_projection_J; main_iter =          40
+ gradJ: inner product =  -1.447680950811270E-016
+ norm =   4.814773073786557E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          40
+ norm =   0.750022328606593      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000085287689      norm_constr =   0.866025403784439     
+ norm =   0.750000223286065      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750004397201286      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750005408247303      norm_constr =   0.866025403784439     
+ norm =   0.750007265548339      norm_constr =   0.866025403784439     
+ tau_brack(1)=  2.421349840029199E-003 tau_brack(2)=  3.112458479368788E-003
+ Start brent; main_iter =          40
+ norm =   0.750005408247303      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750006085372162      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750005009724229      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+ tau=  2.685329850338229E-003
+ eval_J; main_iter =          40
+ norm =   0.750005408247303      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          41
+ eval_grad_J; main_iter =          41
+ eval_projection_J; main_iter =          41
+ gradJ: inner product =  -8.642988668511320E-016
+ norm =   3.032674869367250E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          41
+ norm =   0.750021632989217      norm_constr =   0.866025403784439     
+ norm =   0.750056635901044      norm_constr =   0.866025403784439     
+ tau_brack(1)=  0.000000000000000E+000 tau_brack(2)=  8.689909937703846E-003
+ Start brent; main_iter =          41
+ norm =   0.750021632989217      norm_constr =   0.866025403784439     
+       brent; do iteration; case 2 ... 
+ norm =   0.750008263067041      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750003156210927      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005651141136      norm_constr =   0.866025403784439     
+       brent; do iteration; case 6 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750005245806797      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750006071557934      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ tau=  2.744969006271910E-003
+ eval_J; main_iter =          41
+ norm =   0.750005651141136      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization; main_iter =          42
+ eval_grad_J; main_iter =          42
+ eval_projection_J; main_iter =          42
+ gradJ: inner product =  -1.356879018865609E-016
+ norm =   4.944634925239060E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =          42
+ norm =   0.750022604564536      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000086341753      norm_constr =   0.866025403784439     
+ norm =   0.750000226045645      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750004451546039      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750005471092160      norm_constr =   0.866025403784439     
+ norm =   0.750007343221873      norm_constr =   0.866025403784439     
