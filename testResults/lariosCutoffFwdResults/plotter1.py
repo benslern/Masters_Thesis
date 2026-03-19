@@ -5,7 +5,7 @@ fig, ax = plt.subplots(figsize=[8, 4])
 
 ax.set_ylim(0.8,4)
 ax.set_yscale('log')
-ax.set_ylabel(r'$\text{max}_{t\in[0,T]}\|u_\alpha(x,T)\|_{L^2}$',fontsize="14")
+ax.set_ylabel(r'$\text{max}_{t\in[0,T]}\|\nabla u_\alpha(x,T)\|_{L^2}$',fontsize="14")
 
 #ax.set_xlim(1.9,38)
 ax.set_xscale('log')

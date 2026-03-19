@@ -5,15 +5,13 @@ fig, ax = plt.subplots(figsize=[8, 4])
 
 #ax.set_ylim(3.5,27)
 #ax.set_yscale('log')
-#ax.set_ylabel(r'$\|\omega\|_{L^\infty}$',fontsize="14")
-ax.set_ylabel(r'$\|u_\alpha\|_{\dot{H}^1}$',fontsize="14")
+ax.set_ylabel('slope',fontsize="14")
 
 ax.set_xlim(0,5)
 #ax.set_xscale('log')
 ax.set_xlabel(r'$t$',fontsize="14")
 
-#ax.set_title(r"$\|\omega\|_{L^\infty}$ vs $t$ - init $\|u_\alpha\|_{\dot{H}^1} = \sqrt{3}/2$")
-ax.set_title(r"$\|u_\alpha\|_{\dot{H}^1}$ vs $t$ - init $\|u_\alpha\|_{\dot{H}^1} = \sqrt{3}/2$")
+ax.set_title(r"Fig 3 inset - init $\|u_\alpha\|_{\dot{H}^1} = \sqrt{3}\pi$")
 
 ax.tick_params(
     axis='both',          # applies to both x and y axes
@@ -31,28 +29,45 @@ ax.tick_params(
 )
 
 Data = []
-alphas = [2,4,8,12,16,20,24,28,32,36]
-for i in alphas:
+r = 12
+for i in range(r,16,4):
     filename = "./alpha_"+str(i)+"_1024/energy_fwd_0.dat"
     Ts = []
     sqrt_enstrophy = []
-    vorticity = []
+    j = 0
     with open(filename, 'r') as file:
         for line in file:
             line = " ".join(line.split())
             vals = line.split()
-            sqrt_enstrophy.append(float(vals[5])**0.5)
-            vorticity.append(float(vals[4]))
+            sqrt_enstrophy.append((float(vals[5])**0.5))
+            sqrt_enstrophy[j] = max(sqrt_enstrophy)
             Ts.append(round(float(vals[0]),2))
-            
-    #ax.plot(Ts,vorticity,label=r"$1024\alpha: $"+str(i))
-    ax.plot(Ts,sqrt_enstrophy,label=r"$1024\alpha: $"+str(i))
-    #print(len(Ts))
-    #Data.append(sqrt_enstrophy)    
 
-#ax.set_yticks([1,10])
-#ax.set_yticklabels(["1","10"])
+            j += 1
+            #print(round(float(vals[0]),2),float(vals[5])**0.5)
+
+    print(len(Ts))
+    Data.append(sqrt_enstrophy)
+    
+ND = np.asarray(Data).T
+Data = list(ND)
+
+print(Data[0])
+
+for i in range(0,1):
+    slopes = []
+    for n in range(0,101,1):
+        #print(Ts[n])
+        #ax.plot(list(range(12,40,4)),Data[n],'o-')
+        #print(Data[n][0])
+        #print((12+(i+1)*4))
+        m = (np.log(Data[n][i+1])-np.log(Data[n][i]))/(np.log((r+(i+1)*4)/1024) - np.log((r+i*4)/1024))
+        #print(m)
+        slopes.append(m)
+    ax.plot(Ts,slopes,label=r"$1024\alpha$: "+str((r+i*4))+' - '+str((r+(i+1)*4)))
+    print(slopes.index(min(slopes)))
+plt.plot([0,5],[-1,-1],color='black')
 ax.set_xticks([0,1,2,3,4,5])
 ax.set_xticklabels(["0","1","2","3","4","5"])
-ax.legend(loc="upper left")
+ax.legend(loc="upper right")
 plt.show()

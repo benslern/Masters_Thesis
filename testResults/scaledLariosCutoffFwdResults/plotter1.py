@@ -3,15 +3,15 @@ import numpy as np
 
 fig, ax = plt.subplots(figsize=[8, 4])
 
-ax.set_ylim(0.8,4)
+ax.set_ylim(5,50)
 ax.set_yscale('log')
-ax.set_ylabel(r'$\text{max}_{t\in[0,T]}\|u_\alpha(x,T)\|_{L^2}$',fontsize="14")
+ax.set_ylabel(r'$\text{max}_{t\in[0,T]}\|\nabla u_\alpha(x,T)\|_{L^2}$',fontsize="14")
 
-#ax.set_xlim(1.9,38)
+#ax.set_xlim(12,36)
 ax.set_xscale('log')
 ax.set_xlabel(r'$1024\alpha$',fontsize="14")
 
-ax.set_title(r"Fig 3 - init $\|u_\alpha\|_{\dot{H}^1} = \sqrt{3}/2$")
+ax.set_title(r"Fig 3 - init $\|u_\alpha\|_{\dot{H}^1} = \sqrt{3}\pi$")
 
 ax.tick_params(
     axis='both',          # applies to both x and y axes
@@ -29,8 +29,8 @@ ax.tick_params(
 )
 
 Data = []
-alphas = [2,4,8,12,16,20,24,28,32,36]
-for i in alphas:
+r = 12
+for i in range(r,40,4):
     filename = "./alpha_"+str(i)+"_1024/energy_fwd_0.dat"
     Ts = []
     sqrt_enstrophy = []
@@ -66,17 +66,17 @@ for n in range(0,101,2):
     blue = (interpolation_factor)
 
     print(Ts[n],n)
-    ax.plot(alphas,Data[n],'o-',color=(blue,green,red),lw=0.5,ms=4,zorder=0)
-ax.scatter([2,2],[Data[100][0],Data[98][0]],color='g',zorder=2,s=16)
-#ax.plot(alphas,Data[84],'o-',color=(0,1,0),lw=0.5,ms=4)
-C = 5.75
-D = -0.417
-#ax.plot([4,8,12,16,20,24,28,32,36],[C/4,C/8,C/12,C/16,C/20,C/24,C/28,C/32,C/36],'o-',color='black')
-ax.plot([2,4,8,12,16,20,24,28,32,36],[C*(2**(D)),C*(4**(D)),C*(8**(D)),C*(12**(D)),C*(16**(D)),C*(20**(D)),C*(24**(D)),C*(28**(D)),C*(32**(D)),C*(36**(D))],'o-',mfc='none',color='black')
+    ax.plot(list(range(r,40,4)),Data[n],'o-',color=(blue,green,red),lw=0.5,ms=2)
+ax.scatter([16],[Data[100][1]],zorder=2,s=8,color='g')
+temp = []
+for t in range(19):
+    temp.append(Data[100-t*2][0])
+ax.scatter([12]*19,temp,zorder=2,s=8,color='g') 
+C = 500
+plt.plot([12,16,20,24,28,32,36],[C/12,C/16,C/20,C/24,C/28,C/32,C/36],'o-',color='black',mfc='none')
 
-
-ax.set_yticks([0.8,1,1.5,2,2.5,3,3.5,4])
-ax.set_yticklabels(["","1","","2","","3","","4"])
-ax.set_xticks([2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36])
-ax.set_xticklabels(["2","4","","8","","12","","16","","20","","24","","28","","32","","36"])
+ax.set_yticks([5,6,10,20,30,40,50])
+ax.set_yticklabels([5,"",10,20,30,40,50])
+ax.set_xticks([12,14,16,18,20,22,24,26,28,30,32,34,36])
+ax.set_xticklabels(["12","","16","","20","","24","","28","","32","","36"])
 plt.show()

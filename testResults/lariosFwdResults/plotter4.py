@@ -30,7 +30,7 @@ ax.tick_params(
 )
 
 Data = []
-a = 36
+a = 2
 for i in range(a,a+4,4):
     ax.set_title(r"$\alpha$-Energy vs $t$ - $\alpha=$"+str(i)+r"$/1024$ - init $\|u_\alpha\|_{\dot{H}^1} = \sqrt{3}/2$")
 
