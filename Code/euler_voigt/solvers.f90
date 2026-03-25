@@ -46,8 +46,8 @@ module solvers
   REAL(pr), DIMENSION(:), ALLOCATABLE :: b_solver, b2_solver
   REAL(pr), DIMENSION(:,:,:,:,:), ALLOCATABLE :: K_solver
   REAL(pr), DIMENSION(:,:,:,:), ALLOCATABLE ::ff_temp1
-  REAL(pr), DIMENSION(:,:,:,:), ALLOCATABLE :: temp1_solver, temp2_solver, Umid_solver
-  COMPLEX(pr), DIMENSION(:,:,:,:), ALLOCATABLE :: temp1_solver_cx, temp2_solver_cx, ff_temp1_cx
+  REAL(pr), DIMENSION(:,:,:,:), ALLOCATABLE :: temp1_solver, temp2_solver, temp3_solver, temp4_solver, Umid_solver
+  COMPLEX(pr), DIMENSION(:,:,:,:), ALLOCATABLE :: temp1_solver_cx, temp2_solver_cx, temp3_solver_cx, temp4_solver_cx, ff_temp1_cx
   REAL(pr), DIMENSION(:,:,:,:), ALLOCATABLE :: U2d_solver, W2d_solver
   COMPLEX(pr), DIMENSION(:,:,:,:), ALLOCATABLE :: U2d_solver_cx, W2d_solver_cx
   
@@ -55,11 +55,11 @@ module solvers
  !needed for report
   real(pr), dimension(:,:), allocatable :: spectral_data
 
-  real(pr) :: K_total, E_total, H_total, maxW_global, H1_norm, E
+  real(pr) :: K_total, E_total, H_total, maxW_global, H1_norm, H1_seminorm, H2_seminorm, H3_seminorm
   real(pr), dimension(1:3) :: E_component
   integer :: mm = 10 ! vorticity moments
   real(pr), dimension(:), allocatable :: Omega ! vorticity_moments
-
+  character(10) :: subpath
  
 
 CONTAINS
@@ -68,17 +68,25 @@ CONTAINS
   !
   ! allocate the variables needed for solver
   !=========================================================
-  SUBROUTINE solvers_allocate(stepper)
+  SUBROUTINE solvers_allocate(stepper, subpath_)
     use global_variables
     IMPLICIT NONE
     integer, intent(in) :: stepper
+    character(len=*), intent(in) :: subpath_
+    
+    subpath = subpath_
     if (.not. allocated(ff_temp1)) allocate(ff_temp1(1:n(1), 1:n(2), 1:local_N, 1:3))
     
     if (.not. allocated(temp1_solver)) allocate(temp1_solver(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(temp2_solver)) allocate(temp2_solver(1:n(1), 1:n(2), 1:local_N, 1:3))
-    
+    if (.not. allocated(temp3_solver)) allocate(temp3_solver(1:n(1), 1:n(2), 1:local_N, 1:3))   
+    if (.not. allocated(temp4_solver)) allocate(temp4_solver(1:n(1), 1:n(2), 1:local_N, 1:3))
+
     if (.not. allocated(temp1_solver_cx)) allocate(temp1_solver_cx(1:n(1)/2+1, 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(temp2_solver_cx)) allocate(temp2_solver_cx(1:n(1)/2+1, 1:n(2), 1:local_N, 1:3))
+    if (.not. allocated(temp3_solver_cx)) allocate(temp3_solver_cx(1:n(1)/2+1, 1:n(2), 1:local_N, 1:3))
+    if (.not. allocated(temp4_solver_cx)) allocate(temp4_solver_cx(1:n(1)/2+1, 1:n(2), 1:local_N, 1:3))
+
     if (.not. allocated(ff_temp1_cx)) allocate(ff_temp1_cx(1:n(1)/2+1, 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(spectral_data)) allocate(spectral_data(1:kkmax,1:2))
     if (.not. allocated(Omega)) allocate(Omega(1:mm))
@@ -184,8 +192,12 @@ CONTAINS
 
     if(allocated(temp1_solver)) deallocate(temp1_solver)
     if(allocated(temp2_solver)) deallocate(temp2_solver)
+    if(allocated(temp3_solver)) deallocate(temp3_solver)
+    if(allocated(temp4_solver)) deallocate(temp4_solver)
     if(allocated(temp1_solver_cx)) deallocate(temp1_solver_cx)
     if(allocated(temp2_solver_cx)) deallocate(temp2_solver_cx)
+    if(allocated(temp3_solver_cx)) deallocate(temp3_solver_cx)
+    if(allocated(temp4_solver_cx)) deallocate(temp4_solver_cx)
     if(allocated(ff_temp1_cx)) deallocate(ff_temp1_cx)
     if(allocated(A_solver)) deallocate(A_solver)
     if(allocated(b_solver)) deallocate(b_solver)
@@ -280,11 +292,11 @@ CONTAINS
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
        call fftfwd_m(inifield, temp1_solver_cx, 3)
        call div_free_fourier(temp1_solver_cx)
-       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, inifield,3)
 
-       case (3)
+    case (3)
        ! 3d taylor-green
           inifield = 0.0_pr
           ii = 3
@@ -305,7 +317,8 @@ CONTAINS
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
        call fftfwd_m(inifield, temp1_solver_cx, 3)
        call div_free_fourier(temp1_solver_cx)
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, inifield,3)
 
     case(4)
@@ -326,7 +339,8 @@ CONTAINS
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
        call fftfwd_m(inifield, temp1_solver_cx, 3)
        call div_free_fourier(temp1_solver_cx)
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, inifield,3)
 
     case(5)
@@ -350,7 +364,8 @@ CONTAINS
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo) 
        call fftfwd_m(inifield, temp1_solver_cx, 3)
        call div_free_fourier(temp1_solver_cx)
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, inifield,3)
 
     case(6)
@@ -496,7 +511,8 @@ CONTAINS
 
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
        call div_free_fourier(temp1_solver_cx)
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, inifield,3)
 
        deallocate(random1)
@@ -583,7 +599,8 @@ CONTAINS
           end do
           call vort2vel_fourier(temp1_solver_cx, temp2_solver_cx)
           call div_free_fourier(temp2_solver_cx)
-          call dealiasing_fourier_m(temp2_solver_cx, 3)
+          call dealiasing_cutoff_m(temp2_solver_cx, 3)
+          !call dealiasing_fourier_m(temp2_solver_cx, 3)
           call fftbwd_m(temp2_solver_cx, inifield,3)
 
        case (8)
@@ -641,7 +658,8 @@ CONTAINS
              end do
           end do
           call div_free_fourier(temp1_solver_cx)
-          call dealiasing_fourier_m(temp1_solver_cx, 3)
+          call dealiasing_cutoff_m(temp1_solver_cx, 3)
+          !call dealiasing_fourier_m(temp1_solver_cx, 3)
           call fftbwd_m(temp1_solver_cx, inifield,3)
 
           
@@ -820,7 +838,8 @@ CONTAINS
     
        
        call div_free_fourier(temp1_solver_cx);
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
 
     
        call fftbwd_m(temp1_solver_cx, Umid, 3)
@@ -834,8 +853,8 @@ CONTAINS
        
        call div_free_fourier(temp1_solver_cx);
    
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
-       !call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
     
        call fftbwd_m(temp1_solver_cx,U,3)
     else if (mod(iter_count+1, 2) == 1) then
@@ -847,8 +866,8 @@ CONTAINS
        
        
        call div_free_fourier(temp1_solver_cx);
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
-       !call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
     
     
        call fftbwd_m(temp1_solver_cx, Umid,3)
@@ -891,7 +910,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
 
 
@@ -941,8 +961,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    !call dealiasing_fourier_m(temp1_solver_cx, 3)
     call dealiasing_cutoff_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
     
      
@@ -1008,7 +1028,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
     
      
@@ -1106,8 +1127,8 @@ CONTAINS
           
           
           call div_free_fourier(temp1_solver_cx);
-          call dealiasing_fourier_m(temp1_solver_cx, 3)
-          
+          !call dealiasing_fourier_m(temp1_solver_cx, 3)
+          call dealiasing_cutoff_m(temp1_solver_cx, 3)
           
           call fftbwd_m(temp1_solver_cx, U,3)
           if (rank == 0) then
@@ -1201,7 +1222,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
     
      
@@ -1232,6 +1254,7 @@ CONTAINS
     REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: inifield
     REAL(pr), INTENT(IN) :: mydt
     integer, INTENT(IN) :: savesign, stepper, myindex
+
     REAL(pr) ::  dt, time
     INTEGER :: Time_iter
     integer :: nn
@@ -1262,8 +1285,8 @@ CONTAINS
 
     
     IF (savesign == 1) THEN
-       file_spectrum = TRIM(scratch_pathname)//"spectrum_fwd_"//trim(adjustl(indexchar))//".dat"
-       file_energy = TRIM(scratch_pathname)//"energy_fwd_"//trim(adjustl(indexchar))//".dat"
+       file_spectrum = TRIM(scratch_pathname)//trim(subpath)//"spectrum_fwd_"//trim(adjustl(indexchar))//".dat"
+       file_energy = TRIM(scratch_pathname)//trim(subpath)//"energy_fwd_"//trim(adjustl(indexchar))//".dat"
       
 
        if (rank == 0) then
@@ -1283,18 +1306,16 @@ CONTAINS
        
        ! temp1_solver_cx = HatU
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
-       call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, E)
-
        call div_free_fourier(temp1_solver_cx)
-       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, Uvec, 3)
 
-       call save2binary2(Uvec,Time_iter, "fwdTE")
+       call save2binary2(Uvec,Time_iter, "fwdTE", subpath)
   
        
-!!!!!!!!!!!!!!!!!!!!!##############################33
-       !call save_velocity(Uvec, Time_iter)
+!!!!!!!!!!!!!!!!!!!!!
+       !call save_velocity(Uvec, myindex, subpath) ! Time_iter, subpath)
 
 !       if (parallel_data) then
 !          call save_velocity_cx(temp1_solver_cx, myindex)
@@ -1309,11 +1330,21 @@ CONTAINS
        
        
        call save_spectrum(spectral_data, file_spectrum)
-       call L2_grad(temp1_solver_cx, H1_norm)
+       call L2_grad(temp1_solver_cx, H1_norm) !H1_norm = PHI VALUE
 
                      
- 
-
+        !h1 seminorm
+         call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 1.0_pr)
+         call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H1_seminorm)
+         H1_seminorm = sqrt(H1_seminorm)
+         !h2 seminorm
+         call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 2.0_pr)
+         call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H2_seminorm)
+         H2_seminorm = sqrt(H2_seminorm)
+         !h3 seminorm
+         call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 3.0_pr)
+         call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H3_seminorm) 
+        H3_seminorm = sqrt(H3_seminorm)
 
        ! temp2_solver_cx = HatW
        call vel2vort_fourier(temp1_solver_cx, temp2_solver_cx)
@@ -1324,20 +1355,11 @@ CONTAINS
        
       
      
-      !###############################3
-       !call save_vorticity(Wvec, Time_iter) 
+       !!!!!!!
+       !call save_vorticity(Wvec, myindex, subpath) !Time_iter, subpath) 
        call calculate_total_energy(Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
-       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, E)
+       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, H1_seminorm, H2_seminorm, H3_seminorm)
 
-      
-       
- 
-
-       
-
-       
-
-       
        
     END IF
 
@@ -1370,7 +1392,7 @@ CONTAINS
        
 
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-       IF (savesign == 1) THEN
+       IF ((savesign == 1)) THEN ! .and. MODULO(Time_iter,32)==0) THEN
            
           
           !temp1_solver_cx = HatU
@@ -1382,20 +1404,28 @@ CONTAINS
           end if
 
           
-          call save2binary2(Uvec,Time_iter, "fwdTE")
+          call save2binary2(Uvec,Time_iter, "fwdTE", subpath)
        
          
           
           call fftfwd_m(temp1_solver, temp1_solver_cx, 3)
-          call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, E)
-
           call calculate_spectrum(temp1_solver_cx, spectral_data)
           call save_spectrum(spectral_data, file_spectrum)
 
           call L2_grad(temp1_solver_cx, H1_norm)
-          
-   
-       
+
+          !h1 seminorm
+         call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 1.0_pr)
+         call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H1_seminorm)
+         H1_seminorm = sqrt(H1_seminorm)
+         !h2 seminorm
+         call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 2.0_pr)
+         call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H2_seminorm)
+         H2_seminorm = sqrt(H2_seminorm)
+         !h3 seminorm
+         call abs_deriv_fourier(temp1_solver_cx, temp2_solver_cx, 3.0_pr)
+         call L2_product_fourier(temp2_solver_cx, temp2_solver_cx, H3_seminorm)
+         H3_seminorm = sqrt(H3_seminorm)
 
           ! temp2_solver_cx = HatW
           call vel2vort_fourier(temp1_solver_cx, temp2_solver_cx)
@@ -1406,13 +1436,8 @@ CONTAINS
           !if (mod(Time_iter, 32) == 0) call save_vorticity(Wvec, Time_iter)
 
 
-
-
-       
-
-
           call calculate_total_energy(Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
-          call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, E)
+          call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, H1_seminorm, H2_seminorm, H3_seminorm)
 
     
               
@@ -1454,6 +1479,7 @@ CONTAINS
     REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: inifield
     REAL(pr), INTENT(IN) :: mydt
     integer, INTENT(IN) :: stepper, myindex
+
     REAL(pr) ::  time
     integer :: nn
     integer :: i1, i2, i3
@@ -1469,7 +1495,7 @@ CONTAINS
     
 
 
-    file_error = TRIM(scratch_pathname)//"reverse_error"//trim(adjustl(indexchar))//".dat"
+    file_error = TRIM(scratch_pathname)//TRIM(subpath)//"reverse_error"//trim(adjustl(indexchar))//".dat"
 
     if (rank == 0) then
        open(17, file = file_error, status = 'replace')
@@ -1481,7 +1507,7 @@ CONTAINS
     fwdindex = final_time_iter - reverse_iter
     
     adj_Uvec = Uvec
-    call read4binary2(fwdindex, fwd_field1, "fwdTE")
+    call read4binary2(fwdindex, fwd_field1, "fwdTE", subpath)
     temp1_solver = adj_Uvec - fwd_field1
     call L2_product(temp1_solver, temp1_solver, val1)
     call L2_product(fwd_field1, fwd_field1, val2)
@@ -1502,7 +1528,7 @@ CONTAINS
        reverse_iter =reverse_iter + 1
        fwdindex = final_time_iter - reverse_iter
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
-       call read4binary2(fwdindex, fwd_field1, "fwdTE")
+       call read4binary2(fwdindex, fwd_field1, "fwdTE", subpath)
        temp1_solver = adj_Uvec - fwd_field1
        call L2_product(temp1_solver, temp1_solver, val1)
        call L2_product(fwd_field1, fwd_field1, val2)
@@ -1668,8 +1694,8 @@ CONTAINS
     
        
        call div_free_fourier(temp1_solver_cx);
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
-       !call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
     
        call fftbwd_m(temp1_solver_cx, Umid, 3)
     else if (mod(iter_count+1, 2) == 0) then
@@ -1682,8 +1708,8 @@ CONTAINS
        
        call div_free_fourier(temp1_solver_cx);
    
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
-       !call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
     
        call fftbwd_m(temp1_solver_cx,U,3)
     else if (mod(iter_count+1, 2) == 1) then
@@ -1695,8 +1721,8 @@ CONTAINS
        
        
        call div_free_fourier(temp1_solver_cx);
-       call dealiasing_fourier_m(temp1_solver_cx, 3)
-       !call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       !call dealiasing_fourier_m(temp1_solver_cx, 3)
+       call dealiasing_cutoff_m(temp1_solver_cx, 3)
     
     
        call fftbwd_m(temp1_solver_cx, Umid,3)
@@ -1742,7 +1768,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
 
 
@@ -1795,7 +1822,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
     
      
@@ -1867,7 +1895,8 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    call dealiasing_fourier_m(temp1_solver_cx, 3)
+    call dealiasing_cutoff_m(temp1_solver_cx, 3)
+    !call dealiasing_fourier_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
 
     
@@ -1909,7 +1938,7 @@ CONTAINS
     !call div_free_fourier(temp1_solver_cx)
     !call dealiasing_fourier_m(temp1_solver_cx, 3)
     call dealiasing_cutoff_m(temp1_solver_cx, 3)
-
+    
     call fftbwd_m(temp1_solver_cx, inifield,3)
     
     END SUBROUTINE adj_initialize
@@ -1938,6 +1967,7 @@ CONTAINS
     REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(INOUT) :: inifield
     REAL(pr), INTENT(IN) :: mydt
     integer, INTENT(IN) :: savesign, stepper, myindex
+
     REAL(pr) ::  dt, time
     INTEGER :: adj_Time_iter, fwdindex
     integer :: nn
@@ -1959,8 +1989,8 @@ CONTAINS
     adj_Uvec = inifield
     
     IF (savesign == 1) THEN
-       file_spectrum = TRIM(scratch_pathname)//"spectrum_bkd_"//trim(adjustl(indexchar))//".dat"
-       file_energy = TRIM(scratch_pathname)//"energy_bkd_"//trim(adjustl(indexchar))//".dat"
+       file_spectrum = TRIM(scratch_pathname)//TRIM(subpath)//"spectrum_bkd_"//trim(adjustl(indexchar))//".dat"
+       file_energy = TRIM(scratch_pathname)//TRIM(subpath)//"energy_bkd_"//trim(adjustl(indexchar))//".dat"
     
 
        if (rank == 0) then
@@ -1987,30 +2017,14 @@ CONTAINS
 
        call L2_grad(temp1_solver_cx, H1_norm)
 
-                     
- 
-
-
        ! temp2_solver_cx = HatW
        call vel2vort_fourier(temp1_solver_cx, temp2_solver_cx)
        ! temp2_solver_cx = W
        call fftbwd_m(temp2_solver_cx, Wvec, 3)
     
 
-
-      
-          
-
        call calculate_total_energy(adj_Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
-       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, 0.0_pr)
-       
-       
- 
-
-       
-
-       
-
+       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, H1_norm, H1_norm, H1_norm)
        
        
     END IF
@@ -2026,8 +2040,8 @@ CONTAINS
        if (parallel_data) then
           fwdindex      = final_time_iter - adj_Time_iter
           fwd_Field1 = fwd_Field2
-          call read4binary2(fwdindex, fwd_Field1, "fwdTE")
-          call read4binary2(fwdindex-1, fwd_Field2, "fwdTE")
+          call read4binary2(fwdindex, fwd_Field1, "fwdTE", subpath)
+          call read4binary2(fwdindex-1, fwd_Field2, "fwdTE", subpath)
 
           ! evolve the euler equation backwards
           !fwd_Field1 = fwd_Field2
@@ -2038,8 +2052,8 @@ CONTAINS
         
        else
           fwdindex      = final_time_iter - adj_Time_iter
-          call read4binary2(fwdindex, fwd_Field1, "fwdTE")
-          call read4binary2(fwdindex-1, fwd_Field2, "fwdTE")
+          call read4binary2(fwdindex, fwd_Field1, "fwdTE", subpath)
+          call read4binary2(fwdindex-1, fwd_Field2, "fwdTE", subpath)
        end if
        
        ! time stepper       
@@ -2086,9 +2100,7 @@ CONTAINS
           call save_spectrum(spectral_data, file_spectrum)
 
          call L2_grad(temp1_solver_cx, H1_norm)
-          
-   
-       
+         
 
           ! temp2_solver_cx = HatW
           call vel2vort_fourier(temp1_solver_cx, temp2_solver_cx)
@@ -2099,7 +2111,7 @@ CONTAINS
      
 
            call calculate_total_energy(adj_Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
-       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, 0.0_pr)
+       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, H1_norm, H1_norm, H1_norm)
        
           
               
@@ -2143,16 +2155,18 @@ CONTAINS
     REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(INOUT) :: direction
     REAL(pr), INTENT(IN) :: mydt
     integer, INTENT(IN) :: savesign, stepper, myindex
+
     character(4) :: indexchar
     character(200) :: file_error
-    real(pr) :: val1, val2, val3, val
+    real(pr) :: val1, val2, val3, val4, val
     real(pr) :: epsilon
     real(pr) :: norm
     integer :: i
+    real(pr) :: norm_constr = sqrt(3.0_pr)/2.0_pr
 
     WRITE(indexchar, '(i4)') myindex
     
-    file_error = TRIM(scratch_pathname)//"kappa_test_error"//trim(adjustl(indexchar))//".dat"
+    file_error = TRIM(scratch_pathname)//TRIM(subpath)//"kappa_test_error"//trim(adjustl(indexchar))//".dat"
 
     
     call set_initial(inifield,2,5346689, 123455, 662341)
@@ -2160,15 +2174,16 @@ CONTAINS
 
     ! rescale the initial condition 
     call fftfwd_m(inifield, temp1_solver_cx, 3)
-    !call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
+    call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 1.0_pr)
+    !call div_free_fourier(temp1_solver_cx)
     call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, norm)
     inifield = inifield/sqrt(norm)
 
     call fftfwd_m(direction, temp1_solver_cx, 3)
-    !call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
+    call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 1.0_pr)
+    !call div_free_fourier(temp1_solver_cx)
     call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, norm)
     direction = direction/sqrt(norm)
-    
     
     
     call fwd_3D(inifield, mydt, savesign, stepper,myindex)
@@ -2181,32 +2196,31 @@ CONTAINS
     call L2_product(adj_Uvec, direction, val2)
     !call L2_product(inifield, direction, val2)
     
-    do i = 0,9
+    do i = 0,16
        epsilon = 10.0_pr**(-i)
        call set_initial(inifield,2,5346689, 123455, 662341)
        call set_initial(direction, 6, 123345, 5566478, 662345)
        
        ! rescale the initial condition 
        call fftfwd_m(inifield, temp1_solver_cx, 3)
-       !call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
+       call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 1.0_pr)
+       !call div_free_fourier(temp1_solver_cx)
        call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, norm)
        inifield = inifield/sqrt(norm)
 
        call fftfwd_m(direction, temp1_solver_cx, 3)
-       !call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
+       call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 1.0_pr)
+       !call div_free_fourier(temp1_solver_cx)
        call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, norm)
        direction = direction/sqrt(norm)
-       
+
        inifield = inifield + epsilon*direction
-       
        
        call fwd_3D(inifield, mydt, savesign, stepper, myindex)
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 1.0_pr)
        call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, val1)
        
-       
-
        if(rank == 0) then
           val3 = (val1 - val)/epsilon
           open(30, file = file_error, status = 'old', position = 'append')
@@ -2252,15 +2266,15 @@ CONTAINS
   ! SUBROUTINE: SAVE_ENERGY(K_total_, E_total_, H_total_, maxW_global_, filename)
   ! input: K_total_, E_total_, H_total_, maxW_global_, filename
   !=========================================================
-  SUBROUTINE save_energy(K_total_, E_total_, H_total_, maxW_global_, H1_norm_, E_component_, time_, filename, E_)
+  SUBROUTINE save_energy(K_total_, E_total_, H_total_, maxW_global_, H1_norm_, E_component_, time_, filename, H1_seminorm, H2_seminorm, H3_seminorm)
     USE global_variables
     IMPLICIT NONE  
-    real(pr), intent(in) :: K_total_, E_total_, H_total_, maxW_global_, H1_norm_, time_, E_
+    real(pr), intent(in) :: K_total_, E_total_, H_total_, maxW_global_, H1_norm_, time_, H1_seminorm, H2_seminorm, H3_seminorm
     real(pr), dimension(1:3), intent(in) :: E_component_
     character(len = *), intent(in) :: filename
     if (rank == 0) then
        open(21, file = filename, status = 'old', position = 'append')    
-       write(21, "(10 G20.12)") time_, K_total_, E_total_, H_total_, maxW_global_, H1_norm_, E_component_(1), E_component_(2), E_component_(3), E_
+       write(21, "(12 G20.12)") time_, K_total_, E_total_, H_total_, maxW_global_, H1_norm_, E_component_(1), E_component_(2), E_component_(3), H1_seminorm, H2_seminorm, H3_seminorm
        close(21)
     end if
     

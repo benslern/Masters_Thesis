@@ -121,7 +121,7 @@ CONTAINS
 
     if (rank == 0) then
        open(3, file = file_cost, status = 'old', position = 'append')
-       write(3, "(4 G20.12)"), iter, J1, norm2_grad, tau
+       write(3, "(5 G20.12)"), iter, MAX_ITER, J1, norm2_grad, tau
        close(3)
     end if
 
@@ -156,6 +156,9 @@ CONTAINS
           print *, "Start mnbrak; main_iter =", iter
        end if
        tau_brack = mnbrak("maxET", Uvec0, gradJ_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)  
+       if (rank ==0) then
+             print *, "tau_1 = ",tau_brack(1), " tau_2 = ", tau_brack(2)
+       end if
        IF (mnbrak_flag /= 0) THEN
           if (rank ==0) then
              print *, "mnbrack iteration beyond maximum, the maxdEdt stops iterating ... " , mnbrak_flag
@@ -168,6 +171,9 @@ CONTAINS
           print *, "Start brent; main_iter =", iter
        end if
        tau = brent(iter, "maxET", Uvec0, gradJ_opt, tau_brack)
+       if (rank ==0) then
+             print *, "tau = ",tau
+          end if
        tau_brack(1) = 0.0_pr
        tau_brack(2) = 2.0_pr*tau
        IF (tau == TAU_MAX) THEN
@@ -196,12 +202,15 @@ CONTAINS
        IF (iter > 0) THEN   ! Feb 17, 2018
           deltaJ = abs(J1-J0)/ABS(J0)
           IF (J1-J0 > -1.0e-15_pr) THEN 
+             if (rank == 0) then
+                PRINT *, "Relative difference negative, iteration exit ... ..."
+             end if
              CALL optim_msg_handle(0)
              EXIT
           ELSEIF (deltaJ<OPTIM_TOL) THEN
              if (rank == 0) then
                 open(3, file = file_cost, status = 'old', position = 'append')
-                write(3, "(4 G20.12)"), iter, J1, norm2_grad, tau
+                write(3, "(5 G20.12)"), iter, MAX_ITER, J1, norm2_grad, tau
                 close(3)
                 PRINT *, "Relative difference reaches tolerance, iteration exit ... ..."
              end if
@@ -211,7 +220,7 @@ CONTAINS
 
        if (rank == 0) then
           open(3, file = file_cost, status = 'old', position = 'append')
-          write(3, "(4 G20.12)"), iter, J1, norm2_grad, tau
+          write(3, "(5 G20.12)"), iter, MAX_ITER, J1, norm2_grad, tau
           close(3)
        end if
        
@@ -699,8 +708,8 @@ CONTAINS
      END SUBROUTINE rescale
 
 !=========================================================
-! SUBROUTINE rescale(myfield, val)
-! scale myfield such that its dotH_3 is norm_constr     
+! SUBROUTINE rescale_H1(myfield, val)
+! scale myfield such that its dotH_1 is norm_constr     
 !=========================================================
      SUBROUTINE rescale_H1(myfield, scaling)
        USE global_variables
@@ -723,6 +732,7 @@ CONTAINS
        if(rank == 0) print *, "norm = ", norm, "norm_constr = ", norm_constr
 
      END SUBROUTINE rescale_H1
+
 
 !=========================================================
 ! SUBROUTINE rescale_cx(myfield_cx)

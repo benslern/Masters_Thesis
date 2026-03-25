@@ -119,7 +119,7 @@ CONTAINS
 
    !==============================================================================
   !  SUBROUTINE L2_grad(u_cx, rslt)
-  !  compute ||Grad_u||_{L^2}
+  !  compute ||Grad_u||_{L^2}^2
   !  input: u_cx(1:n(1)/2+1,1:n(2),1:local_N,1:3)
   !  output: rslt
   !===============================================================================
@@ -140,13 +140,7 @@ CONTAINS
           call L2_product_fourier_1(temp1_function_cx, temp1_function_cx, val)
           rslt = rslt + val
        end do
-    end do
-    
-        
-          
-    
-    
-  
+    end do  
   
 
   END SUBROUTINE L2_grad
@@ -825,44 +819,46 @@ CONTAINS
     
 
   END SUBROUTINE calculate_spectrum
-  !==========================================
-  ! PERFORM DEALIASING IN FOURIER SPACE
-  !==========================================
-  SUBROUTINE dealiasing_fourier_m(f, m)
-    USE global_variables
-    USE fftwfunction
-    IMPLICIT NONE
-    
-    integer, intent(in) :: m
-    COMPLEX(pr), DIMENSION(1:n(1)/2+1,1:n(2),1:local_N, 1:m), INTENT(INOUT) :: f
-    
-         
-    INTEGER :: i1, i2, i3, ii
-    REAL(pr), DIMENSION(1:3) :: k
-    REAL(pr) :: mode 
-
-    
-    Do ii = 1, m
-       DO i3 = 1,local_N
-          DO i2 = 1,n(2)
-             DO i1 = 1,n(1)/2+1
-                !if(abs(K1(i1)) > n(1)/3.0_pr*2.0_pr*PI.or.abs(K2(i2)) > n(2)/3.0_pr*2.0_pr*PI.or.abs(K2(i3+local_k_offset)) > n(3)/3.0_pr*2.0_pr*PI) then
-                f(i1,i2,i3,ii) = f(i1,i2,i3,ii)*K1_filter(i1)*K2_filter(i2)*K3_filter(i3+local_k_offset)
-                   !f(i1,i2,i3,ii) = cmplx(0.0_pr)
-                !end if
-                
-             END DO
-          END DO
-       END DO
-    END DO
-
-    !CALL bfourier(faux,aux)
-    !f = REAL(aux)
-    
-    !DEALLOCATE(aux)
-    !DEALLOCATE(faux)
-
-  END SUBROUTINE dealiasing_fourier_m
+  
+!
+!  !==========================================
+!  ! PERFORM DEALIASING IN FOURIER SPACE
+!  !==========================================
+!  SUBROUTINE dealiasing_fourier_m(f, m)
+!    USE global_variables
+!    USE fftwfunction
+!    IMPLICIT NONE
+!    
+!    integer, intent(in) :: m
+!    COMPLEX(pr), DIMENSION(1:n(1)/2+1,1:n(2),1:local_N, 1:m), INTENT(INOUT) :: f
+!    
+!         
+!    INTEGER :: i1, i2, i3, ii
+!    REAL(pr), DIMENSION(1:3) :: k
+!    !REAL(pr) :: mode ! Unused parameter
+!
+!    
+!    Do ii = 1, m
+!       DO i3 = 1,local_N
+!          DO i2 = 1,n(2)
+!             DO i1 = 1,n(1)/2+1
+!                !if(abs(K1(i1)) > n(1)/3.0_pr*2.0_pr*PI.or.abs(K2(i2)) > n(2)/3.0_pr*2.0_pr*PI.or.abs(K2(i3+local_k_offset)) > n(3)/3.0_pr*2.0_pr*PI) then
+!                f(i1,i2,i3,ii) = f(i1,i2,i3,ii)*K1_filter(i1)*K2_filter(i2)*K3_filter(i3+local_k_offset)
+!                   !f(i1,i2,i3,ii) = cmplx(0.0_pr)
+!                !end if
+!                
+!             END DO
+!          END DO
+!       END DO
+!    END DO
+!
+!    !CALL bfourier(faux,aux)
+!    !f = REAL(aux)
+!    
+!    !DEALLOCATE(aux)
+!    !DEALLOCATE(faux)
+!
+!  END SUBROUTINE dealiasing_fourier_m
 
 
   !==========================================
@@ -879,7 +875,7 @@ CONTAINS
          
     INTEGER :: i1, i2, i3, ii
     REAL(pr), DIMENSION(1:3) :: k
-    REAL(pr) :: mode 
+    !REAL(pr) :: mode ! Unused parameter
 
     
     Do ii = 1, m
@@ -888,7 +884,7 @@ CONTAINS
              DO i1 = 1,n(1)/2+1
                 if (abs(K1(i1)) > n(1)/3.0_pr*2.0_pr*PI) f(i1,i2,i3,ii) = cmplx(0.0_pr)
                 if (abs(K2(i2)) > n(2)/3.0_pr*2.0_pr*PI) f(i1,i2,i3,ii) = cmplx(0.0_pr)
-                if (abs(K2(i3+local_k_offset)) > n(3)/3.0_pr*2.0_pr*PI) f(i1,i2,i3,ii) = cmplx(0.0_pr)
+                if (abs(K3(i3+local_k_offset)) > n(3)/3.0_pr*2.0_pr*PI) f(i1,i2,i3,ii) = cmplx(0.0_pr)
              END DO
           END DO
        END DO

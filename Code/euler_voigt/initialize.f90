@@ -6,27 +6,30 @@ SUBROUTINE initialize
    INCLUDE "fftw3-mpi.f03"             ! Needed, as there is a fftw_mpi_local_size_3d command below
 
    INTEGER :: i,j,k
-   real(pr) :: mode
+   !real(pr) :: mode ! Unused parameter
          
-
+   ! amount of memory to allocate
    C_local_alloc = fftw_mpi_local_size_3d(C_n(3), C_n(2), C_n(1)/2+1, MPI_COMM_WORLD, C_local_N, C_local_k_offset)   ! Newly Added July 14, 2017
-   local_N = int( C_local_N )
-   local_k_offset = int( C_local_k_offset )
-   total_local_size = n(1)*n(2)*local_N
+   local_N = int( C_local_N ) !Size of ranks splice
+   local_k_offset = int( C_local_k_offset ) ! splice offset
+   total_local_size = n(1)*n(2)*local_N ! total size of splice
 
-   ALLOCATE( Uvec(1:n(1),1:n(2),1:local_N,1:3) )
-   ALLOCATE( Wvec(1:n(1),1:n(2),1:local_N,1:3) )
+   ALLOCATE( Uvec(1:n(1),1:n(2),1:local_N,1:3) ) ! local velocity vector ux,uy,uz
+   ALLOCATE( Wvec(1:n(1),1:n(2),1:local_N,1:3) ) ! local vorticity vector
 
    ALLOCATE( fwd_Field1(1:n(1),1:n(2),1:local_N,1:3) )   ! fwd_Field, adj_Uvec, adj_Wvec are Newly added for adjoint problem
    ALLOCATE( fwd_Field2(1:n(1),1:n(2),1:local_N,1:3) ) 
    ALLOCATE( adj_Uvec(1:n(1),1:n(2),1:local_N,1:3) )
    !ALLOCATE( adj_Wvec(1:n(1),1:n(2),1:local_N,1:3) )
    ALLOCATE( Uvec0(1:n(1),1:n(2),1:local_N,1:3) )
+   ALLOCATE( Uvec1(1:n(1),1:n(2),1:local_N,1:3) )
+   ALLOCATE( Uvec2(1:n(1),1:n(2),1:local_N,1:3) )
+   ALLOCATE( Uvec3(1:n(1),1:n(2),1:local_N,1:3) )
    ALLOCATE( adj_Uvec0(1:n(1),1:n(2),1:local_N,1:3) )
    ALLOCATE( adj_Uvec0_direction(1:n(1),1:n(2),1:local_N,1:3) )
 
  
-  ALLOCATE ( K1(1:n(1)) )
+  ALLOCATE ( K1(1:n(1)) ) ! Fourier wave numbers
   ALLOCATE ( K2(1:n(2)) )
   ALLOCATE ( K3(1:n(3)) )
   
@@ -93,21 +96,27 @@ SUBROUTINE initialize
 
   kkmax = ceiling(sqrt(real(n(1),pr)**2/4_pr+real(n(2),pr)**2/4_pr+real(n(3),pr)**2/4_pr)) 
 
-  
-  kappaTest = .FALSE.
-  toDealias = .TRUE.
-  timing = .FALSE.
-  save_diag_NS = .TRUE.
-  save_data_NS =.TRUE.
-  calc_geom_NS = .FALSE.
-  calc_ExactSol = .FALSE.
-  save_diag_lineMin = .TRUE.
-  save_data_lineMin = .TRUE.
-  save_diag_Constr = .TRUE.
-  save_data_Constr = .TRUE.
-  save_diag_Optim = .TRUE.
-  save_data_Optim = .TRUE.
-  save_null_vortex = .False.
+  !IF (rank==0) THEN
+  !   OPEN(10, FILE="./LOGFILES/test", STATUS="REPLACE")
+  !   write(10, *) kkmax, Kcut, n(1), n(2), n(3), n(1)/3.0_pr*2.0_pr*PI
+  !   close(10)
+  !END IF
+
+  ! Unused Flags
+  !kappaTest = .FALSE.
+  !toDealias = .TRUE.
+  !timing = .FALSE.
+  !save_diag_NS = .TRUE.
+  !save_data_NS =.TRUE.
+  !calc_geom_NS = .FALSE.
+  !calc_ExactSol = .FALSE.
+  !save_diag_lineMin = .TRUE.
+  !save_data_lineMin = .TRUE.
+  !save_diag_Constr = .TRUE.
+  !save_data_Constr = .TRUE.
+  !save_diag_Optim = .TRUE.
+  !save_data_Optim = .TRUE.
+  !save_null_vortex = .False.
 
   IF (n(1)<64) THEN
      parallel_data = .FALSE.

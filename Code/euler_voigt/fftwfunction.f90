@@ -154,7 +154,7 @@ CONTAINS
      
    END SUBROUTINE fftfwd_m
    !==================================================
-   ! Forward Fourier transform for multiple dimensions
+   ! Backward Fourier transform for multiple dimensions
    !==================================================
    SUBROUTINE fftbwd_m(fu, u, m)
       USE global_variables 

@@ -55,7 +55,7 @@ module solvers
  !needed for report
   real(pr), dimension(:,:), allocatable :: spectral_data
 
-  real(pr) :: K_total, E_total, H_total, maxW_global, H1_norm, E
+  real(pr) :: K_total, E_total, H_total, maxW_global, H1_norm
   real(pr), dimension(1:3) :: E_component
   integer :: mm = 10 ! vorticity moments
   real(pr), dimension(:), allocatable :: Omega ! vorticity_moments
@@ -280,8 +280,7 @@ CONTAINS
        CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
        call fftfwd_m(inifield, temp1_solver_cx, 3)
        call div_free_fourier(temp1_solver_cx)
-       !call dealiasing_fourier_m(temp1_solver_cx, 3)
-       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, inifield,3)
 
        case (3)
@@ -941,8 +940,7 @@ CONTAINS
     ! filter
     call fftfwd_m(U, temp1_solver_cx, 3)
     call div_free_fourier(temp1_solver_cx);
-    !call dealiasing_fourier_m(temp1_solver_cx, 3)
-    call dealiasing_cutoff_m(temp1_solver_cx, 3)
+    call dealiasing_fourier_m(temp1_solver_cx, 3)
     call fftbwd_m(temp1_solver_cx, U,3)
     
      
@@ -1283,18 +1281,15 @@ CONTAINS
        
        ! temp1_solver_cx = HatU
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
-       call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, E)
-
        call div_free_fourier(temp1_solver_cx)
-       !call dealiasing_fourier_m(temp1_solver_cx, 3)
-       call dealiasing_cutoff_m(temp1_solver_cx, 3)
+       call dealiasing_fourier_m(temp1_solver_cx, 3)
        call fftbwd_m(temp1_solver_cx, Uvec, 3)
 
        call save2binary2(Uvec,Time_iter, "fwdTE")
   
        
-!!!!!!!!!!!!!!!!!!!!!##############################33
-       !call save_velocity(Uvec, Time_iter)
+
+       call save_velocity(Uvec, Time_iter)
 
 !       if (parallel_data) then
 !          call save_velocity_cx(temp1_solver_cx, myindex)
@@ -1324,10 +1319,10 @@ CONTAINS
        
       
      
-      !###############################3
-       !call save_vorticity(Wvec, Time_iter) 
+      
+       call save_vorticity(Wvec, Time_iter) 
        call calculate_total_energy(Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
-       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, E)
+       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy)
 
       
        
@@ -1387,8 +1382,6 @@ CONTAINS
          
           
           call fftfwd_m(temp1_solver, temp1_solver_cx, 3)
-          call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, E)
-
           call calculate_spectrum(temp1_solver_cx, spectral_data)
           call save_spectrum(spectral_data, file_spectrum)
 
@@ -1412,7 +1405,7 @@ CONTAINS
 
 
           call calculate_total_energy(Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
-          call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, E)
+          call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy)
 
     
               
@@ -1907,8 +1900,7 @@ CONTAINS
 
  
     !call div_free_fourier(temp1_solver_cx)
-    !call dealiasing_fourier_m(temp1_solver_cx, 3)
-    call dealiasing_cutoff_m(temp1_solver_cx, 3)
+    call dealiasing_fourier_m(temp1_solver_cx, 3)
 
     call fftbwd_m(temp1_solver_cx, inifield,3)
     
@@ -2002,7 +1994,7 @@ CONTAINS
           
 
        call calculate_total_energy(adj_Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
-       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, 0.0_pr)
+       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy)
        
        
  
@@ -2099,7 +2091,7 @@ CONTAINS
      
 
            call calculate_total_energy(adj_Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
-       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy, 0.0_pr)
+       call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy)
        
           
               
@@ -2252,15 +2244,15 @@ CONTAINS
   ! SUBROUTINE: SAVE_ENERGY(K_total_, E_total_, H_total_, maxW_global_, filename)
   ! input: K_total_, E_total_, H_total_, maxW_global_, filename
   !=========================================================
-  SUBROUTINE save_energy(K_total_, E_total_, H_total_, maxW_global_, H1_norm_, E_component_, time_, filename, E_)
+  SUBROUTINE save_energy(K_total_, E_total_, H_total_, maxW_global_, H1_norm_, E_component_, time_, filename)
     USE global_variables
     IMPLICIT NONE  
-    real(pr), intent(in) :: K_total_, E_total_, H_total_, maxW_global_, H1_norm_, time_, E_
+    real(pr), intent(in) :: K_total_, E_total_, H_total_, maxW_global_, H1_norm_, time_
     real(pr), dimension(1:3), intent(in) :: E_component_
     character(len = *), intent(in) :: filename
     if (rank == 0) then
        open(21, file = filename, status = 'old', position = 'append')    
-       write(21, "(10 G20.12)") time_, K_total_, E_total_, H_total_, maxW_global_, H1_norm_, E_component_(1), E_component_(2), E_component_(3), E_
+       write(21, "(9 G20.12)") time_, K_total_, E_total_, H_total_, maxW_global_, H1_norm_, E_component_(1), E_component_(2), E_component_(3)
        close(21)
     end if
     

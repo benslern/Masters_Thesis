@@ -33,7 +33,8 @@ PROGRAM EULER_VOIGT
    Real(pr) :: J_1, J_0, epsil, grad_J0L2, kappa , local_kappa
    integer :: stepper
    real(pr) :: t_start, t_end ! record time
-   real(pr) :: A, B, C, val
+   real(pr) :: A, B, C
+   real(pr) :: val1
    real(pr), dimension(1:3) :: tau_brack
    integer omp_get_thread_num,omp_get_num_threads
 
@@ -138,8 +139,52 @@ PROGRAM EULER_VOIGT
    !compute the foward time evolution: save_sign = 1, myindex = 1
 
 
-  
+   !=======================================================
+   !- Maximization Test: Euler Simulations
+   !=======================================================
+   if (1) then
+      ! Set Constants
+      endTime = 25.0_pr
+      stepper = 3
+      visc = 0.0_pr
+      alpha = 0.0_pr !4.0_pr/512.0_pr ! (2.0_pr**(arg-1))/256.0_pr
+      fix_dt1 = 2.0_pr**(-7)
 
+      IF (rank==0) THEN
+        OPEN(10, FILE="./LOGFILES/maxET_parameter_info.log", STATUS='REPLACE')
+        WRITE(10,*) "======================================= "
+        WRITE(10,*) "  Resolution N      = ", n(1)
+        WRITE(10,*) "  Energy K0         = ", K0
+        WRITE(10,*) "  Enstrophy E0      = ", E0
+        WRITE(10,*) "  Initial time      = ", iniTime
+        WRITE(10,*) "  Final time        = ", endTime
+        WRITE(10,*) "  Viscosity         = ", visc
+        WRITE(10,*) "  Processors        = ", np
+        WRITE(10,*) "  Alpha             = ", alpha
+        WRITE(10,*) "  Initial condition = ", IC_type
+        WRITE(10,*) "======================================= "
+        CLOSE(10)
+      END IF
+
+      ! Allocate
+      call solvers_allocate(stepper)
+      call optimization_allocate(1.0_pr,1.0_pr, 3.0_pr, 0.001_pr, stepper)
+
+      ! set 3D Taylor Green Initial Condition
+      call set_initial(Uvec0, 2, 11111,2222,31234)
+      call rescale(Uvec0, val1)
+
+      ! init taubrak
+      tau_brack(1) = 0.0_pr
+      tau_brack(2) = 5.0_pr
+
+      ! maximize
+      call maximization(tau_brack)
+
+      ! Deallocate
+      call optimization_deallocate()
+      call solvers_deallocate()
+   end if
  
   
    
@@ -159,43 +204,17 @@ PROGRAM EULER_VOIGT
    
    
 
-   if (1) then
-      endTime = 5.0_pr
+   if (0) then
+      endTime = 10.0_pr
       stepper = 3
       visc = 0.0_pr
-      alpha = 12.0_pr/1024.0_pr
-      fix_dt1 = 0.05 ! 2.0_pr**(-5)
-      
-      IF (rank==0) THEN
-      OPEN(10, FILE="./LOGFILES/maxET_parameter_info.log", STATUS='REPLACE')
-      WRITE(10,*) "======================================= "
-      WRITE(10,*) "  Resolution N      = ", n(1)
-      WRITE(10,*) "  Energy K0         = ", K0
-      WRITE(10,*) "  Enstrophy E0      = ", E0
-      WRITE(10,*) "  Initial time      = ", iniTime
-      WRITE(10,*) "  Final time        = ", endTime
-      WRITE(10,*) "  Viscosity         = ", visc
-      WRITE(10,*) "  Alpha             = ", alpha
-      WRITE(10,*) "  dt                = ", fix_dt1
-      WRITE(10,*) "  Processors        = ", np
-      WRITE(10,*) "  Sigma             = ", 0.00001_pr
-      WRITE(10,*) "  Initial condition = ", IC_type
-      WRITE(10,*) "======================================= "
-      CLOSE(10)
-      END IF
-
+      alpha = 4.0_pr/256.0_pr
+      fix_dt1 = 2.0_pr**(-5)
       call solvers_allocate(stepper)
-      call optimization_allocate(sqrt(3.0)*PI,1.0_pr, 3.0_pr, 0.00001_pr, stepper)
-      !call optimization_allocate(sqrt(3.0_pr)/2.0_pr,1.0_pr, 3.0_pr, 0.00001_pr, stepper)
-
-      ! Set 3D Taylor Green Initial Condition
-      call set_initial(Uvec0, 2, 11111,2222,31234)
-      call rescale_H1(Uvec0, val)
-
       !call initial_condition_refine((/128,128,128/))
+      call set_initial(Uvec0, 2, 11111,2222,31234)
       call fwd_3D(Uvec0, fix_dt1, 1, stepper, 0)
       call solvers_deallocate()
-      call optimization_deallocate()
    end if
 
    ! kappa test

@@ -69,7 +69,7 @@ nCDF_LIB   = -lnetcdff -lnetcdf       # Load nCDF Library
 #CompilationOptions= -g
 # Remove the below "#" to use "gprof", which indicates the computation time in
 #    each subroutine
-CompilationOptions= -fopenmp -O3 -pg
+CompilationOptions= -O3
 
 # List of routines to compile: here we list all object files that are needed.
 # Put a "\" at the end of each line that if you want to continue the list of

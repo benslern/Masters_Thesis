@@ -6,7 +6,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
 !=======================================
 ! save2binary
 !=======================================
-   SUBROUTINE save2binary( myfield,myindex,mysystem )
+   SUBROUTINE save2binary( myfield,myindex,mysystem,subpath)
       USE global_variables
       IMPLICIT NONE 
       INCLUDE "mpif.h"
@@ -14,6 +14,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: myfield
       INTEGER, INTENT(IN) :: myindex
       CHARACTER(len=*), INTENT(IN) :: mysystem
+      character(len=*), intent(in) :: subpath
 
       CHARACTER(2) :: E0txt
       CHARACTER(5) :: indexchar
@@ -27,10 +28,10 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       SELECT CASE (mysystem)
          case("fwdTE")
            
-            filename = TRIM(scratch_pathname)//"_Uvec_fwdTE"//trim(adjustl(indexchar))
+            filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_fwdTE"//trim(adjustl(indexchar))
          case("bwdADJ")
            
-            filename = TRIM(scratch_pathname)//"_Uvec_bwdADJ"//trim(adjustl(indexchar))
+            filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_bwdADJ"//trim(adjustl(indexchar))
       end select
 
       IF (rank == 0) THEN   ! Note that we use: if rank == 0, be followed that MPI_GATHER gives data to global_field in rank = 0
@@ -79,7 +80,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
 !=======================================
 ! read4binary
 !=======================================
-   SUBROUTINE read4binary( myindex, myfield, mysystem )
+   SUBROUTINE read4binary( myindex, myfield, mysystem, subpath)
       USE global_variables
       IMPLICIT NONE 
       INCLUDE "mpif.h"
@@ -87,6 +88,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       INTEGER, INTENT(IN) :: myindex
       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(OUT) :: myfield
       CHARACTER(len=*), INTENT(IN) :: mysystem
+      character(len=*), intent(in) :: subpath
       CHARACTER(2)   :: E0txt
       CHARACTER(5)   :: indexchar
       CHARACTER(200) :: filename
@@ -109,7 +111,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       SELECT CASE (mysystem)
          case("fwdTE")
             !filename = TRIM(work_pathname)//"_E"//E0txt//"_Uvec_fwdTE"//trim(adjustl(indexchar))
-            filename = TRIM(scratch_pathname)//"_Uvec_fwdTE"//trim(adjustl(indexchar))
+            filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_fwdTE"//trim(adjustl(indexchar))
       END SELECT
       if ( rank == 0 ) then
          open(unit=200,FILE = filename, FORM = 'UNFORMATTED', ACTION='READ',ACCESS= 'DIRECT',recl=reclen)
@@ -141,7 +143,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
 !=======================================
 ! save2binary
 !=======================================
-   SUBROUTINE save2binary_mpi( myfield,myindex,mysystem )
+   SUBROUTINE save2binary_mpi( myfield,myindex,mysystem,subpath )
       USE global_variables
       IMPLICIT NONE 
       INCLUDE "mpif.h"
@@ -149,6 +151,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: myfield
       INTEGER, INTENT(IN) :: myindex
       CHARACTER(len=*), INTENT(IN) :: mysystem
+      character(len=*), intent(in) :: subpath
 
       CHARACTER(2) :: E0txt
       CHARACTER(5) :: indexchar
@@ -171,10 +174,10 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       SELECT CASE (mysystem)
          case("fwdTE")
            
-            filename = TRIM(scratch_pathname)//"_Uvec_fwdTE"//trim(adjustl(indexchar))
+            filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_fwdTE"//trim(adjustl(indexchar))
          case("bwdADJ")
            
-            filename = TRIM(scratch_pathname)//"_Uvec_bwdADJ"//trim(adjustl(indexchar))
+            filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_bwdADJ"//trim(adjustl(indexchar))
       end select
 
       
@@ -218,7 +221,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
 !=======================================
 ! read4binary
 !=======================================
-   SUBROUTINE read4binary_mpi( myindex, myfield, mysystem )
+   SUBROUTINE read4binary_mpi( myindex, myfield, mysystem, subpath )
       USE global_variables
       IMPLICIT NONE 
       INCLUDE "mpif.h"
@@ -226,6 +229,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(OUT) :: myfield
       INTEGER, INTENT(IN) :: myindex
       CHARACTER(len=*), INTENT(IN) :: mysystem
+      character(len=*), intent(in) :: subpath
 
       CHARACTER(2) :: E0txt
       CHARACTER(5) :: indexchar
@@ -247,10 +251,10 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       SELECT CASE (mysystem)
          case("fwdTE")
            
-            filename = TRIM(scratch_pathname)//"_Uvec_fwdTE"//trim(adjustl(indexchar))
+            filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_fwdTE"//trim(adjustl(indexchar))
          case("bwdADJ")
            
-            filename = TRIM(scratch_pathname)//"_Uvec_bwdADJ"//trim(adjustl(indexchar))
+            filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_bwdADJ"//trim(adjustl(indexchar))
       end select
 
      
@@ -288,7 +292,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
 !=======================================
 ! save2binary2
 !=======================================
-   SUBROUTINE save2binary2( myfield,myindex,mysystem )
+   SUBROUTINE save2binary2( myfield,myindex,mysystem,subpath )
       USE global_variables
       IMPLICIT NONE 
       INCLUDE "mpif.h"
@@ -296,6 +300,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: myfield
       INTEGER, INTENT(IN) :: myindex
       CHARACTER(len=*), INTENT(IN) :: mysystem
+      CHARACTER(len=*), INTENT(IN) :: subpath
 
       CHARACTER(2) :: E0txt
       CHARACTER(5) :: indexchar
@@ -308,10 +313,10 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       SELECT CASE (mysystem)
          case("fwdTE")
            
-            filename = TRIM(scratch_pathname)//"_Uvec_fwdTE"//trim(adjustl(indexchar))
+            filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_fwdTE"//trim(adjustl(indexchar))
          case("bwdADJ")
            
-            filename = TRIM(scratch_pathname)//"_Uvec_bwdADJ"//trim(adjustl(indexchar))
+            filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_bwdADJ"//trim(adjustl(indexchar))
       end select
 
       IF (rank == 0) THEN   
@@ -326,14 +331,12 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       do nn = 1, 3
          call mpi_gather(myfield(:,:,:,nn), total_local_size, mpi_double_precision, global_u, total_local_size, mpi_double_precision, 0, mpi_comm_world, statinfo)
          if (rank == 0) then            
-           
             do i = 0, np-1
                write(20,rec=i+1+(nn-1)*np) global_u(:,:,i*local_N+1:(i+1)*local_N)
             end do
          end if
          call MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
       end do
-
       if(rank == 0) then
          close(20)
          !deallocate(global_u)
@@ -346,7 +349,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
 !=======================================
 ! read4binary2
 !=======================================
-   SUBROUTINE read4binary2( myindex, myfield, mysystem )
+   SUBROUTINE read4binary2( myindex, myfield, mysystem, subpath )
       USE global_variables
       IMPLICIT NONE 
       INCLUDE "mpif.h"
@@ -354,6 +357,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(OUT) :: myfield
       INTEGER, INTENT(IN) :: myindex
       CHARACTER(len=*), INTENT(IN) :: mysystem
+      character(len=*), intent(in) :: subpath
 
       CHARACTER(2) :: E0txt
       CHARACTER(5) :: indexchar
@@ -366,10 +370,10 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
       SELECT CASE (mysystem)
          case("fwdTE")
            
-            filename = TRIM(scratch_pathname)//"_Uvec_fwdTE"//trim(adjustl(indexchar))
+            filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_fwdTE"//trim(adjustl(indexchar))
          case("bwdADJ")
            
-            filename = TRIM(scratch_pathname)//"_Uvec_bwdADJ"//trim(adjustl(indexchar))
+            filename = TRIM(scratch_pathname)//TRIM(subpath)//"_Uvec_bwdADJ"//trim(adjustl(indexchar))
       end select
 
       IF (rank == 0) THEN   
@@ -378,7 +382,7 @@ MODULE databinary_handle   ! Newly added on March 20, 2017
          inquire(iolength=reclen) global_u(:,:,1:local_N)
          OPEN(unit=200, FILE = filename, FORM = 'unformatted', ACCESS= 'DIRECT', ACTION= 'READ',IOSTAT=ios, RECL=reclen)
          IF (ios .NE. 0) THEN
-            PRINT *, "save2binary_mpi2:Error happens to opening file and writing data ... ... "
+            PRINT *, "read2binary_mpi2:Error happens to opening file and writing data ... ... "
          END IF
       end if
        

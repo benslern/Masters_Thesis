@@ -25,28 +25,38 @@ MODULE optimization
   real(pr) :: sigma, l, s
   integer :: stepper_opt
   real(pr), dimension(:,:,:,:), allocatable :: gradJ_opt, gradJ_pre_opt
+  real(pr), dimension(:,:,:,:), allocatable :: gradPHI_opt, gradPHI_pre_opt
+  real(pr), dimension(:,:,:,:), allocatable :: gradPHI_backup, gradPHI_pre_backup
+  real(pr), dimension(:,:,:,:), allocatable :: gradPHI_backup_2, gradPHI_pre_backup_2
   real(pr), dimension(:,:,:,:), allocatable :: d_opt, d1_opt
-  
+  character(10) :: subpath
+
 CONTAINS
 !=======================================
 ! SUBROUTINE optimization_allocate(norm_const_, sigma_, stepper_)
 ! allocation    
 !=======================================
   
-  SUBROUTINE optimization_allocate(norm_constr_,l_, s_, sigma_, stepper_)
+  SUBROUTINE optimization_allocate(norm_constr_,l_, s_, sigma_, stepper_, subpath_)
     implicit none
     real(pr), intent(in) :: norm_constr_
     real(pr), intent(in) :: l_, s_, sigma_
     integer, intent(in) :: stepper_
-    
+    character(len=*), intent(in) :: subpath_
 
     norm_constr = norm_constr_
     l = l_
     s = s_
     sigma = sigma_
     stepper_opt = stepper_
+    subpath = subpath_
     if (.not. allocated(gradJ_opt)) allocate(gradJ_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(gradJ_pre_opt)) allocate(gradJ_pre_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
+    if (.not. allocated(gradPHI_opt)) allocate(gradPHI_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
+    if (.not. allocated(gradPHI_backup)) allocate(gradPHI_backup(1:n(1), 1:n(2), 1:local_N, 1:3))
+    if (.not. allocated(gradPHI_backup_2)) allocate(gradPHI_backup_2(1:n(1), 1:n(2), 1:local_N, 1:3))
+if (.not. allocated(gradPHI_pre_opt)) allocate(gradPHI_pre_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
+    if (.not. allocated(gradPHI_pre_backup)) allocate(gradPHI_pre_backup(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(d_opt)) allocate(d_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
     if (.not. allocated(d1_opt)) allocate(d1_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
 
@@ -62,19 +72,25 @@ CONTAINS
     implicit none
     
     if (allocated(gradJ_opt)) deallocate(gradJ_opt)
+    if (allocated(gradPHI_opt)) deallocate(gradPHI_opt)
+    if (allocated(gradPHI_backup)) deallocate(gradPHI_backup)
+    if (allocated(gradPHI_pre_opt)) deallocate(gradPHI_pre_opt)
+    if (allocated(gradPHI_pre_backup)) deallocate(gradPHI_pre_backup)
     if (allocated(gradJ_pre_opt)) deallocate(gradJ_pre_opt)
     if (allocated(d_opt)) deallocate(d_opt)
     if (allocated(d1_opt)) deallocate(d1_opt)
-
+    if (allocated(gradPHI_opt)) deallocate(gradPHI_opt)
+    if (allocated(gradPHI_backup)) deallocate(gradPHI_backup)
+    if (allocated(gradPHI_pre_opt)) deallocate(gradPHI_pre_opt)
+    if (allocated(gradPHI_pre_backup)) deallocate(gradPHI_pre_backup)
 
   END SUBROUTINE optimization_deallocate
 !=======================================
 
 
-
-!======================================= 
-! maximize the cost function 
-!======================================= 
+!=======================================
+! maximize the cost function
+!=======================================
   SUBROUTINE maximization(tau_brack)
     USE global_variables
     use fftwfunction
@@ -83,91 +99,91 @@ CONTAINS
     use solvers
     IMPLICIT NONE
     INCLUDE "mpif.h"
-         
 
-    REAL(pr) :: J0, J1, deltaJ, tau
+
+    REAL(pr) :: PHI0, PHI1, deltaPHI, tau
     character(200) :: file_cost, file_grad
     INTEGER :: iter, mnbrak_flag, FixConstr_flag , i
     real(pr), dimension(1:3), intent(inout) :: tau_brack
     real(pr) :: val1, val2
     real(pr) :: norm2_grad
-    
-   
+
+
 
 !======================================================
 !- Initialize; Start iteration;
 !======================================================
     if (rank == 0) then
-       file_cost = TRIM(scratch_pathname)//"maximization_cost"//".dat"
+       file_cost = TRIM(scratch_pathname)//TRIM(subpath)//"maximization_cost"//".dat"
        OPEN(3, FILE = file_cost, STATUS = 'REPLACE')
        close(3)
-       file_grad = TRIM(scratch_pathname)//"maximization_grad"//".dat"
+       file_grad = TRIM(scratch_pathname)//TRIM(subpath)//"maximization_grad"//".dat"
        OPEN(4, FILE = file_grad, STATUS = 'REPLACE')
        close(4)
     end if
-      
+
     iter = 0
-    J0 = 0.0_pr
-    J1 = 0.0_pr
-    deltaJ = 1.0_pr
+    PHI0 = 0.0_pr
+    PHI1 = 0.0_pr
+    deltaPHI = 1.0_pr
     tau = 0.0_pr
     norm2_grad = 0.0_pr
 
     if (rank == 0) then
        print *, "eval_J; main_iter =", iter
     end if
-       
-    J1 = compute_J(Uvec0, fix_dt1, 1, iter, 1)   
+
+    PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1)
 
     if (rank == 0) then
        open(3, file = file_cost, status = 'old', position = 'append')
-       write(3, "(4 G20.12)"), iter, J1, norm2_grad, tau
+       write(3, "(4 G20.12)"), iter, PHI1, norm2_grad, tau
        close(3)
     end if
 
     iter = 1
-    
-    DO WHILE ( (ABS(deltaJ) > OPTIM_TOL) .AND. (iter<=MAX_ITER) )
+
+    DO WHILE ( (ABS(deltaPHI) > OPTIM_TOL) .AND. (iter<=MAX_ITER) )
 
         if (rank == 0) then
           print *, "maximization; main_iter =", iter
        end if
 
-   
+
 !======================================================
 !- compute the gradient
 !======================================================
        if (rank == 0) then
-          print *, "eval_grad_J; main_iter =", iter
+          print *, "eval_grad_PHI; main_iter =", iter
        end if
-       gradJ_opt = 0.0_pr
-       call compute_gradJ(Uvec0, fix_dt2, 0, gradJ_opt, iter)
-       call projection(Uvec0, gradJ_opt, gradJ_opt, norm2_grad)
-      
-     
-       
+       gradPHI_opt = 0.0_pr
+       call compute_gradPHI(Uvec0, fix_dt2, 0, gradPHI_opt, iter)
+       call projection(Uvec0, gradPHI_opt, gradPHI_opt, norm2_grad)
+       !gradPHI_opt = d_opt
+
+
 
 !======================================================
 !- maximiaztion using mnbrak and brent
 !======================================================
 
-       
+
        if (rank==0) then
           print *, "Start mnbrak; main_iter =", iter
        end if
-       tau_brack = mnbrak("maxET", Uvec0, gradJ_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)  
+       tau_brack = mnbrak(Uvec0, gradPHI_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)
        IF (mnbrak_flag /= 0) THEN
           if (rank ==0) then
              print *, "mnbrack iteration beyond maximum, the maxdEdt stops iterating ... " , mnbrak_flag
-          end if          
-          CALL optim_error_handle(mnbrak_flag)  
+          end if
+          CALL optim_error_handle(mnbrak_flag)
        ELSE
           CALL optim_msg_handle(21)
        END IF
        if (rank==0) then
           print *, "Start brent; main_iter =", iter
        end if
-       tau = brent(iter, "maxET", Uvec0, gradJ_opt, tau_brack)
+       tau = brent(iter, "maxET", Uvec0, gradPHI_opt, tau_brack)
        tau_brack(1) = 0.0_pr
        tau_brack(2) = 2.0_pr*tau
        IF (tau == TAU_MAX) THEN
@@ -176,32 +192,32 @@ CONTAINS
 !======================================
 ! UPDATE (initial condition) VELOCITY
 !======================================
-       Uvec0 = Uvec0 + tau*gradJ_opt
-       J0 = J1
-       
+       Uvec0 = Uvec0 + tau*gradPHI_opt
+       PHI0 = PHI1
+
 
 !======================================================
-! UPDATE cost 
+! UPDATE cost
 !======================================================
 
        if (rank == 0) then
-          print *, "eval_J; main_iter =", iter
+          print *, "eval_PHI; main_iter =", iter
        end if
-       
-       J1 = compute_J(Uvec0, fix_dt1, 1, iter, 1)   
 
-       
-       
-       
+       PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1)
+
+
+
+
        IF (iter > 0) THEN   ! Feb 17, 2018
-          deltaJ = abs(J1-J0)/ABS(J0)
-          IF (J1-J0 > -1.0e-15_pr) THEN 
+          deltaPHI = abs(PHI1-PHI0)/ABS(PHI0)
+          IF (PHI1-PHI0 < 1.0e-15_pr) THEN
              CALL optim_msg_handle(0)
              EXIT
-          ELSEIF (deltaJ<OPTIM_TOL) THEN
+          ELSEIF (deltaPHI<OPTIM_TOL) THEN
              if (rank == 0) then
                 open(3, file = file_cost, status = 'old', position = 'append')
-                write(3, "(4 G20.12)"), iter, J1, norm2_grad, tau
+                write(3, "(4 G20.12)"), iter, PHI1, norm2_grad, tau
                 close(3)
                 PRINT *, "Relative difference reaches tolerance, iteration exit ... ..."
              end if
@@ -211,22 +227,22 @@ CONTAINS
 
        if (rank == 0) then
           open(3, file = file_cost, status = 'old', position = 'append')
-          write(3, "(4 G20.12)"), iter, J1, norm2_grad, tau
+          write(3, "(4 G20.12)"), iter, PHI1, norm2_grad, tau
           close(3)
        end if
-       
+
        iter = iter + 1
     END DO
-   
+
   END SUBROUTINE maximization
 
 
-  
 
 
-!======================================= 
+
+!=======================================
 ! maximize the cost function using RCG
-!======================================= 
+!=======================================
   SUBROUTINE maximization_RCG(tau_brack)
     USE global_variables
     use fftwfunction
@@ -236,12 +252,12 @@ CONTAINS
     use solvers
     IMPLICIT NONE
     INCLUDE "mpif.h"
-         
 
-    REAL(pr) :: J0, J1, deltaJ, tau
+    REAL(pr) :: PHI0, PHI1, deltaPHI, tau
     character(200) :: file_cost, file_grad
     INTEGER :: iter, mnbrak_flag, FixConstr_flag , i
     real(pr), dimension(1:3), intent(inout) :: tau_brack
+
     real(pr) :: norm2_grad, norm2_grad_pre
     real(pr) :: val1, val2, val3, beta
     integer :: restart_flag
@@ -257,19 +273,19 @@ CONTAINS
 !- Initialize; Start iteration;
 !======================================================
     if (rank == 0) then
-       file_cost = TRIM(scratch_pathname)//"maximization_cost"//".dat"
+       file_cost = TRIM(scratch_pathname)//TRIM(subpath)//"maximization_cost"//".dat"
        OPEN(3, FILE = file_cost, STATUS = 'REPLACE')
        close(3)
-       file_grad = TRIM(scratch_pathname)//"maximization_grad"//".dat"
+       file_grad = TRIM(scratch_pathname)//TRIM(subpath)//"maximization_grad"//".dat"
        OPEN(4, FILE = file_grad, STATUS = 'REPLACE')
        close(4)
     end if
-      
+
     iter = 0
     norm2_grad = 0.0_pr
-    J0 = 0.0_pr
-    J1 = 0.0_pr
-    deltaJ = 1.0_pr
+    PHI0 = 0.0_pr
+    PHI1 = 0.0_pr
+    deltaPHI = 1.0_pr
     tau = 0.0_pr
     beta = 0.0_pr
     restart_flag = 0
@@ -277,32 +293,37 @@ CONTAINS
 
 
     if (rank == 0) then
-       print *, "eval_J; main_iter =", iter
+       print *, "eval_PHI; main_iter =", iter
     end if
-       
-    J1 = compute_J(Uvec0, fix_dt1, 1, iter, 1)
+!======================================================
+!- Save initial condition at iter 0
+!======================================================
+    PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1)
     if (0) then
-       call read4binary2(iter+1, Uvec, "fwdTE")
+       call read4binary2(iter+1, Uvec, "fwdTE", subpath)
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
-       call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, J1)
-       J1 = -J1
+       call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, PHI1)
+       PHI1 = -PHI1
        final_time_iter = floor(endTime/fix_dt2)
     else if (1) THEN
-       call save2binary2(Uvec, iter, "fwdTE")
-       
+       call save2binary2(Uvec, iter, "fwdTE", subpath)
     end if
-    
 
+!======================================================
+!- save maximization data at iter 0
+!======================================================
     if (rank == 0) then
        open(3, file = file_cost, status = 'old', position = 'append')
-       write(3, "(6 G20.12)"), iter, J1, norm2_grad, tau, beta, restart_flag
+       write(3, "(6 G20.12)"), iter, PHI1, norm2_grad, tau, beta, restart_flag
        close(3)
     end if
 
+!======================================================
+!- start iteration
+!======================================================
     iter = 1
-    
-    DO WHILE ( (ABS(deltaJ) > OPTIM_TOL) .AND. (iter<=MAX_ITER) )
+    DO WHILE ( (ABS(deltaPHI) > OPTIM_TOL) .AND. (iter<=MAX_ITER) )
 
        restart_flag = 0
        if (rank == 0) then
@@ -311,88 +332,88 @@ CONTAINS
 
 
        if (0) then
-          
           if (mod(iter,sigma_freq) == 0) then
              sigma = sigma/2.0_pr
              if (rank == 0) print *, "sigma =: ", sigma
           end if
        end if
-       
-       
+
 !======================================================
 !- compute the gradient
 !======================================================
        if (rank == 0) then
-          print *, "eval_grad_J; main_iter =", iter
+          print *, "eval_grad_PHI; main_iter =", iter
        end if
 
-       ! save gradJ for one iteration
+       ! save gradPHI for one iteration
        if (1) then
-          call compute_gradJ(Uvec0, fix_dt2, 1, gradJ_opt, iter)
-          
+          call compute_gradPHI(Uvec0, fix_dt2, 1, gradPHI_opt, iter)
        else if (0) then
-          call save2binary2(Uvec, iter, "fwdTE")
+          call save2binary2(Uvec, iter, "fwdTE", subpath)
           exit
        else if (0) then
-          call read4binary2(iter, Uvec, "fwdTE")
-          call compute_gradJ(Uvec0, fix_dt2, 1, gradJ_opt, iter)
-          call save2binary2(gradJ_opt, iter+1, "fwdTE")
+          call read4binary2(iter, Uvec, "fwdTE", subpath)
+          call compute_gradPHI(Uvec0, fix_dt2, 1, gradJ_opt, iter)
+          call save2binary2(gradJ_opt, iter+1, "fwdTE", subpath)
           exit
        else if (0) then
-          call read4binary2(iter+1, gradJ_opt, "fwdTE")
-          
+          call read4binary2(iter+1, gradPHI_opt, "fwdTE", subpath)
        end if
-       
+
+!=====================================================
+!- first iteration gradPHI or restart
+!=====================================================
        if (iter == 1 .or. mod(iter, restart_freq) == 0) then
           restart_flag = 3
-          beta = 0.0_pr          
-          call projection(Uvec0, gradJ_opt, d_opt, norm2_grad)
+          beta = 0.0_pr
+          !project gradPHI
+          call projection(Uvec0, gradPHI_opt, d_opt, norm2_grad)
           if (rank == 0) then
              print *, "norm2_grad = ", norm2_grad
           end if
-          
-          d1_opt = gradJ_opt
+
+          d1_opt = gradPHI_opt
           ! save intermediate results
           if (0) then
              ! norm2_grad_pre = 1.0_pr
-             call read4binary2(iter+2, gradJ_pre_opt, "fwdTE")
-             call read4binary2(iter+3, d1_opt, "fwdTE")
-             call projection_RCG(Uvec0, gradJ_opt, gradJ_pre_opt, d1_opt, d_opt, norm2_grad, norm2_grad_pre, beta, 2, restart_flag)
-             call save2binary2(gradJ_opt, iter+2, "fwdTE")
-             call save2binary2(d1_opt, iter+3, "fwdTE")
+             call read4binary2(iter+2, gradPHI_pre_opt, "fwdTE", subpath)
+             call read4binary2(iter+3, d1_opt, "fwdTE", subpath)
+             call projection_RCG(Uvec0, gradPHI_opt, gradPHI_pre_opt, d1_opt, d_opt, norm2_grad, norm2_grad_pre, beta, 2, restart_flag)
+             call save2binary2(gradPHI_opt, iter+2, "fwdTE", subpath)
+             call save2binary2(d1_opt, iter+3, "fwdTE", subpath)
              if (rank == 0) then
                 print *, "norm2_grad = ", norm2_grad
              end if
           else if (1) then
-             call save2binary2(gradJ_opt, iter+2, "fwdTE")
-             call save2binary2(d1_opt, iter+3, "fwdTE")
-             
+             call save2binary2(gradPHI_opt, iter+2, "fwdTE", subpath)
+             call save2binary2(d1_opt, iter+3, "fwdTE", subpath)
+
           end if
        else
-          call projection_RCG(Uvec0, gradJ_opt, gradJ_pre_opt, d1_opt, d_opt, norm2_grad, norm2_grad_pre, beta, 2, restart_flag)
-       
-          
-       end if
-       
-       
+          call projection_RCG(Uvec0, gradPHI_opt, gradPHI_pre_opt, d1_opt, d_opt, norm2_grad, norm2_grad_pre, beta, 2, restart_flag)
 
-       
+
+       end if
+
+
+
+
 
 !======================================================
 !- maximiaztion using mnbrak and brent
 !======================================================
 
-       
+
        if (rank==0) then
           print *, "Start mnbrak; main_iter =", iter
        end if
-       call rescale(Uvec0, val1)
-       tau_brack = mnbrak("maxET", Uvec0, d_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)  
+       call rescale_H1(Uvec0, val1)
+       tau_brack = mnbrak(Uvec0, d_opt, tau_brack(1), tau_brack(2), mnbrak_flag, iter)
        IF (mnbrak_flag /= 0) THEN
           if (rank ==0) then
              print *, "mnbrack iteration beyond maximum, the maxdEdt stops iterating ... " , mnbrak_flag
-          end if          
-          CALL optim_error_handle(mnbrak_flag)  
+          end if
+          CALL optim_error_handle(mnbrak_flag)
        ELSE
           CALL optim_msg_handle(21)
        END IF
@@ -409,35 +430,35 @@ CONTAINS
 ! UPDATE (initial condition) VELOCITY
 !======================================
        Uvec0 = Uvec0 + tau*d_opt
-       J0 = J1
-       gradJ_pre_opt = gradJ_opt
+       PHI0 = PHI1
+       gradPHI_pre_opt = gradPHI_opt
        norm2_grad_pre = norm2_grad
-       
-       
+
+
 !======================================================
-! UPDATE cost 
+! UPDATE cost
 !======================================================
 
        if (rank == 0) then
-          print *, "eval_J; main_iter =", iter
+          print *, "eval_PHI; main_iter =", iter
        end if
-       
-       J1 = compute_J(Uvec0, fix_dt1, 1, iter, 1)
+
+       PHI1 = compute_PHI_L2(Uvec0, fix_dt1, 1, iter, 1, 1)
        if (1) then
-          call save2binary2(Uvec, iter, "fwdTE")
+          call save2binary2(Uvec, iter, "fwdTE", subpath)
        end if
-       
-          
+
+
 
        IF (iter > 0) THEN   ! Feb 17, 2018
-          deltaJ = abs(J1-J0)/ABS(J0)
-          IF (J1-J0 > -1.0e-15_pr) THEN 
+          deltaPHI = abs(PHI1-PHI0)/ABS(PHI0)
+          IF (PHI1-PHI0 < 1.0e-15_pr) THEN
              CALL optim_msg_handle(0)
              EXIT
-          ELSEIF (deltaJ<OPTIM_TOL) THEN
+          ELSEIF (deltaPHI<OPTIM_TOL) THEN
              if (rank == 0) then
                 open(3, file = file_cost, status = 'old', position = 'append')
-                write(3, "(6 G20.12)"), iter, J1, norm2_grad, tau, beta, restart_flag
+                write(3, "(6 G20.12)"), iter, PHI1, norm2_grad, tau, beta, restart_flag
                 close(3)
                 PRINT *, "Relative difference reaches tolerance, iteration exit ... ..."
              end if
@@ -447,24 +468,89 @@ CONTAINS
 
        if (rank == 0) then
           open(3, file = file_cost, status = 'old', position = 'append')
-          write(3, "(6 G20.12)"), iter, J1, norm2_grad, tau, beta, restart_flag
+          write(3, "(6 G20.12)"), iter, PHI1, norm2_grad, tau, beta, restart_flag
           close(3)
        end if
        iter = iter + 1
     END DO
-   
+
   END SUBROUTINE maximization_RCG
 
 
+!================================================= 
+! SUBROUTINE: project_field(v, w, proj)
+! project w to the tangent space of v
+!
+! INPUT:
+! v: vector to compute tangent space
+! w: vector to project
+!
+! Output
+! proj: projection of w onto tangent space of v \P_{T_{\v}\M_1} w
+! 
+! USE: 
+! temp1_solver, temp1_solver_cx, temp2_solver_cx, temp3_solver_cx      
+!=================================================
+      SUBROUTINE project_field(v, w, proj)
+        USE global_variables
+        USE fftwfunction
+        USE function_ops
+        USE solvers
+        IMPLICIT NONE
+        INCLUDE "mpif.h"
+        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: w
+        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: v
+        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(OUT) :: proj
+        Real(pr) :: norm, val
+
+        ! temp1_solver_cx = |D|^2 v
+        call fftfwd_m(v, temp1_solver_cx, 3)
+        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 2.0_pr)
+
+        ! temp2_solver_cx = (1+|D|^2)^(-s)exp(-2sigma|D|) |D|^2 v
+        call G_l_s_sigma_fourier(temp1_solver_cx, temp2_solver_cx, l, -s, -2.0_pr*sigma)
+
+        ! norm = || (1+l^2|D|^2)^(-s)exp(-2sigma|D|)|D|^2v ||_G^sigma
+        call L2_product_fourier(temp1_solver_cx, temp2_solver_cx, norm)
+        norm = sqrt(norm)
+
+        ! temp1_solver_cx = n_v
+        temp1_solver_cx = temp2_solver_cx/norm
+
+        ! temp2_solver_cx =  (1+l^2|D|^2)^(s)exp(2sigma|D|) n_v 
+        call G_l_s_sigma_fourier(temp1_solver_cx, temp2_solver_cx, l, s, 2.0_pr*sigma)
+        
+        ! temp3_solver_cx = fourier transform of w
+        call fftfwd_m(w, temp3_solver_cx,3) 
+        
+        ! val = <n_v,w>_{G^sigma} = <(1+l^2|D|^2)^(s)exp(2sigma|D|) n_v, w>_{L^2}
+        call L2_product_fourier(temp2_solver_cx,temp3_solver_cx, val)
+        
+        ! temp3_solver_cx = w - <n_v,w>_{G^sigma}n_v
+        temp3_solver_cx = temp3_solver_cx - val*temp1_solver_cx
+
+        call div_free_fourier(temp3_solver_cx) !make sure divergence free
+        call fftbwd_m(temp3_solver_cx,proj,3) 
+        !call rescale_H1(proj,val) !rescale to h1 seminorm of 1
+
+  END SUBROUTINE project_field
   
 !================================================= 
-! SUBROUTINE: projection(myfield, gradJ, norm2)
-! project gradJ to the tangent space of myfield
-! gradJ: L2 gradient
-! norm2: <gradJ, gradJ>_Gsimga 
+! SUBROUTINE: projection(myfield, gradPHI, dPHI_actual, norm2)
+! project gradient to the tangent space of myfield
+!
+! INPUT:
+! myfield: project gradient onto the tangent space of myfield
+! gradPHI: u*(t=0)
+!
+! OUTPUT:
+! gradPHI: 'half' projection
+! dPHI_actual: projected gradient
+! norm2: <gradPHI, gradPHI>_G^simga
+
 ! USE: solvers.f90: temp1_solver, temp1_solver_cx, temp2_solver_cx      
 !=================================================
-      SUBROUTINE projection(myfield, gradJ, dJ_actual, norm2)
+      SUBROUTINE projection(myfield, gradPHI, dPHI_actual, norm2)
         USE global_variables
         USE fftwfunction
         USE function_ops
@@ -472,76 +558,68 @@ CONTAINS
         IMPLICIT NONE
         INCLUDE "mpif.h"
         REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(in) :: myfield
-        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(inout) :: gradJ, dJ_actual
+        REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(inout) :: gradPHI, dPHI_actual
         real(pr), intent(out):: norm2
         Real(pr) :: norm, val
 
-        ! temp1_solver_cx = |D|^6 u_cx/norm
-        
+        ! temp1_solver_cx = |D|^2 v
         call fftfwd_m(myfield, temp1_solver_cx, 3)
-        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 6.0_pr)
+        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 2.0_pr)
 
-        ! temp2_solver_cx = n(u)_cx/norm
-        ! = (1+l^2|D|^2)^(-s)exp(-2sigma|D|)|D|^6u_cx/norm
-        
+        ! temp2_solver_cx = (1+|D|^2)^(-s)exp(-2sigma|D|) |D|^2 v
         call G_l_s_sigma_fourier(temp1_solver_cx, temp2_solver_cx, l, -s, -2.0_pr*sigma)
         
-        
-        
+        ! norm = || |(1+|D|^2)^(-s)exp(-2sigma|D|) |D|^2 v ||_G^sigma
         call L2_product_fourier(temp1_solver_cx, temp2_solver_cx, norm)
         norm = sqrt(norm)
+
+        !temp1_solver_cx = |D|^2 v/norm
         temp1_solver_cx = temp1_solver_cx/norm
 
-
-        
-
-        ! temp1_solver_cx = n(u)_cx/norm
-        ! = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)|D|^6u_cx/norm
+        ! temp1_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) |D|^2 v/norm
         call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -0.5_pr*s, -sigma)
 
+        ! temp2_solver = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) |D|^2 v/norm
         call fftbwd_m(temp1_solver_cx, temp2_solver, 3)
 
-        ! temp2_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)gradJ(L2)
-        call fftfwd_m(gradJ, temp2_solver_cx, 3)
+        !temp2_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)u*(t=0)
+        call fftfwd_m(gradPHI, temp2_solver_cx, 3)
         call G_l_s_sigma_fourier(temp2_solver_cx, temp2_solver_cx, l, -0.5_pr*s, -sigma)
+
+        ! val = <gradPHI, n_v>_G^sigma
         call L2_product_fourier(temp2_solver_cx,temp1_solver_cx,val)
+
+        !temp2_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)u*(t=0) - <n_v, gradPHI>_G^sigma (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) |D|^2 v/norm
         temp2_solver_cx = temp2_solver_cx - val*temp1_solver_cx
-
-
         call div_free_fourier(temp2_solver_cx)
         
-        
-        call fftbwd_m(temp2_solver_cx, gradJ, 3)
-        call L2_product(gradJ, gradJ, norm2)
+        !gradPHI = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)u*(t=0) - <n_v, gradPHI>_G^sigma (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) |D|^2 v/norm
+        call fftbwd_m(temp2_solver_cx, gradPHI, 3)
 
-        call L2_product(gradJ, temp2_solver, val)
-        if (rank == 0) print *, "gradJ: inner product = ", val
+        !norm2 = || (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)u*(t=0) - <n_v, gradPHI>_G^sigma (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) |D|^2 v/norm ||_{L^2}^2
+        call L2_product(gradPHI, gradPHI, norm2)
+
+        !val = <gradPHI, (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)u*(t=0) - <n_v, gradPHI>_G^sigma (1+l^2|D|^2)^(-s/2)exp(-sigma|D|) |D|^2 v/norm>
+        call L2_product(gradPHI, temp2_solver, val)
+        if (rank == 0) print *, "gradPHI: inner product = ", val
 
         
-        ! temp1_solver_cx = (1+l^2|D|^2)^(-s)exp(-2sigma|D|)gradJ(L2)
+        ! dPHI_actual = gradPHI - <n_v, gradPHI>_G^sigma n_v
         call G_l_s_sigma_fourier(temp2_solver_cx, temp1_solver_cx, l, -0.5_pr*s, -sigma)
-     
-        call fftbwd_m(temp1_solver_cx, dJ_actual, 3)
+        call fftbwd_m(temp1_solver_cx, dPHI_actual, 3)
 
-        
-        call rescale(dJ_actual, val)
-        
-
-       
- 
-        
+        ! rescale to change scale of tau_n
+        call rescale_H1(dPHI_actual, val)        
         
       END SUBROUTINE projection
 
-
-
-!================================================= 
+!=================================================
 ! SUBROUTINE: projection_RCG(myfield, gradJ, dJ, norm2, norm2_pre)
-! vector transportation      
+! vector transportation
 ! project gradJ to the tangent space of the submanifold
 ! project dJ to the tangent space
-! compute the conjugate gradient       
-! USE: solvers.f90: temp1_solver, temp1_solver_cx, temp2_solver_cx   
+! compute the conjugate gradient
+! USE: solvers.f90: temp1_solver, temp1_solver_cx, temp2_solver_cx
 !=================================================
       SUBROUTINE projection_RCG(myfield, gradJ, gradJ_pre, dJ, dJ_actual, norm2, norm2_pre, beta_, RCG_flag, restart_flag_)
         USE global_variables
@@ -560,34 +638,32 @@ CONTAINS
         real(pr) :: tol = 0.1_pr
 
         ! RCG_flag =  1: feltcher-reeves
-        ! RCG_flag =  2: polak-ribiere 
+        ! RCG_flag =  2: polak-ribiere
 
-        ! temp1_solver_cx = |D|^6 u_cx/norm
-        
+        ! temp1_solver_cx = |D|^2 u_cx/norm
         call fftfwd_m(myfield, temp1_solver_cx, 3)
-        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 6.0_pr)
+        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 2.0_pr)
 
         ! temp2_solver_cx = n(u)_cx/norm
-        ! = (1+l^2|D|^2)^(-s)|D|^6u_cx/norm
-        
+        ! = (1+l^2|D|^2)^(-s)exp(-2sigma|D|)|D|^2u_cx/norm
         call G_l_s_sigma_fourier(temp1_solver_cx, temp2_solver_cx, l, -s, -2.0_pr*sigma)
-        
-        
+
+
         call L2_product_fourier(temp1_solver_cx, temp2_solver_cx, norm)
         norm = sqrt(norm)
         temp1_solver_cx = temp1_solver_cx/norm
-        
+
         call fftbwd_m(temp1_solver_cx, temp1_solver, 3)
-        
+
 
         ! temp1_solver_cx = n(u)_cx/norm
-        ! = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)|D|^6u_cx/norm
+        ! = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)|D|^2u_cx/norm
         call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -0.5_pr*s, -sigma)
 
         call fftbwd_m(temp1_solver_cx, temp2_solver, 3)
-      
-        
- 
+
+
+
         ! project gradJ_pre
         call L2_product(gradJ_pre, temp2_solver, val)
         gradJ_pre = gradJ_pre - val*temp2_solver
@@ -598,14 +674,14 @@ CONTAINS
         ! project dJ
         call L2_product(dJ, temp2_solver, val)
         dJ = dJ - val*temp2_solver
-       
+
         call L2_product(dJ, temp2_solver, val)
         if (rank == 0) print *, "dJ: inner product = ", val
-       
 
-        
 
-        
+
+
+
 
         ! temp2_solver_cx = (1+l^2|D|^2)^(-s/2)exp(-sigma|D|)gradJ(L2)
         call fftfwd_m(gradJ, temp2_solver_cx, 3)
@@ -616,65 +692,65 @@ CONTAINS
         call div_free_fourier(temp2_solver_cx)
         call fftbwd_m(temp2_solver_cx, gradJ, 3)
         call L2_product(gradJ, gradJ, norm2)
-                
+
         call L2_product(gradJ, temp2_solver, val)
         if (rank == 0) print *, "gradJ: inner product = ", val
 
 
 
-       
+
         ! RCG_flag =  1: feltcher-reeves
-        ! RCG_flag =  2: polak-ribiere 
+        ! RCG_flag =  2: polak-ribiere
 
 
         if (RCG_flag == 1) then
 
            beta_ = norm2/norm2_pre
            dJ = gradJ + beta_*dJ
-              
+
         else
            temp2_solver = gradJ - gradJ_pre
            call L2_product(temp2_solver, gradJ, val)
            beta_ = val/norm2_pre
            dJ = gradJ + beta_*dJ
         end if
-           
 
-        
+
+
         call L2_product(dJ, gradJ, val)
         call L2_product(dJ, dJ, val2)
 
-        
+
         if (val/sqrt(norm2)/sqrt(val2) < 1e-6_pr) then
            beta_ = 0.0_pr
            dJ = gradJ
            restart_flag_ = 1
         end if
 
-     
-        
-        
-        
+
+
+
+
         call fftfwd_m(dJ, temp1_solver_cx, 3)
         call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -0.5_pr*s, -sigma)
-       
+
         call fftbwd_m(temp1_solver_cx, dJ_actual, 3)
 
-        call rescale(dJ_actual, val)
+        !call rescale_H1(dJ_actual, val)
 
-        
-        
-           
-           
-        
 
-        
-        
+
+
+
+
+
+
+
      END SUBROUTINE projection_RCG
-      
+
 !=========================================================
 ! SUBROUTINE rescale(myfield, val)
-! scale myfield such that its dotH_3 is norm_constr     
+! scale myfield such that its dotH_3 is norm_constr
 !=========================================================
      SUBROUTINE rescale(myfield, scaling)
        USE global_variables
@@ -699,8 +775,17 @@ CONTAINS
      END SUBROUTINE rescale
 
 !=========================================================
-! SUBROUTINE rescale(myfield, val)
-! scale myfield such that its dotH_3 is norm_constr     
+! SUBROUTINE rescale_H1(myfield, scaling)
+! scale myfield such that its dotH_1 is norm_constr
+!
+! INPUT:
+! myfield: Initial condition
+! 
+! OUTPUT:
+! scaling: scaling factor
+!
+! USE:
+! temp1_solver_cx
 !=========================================================
      SUBROUTINE rescale_H1(myfield, scaling)
        USE global_variables
@@ -726,7 +811,7 @@ CONTAINS
 
 !=========================================================
 ! SUBROUTINE rescale_cx(myfield_cx)
-! scale myfield such that its dotH_3 is norm_constr     
+! scale myfield such that its dotH_3 is norm_constr
 !=========================================================
      SUBROUTINE rescale_cx(myfield_cx, scaling)
        USE global_variables
@@ -738,7 +823,7 @@ CONTAINS
        complex(pr), DIMENSION(1:n(1)/2+1,1:n(2),1:local_N,1:3), INTENT(inout) :: myfield_cx
        real(pr), intent(out) :: scaling
        real(pr) :: norm
-       
+
        norm = 0.0_pr
        call abs_deriv_fourier(myfield_cx, myfield_cx, 3.0_pr)
        call div_free_fourier(temp1_solver_cx)
@@ -751,13 +836,54 @@ CONTAINS
 
      END SUBROUTINE rescale_cx
 
-
-        
 !=========================================================
-! FUNCTION compute_J(myfield, mydt, savesign, myiter, constr_flag)     
+! FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag, evolve_flag)
+! Compute the cost function PHI = (||GRAD u(T)||_L^2)^2
+! 
+! INPUT: 
+! myfield: Initial condition
+! mydt: Time step size
+! savesign: Save data iff 1
+! myiter: Iteration number
+! constr_flag: Rescale myfield iff not 0
+! evolve_flag: Fwd evolve myfield iff not 0
+!
+! OUTPUT:
+! PHI: value of phi at myfield
+!
+! USE:
+! Uvec, temp1_solver_cx
+!=========================================================
+     FUNCTION compute_PHI_L2(myfield, mydt, savesign, myiter, constr_flag, evolve_flag) RESULT(PHI)
+       USE global_variables
+       USE fftwfunction
+       USE function_ops
+       use solvers
+       IMPLICIT NONE
+       INCLUDE "mpif.h"
+       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), intent(inout) :: myfield
+       REAL(pr), INTENT(IN) :: mydt
+       integer, INTENT(IN) :: savesign, myiter, constr_flag, evolve_flag
+       real(pr) :: val
+
+
+       REAL(pr) :: PHI
+
+       PHI = 0.0_pr
+
+       if(constr_flag .ne. 0) call rescale_H1(myfield, val)
+
+       if(evolve_flag .ne. 0) call fwd_3D(myfield, mydt, savesign, stepper_opt, myiter)
+       call fftfwd_m(Uvec, temp1_solver_cx, 3)
+       call L2_grad(temp1_solver_cx,PHI)
+
+     END FUNCTION compute_PHI_L2
+
+!=========================================================
+! FUNCTION compute_J(myfield, mydt, savesign, myiter, constr_flag)
 ! Compute the cost function J = -1/2(||u(T)||_dotH^3)^2
 ! Trying to minimize J, which is equivalent to maximize -J
-! INPUT: myfield (u(0))     
+! INPUT: myfield (u(0))
 ! Usage: solvers.f90 temp1_solver_cx
 !=========================================================
      FUNCTION compute_J(myfield, mydt, savesign, myiter, constr_flag) RESULT (J)
@@ -774,28 +900,63 @@ CONTAINS
 
 
        REAL(pr) :: J
-      
 
        J = 0.0_pr
 
-       
+
        if(constr_flag .ne. 0) call rescale(myfield, val)
-          
-       call fwd_3D(myfield, mydt, savesign, stepper_opt, myiter)
+
+       !call fwd_3D(myfield, mydt, savesign, stepper_opt, myiter)
        call fftfwd_m(Uvec, temp1_solver_cx, 3)
        call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
        call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, J)
        J = -J
-       
+
     END FUNCTION compute_J
 
+!================================================
+! SUBROUTINE: compute_gradPHI(myfield, mydt, savesign, gradPHI, myiter, term)
+! Compute the gradient of phi at myfield.
+!
+! INPUT:
+! myfield: Rescaled initial condition
+! mydt: Time step size
+! savesign: save data iff 1
+! myiter: iteration number
+!
+! OUTPUT: 
+! gradPHI: gradient of phi (1+|D|^2)^-s exp(-2sigma|D|) u*(t=0)
 
+! Use: 
+! temp1_solver_cx
+!================================================
+    SUBROUTINE compute_gradPHI(myfield, mydt, savesign, gradPHI, myiter)
+      USE global_variables
+      USE fftwfunction
+      USE function_ops
+      use solvers
+      IMPLICIT NONE
+      INCLUDE "mpif.h"
+      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: myfield
+      REAL(pr), INTENT(IN) :: mydt
+      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(OUT) :: gradPHI
+      INTEGER, INTENT(IN) :: savesign, myiter
+      
+      call bkd_3D(adj_Uvec0, mydt, savesign, stepper_opt, myiter)
+      !call fftfwd_m(adj_Uvec, temp1_solver_cx, 3)
+      !call G_l_s_sigma_fourier(temp1_solver_cx, temp1_solver_cx, l, -s, -2.0_pr*sigma)
+      gradPHI = adj_Uvec
+      !call fftbwd_m(temp1_solver_cx, gradPhi, 3)
+      CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
+      
+    END SUBROUTINE compute_gradPHI
+    
 !================================================
 ! SUBROUTINE: compute_gradJ(myfield, mydt, savesign, gradJ, myiter)
 ! INPUT: inifield (u(T))
 ! OUTPUT: gradJ
 ! We use the Hsigma space
-! Use: solvers.f90: temp1_solver_cx
+! Use: solversef90: temp1_solver_cx
 !================================================
     SUBROUTINE compute_gradJ(myfield, mydt, savesign, gradJ, myiter)
       USE global_variables
@@ -815,6 +976,78 @@ CONTAINS
       CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
       
     END SUBROUTINE compute_gradJ
+   
+!=========================================================
+! SUBROUTINE: report_PHI(myfield,tau_brack, count, mydt)
+! Compute the cost function along myfield + tau*gradPHI
+!
+! INPUT:
+! myfield: Rescaled initial condition
+! tau_brack: Tau bracket to compute phi in
+! count: Number of points to compute phi
+! mydt: Time step size
+!
+! USE:
+! Uvec, gradPHI_opt
+!==========================================================
+    SUBROUTINE report_PHI(myfield,tau_brack, count, mydt, iter)
+      USE global_variables
+      USE data_ops
+      USE function_ops
+      USE solvers
+      IMPLICIT NONE
+      INCLUDE "mpif.h"
+      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(INOUT) :: myfield
+      REAL(pr), DIMENSION(1:3) :: tau_brack
+      integer, intent(in) :: count
+      real(pr), intent(in) :: mydt
+      character(200) :: file_name
+      integer, intent(in) :: iter
+      Real(pr) :: A, B, tau, dtau, PHI, val
+      integer :: i
+      real(pr) :: norm2_grad
+      CHARACTER(5) :: itertxt
+
+      A = MIN(tau_brack(1),tau_brack(2))
+      B = MAX(tau_brack(1),tau_brack(2))
+      dtau = (B-A)/count
+     
+      WRITE(itertxt, '(i4)') iter
+
+      if (rank == 0) then
+         file_name = TRIM(scratch_pathname)//TRIM(subpath)//"report_cost_"//trim(adjustl(itertxt))//".dat"
+         OPEN(10, FILE = file_name, STATUS = 'REPLACE')
+         close(10)
+      end if
+
+      PHI = 0.0_pr
+      PHI = compute_PHI_L2(myfield, mydt, 1, 1, 0, 1)
+      tau = 0.0_pr 
+      gradPHI_opt = 0.0_pr
+      
+      call compute_gradPHI(myfield, fix_dt2, 0, gradPHI_opt, 1)
+      call projection(myfield, gradPHI_opt, d_opt, norm2_grad)
+      CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
+
+      do i = 0,count
+         PHI = 0.0_pr
+         tau = A + i*dtau
+
+         !PHI 4
+         Uvec = myfield + tau*d_opt
+         CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
+         PHI = compute_PHI_L2(Uvec, fix_dt1, 0, i, 1, 1)
+
+         if (rank == 0) then
+            open(10, file = file_name, status = 'old', position = 'append')
+            write(10, "(2 G20.12)"), tau, PHI
+         end if
+      end do
+      
+            
+      close(10)
+         
+    END SUBROUTINE report_PHI
       
 !=========================================================
 ! SUBROUTINE: report_J(myfield,tau_brack, count, mydt)
@@ -843,7 +1076,7 @@ CONTAINS
       dtau = (B-A)/count
       
       if (rank == 0) then
-         file_name = TRIM(scratch_pathname)//"report_cost"//".dat"
+         file_name = TRIM(scratch_pathname)//TRIM(subpath)//"report_cost"//".dat"
          OPEN(10, FILE = file_name, STATUS = 'REPLACE')
          close(10)
       end if
@@ -881,20 +1114,33 @@ CONTAINS
        
       
 !================================================
-! FUNCTION: mnbrak(mysystem, myfield, gradJ, tA0, tB0, myflag, myindex)      
-! OUTPUT: tau_brack(2)
+! FUNCTION: mnbrak(myfield, gradPHI, tA0, tB0, myflag, myindex)      
+! Minimize the tau bracket
+!
+! INPUT:
+! myfield: Rescaled initial condition
+! gradPHI: Projected gradient
+! tA0: Initial left tau bracket
+! tB0: Initial right tau bracket
+! myflag: Unused flag
+! myindex: Iteration number
+!
+! OUTPUT: 
+! tau_brack: Minimized tau bracket
+!
 ! Use: Uvec
 !================================================
-    FUNCTION mnbrak(mysystem, myfield, gradJ, tA0, tB0, myflag, myindex) RESULT (tau_brack)
+    FUNCTION mnbrak(myfield, gradPHI, tA0, tB0, myflag, myindex) RESULT (tau_brack)
       USE global_variables
       USE fftwfunction
       USE data_ops
       USE function_ops
       USE solvers
       IMPLICIT NONE
-      CHARACTER(len=*), INTENT(IN) :: mysystem
+      INCLUDE "mpif.h"
+      !CHARACTER(len=*), INTENT(IN) :: mysystem
       REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: myfield
-      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: gradJ
+      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: gradPHI
       REAL(pr), INTENT(IN) :: tA0, tB0
       INTEGER, INTENT(INOUT) :: myflag
       INTEGER, INTENT(IN) :: myindex
@@ -911,79 +1157,84 @@ CONTAINS
       CHARACTER(100) :: filename1
       CHARACTER(5) :: itertxt
 
-      Real(pr) ::J_val
+      Real(pr) ::PHI_val
       
       REAL(pr), PARAMETER :: mnbrak_TOL = 1E-10  ! Mar 3, 2018
       WRITE(itertxt, '(i4)') myindex
-      filename1 = "./LOGFILES/maxET_brakbrent_OPT"//trim(adjustl(itertxt))//".dat"
+      filename1 = "./LOGFILES/"//TRIM(subpath)//"maxET_brakbrent_OPT"//trim(adjustl(itertxt))//".dat"
 
       saveLineMin = .TRUE.
 
-      J_val = 0.0_pr
+      PHI_val = 0.0_pr
 
       FuncEval    = 0
       iter        = 0
       tA = tA0
       tB = MAX(tB0, MACH_EPSILON)
-      ! tA0 = 0
-      !Uvec = myfield + tA*gradJ
-      !FA = compute_J(Uvec, fix_dt1, 0, myindex, 1)
       
-      call fftfwd_m(Uvec, temp1_solver_cx, 3)
-      call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
-      call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, FA)
-      FA =  -FA
+      Uvec = myfield + tA*gradPHI
+      FA = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+      FA = -FA 
+      !call fftfwd_m(Uvec, temp1_solver_cx, 3)
+      !call abs_deriv_fourier(temp1_solver_cx, temp1_solver_cx, 3.0_pr)
+      !call L2_product_fourier(temp1_solver_cx, temp1_solver_cx, FA)
+      !FA =  -FA
       
       if (rank==0) then
          OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'REPLACE') 
-         WRITE(10, "(G20.12, G20.12)") tA, FA
+         WRITE(10, "(G20.12, G20.12)") tA, -FA
          CLOSE(10)
       end if
 
+      
+
       FuncEval = FuncEval+1
 
-      Uvec = myfield + tB*gradJ
-      FB = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+      Uvec = myfield + tB*gradPHI
+      FB = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+      FB = -FB
       if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tB, FB
+            WRITE(10, "(G20.12, G20.12)") tB, -FB
             CLOSE(10)
          end if
       FuncEval = FuncEval+1
 
-      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, mysystem, "replace", myindex)
-
+      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "replace", myindex, subpath)
 
       DO WHILE ((FB > FA) .AND. (tB > MACH_EPSILON) .AND. (abs(FB-FA)/abs(FA) > mnbrak_TOL)) 
-         tB = CGOLD*tB/10.0_pr
-        Uvec = myfield + tB*gradJ
+        tB = CGOLD*tB/10.0_pr
+        Uvec = myfield + tB*gradPHI
          if (rank == 0 ) then
             print *, "      mnbrak; do while NO. 1 ... FuncEval =", FuncEval
          end if
-         FB = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+         FB = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+         FB = -FB
          if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tB, FB
+            WRITE(10, "(G20.12, G20.12)") tB, -FB
             CLOSE(10)
          end if
          FuncEval = FuncEval+1
-         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, mysystem, "append", myindex)
+         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "append", myindex, subpath)
       END DO
 
       IF ((tB .LE. MACH_EPSILON) .OR. (abs(FB-FA)/abs(FA) .LE. mnbrak_TOL)) THEN
          myflag = 1
          RETURN
       END IF
+      
       tC = GOLD*tB
-      Uvec = myfield + tC*gradJ
-      FC = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+      Uvec = myfield + tC*gradPHI
+      FC = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+      FC = -FC
       if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tC, FC
+            WRITE(10, "(G20.12, G20.12)") tC, -FC
             CLOSE(10)
          end if
       FuncEval = FuncEval+1
-      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, mysystem, "append", myindex)
+      IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "append", myindex, subpath)
       DO WHILE (FB>=FC .AND. iter<ITMAX)
          if (rank == 0 ) then
             print *, "      mnbrak; do while NO. 2 ... mnbrak_iter =", iter
@@ -999,11 +1250,12 @@ CONTAINS
             if (rank == 0) then
                print *, "            mnbrak; do while NO. 2; case 1"
             end if
-           Uvec = myfield + tP*gradJ
-            FP = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+           Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+            FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tP, FP
+            WRITE(10, "(G20.12, G20.12)") tP, -FP
             CLOSE(10)
          end if
             IF (FP<FC) THEN
@@ -1024,22 +1276,24 @@ CONTAINS
                EXIT
             END IF
             tP = tC + GOLD*(tC-tB)
-            Uvec = myfield + tP*gradJ
-            FP = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+            Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+            FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tP, FP
+            WRITE(10, "(G20.12, G20.12)") tP, -FP
             CLOSE(10)
          end if
          ELSEIF ( (tC-tP)*(tP-Pmax)>0 ) THEN
             if (rank == 0) then
                print *, "            mnbrak; do while NO. 2; case 2"
             end if
-            Uvec = myfield + tP*gradJ
-            FP = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+            Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+            FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tP, FP
+            WRITE(10, "(G20.12, G20.12)") tP, -FP
             CLOSE(10)
             end if
 
@@ -1049,11 +1303,12 @@ CONTAINS
                FB = FC
                FC = FP
                tP = tC+GOLD*(tC-tB)
-               Uvec = myfield + tP*gradJ
-               FP = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+               Uvec = myfield + tP*gradPHI
+               FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+               FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tP, FP
+            WRITE(10, "(G20.12, G20.12)") tP, -FP
             CLOSE(10)
          end if
             END IF
@@ -1062,11 +1317,12 @@ CONTAINS
                print *, "            mnbrak; do while NO. 2; case 3"
             end if
             tP = Pmax
-            Uvec = myfield + tP*gradJ
-            FP = compute_J(Uvec, fix_dt1, 0, myindex, 1)
-           if (rank==0) then
+            Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+            FP = -FP 
+          if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tP, FP
+            WRITE(10, "(G20.12, G20.12)") tP, -FP
             CLOSE(10)
          end if
          ELSE
@@ -1074,11 +1330,12 @@ CONTAINS
                print *, "            mnbrak; do while NO. 2; case 4"
             end if
             tP = tC + GOLD*(tC-tB)
-            Uvec = myfield + tP*gradJ
-            FP = compute_J(Uvec, fix_dt1, 0, myindex, 1)
+            Uvec = myfield + tP*gradPHI
+            FP = compute_PHI_L2(Uvec, fix_dt1, 0, myindex, 1, 1)
+            FP = -FP
             if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") tP, FP
+            WRITE(10, "(G20.12, G20.12)") tP, -FP
             CLOSE(10)
          end if
          END IF
@@ -1088,15 +1345,21 @@ CONTAINS
          FA = FB
          FB = FC
          FC = FP        
-         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, FA, FB, FC, iter, mysystem, "append", myindex)
+         IF (saveLineMin) CALL save_linemin_data(tA, tB, tC, -FA, -FB, -FC, iter, "append", myindex, subpath)
 
         
       END DO
-
      
       tau_brack(1) = tA
       tau_brack(2) = tC
       tau_brack(3) = tB
+
+      if (rank==0) then
+            OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
+            WRITE(10, *) tA, tB, tC
+            CLOSE(10)
+         end if
+
 
       IF (iter .GE. ITMAX) THEN
          myflag = 2
@@ -1108,19 +1371,32 @@ CONTAINS
 
 
 !====================================================
-! FUNCTION: brent(iteration, mysystem, myfield, gradJ, tau_brack)     
-! OUTPUT: X
-! Use: Uvec
+! FUNCTION: brent(iteration, mysystem, myfield, gradPHI, tau_brack)     
+! Find the peak of phi along the gradient using brents method
+!
+! INPUT:
+! iteration: Iteration number
+! mysystem: Unused variable
+! myfield: Rescaled initial condition
+! gradPHI: Projected gradient
+! tau_brack: Initial tau bracket
+!
+! OUTPUT:
+! X: tau value of phi peak
+!
+! USE: 
+! Uvec
 !====================================================
-    FUNCTION brent(iteration, mysystem, myfield, gradJ, tau_brack) RESULT (X)  
+    FUNCTION brent(iteration, mysystem, myfield, gradPHI, tau_brack) RESULT (X)  
       USE global_variables
       USE data_ops
       USE function_ops
       IMPLICIT NONE
       INTEGER, INTENT(IN) :: iteration
       CHARACTER(len=*), INTENT(IN) :: mysystem
-      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: myfield, gradJ
+      REAL(pr), DIMENSION(1:n(1),1:n(2),1:local_N,1:3), INTENT(IN) :: myfield, gradPHI
       REAL(pr), DIMENSION(1:3), INTENT(IN) :: tau_brack
+
       REAL(pr) :: X
       REAL(pr) :: X_old, FX_old                 ! Mar 3, 2018
       REAL(pr) :: X_err = 1E-2, FX_err = 1E-5   ! Mar 3, 2018
@@ -1139,7 +1415,7 @@ CONTAINS
       CHARACTER(100) :: filename, filename1 
       WRITE(E0txt, '(i2.2)') E0_index
       WRITE(itertxt, '(i4)') iteration
-      filename1 = "./LOGFILES/maxET_brakbrent_OPT"//trim(adjustl(itertxt))//".dat"
+      filename1 = "./LOGFILES/"//TRIM(subpath)//"maxET_brakbrent_OPT"//trim(adjustl(itertxt))//".dat"
        
 
       D = 0.0_pr
@@ -1153,26 +1429,23 @@ CONTAINS
       W = V
       X = V 
       E = 0.0_pr
-     ! Uvec = myfield + D*gradJ
-     ! FX = compute_J(Uvec, fix_dt1, 1, iteration, 1)
+      Uvec = myfield + D*gradPHI
+      FX = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1)
+      FX = -FX
       if (rank==0) then
-         filename = "./LOGFILES/maxET_brent_OPT"//trim(adjustl(itertxt))//".dat"
+         filename = "./LOGFILES/"//TRIM(subpath)//"maxET_brent_OPT"//trim(adjustl(itertxt))//".dat"
          OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'REPLACE')
          WRITE(10,*) "# Tau J" 
-        ! WRITE(10, "(G20.12, G20.12)") D, FX
+         WRITE(10, "(G20.12, G20.12)") D, -FX
          CLOSE(10)
       end if
       
-      !if (rank==0) then
-      !      OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-      !      WRITE(10, "(G20.12, G20.12)") D, FX
-      !      CLOSE(10)
-      !   end if
-      Uvec = myfield + X*gradJ
-      FX = compute_J(Uvec, fix_dt1, 0, iteration, 1)
+      Uvec = myfield + X*gradPHI
+      FX = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1)
+      FX = -FX
        if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") X, FX
+            WRITE(10, "(G20.12, G20.12)") X, -FX
             CLOSE(10)
          end if
       FV = FX 
@@ -1238,11 +1511,12 @@ CONTAINS
             U = X + SIGN(TOL1,D)
          END IF
     
-         Uvec = myfield + U*gradJ
-         FU = compute_J(Uvec, fix_dt1, 0, iteration, 1)
+         Uvec = myfield + U*gradPHI
+         FU = compute_PHI_L2(Uvec, fix_dt1, 0, iteration, 1, 1)
+         FU = -FU
           if (rank==0) then
             OPEN(10, FILE = filename1, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") U, FU
+            WRITE(10, "(G20.12, G20.12)") U, -FU
             CLOSE(10)
          end if
  
@@ -1297,7 +1571,7 @@ CONTAINS
          if (rank==0) then
             print *, "      brent; do iteration j =", j
             OPEN(10, FILE = filename, FORM = 'FORMATTED', STATUS = 'OLD', POSITION = 'APPEND')
-            WRITE(10, "(G20.12, G20.12)") X, FX
+            WRITE(10, "(G20.12, G20.12)") X, -FX
             CLOSE(10)
          end if
 
