@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  7 FEB 2026 15:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  4 APR 2026 14:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -957,29 +957,14 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 6.
 ! Undefined control sequence.
-l.6 ... system on the domain $\Omega \subseteq \RR
-                                                  $ and time interval $[0,T]...
+l.6 ...s system on the domain $(\Omega \subset \RR
+                                                  3)$ is defined as
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-Missing character: There is no a in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no d in font nullfont!
@@ -1485,9 +1470,6 @@ Missing character: There is no u in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no , in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -1524,6 +1506,25 @@ Missing character: There is no s in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no y in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no . in font nullfont!
 Missing character: There is no T in font nullfont!
 Missing character: There is no h in font nullfont!
@@ -1536,7 +1537,7 @@ Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
 <recently read> \be 
                     
-l.14 ...ent of kinematic viscosity. The value $\be
+l.14 ...and $T$ is the time-scale . The value $\be
                                                   $ is the initial divergenc...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1889,7 +1890,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 ! Undefined control sequence.
 l.14 ...either the unbounded domain $\Omega := \RR
-                                                  ^3$, or the three-dimensio...
+                                                  3$, or the three-dimension...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2847,14 +2848,14 @@ Overfull \hbox (5.43053pt too wide) in paragraph at lines 3--27
  []
 
 
-Overfull \hbox (17.77774pt too wide) in paragraph at lines 3--27
-\/cmr/m/n/10 
- \OMS/cmsy/m/n/10 ^^R$
+Overfull \hbox (21.66664pt too wide) in paragraph at lines 3--27
+\/cmr/m/n/10 (
+ \OMS/cmsy/m/n/10 ^^Z
  []
 
 
-Overfull \hbox (22.23265pt too wide) in paragraph at lines 3--27
-\/cmr/m/n/10 [0\OML/cmm/m/it/10 ; T\/cmr/m/n/10 ]$
+Overfull \hbox (8.88892pt too wide) in paragraph at lines 3--27
+\/cmr/m/n/10 3)$
  []
 
 
@@ -2880,6 +2881,11 @@ Overfull \hbox (16.1319pt too wide) in paragraph at lines 3--27
 
 Overfull \hbox (5.00002pt too wide) in paragraph at lines 3--27
 \/cmr/m/n/10 0$
+ []
+
+
+Overfull \hbox (7.23265pt too wide) in paragraph at lines 3--27
+\OML/cmm/m/it/10 T$
  []
 
 
@@ -2919,9 +2925,14 @@ Overfull \hbox (23.88887pt too wide) in paragraph at lines 3--27
  []
 
 
-Overfull \hbox (25.04166pt too wide) in paragraph at lines 3--27
+Overfull \hbox (20.55553pt too wide) in paragraph at lines 3--27
 \/cmr/m/n/10 
- :=[]$
+ :=
+ []
+
+
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 3--27
+\/cmr/m/n/10 3$
  []
 
 
@@ -4952,6 +4963,82 @@ Overfull \hbox (5.43053pt too wide) in paragraph at lines 43--46
  []
 
 
+! LaTeX Error: The font size command \normalsize is not defined:
+               there is probably something wrong with the class file.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.46 
+     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[1{C:/Users/bensl/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
+! Undefined control sequence.
+<write> \newlabel{eq:Navier:Stokes}{{}{\thepage 
+                                                }{}{}{}}
+l.46 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+\newlabel{eq:Navier:Stokes}{{}{}{}{}{}}
+! Undefined control sequence.
+<write> \newlabel{eq:Euler}{{}{\thepage 
+                                        }{}{}{}}
+l.46 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+\newlabel{eq:Euler}{{}{}{}{}{}}
+! Undefined control sequence.
+<write> \newlabel{eq:Euler:Voigt}{{}{\thepage 
+                                              }{}{}{}}
+l.46 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+\newlabel{eq:Euler:Voigt}{{}{}{}{}{}}
+! Undefined control sequence.
+<write> \newlabel{eq:alpha:Energy}{{1}{\thepage 
+                                                }{}{}{}}
+l.46 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+\newlabel{eq:alpha:Energy}{{1}{}{}{}{}}
+! Undefined control sequence.
+<write> \newlabel{eq:time:scaling}{{2}{\thepage 
+                                                }{}{}{}}
+l.46 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+\newlabel{eq:time:scaling}{{2}{}{}{}{}}
+]
+
 ! LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
@@ -5283,82 +5370,6 @@ Overfull \hbox (24.53319pt too wide) in paragraph at lines 49--50
 \OT1/cmr/m/it/10 Zhao. 
  []
 
-
-! LaTeX Error: The font size command \normalsize is not defined:
-               there is probably something wrong with the class file.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.50 
-     
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[1{C:/Users/bensl/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
-! Undefined control sequence.
-<write> \newlabel{eq:Navier:Stokes}{{}{\thepage 
-                                                }{}{}{}}
-l.50 
-     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-\newlabel{eq:Navier:Stokes}{{}{}{}{}{}}
-! Undefined control sequence.
-<write> \newlabel{eq:Euler}{{}{\thepage 
-                                        }{}{}{}}
-l.50 
-     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-\newlabel{eq:Euler}{{}{}{}{}{}}
-! Undefined control sequence.
-<write> \newlabel{eq:Euler:Voigt}{{}{\thepage 
-                                              }{}{}{}}
-l.50 
-     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-\newlabel{eq:Euler:Voigt}{{}{}{}{}{}}
-! Undefined control sequence.
-<write> \newlabel{eq:alpha:Energy}{{1}{\thepage 
-                                                }{}{}{}}
-l.50 
-     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-\newlabel{eq:alpha:Energy}{{1}{}{}{}{}}
-! Undefined control sequence.
-<write> \newlabel{eq:time:scaling}{{2}{\thepage 
-                                                }{}{}{}}
-l.50 
-     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-\newlabel{eq:time:scaling}{{2}{}{}{}{}}
-]
 ! Undefined control sequence.
 l.51 \section
              {Finite Time Blow-up Criteria}

@@ -1,0 +1,32 @@
+\chapter{Introduction}
+
+\section{3D Euler-Voigt Equations}
+The Euler-Voigt equations are an inviscid regularization of the Euler equations which have been shown to be globally well-posed and so do not form singularities given smooth initial conditions. The Euler-Voigt equations on the torus $\Omega = \TT^3$ and time interval $[0,T]$ are defined as
+\begin{subequations}\label{eq:Euler:Voigt}
+\begin{align}
+-\alpha^2\partial_t\Delta\ua + \partial_t \ua + \ua\cdot \bn\ua + \bn p &= 0 \qquad\text{ in } \Omega\times (0,T],\\ 
+\bn \cdot \ua &= 0 \qquad\text{ in } \Omega\times (0,T],\\
+\ua(x,0) &= \bea.
+\end{align}
+\end{subequations}
+where $\ua$ is the velocity field, $\bea$ is the initial condition, and $p$ is the scalar pressure. The regularization of the Euler-Voigt equations is accomplished with the addition of the term $-\alpha^2\partial_t \Delta \ua$ where $\alpha >0$ is the regularization parameter. As $\alpha\rightarrow 0$, the solutions to Euler-Voigt converge to the solutions of Euler. The property of constant energy, known as the $\alpha$-energy, can be used to test the validity of the simulations. The $\alpha$-energy is defined as
+\begin{equation}\label{eq:alpha:Energy}
+E_\alpha(t):=\|\ua(t)\|_{L^2}^2 + \alpha^2\|\bn\ua(t)\|_{L^2}^2 = E_\alpha(0).
+\end{equation}
+We note that both Euler and Euler-Voigt possess the following time scaling property
+\begin{equation}\label{eq:time:scaling}
+\tilde{\u}(\bds x,t) = \lambda\u(\bds x,\lambda t).
+\end{equation}
+Due to the time scaling property of the Euler-Voigt equations (\ref{eq:time:scaling}), the evolution of the solution will depend on the scaling of our initial condition. The initial condition we use in this analysis is the 3D Taylor Green Vortex (TGV). The TGV in the domain with side length $L$ has the form
+\begin{equation}\label{eq:TGV}
+\eta_{TGV}(x) = \begin{bmatrix}
+V_0\sin(2\pi x/L)\cos(2\pi y/L)\cos(2\pi z/L) \\
+-V_0\cos(2\pi x/L)\sin(2\pi y/L)\cos(2\pi z/L) \\
+0.
+\end{bmatrix}
+\end{equation}
+The characteristic time-scale of (\ref{eq:TGV}) is defined as
+\begin{equation}\label{eq:TGV:tc}
+t_c = \frac{L}{V_0}.
+\end{equation}
+Our goal is to examine the behaviour of the Euler-Voigt equations as $\alpha\rightarrow 0$. In order to best compare our results to the available literature we must ensure our scaling properly matches that of previous papers which demonstrate numerical evidence for blow-up in the Euler equations from the TGV.

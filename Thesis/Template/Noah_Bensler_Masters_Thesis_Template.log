@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  1 FEB 2026 11:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  5 APR 2026 22:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -453,24 +453,24 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 (appendix_tg_vorticity_1_scaled.aux))
 \openout1 = `Noah_Bensler_Masters_Thesis_Template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
 
 (C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -506,7 +506,7 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 90.
+Package hyperref Info: Link coloring ON on input line 92.
 
 (Noah_Bensler_Masters_Thesis_Template.out)
 (Noah_Bensler_Masters_Thesis_Template.out)
@@ -516,20 +516,20 @@ Package hyperref Info: Link coloring ON on input line 90.
 \openout2 = `definitions.aux'.
 
  (definitions.tex)
-Package hyperref Info: Option `pageanchor' set `false' on input line 92.
+Package hyperref Info: Option `pageanchor' set `false' on input line 94.
  [1
 
 
 
 
 {C:/Users/bensl/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [1]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 92.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 94.
 
 
 (C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 92.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 94.
 
 
 (C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -539,7 +539,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout2 = `layabstr.aux'.
 
  (layabstr.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 3--93
+Underfull \hbox (badness 10000) in paragraph at lines 3--95
 
  []
 
@@ -550,12 +550,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--93
 \openout2 = `abstr.aux'.
 
  (abstr.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 3--94
+Underfull \hbox (badness 10000) in paragraph at lines 3--96
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--94
+Underfull \hbox (badness 10000) in paragraph at lines 3--96
 
  []
 
@@ -609,13 +609,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--9
 ]
 \openout2 = `notation.aux'.
 
- (notation.tex) [12
+ (notation.tex [12
 
 
-]
+]) [13]
 (academicachievementdeclaration.tex)
-Package hyperref Info: Option `pageanchor' set `true' on input line 103.
- [13
+Package hyperref Info: Option `pageanchor' set `true' on input line 105.
+ [14
 
 
 
@@ -633,22 +633,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--8
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 12--20
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 12--20
+Underfull \hbox (badness 10000) in paragraph at lines 12--18
 
  []
 
 [2] [3] [4] [5]
-Overfull \hbox (23.09978pt too wide) detected at line 107
+Overfull \hbox (23.09978pt too wide) detected at line 101
 [][][][] [] \OT1/cmr/m/n/12 = [] [] \OML/cmm/m/it/12 :
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 121--124
+Underfull \hbox (badness 10000) in paragraph at lines 123--126
 
  []
 
@@ -668,126 +663,122 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--15
 
 
 ] [12] [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 154--161
+Underfull \hbox (badness 10000) in paragraph at lines 155--162
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--161
+Underfull \hbox (badness 10000) in paragraph at lines 155--162
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--161
+Underfull \hbox (badness 10000) in paragraph at lines 155--162
 
  []
 
 [17]
 
 Package natbib Warning: Citation `matharu_adjoint_based_2024' on page 18 undefi
-ned on input line 164.
+ned on input line 165.
 
-<../../KappaTest/KappaTheory.png, id=444, 462.528pt x 346.896pt>
+<../../KappaTest/KappaTheory.png, id=453, 462.528pt x 346.896pt>
 File: ../../KappaTest/KappaTheory.png Graphic file (type png)
 <use ../../KappaTest/KappaTheory.png>
 Package pdftex.def Info: ../../KappaTest/KappaTheory.png  used on input line 17
-4.
+5.
 (pdftex.def)             Requested size: 370.02289pt x 277.51717pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--177
+Underfull \hbox (badness 10000) in paragraph at lines 168--178
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--177
+Underfull \hbox (badness 10000) in paragraph at lines 168--178
 
  []
 
 [18]
-Underfull \hbox (badness 10000) in paragraph at lines 178--180
+Underfull \hbox (badness 10000) in paragraph at lines 179--181
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--180
+Underfull \hbox (badness 10000) in paragraph at lines 179--181
 
  []
 
-<../../KappaTest/kappa_test_init1/t1_result.png, id=451, 1001.7425pt x 536.0025
+<../../KappaTest/kappa_test_init1/t1_result.png, id=460, 1001.7425pt x 536.0025
 pt>
 File: ../../KappaTest/kappa_test_init1/t1_result.png Graphic file (type png)
 <use ../../KappaTest/kappa_test_init1/t1_result.png>
 Package pdftex.def Info: ../../KappaTest/kappa_test_init1/t1_result.png  used o
-n input line 183.
+n input line 184.
 (pdftex.def)             Requested size: 400.6899pt x 214.3972pt.
-<../../KappaTest/kappa_test_init1/t3_result.png, id=452, 1001.7425pt x 536.0025
+<../../KappaTest/kappa_test_init1/t3_result.png, id=461, 1001.7425pt x 536.0025
 pt>
 File: ../../KappaTest/kappa_test_init1/t3_result.png Graphic file (type png)
 <use ../../KappaTest/kappa_test_init1/t3_result.png>
 Package pdftex.def Info: ../../KappaTest/kappa_test_init1/t3_result.png  used o
-n input line 184.
+n input line 185.
 (pdftex.def)             Requested size: 400.6899pt x 214.3972pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 187--189
+Underfull \hbox (badness 10000) in paragraph at lines 188--190
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 187--189
+Underfull \hbox (badness 10000) in paragraph at lines 188--190
 
  []
 
 [19] [20 <../../KappaTest/KappaTheory.png>]
-<../../KappaTest/kappa_test_init2/t1_result.png, id=462, 1001.7425pt x 536.0025
+<../../KappaTest/kappa_test_init2/t1_result.png, id=471, 1001.7425pt x 536.0025
 pt>
 File: ../../KappaTest/kappa_test_init2/t1_result.png Graphic file (type png)
 <use ../../KappaTest/kappa_test_init2/t1_result.png>
 Package pdftex.def Info: ../../KappaTest/kappa_test_init2/t1_result.png  used o
-n input line 192.
+n input line 193.
 (pdftex.def)             Requested size: 400.6899pt x 214.3972pt.
-<../../KappaTest/kappa_test_init2/t3_result.png, id=463, 1001.7425pt x 536.0025
+<../../KappaTest/kappa_test_init2/t3_result.png, id=472, 1001.7425pt x 536.0025
 pt>
 File: ../../KappaTest/kappa_test_init2/t3_result.png Graphic file (type png)
 <use ../../KappaTest/kappa_test_init2/t3_result.png>
 Package pdftex.def Info: ../../KappaTest/kappa_test_init2/t3_result.png  used o
-n input line 193.
+n input line 194.
 (pdftex.def)             Requested size: 400.6899pt x 214.3972pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 196--198
+ [21 <../../KappaTest/kappa_test_init1/t1_result.png> <../../KappaTest/kappa_te
+st_init1/t3_result.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 197--199
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--198
+Underfull \hbox (badness 10000) in paragraph at lines 197--199
 
  []
 
-[21 <../../KappaTest/kappa_test_init1/t1_result.png> <../../KappaTest/kappa_tes
-t_init1/t3_result.png>]
-<../../KappaTest/kappa_test_init3/t1_result.png, id=469, 1001.7425pt x 536.0025
+[22 <../../KappaTest/kappa_test_init2/t1_result.png> <../../KappaTest/kappa_tes
+t_init2/t3_result.png>]
+<../../KappaTest/kappa_test_init3/t1_result.png, id=484, 1001.7425pt x 536.0025
 pt>
 File: ../../KappaTest/kappa_test_init3/t1_result.png Graphic file (type png)
 <use ../../KappaTest/kappa_test_init3/t1_result.png>
 Package pdftex.def Info: ../../KappaTest/kappa_test_init3/t1_result.png  used o
-n input line 201.
+n input line 202.
 (pdftex.def)             Requested size: 400.6899pt x 214.3972pt.
-<../../KappaTest/kappa_test_init3/t3_result.png, id=470, 1001.7425pt x 536.0025
+<../../KappaTest/kappa_test_init3/t3_result.png, id=485, 1001.7425pt x 536.0025
 pt>
 File: ../../KappaTest/kappa_test_init3/t3_result.png Graphic file (type png)
 <use ../../KappaTest/kappa_test_init3/t3_result.png>
 Package pdftex.def Info: ../../KappaTest/kappa_test_init3/t3_result.png  used o
-n input line 202.
+n input line 203.
 (pdftex.def)             Requested size: 400.6899pt x 214.3972pt.
- [22 <../../KappaTest/kappa_test_init2/t1_result.png> <../../KappaTest/kappa_te
-st_init2/t3_result.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 205--208
+
+Underfull \hbox (badness 10000) in paragraph at lines 206--209
 
  []
 
@@ -834,25 +825,25 @@ Appendix B.
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{equation.B.0.
-43}) has been already used, duplicate ignored
+44}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.38 \begin{equation}
                      
 pdfTeX warning (ext4): destination with the same identifier (name{equation.B.0.
-43}) has been already used, duplicate ignored
+44}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.38 \begin{equation}
                      
 pdfTeX warning (ext4): destination with the same identifier (name{equation.B.0.
-43}) has been already used, duplicate ignored
+44}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.38 \begin{equation}
                      
 pdfTeX warning (ext4): destination with the same identifier (name{equation.B.0.
-43}) has been already used, duplicate ignored
+44}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.38 \begin{equation}
@@ -1234,10 +1225,10 @@ s not changed.
 (rerunfilecheck)             Checksum: FDCB7CA01699186B85618035FF2AB014;5832.
  ) 
 Here is how much of TeX's memory you used:
- 14075 strings out of 474486
- 236548 string characters out of 5743755
+ 14078 strings out of 474486
+ 236567 string characters out of 5743755
  1941542 words of memory out of 5000000
- 35842 multiletter control sequences out of 15000+600000
+ 35844 multiletter control sequences out of 15000+600000
  577207 words of font info for 105 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,18n,79p,1405b,722s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1269,10 +1260,10 @@ onts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/bensl/AppData/Local/Programs
 /MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/bensl/AppData/Local/
 Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/bensl/
 AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Noah_Bensler_Masters_Thesis_Template.pdf (67 pages, 814250 by
+Output written on Noah_Bensler_Masters_Thesis_Template.pdf (68 pages, 814423 by
 tes).
 PDF statistics:
- 763 PDF objects out of 1000 (max. 8388607)
- 178 named destinations out of 1000 (max. 500000)
+ 772 PDF objects out of 1000 (max. 8388607)
+ 179 named destinations out of 1000 (max. 500000)
  276 words of extra memory for PDF output out of 10000 (max. 10000000)
 

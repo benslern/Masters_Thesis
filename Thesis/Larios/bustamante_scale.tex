@@ -1,0 +1,106 @@
+\chapter{Bustamante Scale Results}
+
+Bustamante et al. 2012 present numerical evidence for blow-up of the Euler equations from (\ref{eq:TGV}) occurring at $T^* \approx 4$. Their numerical model used parameters $L=2\pi$ and $V_0=1$, and so the characteristic time-scale of their model is $t_c = 2\pi$. These parameters give their model an initial seminorm $\|\bn\eta_{TGV}\|_{L^2} = 6\pi^3$ (\ref{app:tg:seminorm:2pi}) and initial vorticity $\|\nabla\times\eta_{TGV}\|_{L^\infty} = 2$ (\ref{app:tg:vorticity:2pi}). 
+\\~\\
+Our numerical models are performed on a domain with $L=1$. Thus, to match the characteristic time-scale, we use $V_0 = 1/2\pi$. These parameters give our model an initial seminorm $\|\bn\eta_{TGV}\|_{L^2} = \sqrt{3}/2$ (\ref{app:tg:seminorm:1:scaled}) and initial vorticity $\|\nabla\times\eta_{TGV}\|_{L^\infty} = 2$ (\ref{app:tg:vorticity:1:scaled}). 
+\\~\\
+The plots below show our results for the scaled TGV. In addition they show the comparison of our results with those of (Fig. 1b, Bustamante et al. 2012), (Fig. 2, Larios et al. 2018), and (Fig. 3, Larios et al. 2018). 
+
+\section{Evolution of $\|\nabla\ua\|_{L^2}$}
+
+This plot shows the evolution of the $\|\nabla\ua\|_{L^2}$ norm over time. Neither Bustamante, Brachet, or Larios show an equivalent plot but it is still worth examining. The growth in the norm strictly increases over time. Additionally, the norm at T increases as $\alpha \rightarrow 0$ which is consistent with the expected behaviour.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{"./Figures/lariosCutoffFwdResults/h1_seminorm_vs_t.png"}
+\caption{$\|\nabla\ua\|_{L^2}$ vs $t$.}
+\end{figure}
+
+
+\section{Evolution of $\|\omega\|_{L^\infty}$}
+
+This plot shows the evolution of the $\|\omega\|_{L^\infty}$ norm over time for each value of $\alpha$. This plot is compared to Fig. 1b in Bustamente et al. 2012. Additionally, we include our reproduction of Fig 1b for Euler. The plot shows that the evolution of the vorticity for the scaled Euler-Voigt model converges to the result for the scaled Euler model, which itself matches the plot in Fig 1b. Therefore, when the initial TGV is scaled to $\|\bn\eta_{TGV}\|_{L^2} = \sqrt{3}/2$ the solution to Euler-Voigt does match the results of Bustamante et al. 2012.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.7\textwidth}
+        \includegraphics[width=\linewidth]{"./Figures/lariosCutoffFwdResults/vorticity_vs_t.png"}
+        \caption{Scaled Euler-Voigt $\|\omega\|_{L^\infty}$ vs $t$.}
+    \end{subfigure}
+    \vspace{0.5cm} % Vertical space
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[width=\linewidth]{"./Figures/Figure_2.png"}
+		\caption{Scaled Euler $\|\omega\|_{L^\infty}$ vs $t$. Resolutions: 128, 256, 512, 1024}
+    \end{subfigure}
+    \vspace{0.5cm} % Vertical space
+    \begin{subfigure}{0.6\textwidth}
+        \includegraphics[width=\linewidth]{"./Figures/interplay_vorticity_b.png"}
+		\caption{Bustamante Fig 1b. Euler $\|\omega\|_{L^\infty}$ vs $t$. Resolutions: 512, 1024, 2048, 4096.}
+    \end{subfigure}
+    \caption{Comparison of vorticity}
+\end{figure}
+
+
+
+\pagebreak
+\section{Reproduction of Fig 2}
+
+This plot shows the conservation of the $\alpha-$energy for our scaled Euler-Voigt model and the conservation of $\alpha-$energy from Fig. 2 of Larios et al. 2018.
+
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{.33\textwidth}
+\includegraphics[scale=0.3]{"./Figures/lariosCutoffFwdResults/alpha_energy_16.png"}
+\end{subfigure}%
+\begin{subfigure}{.33\textwidth}
+\centering
+\includegraphics[scale=0.3]{"./Figures/lariosCutoffFwdResults/alpha_energy_8.png"}
+\end{subfigure}%
+\begin{subfigure}{.33\textwidth}
+\centering
+\includegraphics[scale=0.3]{"./Figures/lariosCutoffFwdResults/alpha_energy_4.png"}
+\end{subfigure}%
+\vspace{0.5cm}
+\begin{subfigure}{1.0\textwidth}
+\centering
+\includegraphics[scale=0.75]{"./Figures/Larios_Figure_2.png"}
+\end{subfigure}
+\end{figure}
+
+The plot shows that neither the size of the $\alpha-$Energy or the time-scale it changes over match the behaviour of the model from the Larios et al. plot. However, the overall behaviour and the behaviour as $\alpha\rightarrow 0$ is consistent. The $\alpha^2\|\nabla\ua\|_{L^2}^2$ term starts low and increases over time and the $\|\ua\|_{L^2}^2$ term starts high and decreases over time. As $\alpha\rightarrow 0$ the maximum of the $\alpha^2\|\nabla\ua\|_{L^2}^2$ term decreases and the minimum of the $\|\ua\|_{L^2}^2$ term increases. 
+
+
+\pagebreak
+\section{Reproduction of Fig 3}
+
+This plot shows our reproduction of Fig 3. from Larios et al. 2018. It shows that our results do not match. The scale of the y axis is approximately an order of magnitude smaller in our plot. Additionally the slope of the black line in the Larios plot is $-1$, the slope of ours is $-.416$. Finally, our plot extends to smaller values of $\alpha$. The plot shows that as $\alpha\rightarrow 0$ the slope increases which indicates that blow-up will not occur as $\alpha$ diminishes.
+\\~\\
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.6\textwidth}
+\centering
+\includegraphics[scale=0.55]{"./Figures/lariosCutoffFwdResults/Fig3.png"}
+\caption{Scaled Euler-Voigt. Green dots indicate the model became under-resolved.}
+\end{subfigure}%
+\begin{subfigure}{0.4\textwidth}
+\centering
+\includegraphics[scale=0.5]{"./Figures/Fig3_larios.png"}
+\caption{Larios et al. plot}
+\end{subfigure}
+\end{figure}
+
+
+
+\section{Reproduction of Fig 3 Inset}
+
+This plot shows our reproduction of Fig 3. inset from Larios et al. 2018. It shows that our results do not match. The scale of the y axis is approximately half the size in our plot. Additionally, the minimum slope in the Larios plot is below $-1$, the minimum slope of ours is $-.416$. Finally, our plot extends to smaller values of $\alpha$. The plot shows that as $\alpha\rightarrow 0$ the slope increases which indicates that blow-up will not occur as $\alpha$ diminishes.
+\\~\\
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{"./Figures/lariosCutoffFwdResults/Fig3_inset.png"}
+\end{figure}
+
+
+\section{Conclusion}
+
+The results of our scaled Euler-Voigt model show that it matches the vorticity of the Bustamante et al. model but does not match the results of the Larios et a. model.

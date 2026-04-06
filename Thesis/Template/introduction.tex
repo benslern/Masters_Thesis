@@ -3,54 +3,48 @@
 \section{Singularity Formation in Models of 3D Fluid Flows}
 The Navier-Stokes equations are a set of partial differential equations (PDEs) that describe the motion of viscous incompressible fluids. The fluids described by the Navier-Stokes equations can be modelled in domains with a wide variety of shape, dimension, and boundary conditions [CITATION]. Because of their flexibility they are utilized to model the behaviour of systems in fields as disparate as aero/hydrodynamics, weather prediction, biophysics, and astrophysics \cite{cho_solving_2022}\cite{doering_3d_2009}. Despite the numerous fields that make use of the 3D Navier-Stokes equations, and extensive research examining their properties, there is no known unique classical solution \cite{protas_systematic_2022}. In fact, this is the basis of the well known millennium problem from the Clay Institute which offers a million dollar award for the confirmation of the existence, or non-existence, of a solution for smooth initial conditions \cite{robinson_navierstokes_2020}.
 \\~\\
-The Navier-Stokes system on the domain $\Omega \subseteq \RR$ and time interval $[0,T]$ is defined as 
+The Navier-Stokes system on the domain $\Omega \subseteq \RRR$ is defined as 
 \begin{subequations}\label{eq:Navier:Stokes}
 \begin{align}
-\partial_t \u + \u\cdot \bn \u + \bn p - \nu \Delta \u &= 0 \qquad\text{ in } \Omega\times (0,T],\\
+\partial_t \u + \u\cdot \bn \u + \bn p - \nu \bd \u &= 0 \qquad\text{ in } \Omega\times (0,T],\\
 \bn \cdot \u &= 0 \qquad\text{ in } \Omega\times [0,T],\\
-\u(0) &= \be
+\u(x,0) &= \be
 \end{align}
 \end{subequations}
-where $\u = [u_1,u_2,u_3]^T$ is the fluid velocity field, $p$ is the scalar pressure, and $\nu>0$ is the coefficient of kinematic viscosity. The value $\be$ is the initial divergence free velocity field of the fluid at time $t=0$. Finally, the $\bn = [\partial_1,\partial_2,\partial_3]^T$ operator is used to define the gradient of the pressure, the tensor $[\bn \u]_{ij}=\partial_j u_i$ for $i,j=1,2,3$, and the divergence of the velocity field. It is common for scientific research that focuses the fundamental properties of the Navier-Stokes equations to utilize either the unbounded domain $\Omega := \RR^3$, or the three-dimensional torus $\Omega := \TT^3_L$ with $L>0$ \cite{protas_systematic_2022}. For this analysis, we use the unit torus.
+where $\u = [u_1,u_2,u_3]^\intercal$ is the fluid velocity field, $p$ is the scalar pressure, $\nu>0$ is the coefficient of kinematic viscosity, and $T$ is the time-scale . The value $\be$ is the initial divergence free velocity field of the fluid at time $t=0$. Finally, the $\bn = [\partial_1,\partial_2,\partial_3]^T$ operator is used to define the gradient of the pressure, the tensor $[\bn \u]_{ij}=\partial_j u_i$ for $i,j=1,2,3$, and the divergence of the velocity field. It is common for scientific research that focuses the fundamental properties of the Navier-Stokes equations to utilize either the unbounded domain $\Omega := \RRR$, or the periodic 3D torus $\Omega := \TT^3_L$ with $L>0$ \cite{protas_systematic_2022}. For this analysis, we use the unit torus.
 \\~\\
-One line of evidence against the validity of the 3D Navier-Stokes equations is the formation of singularities. A singularity occurs when the derivative of the velocity field becomes infinite at a single point \cite{moffatt_singularities_2019}. \textit{How do they form?}
-\\~\\
-The formation of a singularity in a fluid flow given smooth initial conditions would invalidate the Navier-Stokes equations as an accurate description of fluid flows \cite{protas_systematic_2022}. The question of singularity formation from smooth initial conditions has also not been answered for the Euler equations. The Euler equations are the inviscid form of the Navier-Stokes equations, obtained by setting $\nu=0$
+A central question in fluid mechanics is whether or not the Navier-Stokes equations are globally well-posed or if singularities can form from smooth initial conditions. A singularity occurs when the derivative of the velocity field becomes infinite at a single point \cite{moffatt_singularities_2019}. The formation of a singularity in a fluid flow, from smooth initial conditions, would invalidate the Navier-Stokes equations as an accurate description of fluid flows \cite{protas_systematic_2022}. The question of singularity formation from smooth initial conditions has also not been answered for the Euler equations [CITATION]. The Euler equations are the inviscid form of the Navier-Stokes equations, obtained by setting $\nu=0$
 \begin{subequations}\label{eq:Euler}
 \begin{align}
 \partial_t \u + \u\cdot \bn \u + \bn p &= 0 \qquad\text{ in } \Omega\times (0,T],\\
 \boldsymbol\nabla \cdot \mathbf{u} &= 0 \qquad\text{ in } \Omega\times [0,T],\\
-\u(0) &= \be
+\u(x,0) &= \be
 \end{align}
 \end{subequations}
 \textit{The Euler are often studied because they are simpler to analyze than the Navier-Stokes equations [Citation]. Additionally, many people believe the Eulers equations are more likely to form singularities than the Navier-Stokes due to the lack of a viscosity term dampening the fluid flow [Citation].}
 
 \section{3D Euler-Voigt Equations}
-The Euler-Voigt equations are an inviscid regularization of the Euler equations (\ref{eq:Euler}) which have been shown to be globally well-posed and so do not form singularities given smooth initial conditions \cite{cao_global_2006}. The Euler-Voigt equations on the unit torus $\Omega = \TT^3$ and time interval $[0,T]$ are defined as
+The Euler-Voigt equations are an inviscid regularization of the Euler equations (\ref{eq:Euler}) which have been shown to be globally well-posed and so do not form singularities from smooth initial conditions \cite{cao_global_2006}. The Euler-Voigt equations are defined as
 \begin{subequations}\label{eq:Euler:Voigt}
 \begin{align}
--\alpha^2\partial_t\Delta\ua + \partial_t \ua + \ua\cdot \bn\ua + \bn p &= 0 \qquad\text{ in } \Omega\times (0,T],\\ 
+-\alpha^2\partial_t\bd\ua + \partial_t \ua + \ua\cdot \bn\ua + \bn p &= 0 \qquad\text{ in } \Omega\times (0,T],\\ 
 \bn \cdot \ua &= 0 \qquad\text{ in } \Omega\times (0,T],\\
 \ua(x,0) &= \bea.
 \end{align}
 \end{subequations}
-where $\ua$ is the velocity field of the Euler-Voigt flow. The regularization of the Euler-Voigt equations is accomplished with the addition of the term $-\alpha^2\partial_t \Delta \ua$ where $\alpha >0$ is the regularization parameter. This term is used to stabilize simulations without adding artificial viscosity, which would remove energy from the system \cite{larios_computational_2018}. The property of constant energy, known as the $\alpha$-energy, can be used to test the validity of the simulations. The $\alpha$-energy is defined as
+we introduce the subscript $\alpha$ to distinguish between solutions of (\ref{eq:Euler}) and (\ref{eq:Euler:Voigt}). The regularization of the Euler-Voigt equations is accomplished with the addition of the term $-\alpha^2\partial_t \bd \ua$ where $\alpha >0$ is the regularization parameter. This term is used to stabilize simulations without adding artificial viscosity, which would remove energy from the system \cite{larios_computational_2018}. For (\ref{eq:Euler}) the quantity $\|\u\|_{L^2}^2$ is conserved so long as the solution remains well-posed [CITATION]. For (\ref{eq:Euler:Voigt}) the conserved quantity is known as the $\alpha$-energy [CITATION]. The $\alpha$-energy is defined as
 \begin{equation}\label{eq:alpha:Energy}
 E_\alpha(t):=\|\ua(t)\|_{L^2}^2 + \alpha^2\|\bn\ua(t)\|_{L^2}^2 = E_\alpha(0).
 \end{equation}
-We note that both (\ref{eq:Euler}) and (\ref{eq:Euler:Voigt}) possess the following time scaling symmetry
+The $\alpha$-energy can be used to test the validity of the simulations. We note that both (\ref{eq:Euler}) and (\ref{eq:Euler:Voigt}) possess the following time scaling symmetry
 \begin{equation}\label{eq:time:scaling}
 \tilde{\u}(\bds x,t) = \lambda\u(\bds x,\lambda t),
 \end{equation}
-which will become relevant in our discussion of initial conditions. The behaviour of the solutions of (\ref{eq:Euler:Voigt}) as $\alpha\rightarrow 0$ can be used to determine whether the solutions of the Euler equations will develop a finite time singularity \cite{larios_computational_2018}
-
-
-\textit{Why study the Euler-Voigt equations.\\
-We study the Euler-Voigt equations because they are faster and let us explore the euler-voigt equations. By modelling the Euler-Voigt flows at decreasing values of $\alpha$ we approximate Euler flows. Based on prior communication with Dr. Xinyu Zhao.} 
+which will become relevant in our discussion of initial conditions. 
 
 \section{Finite Time Blow-up Criteria}
 
-As previously mentioned, the behaviour of the Euler-Voigt equations as $\alpha$ approaches zero can be used to determine whether solutions of the Euler equations will develop a finite time singularity. This was proved by the following theorem from \cite{larios_computational_2018}.
+The solutions of (\ref{eq:Euler:Voigt}) converge to the solutions of (\ref{eq:Euler}) as $\alpha\rightarrow 0$. Therefore, the behaviour of the solutions of (\ref{eq:Euler:Voigt}) as $\alpha\rightarrow 0$ can be used to determine whether the solutions of the Euler equations will develop a finite time singularity \cite{larios_computational_2018}. This was proved by the following theorem from \cite{larios_computational_2018}.
 \begin{thm}\label{thm:Theorem:1.1}
 Let $\bea\in H^s$, $s\geq 3$ with $\bn \cdot \ea = 0$ and let $\ua$ be the corresponding unique solution of (\ref{eq:Euler:Voigt}). Suppose that there exists a time $T^*>0$ such that
 \begin{equation}
