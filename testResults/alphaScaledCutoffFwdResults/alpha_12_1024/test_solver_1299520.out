@@ -1,0 +1,54 @@
+
+Lmod is automatically replacing "gcc/12.3" with "intel/2023.2.1".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) aocl-blas/5.1       4) fftw/3.3.10         7) netcdf-fortran-mpi/4.6.1
+  2) aocl-lapack/5.1     5) flexiblas/3.3.1     8) netcdf-mpi/4.9.2
+  3) fftw-mpi/3.3.10     6) hdf5-mpi/1.14.2     9) openmpi/4.1.5
+
+ norm =    29.6088132032681      norm_constr =   0.859067385382356     
+ solvers; time =   4.99999999999999     
+ exit normally
+ stepper =            3
+ execution time =   7.252493694444445E-002
+job 1 finished
+
+scontrol show job 1299520
+JobId=1299520 JobName=larios_fwd_test
+   UserId=noahb(3138520) GroupId=noahb(3138520) MCS_label=N/A
+   Priority=517719 Nice=0 Account=def-bprotas QOS=normal
+   JobState=COMPLETING Reason=None Dependency=(null)
+   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:16:55 TimeLimit=00:30:00 TimeMin=N/A
+   SubmitTime=2026-04-09T19:33:17 EligibleTime=2026-04-09T19:33:17
+   AccrueTime=2026-04-09T19:33:17
+   StartTime=2026-04-09T19:33:27 EndTime=2026-04-09T19:50:22 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-04-09T19:33:27 Scheduler=Backfill
+   Partition=compute AllocNode:Sid=tri-login04:604115
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=tri0131
+   BatchHost=tri0131
+   NumNodes=1 NumCPUs=192 NumTasks=128 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=128,mem=767000M,node=1,billing=128
+   AllocTRES=cpu=192,mem=767000M,node=1,billing=192
+   Socks/Node=* NtasksPerN:B:S:C=128:0:*:* CoreSpec=*
+   MinCPUsNode=128 MinMemoryNode=767000M MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)
+   Command=/scratch/noahb/Research/test_solver.sh
+   SubmitLine=SBATCH --comment /opt/slurm/bin/sbatch --export=NONE --get-user-env test_solver.sh --export=NONE --get-user-env test_solver.sh
+   WorkDir=/scratch/noahb/Research
+   Comment=/opt/slurm/bin/sbatch --export=NONE --get-user-env test_solver.sh
+   StdErr=
+   StdIn=/dev/null
+   StdOut=/scratch/noahb/Research/./results/test_solver_1299520.out
+   TresPerTask=cpu=1
+
+sacct -j 1299520
+JobID           JobName    Account    Elapsed  MaxVMSize     MaxRSS  SystemCPU    UserCPU ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- ---------- ---------- -------- 
+1299520      larios_fw+ def-bprot+   00:16:55                         00:00:00   00:00:00      0:0 
+1299520.bat+      batch def-bprot+   00:16:55                         00:00:00   00:00:00      0:0 
+1299520.ext+     extern def-bprot+   00:16:55                         00:00:00   00:00:00      0:0 
+
