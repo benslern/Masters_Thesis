@@ -1,0 +1,46 @@
+\chapter{$\|\nabla\times\be\|_{L^\infty}$ of General Taylor Green Vortex}
+\label{app:tg:vorticity:general}
+
+The general form of the 3D Taylor Green Vortex on the 3D torus $\Omega$ with characteristic length $L$ is
+$$\be_{TGV} = \begin{bmatrix}
+           V_0\sin(2\pi x/L)\cos(2\pi y/L)\cos(2\pi z/L) \\
+           -V_0\cos(2\pi x/L)\sin(2\pi y/L)\cos(2\pi z/L) \\
+           0.
+         \end{bmatrix}$$
+To simplify the notation we drop the subscript $TGV$ and substitute in
+$$x' = 2\pi x/L, \quad y' = 2\pi y/L, \quad z' = 2\pi z/L.$$
+The vorticity of $\be$ is
+$$\nabla \times \be = \begin{bmatrix}
+           \partial_2\be_3 - \partial_3\be_2 \\
+           \partial_3\be_1 - \partial_1\be_3 \\
+           \partial_1\be_2 - \partial_2\be_1.
+         \end{bmatrix}$$
+where $\partial_i$ is the partial derivative with respect to the i-th component and $\be_j$ is the j-th component of $\be$. Substituting in the partial derivatives
+\\
+\begin{small}
+$$\nabla \times \be = \begin{bmatrix}
+           0 - (-(2\pi V_0/L)\cos(x'/L)\sin(y'/L)\sin(z'/L) \\
+           -(2\pi V_0/L) \sin(x'/L)\cos(y'/L)\sin(z'/L) - 0\\
+           (2\pi V_0/L)\sin(x'/L)\sin(y'/L)\cos(z'/L) + (2\pi V_0/L)\sin(x'/L)\sin(y'/L)\cos(z'/L).
+         \end{bmatrix}$$
+\end{small}
+which simplifies to 
+\begin{small}
+$$\nabla \times \eta_{TG} = \begin{bmatrix}
+           (2\pi V_0/L) \cos(x'/L)\sin(y'/L)\sin(z'/L) \\
+           -(2\pi V_0/L) \sin(x'/L)\cos(y'/L)\sin(z'/L)\\
+           (4\pi V_0/L)\sin(x'/L)\sin(y'/L)\cos(z'/L)
+         \end{bmatrix}$$
+\end{small}
+The $\|\nabla \times \be\|_{L^{\infty}}$ norm is the maximum absolute value of the components of $\nabla \times \be$. 
+\begin{align*}
+\|\nabla \times \be_{TGV}\|_{L^{\infty}} &= \max( \vert(2\pi V_0/L) \cos(x'/L)\sin(y'/L)\sin(z'/L)\vert \\
+&, \vert-(2\pi V_0/L) \sin(x'/L)\cos(y'/L)\sin(z'/L)\vert \\
+&, \vert(4\pi V_0/L)\sin(x'/L)\sin(y'/L)\cos(z'/L)\vert)
+\end{align*}
+The maximums are
+\begin{equation*}
+\|\nabla \times \be_{TGV}\|_{L^{\infty}} = \max( (2\pi V_0/L), (2\pi V_0/L), (4\pi V_0/L))
+\end{equation*}
+Therefore,
+$$\|\nabla \times \be_{TGV}\|_{L^{\infty}} = 4\pi V_0/L.$$
