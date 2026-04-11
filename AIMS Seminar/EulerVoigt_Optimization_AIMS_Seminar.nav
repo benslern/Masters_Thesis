@@ -80,31 +80,39 @@
 \headcommand {\beamer@subsectionentry {0}{2}{3}{65}{Numerical Methods}}
 \headcommand {\slideentry {2}{3}{1}{65/69}{Numerical Methods}{0}}
 \headcommand {\beamer@framepages {65}{69}}
-\headcommand {\slideentry {2}{3}{2}{70/72}{Numerical Methods}{0}}
-\headcommand {\beamer@framepages {70}{72}}
-\headcommand {\beamer@sectionpages {32}{72}}
-\headcommand {\beamer@subsectionpages {65}{72}}
-\headcommand {\sectionentry {3}{Results}{73}{Results}{0}}
-\headcommand {\slideentry {3}{0}{1}{73/73}{}{0}}
+\headcommand {\slideentry {2}{3}{2}{70/70}{Numerical Methods}{0}}
+\headcommand {\beamer@framepages {70}{70}}
+\headcommand {\slideentry {2}{3}{3}{71/71}{Numerical Methods}{0}}
+\headcommand {\beamer@framepages {71}{71}}
+\headcommand {\slideentry {2}{3}{4}{72/72}{Numerical Methods}{0}}
+\headcommand {\beamer@framepages {72}{72}}
+\headcommand {\slideentry {2}{3}{5}{73/73}{Numerical Methods}{0}}
 \headcommand {\beamer@framepages {73}{73}}
-\headcommand {\beamer@subsectionpages {73}{73}}
-\headcommand {\beamer@subsectionentry {0}{3}{1}{74}{Pre-Optimization Results}}
-\headcommand {\slideentry {3}{1}{1}{74/74}{Pre-Optimization Results}{0}}
-\headcommand {\beamer@framepages {74}{74}}
-\headcommand {\slideentry {3}{1}{2}{75/75}{Pre-Optimization Results}{0}}
-\headcommand {\beamer@framepages {75}{75}}
-\headcommand {\slideentry {3}{1}{3}{76/76}{Pre-Optimization Results}{0}}
-\headcommand {\beamer@framepages {76}{76}}
-\headcommand {\slideentry {3}{1}{4}{77/77}{Pre-Optimization Results}{0}}
+\headcommand {\slideentry {2}{3}{6}{74/76}{Numerical Methods}{0}}
+\headcommand {\beamer@framepages {74}{76}}
+\headcommand {\beamer@sectionpages {32}{76}}
+\headcommand {\beamer@subsectionpages {65}{76}}
+\headcommand {\sectionentry {3}{Results}{77}{Results}{0}}
+\headcommand {\slideentry {3}{0}{1}{77/77}{}{0}}
 \headcommand {\beamer@framepages {77}{77}}
-\headcommand {\slideentry {3}{1}{5}{78/78}{Pre-Optimization Results}{0}}
+\headcommand {\beamer@subsectionpages {77}{77}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{78}{Pre-Optimization Results}}
+\headcommand {\slideentry {3}{1}{1}{78/78}{Pre-Optimization Results}{0}}
 \headcommand {\beamer@framepages {78}{78}}
-\headcommand {\slideentry {3}{1}{6}{79/79}{Pre-Optimization Results}{0}}
+\headcommand {\slideentry {3}{1}{2}{79/79}{Pre-Optimization Results}{0}}
 \headcommand {\beamer@framepages {79}{79}}
-\headcommand {\slideentry {3}{1}{7}{80/80}{Pre-Optimization Results}{0}}
+\headcommand {\slideentry {3}{1}{3}{80/80}{Pre-Optimization Results}{0}}
 \headcommand {\beamer@framepages {80}{80}}
-\headcommand {\beamer@partpages {1}{80}}
-\headcommand {\beamer@subsectionpages {81}{80}}
-\headcommand {\beamer@sectionpages {73}{80}}
-\headcommand {\beamer@documentpages {80}}
-\headcommand {\gdef \inserttotalframenumber {41}}
+\headcommand {\slideentry {3}{1}{4}{81/81}{Pre-Optimization Results}{0}}
+\headcommand {\beamer@framepages {81}{81}}
+\headcommand {\slideentry {3}{1}{5}{82/82}{Pre-Optimization Results}{0}}
+\headcommand {\beamer@framepages {82}{82}}
+\headcommand {\slideentry {3}{1}{6}{83/83}{Pre-Optimization Results}{0}}
+\headcommand {\beamer@framepages {83}{83}}
+\headcommand {\slideentry {3}{1}{7}{84/84}{Pre-Optimization Results}{0}}
+\headcommand {\beamer@framepages {84}{84}}
+\headcommand {\beamer@partpages {1}{84}}
+\headcommand {\beamer@subsectionpages {85}{84}}
+\headcommand {\beamer@sectionpages {77}{84}}
+\headcommand {\beamer@documentpages {84}}
+\headcommand {\gdef \inserttotalframenumber {45}}

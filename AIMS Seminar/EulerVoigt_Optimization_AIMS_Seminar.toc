@@ -7,5 +7,5 @@
 \beamer@subsectionintoc {2}{1}{Formulation of the Optimization Problem}{33}{0}{2}
 \beamer@subsectionintoc {2}{2}{Riemannian Conjugate Gradient Method}{36}{0}{2}
 \beamer@subsectionintoc {2}{3}{Numerical Methods}{65}{0}{2}
-\beamer@sectionintoc {3}{Results}{73}{0}{3}
-\beamer@subsectionintoc {3}{1}{Pre-Optimization Results}{74}{0}{3}
+\beamer@sectionintoc {3}{Results}{77}{0}{3}
+\beamer@subsectionintoc {3}{1}{Pre-Optimization Results}{78}{0}{3}
