@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  11 APR 2026 16:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  11 APR 2026 16:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1930,188 +1930,216 @@ Overfull \hbox (10.55711pt too wide) in paragraph at lines 1397--1397
 [73
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1441--1441
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1469--1469
 []|   $[]$  
  []
 
 [74
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1441--1441
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1540--1540
 []|   $[]$  
  []
 
 [75
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1441--1441
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1611--1611
 []|   $[]$  
  []
 
 [76
 
-] [77
+]
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1682--1682
+[]|   $[]$  
+ []
+
+[77
 
 ]
-<Figure_4_16.png, id=1315, 578.16pt x 289.08pt>
-File: Figure_4_16.png Graphic file (type png)
-<use Figure_4_16.png>
-Package pdftex.def Info: Figure_4_16.png  used on input line 1471.
-(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
-
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1471--1471
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1471--1471
-
- []
-
-
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1471--1471
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1727--1727
 []|   $[]$  
  []
 
 [78
 
- <./Figure_4_16.png>]
-<Figure_5_8.png, id=1333, 578.16pt x 289.08pt>
-File: Figure_5_8.png Graphic file (type png)
-<use Figure_5_8.png>
-Package pdftex.def Info: Figure_5_8.png  used on input line 1490.
-(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
-
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1490--1490
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1490--1490
-
- []
-
-
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1490--1490
+]
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1727--1727
 []|   $[]$  
  []
 
 [79
 
- <./Figure_5_8.png>]
-<Figure_6_4.png, id=1351, 578.16pt x 289.08pt>
-File: Figure_6_4.png Graphic file (type png)
-<use Figure_6_4.png>
-Package pdftex.def Info: Figure_6_4.png  used on input line 1509.
-(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
-
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1509--1509
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1509--1509
-
- []
-
-
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1509--1509
+]
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1727--1727
 []|   $[]$  
  []
 
 [80
 
- <./Figure_6_4.png>]
-<Figure_7_2.png, id=1368, 578.16pt x 289.08pt>
-File: Figure_7_2.png Graphic file (type png)
-<use Figure_7_2.png>
-Package pdftex.def Info: Figure_7_2.png  used on input line 1528.
+] [81
+
+]
+<Figure_4_16.png, id=1393, 578.16pt x 289.08pt>
+File: Figure_4_16.png Graphic file (type png)
+<use Figure_4_16.png>
+Package pdftex.def Info: Figure_4_16.png  used on input line 1757.
 (pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1528--1528
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1757--1757
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1528--1528
+Underfull \hbox (badness 10000) in paragraph at lines 1757--1757
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1528--1528
-[]|   $[]$  
- []
-
-[81
-
- <./Figure_7_2.png>]
-<Figure_8_1.png, id=1385, 578.16pt x 289.08pt>
-File: Figure_8_1.png Graphic file (type png)
-<use Figure_8_1.png>
-Package pdftex.def Info: Figure_8_1.png  used on input line 1547.
-(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
-
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1547--1547
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1547--1547
-
- []
-
-
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1547--1547
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1757--1757
 []|   $[]$  
  []
 
 [82
 
- <./Figure_8_1.png>]
-<Figure_9_0.png, id=1402, 578.16pt x 289.08pt>
-File: Figure_9_0.png Graphic file (type png)
-<use Figure_9_0.png>
-Package pdftex.def Info: Figure_9_0.png  used on input line 1566.
+ <./Figure_4_16.png>]
+<Figure_5_8.png, id=1409, 578.16pt x 289.08pt>
+File: Figure_5_8.png Graphic file (type png)
+<use Figure_5_8.png>
+Package pdftex.def Info: Figure_5_8.png  used on input line 1776.
 (pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1566--1566
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1776--1776
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1566--1566
+Underfull \hbox (badness 10000) in paragraph at lines 1776--1776
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1566--1566
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1776--1776
 []|   $[]$  
  []
 
 [83
 
- <./Figure_9_0.png>]
-<Figure_3.png, id=1418, 547.2947pt x 281.55188pt>
-File: Figure_3.png Graphic file (type png)
-<use Figure_3.png>
-Package pdftex.def Info: Figure_3.png  used on input line 1585.
-(pdftex.def)             Requested size: 287.57774pt x 147.94153pt.
+ <./Figure_5_8.png>]
+<Figure_6_4.png, id=1426, 578.16pt x 289.08pt>
+File: Figure_6_4.png Graphic file (type png)
+<use Figure_6_4.png>
+Package pdftex.def Info: Figure_6_4.png  used on input line 1795.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1585--1585
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1795--1795
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1585--1585
+Underfull \hbox (badness 10000) in paragraph at lines 1795--1795
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1585--1585
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1795--1795
 []|   $[]$  
  []
 
 [84
+
+ <./Figure_6_4.png>]
+<Figure_7_2.png, id=1443, 578.16pt x 289.08pt>
+File: Figure_7_2.png Graphic file (type png)
+<use Figure_7_2.png>
+Package pdftex.def Info: Figure_7_2.png  used on input line 1814.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1814--1814
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1814--1814
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1814--1814
+[]|   $[]$  
+ []
+
+[85
+
+ <./Figure_7_2.png>]
+<Figure_8_1.png, id=1461, 578.16pt x 289.08pt>
+File: Figure_8_1.png Graphic file (type png)
+<use Figure_8_1.png>
+Package pdftex.def Info: Figure_8_1.png  used on input line 1833.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1833--1833
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1833--1833
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1833--1833
+[]|   $[]$  
+ []
+
+[86
+
+ <./Figure_8_1.png>]
+<Figure_9_0.png, id=1478, 578.16pt x 289.08pt>
+File: Figure_9_0.png Graphic file (type png)
+<use Figure_9_0.png>
+Package pdftex.def Info: Figure_9_0.png  used on input line 1852.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1852--1852
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1852--1852
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1852--1852
+[]|   $[]$  
+ []
+
+[87
+
+ <./Figure_9_0.png>]
+<Figure_3.png, id=1495, 547.2947pt x 281.55188pt>
+File: Figure_3.png Graphic file (type png)
+<use Figure_3.png>
+Package pdftex.def Info: Figure_3.png  used on input line 1871.
+(pdftex.def)             Requested size: 287.57774pt x 147.94153pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1871--1871
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1871--1871
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1871--1871
+[]|   $[]$  
+ []
+
+[88
 
  <./Figure_3.png>]
 \tf@nav=\write8
@@ -2128,73 +2156,61 @@ Overfull \hbox (10.55711pt too wide) in paragraph at lines 1585--1585
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-
-
-Package rerunfilecheck Warning: File `EulerVoigt_Optimization_AIMS_Seminar.out'
- has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `EulerVoigt_Optimization_AIMS_Semina
-r.out':
-(rerunfilecheck)             Before: 43223C001F9DB54F3ED9A7C606EC14AF;1842
-(rerunfilecheck)             After:  01ADDD78C6721B73ECB62E69363BB5D1;1842.
+Package rerunfilecheck Info: File `EulerVoigt_Optimization_AIMS_Seminar.out' ha
+s not changed.
+(rerunfilecheck)             Checksum: 6796795050A94681C90EC0297B560D52;1842.
  ) 
 Here is how much of TeX's memory you used:
- 28193 strings out of 474486
- 566712 string characters out of 5743755
+ 28225 strings out of 474486
+ 567218 string characters out of 5743755
  1984542 words of memory out of 5000000
- 49734 multiletter control sequences out of 15000+600000
- 590222 words of font info for 122 fonts, out of 8000000 for 9000
+ 49759 multiletter control sequences out of 15000+600000
+ 596834 words of font info for 134 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,22n,123p,432b,847s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{Outline0.3.1.77} has been referenced but does not e
-xist, replaced by a fixed one
-
- <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecso08
-00.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi657\
-ecso1000.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
-pi600\ecso1000.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappe
-n/ec/dpi600\tcss1095.pk><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmbsy10.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb><C:/Users/bensl/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/bensl/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/be
-nsl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex8.pfb
-><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmmi5.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmmi6.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmmi7.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/bensl/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/bensl/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Users/ben
-sl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/U
-sers/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.
-pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmss12.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmss17.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmss8.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/bensl/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Users/bensl/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi8.pfb><C:/Users/bensl/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/
-bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C
-:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
-6.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmsy7.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmsy8.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmtt8.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/bensl/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb><C:/Users/bensl/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/User
-s/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7
-.pfb>
-Output written on EulerVoigt_Optimization_AIMS_Seminar.pdf (84 pages, 1135224 b
+ <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecso
+0800.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi65
+7\ecso1000.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\ecso1000.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
+pen/ec/dpi600\tcss1095.pk><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmbsy10.pfb><C:/Users/bensl/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb><C:/Users/bensl/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/bensl/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/
+bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex8.p
+fb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmmi10.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmmi5.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmmi6.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/bensl/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/bensl/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/bensl/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Users/b
+ensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:
+/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss1
+0.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmss12.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmss17.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmss8.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/bensl/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Users/bensl/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi8.pfb><C:/Users/bensl/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/User
+s/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb>
+<C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+sy6.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmsy7.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmsy8.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmtt8.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/bensl/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb><C:/Users/bensl/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Us
+ers/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msb
+m7.pfb>
+Output written on EulerVoigt_Optimization_AIMS_Seminar.pdf (88 pages, 1152418 b
 ytes).
 PDF statistics:
- 1621 PDF objects out of 1728 (max. 8388607)
- 191 named destinations out of 1000 (max. 500000)
+ 1698 PDF objects out of 1728 (max. 8388607)
+ 198 named destinations out of 1000 (max. 500000)
  192 words of extra memory for PDF output out of 10000 (max. 10000000)
 
