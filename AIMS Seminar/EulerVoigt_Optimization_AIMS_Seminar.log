@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  11 APR 2026 15:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  11 APR 2026 15:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1286,7 +1286,7 @@ Overfull \hbox (10.55711pt too wide) in paragraph at lines 359--359
 [12
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 385--385
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 389--389
 []|   $[]$  
  []
 
@@ -1646,264 +1646,303 @@ Overfull \vbox (1.83725pt too high) detected at line 982
 [56
 
 ]
-<riemannian.png, id=979, 831.105pt x 391.4625pt>
-File: riemannian.png Graphic file (type png)
-<use riemannian.png>
-Package pdftex.def Info: riemannian.png  used on input line 995.
+<riemannian_1.png, id=979, 831.105pt x 391.4625pt>
+File: riemannian_1.png Graphic file (type png)
+<use riemannian_1.png>
+Package pdftex.def Info: riemannian_1.png  used on input line 996.
 (pdftex.def)             Requested size: 307.28766pt x 144.7373pt.
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 995--995
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 996--996
 []|   $[]$  
  []
 
 [57
 
- <./riemannian.png>]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1030--1030
+ <./riemannian_1.png>]
+<riemannian_2.png, id=999, 831.105pt x 391.4625pt>
+File: riemannian_2.png Graphic file (type png)
+<use riemannian_2.png>
+Package pdftex.def Info: riemannian_2.png  used on input line 1010.
+(pdftex.def)             Requested size: 307.28766pt x 144.7373pt.
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1010--1010
 []|   $[]$  
  []
 
 [58
 
-]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1030--1030
+ <./riemannian_2.png>]
+<riemannian_3.png, id=1019, 831.105pt x 391.4625pt>
+File: riemannian_3.png Graphic file (type png)
+<use riemannian_3.png>
+Package pdftex.def Info: riemannian_3.png  used on input line 1024.
+(pdftex.def)             Requested size: 307.28766pt x 144.7373pt.
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1024--1024
 []|   $[]$  
  []
 
 [59
 
-]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1030--1030
+ <./riemannian_3.png>]
+<riemannian.png, id=1039, 831.105pt x 391.4625pt>
+File: riemannian.png Graphic file (type png)
+<use riemannian.png>
+Package pdftex.def Info: riemannian.png  used on input line 1037.
+(pdftex.def)             Requested size: 307.28766pt x 144.7373pt.
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1037--1037
 []|   $[]$  
  []
 
 [60
 
-]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1030--1030
+ <./riemannian.png>]
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1072--1072
 []|   $[]$  
  []
 
 [61
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1062--1062
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1072--1072
 []|   $[]$  
  []
 
 [62
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1062--1062
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1072--1072
 []|   $[]$  
  []
 
 [63
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1062--1062
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1072--1072
 []|   $[]$  
  []
 
 [64
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1062--1062
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1104--1104
 []|   $[]$  
  []
 
 [65
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1062--1062
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1104--1104
 []|   $[]$  
  []
 
 [66
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1107--1107
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1104--1104
 []|   $[]$  
  []
 
 [67
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1107--1107
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1104--1104
 []|   $[]$  
  []
 
 [68
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1107--1107
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1104--1104
 []|   $[]$  
  []
 
 [69
 
-] [70
+]
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1149--1149
+[]|   $[]$  
+ []
+
+[70
 
 ]
-<Figure_4_16.png, id=1179, 578.16pt x 289.08pt>
-File: Figure_4_16.png Graphic file (type png)
-<use Figure_4_16.png>
-Package pdftex.def Info: Figure_4_16.png  used on input line 1137.
-(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
-
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1137--1137
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1137--1137
-
- []
-
-
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1137--1137
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1149--1149
 []|   $[]$  
  []
 
 [71
 
- <./Figure_4_16.png>]
-<Figure_5_8.png, id=1195, 578.16pt x 289.08pt>
-File: Figure_5_8.png Graphic file (type png)
-<use Figure_5_8.png>
-Package pdftex.def Info: Figure_5_8.png  used on input line 1156.
-(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
-
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1156--1156
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1156--1156
-
- []
-
-
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1156--1156
+]
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1149--1149
 []|   $[]$  
  []
 
 [72
 
- <./Figure_5_8.png>]
-<Figure_6_4.png, id=1212, 578.16pt x 289.08pt>
-File: Figure_6_4.png Graphic file (type png)
-<use Figure_6_4.png>
-Package pdftex.def Info: Figure_6_4.png  used on input line 1175.
+] [73
+
+]
+<Figure_4_16.png, id=1240, 578.16pt x 289.08pt>
+File: Figure_4_16.png Graphic file (type png)
+<use Figure_4_16.png>
+Package pdftex.def Info: Figure_4_16.png  used on input line 1179.
 (pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1175--1175
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1179--1179
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1175--1175
+Underfull \hbox (badness 10000) in paragraph at lines 1179--1179
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1175--1175
-[]|   $[]$  
- []
-
-[73
-
- <./Figure_6_4.png>]
-<Figure_7_2.png, id=1230, 578.16pt x 289.08pt>
-File: Figure_7_2.png Graphic file (type png)
-<use Figure_7_2.png>
-Package pdftex.def Info: Figure_7_2.png  used on input line 1194.
-(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
-
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1194--1194
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1194--1194
-
- []
-
-
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1194--1194
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1179--1179
 []|   $[]$  
  []
 
 [74
 
- <./Figure_7_2.png>]
-<Figure_8_1.png, id=1247, 578.16pt x 289.08pt>
-File: Figure_8_1.png Graphic file (type png)
-<use Figure_8_1.png>
-Package pdftex.def Info: Figure_8_1.png  used on input line 1213.
+ <./Figure_4_16.png>]
+<Figure_5_8.png, id=1258, 578.16pt x 289.08pt>
+File: Figure_5_8.png Graphic file (type png)
+<use Figure_5_8.png>
+Package pdftex.def Info: Figure_5_8.png  used on input line 1198.
 (pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1213--1213
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1198--1198
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1213--1213
+Underfull \hbox (badness 10000) in paragraph at lines 1198--1198
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1213--1213
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1198--1198
 []|   $[]$  
  []
 
 [75
 
- <./Figure_8_1.png>]
-<Figure_9_0.png, id=1264, 578.16pt x 289.08pt>
-File: Figure_9_0.png Graphic file (type png)
-<use Figure_9_0.png>
-Package pdftex.def Info: Figure_9_0.png  used on input line 1232.
+ <./Figure_5_8.png>]
+<Figure_6_4.png, id=1275, 578.16pt x 289.08pt>
+File: Figure_6_4.png Graphic file (type png)
+<use Figure_6_4.png>
+Package pdftex.def Info: Figure_6_4.png  used on input line 1217.
 (pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1232--1232
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1217--1217
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1232--1232
+Underfull \hbox (badness 10000) in paragraph at lines 1217--1217
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1232--1232
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1217--1217
 []|   $[]$  
  []
 
 [76
 
- <./Figure_9_0.png>]
-<Figure_3.png, id=1281, 547.2947pt x 281.55188pt>
-File: Figure_3.png Graphic file (type png)
-<use Figure_3.png>
-Package pdftex.def Info: Figure_3.png  used on input line 1251.
-(pdftex.def)             Requested size: 287.57774pt x 147.94153pt.
+ <./Figure_6_4.png>]
+<Figure_7_2.png, id=1292, 578.16pt x 289.08pt>
+File: Figure_7_2.png Graphic file (type png)
+<use Figure_7_2.png>
+Package pdftex.def Info: Figure_7_2.png  used on input line 1236.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1251--1251
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1236--1236
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1251--1251
+Underfull \hbox (badness 10000) in paragraph at lines 1236--1236
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1251--1251
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1236--1236
 []|   $[]$  
  []
 
 [77
+
+ <./Figure_7_2.png>]
+<Figure_8_1.png, id=1308, 578.16pt x 289.08pt>
+File: Figure_8_1.png Graphic file (type png)
+<use Figure_8_1.png>
+Package pdftex.def Info: Figure_8_1.png  used on input line 1255.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1255--1255
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1255--1255
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1255--1255
+[]|   $[]$  
+ []
+
+[78
+
+ <./Figure_8_1.png>]
+<Figure_9_0.png, id=1325, 578.16pt x 289.08pt>
+File: Figure_9_0.png Graphic file (type png)
+<use Figure_9_0.png>
+Package pdftex.def Info: Figure_9_0.png  used on input line 1274.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1274--1274
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1274--1274
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1274--1274
+[]|   $[]$  
+ []
+
+[79
+
+ <./Figure_9_0.png>]
+<Figure_3.png, id=1343, 547.2947pt x 281.55188pt>
+File: Figure_3.png Graphic file (type png)
+<use Figure_3.png>
+Package pdftex.def Info: Figure_3.png  used on input line 1293.
+(pdftex.def)             Requested size: 287.57774pt x 147.94153pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1293--1293
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1293--1293
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1293--1293
+[]|   $[]$  
+ []
+
+[80
 
  <./Figure_3.png>]
 \tf@nav=\write8
@@ -1920,61 +1959,77 @@ Overfull \hbox (10.55711pt too wide) in paragraph at lines 1251--1251
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-Package rerunfilecheck Info: File `EulerVoigt_Optimization_AIMS_Seminar.out' ha
-s not changed.
-(rerunfilecheck)             Checksum: B8562A971BDEF96E22A9D43EDC61ECF4;1725.
+
+
+Package rerunfilecheck Warning: File `EulerVoigt_Optimization_AIMS_Seminar.out'
+ has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `EulerVoigt_Optimization_AIMS_Semina
+r.out':
+(rerunfilecheck)             Before: D3FB71B87F036C6DDD5E64B241E10A7B;1842
+(rerunfilecheck)             After:  B9C44B1F258E0FC69E7C196D61C86213;1842.
  ) 
 Here is how much of TeX's memory you used:
- 25329 strings out of 474486
- 490227 string characters out of 5743755
+ 25358 strings out of 474486
+ 490794 string characters out of 5743755
  1948542 words of memory out of 5000000
- 46899 multiletter control sequences out of 15000+600000
+ 46920 multiletter control sequences out of 15000+600000
  583610 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,22n,123p,432b,798s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecso
-0800.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi65
-7\ecso1000.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
-/dpi600\ecso1000.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
-pen/ec/dpi600\tcss1095.pk><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmbsy10.pfb><C:/Users/bensl/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb><C:/Users/bensl/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/bensl/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/
-bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex8.p
-fb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmmi10.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmmi5.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmmi6.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/bensl/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/bensl/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/bensl/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Users/b
-ensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:
-/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss1
-0.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmss12.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmss17.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmss8.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/bensl/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Users/bensl/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi8.pfb><C:/Users/bensl/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/User
-s/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb>
-<C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-sy6.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmsy7.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmsy8.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmtt8.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/bensl/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb><C:/Users/bensl/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Us
-ers/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msb
-m7.pfb>
-Output written on EulerVoigt_Optimization_AIMS_Seminar.pdf (77 pages, 955501 by
-tes).
+ 128i,22n,123p,432b,800s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{Outline0.3.1.71} has been referenced but does not e
+xist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{Outline0.2.3.62} has been referenced but does not e
+xist, replaced by a fixed one
+
+ <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecso08
+00.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi657\
+ecso1000.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
+pi600\ecso1000.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappe
+n/ec/dpi600\tcss1095.pk><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmbsy10.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb><C:/Users/bensl/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/bensl/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/be
+nsl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex8.pfb
+><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmmi5.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmmi6.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmmi7.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/bensl/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/bensl/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Users/ben
+sl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/U
+sers/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.
+pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmss12.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmss17.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmss8.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/bensl/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Users/bensl/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi8.pfb><C:/Users/bensl/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/
+bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C
+:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
+6.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmsy7.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmsy8.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmtt8.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/bensl/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb><C:/Users/bensl/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/User
+s/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7
+.pfb>
+Output written on EulerVoigt_Optimization_AIMS_Seminar.pdf (80 pages, 1117668 b
+ytes).
 PDF statistics:
- 1480 PDF objects out of 1728 (max. 8388607)
- 176 named destinations out of 1000 (max. 500000)
- 177 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1545 PDF objects out of 1728 (max. 8388607)
+ 184 named destinations out of 1000 (max. 500000)
+ 192 words of extra memory for PDF output out of 10000 (max. 10000000)
 
