@@ -1,0 +1,51 @@
+\frame
+{
+\hspace*{-1.0cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{proof}[\proofname\ (Cont.)]\renewcommand{\qedsymbol}{}
+Taking the limsup as $\alpha\rightarrow 0$, we obtain that
+\begin{scriptsize}
+\begin{equation*}
+\limsup_{\alpha\rightarrow 0}\left(\alpha^2\!\!\!\sup_{t\in[0,T^*]}\!\|\bn\ua(t)\|_{L^2}^2\right) = \limsup_{\alpha\rightarrow 0}\left(\|\bea\|_{L^2}^2+\alpha^2\|\bn(\bea)\|_{L^2}^2 - \!\!\!\inf_{t\in[0,T^*]} \|\ua(t)\|_{L^2}^2\right) 
+\end{equation*}
+\end{scriptsize}\\
+Here we use the fact that the convergence of the solutions of the Euler-Voigt equations to the solution of the Euler equations is uniform on $[0,T^*]$, as shown in Theorem 5.1.
+\begin{equation*}
+\limsup_{\alpha\rightarrow 0}\left(\alpha^2\!\!\!\sup_{t\in[0,T^*]}\!\|\bn\ua(t)\|_{L^2}^2\right) = \|\be\|_{L^2}^2 - \|\u(t_\alpha)\|_{L^2}^2
+\end{equation*}
+where
+\begin{equation*}
+\inf_{t\in[0,T^*]}\|\ua(t)\|_{L^2} = \|\ua(t_\alpha)\|_{L^2}
+\end{equation*}
+\end{proof}
+
+\Emp
+}
+
+\frame
+{
+\hspace*{-1.0cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{proof}[\proofname\ (Cont.)]
+Because Euler is regular on $[0,T^*]$, energy is conserved
+\begin{equation*}
+\|\u(t_\alpha)\|_{L^2}^2 = \|\be\|_{L^2}^2
+\end{equation*}
+Therefore
+\begin{scriptsize}
+\begin{subequations}
+\begin{align*}
+\limsup_{\alpha\rightarrow 0}\left(\alpha^2\!\!\!\sup_{t\in[0,T^*]}\!\|\bn\ua(t)\|_{L^2}^2\right) &= \|\be\|_{L^2}^2 - \|\be\|_{L^2}^2\\
+ &= 0
+\end{align*}
+\end{subequations}
+\end{scriptsize}\\
+which contradicts the hypothesis in the theorem that the above expression is positive.
+\end{proof}
+
+\Emp
+}
