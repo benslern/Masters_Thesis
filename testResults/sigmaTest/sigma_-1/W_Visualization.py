@@ -8,7 +8,7 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
-for i in range(300,400,10):
+for i in range(400,500,10):
     ResetSession()
 
     my_iter = str(i)
