@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  11 APR 2026 15:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  11 APR 2026 15:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1417,12 +1417,12 @@ Overfull \hbox (10.55711pt too wide) in paragraph at lines 635--635
 [30
 
 ]
-<interplay_vorticity_b.png, id=580, 407.121pt x 228.855pt>
+<interplay_vorticity_b.png, id=586, 407.121pt x 228.855pt>
 File: interplay_vorticity_b.png Graphic file (type png)
 <use interplay_vorticity_b.png>
 Package pdftex.def Info: interplay_vorticity_b.png  used on input line 670.
 (pdftex.def)             Requested size: 138.2785pt x 77.72934pt.
-<Figure_1.png, id=581, 488.5452pt x 274.626pt>
+<Figure_1.png, id=587, 488.5452pt x 274.626pt>
 File: Figure_1.png Graphic file (type png)
 <use Figure_1.png>
 Package pdftex.def Info: Figure_1.png  used on input line 670.
@@ -1539,373 +1539,371 @@ Overfull \hbox (10.55711pt too wide) in paragraph at lines 846--846
 [43
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 871--871
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 869--869
 []|   $[]$  
  []
 
 [44
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 871--871
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 869--869
 []|   $[]$  
  []
 
 [45
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 871--871
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 869--869
 []|   $[]$  
  []
 
 [46
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 906--906
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 904--904
 []|   $[]$  
  []
 
 [47
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 906--906
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 904--904
 []|   $[]$  
  []
 
 [48
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 906--906
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 904--904
 []|   $[]$  
  []
 
 [49
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 941--941
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 939--939
 []|   $[]$  
  []
 
 [50
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 941--941
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 939--939
 []|   $[]$  
  []
 
 [51
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 941--941
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 939--939
 []|   $[]$  
  []
 
 [52
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 984--984
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 982--982
 []|   $[]$  
  []
 
 
-Overfull \vbox (1.83725pt too high) detected at line 984
+Overfull \vbox (1.83725pt too high) detected at line 982
  []
 
 [53
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 984--984
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 982--982
 []|   $[]$  
  []
 
 
-Overfull \vbox (1.83725pt too high) detected at line 984
+Overfull \vbox (1.83725pt too high) detected at line 982
  []
 
 [54
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 984--984
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 982--982
 []|   $[]$  
  []
 
 
-Overfull \vbox (1.83725pt too high) detected at line 984
+Overfull \vbox (1.83725pt too high) detected at line 982
  []
 
 [55
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 984--984
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 982--982
 []|   $[]$  
  []
 
 
-Overfull \vbox (1.83725pt too high) detected at line 984
+Overfull \vbox (1.83725pt too high) detected at line 982
  []
 
 [56
 
 ]
-<riemannian.png, id=972, 831.105pt x 391.4625pt>
+<riemannian.png, id=979, 831.105pt x 391.4625pt>
 File: riemannian.png Graphic file (type png)
 <use riemannian.png>
-Package pdftex.def Info: riemannian.png  used on input line 997.
+Package pdftex.def Info: riemannian.png  used on input line 995.
 (pdftex.def)             Requested size: 307.28766pt x 144.7373pt.
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 997--997
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 995--995
 []|   $[]$  
  []
 
 [57
 
  <./riemannian.png>]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1032--1032
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1030--1030
 []|   $[]$  
  []
 
 [58
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1032--1032
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1030--1030
 []|   $[]$  
  []
 
 [59
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1032--1032
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1030--1030
 []|   $[]$  
  []
 
 [60
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1032--1032
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1030--1030
 []|   $[]$  
  []
 
 [61
 
-] [62
+]
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1062--1062
+[]|   $[]$  
+ []
+
+[62
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1070--1070
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1062--1062
 []|   $[]$  
  []
 
 [63
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1070--1070
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1062--1062
 []|   $[]$  
  []
 
 [64
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1070--1070
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1062--1062
 []|   $[]$  
  []
 
 [65
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1070--1070
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1062--1062
 []|   $[]$  
  []
 
 [66
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1070--1070
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1107--1107
 []|   $[]$  
  []
 
 [67
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1115--1115
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1107--1107
 []|   $[]$  
  []
 
 [68
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1115--1115
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1107--1107
 []|   $[]$  
  []
 
 [69
 
-]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1115--1115
-[]|   $[]$  
- []
-
-[70
-
-] [71
+] [70
 
 ]
-<Figure_4_16.png, id=1189, 578.16pt x 289.08pt>
+<Figure_4_16.png, id=1179, 578.16pt x 289.08pt>
 File: Figure_4_16.png Graphic file (type png)
 <use Figure_4_16.png>
-Package pdftex.def Info: Figure_4_16.png  used on input line 1143.
+Package pdftex.def Info: Figure_4_16.png  used on input line 1137.
 (pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1143--1143
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1137--1137
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1143--1143
+Underfull \hbox (badness 10000) in paragraph at lines 1137--1137
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1143--1143
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1137--1137
+[]|   $[]$  
+ []
+
+[71
+
+ <./Figure_4_16.png>]
+<Figure_5_8.png, id=1195, 578.16pt x 289.08pt>
+File: Figure_5_8.png Graphic file (type png)
+<use Figure_5_8.png>
+Package pdftex.def Info: Figure_5_8.png  used on input line 1156.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1156--1156
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1156--1156
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1156--1156
 []|   $[]$  
  []
 
 [72
 
- <./Figure_4_16.png>]
-<Figure_5_8.png, id=1204, 578.16pt x 289.08pt>
-File: Figure_5_8.png Graphic file (type png)
-<use Figure_5_8.png>
-Package pdftex.def Info: Figure_5_8.png  used on input line 1162.
+ <./Figure_5_8.png>]
+<Figure_6_4.png, id=1212, 578.16pt x 289.08pt>
+File: Figure_6_4.png Graphic file (type png)
+<use Figure_6_4.png>
+Package pdftex.def Info: Figure_6_4.png  used on input line 1175.
 (pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1162--1162
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1175--1175
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1162--1162
+Underfull \hbox (badness 10000) in paragraph at lines 1175--1175
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1162--1162
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1175--1175
 []|   $[]$  
  []
 
 [73
 
- <./Figure_5_8.png>]
-<Figure_6_4.png, id=1220, 578.16pt x 289.08pt>
-File: Figure_6_4.png Graphic file (type png)
-<use Figure_6_4.png>
-Package pdftex.def Info: Figure_6_4.png  used on input line 1181.
+ <./Figure_6_4.png>]
+<Figure_7_2.png, id=1230, 578.16pt x 289.08pt>
+File: Figure_7_2.png Graphic file (type png)
+<use Figure_7_2.png>
+Package pdftex.def Info: Figure_7_2.png  used on input line 1194.
 (pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1181--1181
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1194--1194
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1181--1181
+Underfull \hbox (badness 10000) in paragraph at lines 1194--1194
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1181--1181
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1194--1194
 []|   $[]$  
  []
 
 [74
 
- <./Figure_6_4.png>]
-<Figure_7_2.png, id=1235, 578.16pt x 289.08pt>
-File: Figure_7_2.png Graphic file (type png)
-<use Figure_7_2.png>
-Package pdftex.def Info: Figure_7_2.png  used on input line 1200.
+ <./Figure_7_2.png>]
+<Figure_8_1.png, id=1247, 578.16pt x 289.08pt>
+File: Figure_8_1.png Graphic file (type png)
+<use Figure_8_1.png>
+Package pdftex.def Info: Figure_8_1.png  used on input line 1213.
 (pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1200--1200
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1213--1213
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1200--1200
+Underfull \hbox (badness 10000) in paragraph at lines 1213--1213
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1200--1200
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1213--1213
 []|   $[]$  
  []
 
 [75
 
- <./Figure_7_2.png>]
-<Figure_8_1.png, id=1250, 578.16pt x 289.08pt>
-File: Figure_8_1.png Graphic file (type png)
-<use Figure_8_1.png>
-Package pdftex.def Info: Figure_8_1.png  used on input line 1219.
+ <./Figure_8_1.png>]
+<Figure_9_0.png, id=1264, 578.16pt x 289.08pt>
+File: Figure_9_0.png Graphic file (type png)
+<use Figure_9_0.png>
+Package pdftex.def Info: Figure_9_0.png  used on input line 1232.
 (pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1219--1219
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1232--1232
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1219--1219
+Underfull \hbox (badness 10000) in paragraph at lines 1232--1232
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1219--1219
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1232--1232
 []|   $[]$  
  []
 
 [76
 
- <./Figure_8_1.png>]
-<Figure_9_0.png, id=1265, 578.16pt x 289.08pt>
-File: Figure_9_0.png Graphic file (type png)
-<use Figure_9_0.png>
-Package pdftex.def Info: Figure_9_0.png  used on input line 1238.
-(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+ <./Figure_9_0.png>]
+<Figure_3.png, id=1281, 547.2947pt x 281.55188pt>
+File: Figure_3.png Graphic file (type png)
+<use Figure_3.png>
+Package pdftex.def Info: Figure_3.png  used on input line 1251.
+(pdftex.def)             Requested size: 287.57774pt x 147.94153pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1238--1238
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1251--1251
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1238--1238
+Underfull \hbox (badness 10000) in paragraph at lines 1251--1251
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1238--1238
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1251--1251
 []|   $[]$  
  []
 
 [77
-
- <./Figure_9_0.png>]
-<Figure_3.png, id=1280, 547.2947pt x 281.55188pt>
-File: Figure_3.png Graphic file (type png)
-<use Figure_3.png>
-Package pdftex.def Info: Figure_3.png  used on input line 1257.
-(pdftex.def)             Requested size: 287.57774pt x 147.94153pt.
-
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1257--1257
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1257--1257
-
- []
-
-
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1257--1257
-[]|   $[]$  
- []
-
-[78
 
  <./Figure_3.png>]
 \tf@nav=\write8
@@ -1922,23 +1920,15 @@ Overfull \hbox (10.55711pt too wide) in paragraph at lines 1257--1257
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-
-
-Package rerunfilecheck Warning: File `EulerVoigt_Optimization_AIMS_Seminar.out'
- has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `EulerVoigt_Optimization_AIMS_Semina
-r.out':
-(rerunfilecheck)             Before: ADE2EEDF303B74810FE4FFEECBC0A936;1720
-(rerunfilecheck)             After:  37EF1F40C978B3802544ED7A2D5C2818;1711.
+Package rerunfilecheck Info: File `EulerVoigt_Optimization_AIMS_Seminar.out' ha
+s not changed.
+(rerunfilecheck)             Checksum: B8562A971BDEF96E22A9D43EDC61ECF4;1725.
  ) 
 Here is how much of TeX's memory you used:
  25329 strings out of 474486
- 490214 string characters out of 5743755
+ 490227 string characters out of 5743755
  1948542 words of memory out of 5000000
- 46898 multiletter control sequences out of 15000+600000
+ 46899 multiletter control sequences out of 15000+600000
  583610 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,22n,123p,432b,798s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1981,10 +1971,10 @@ grams/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb><C:/Users/bensl/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Us
 ers/bensl/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msb
 m7.pfb>
-Output written on EulerVoigt_Optimization_AIMS_Seminar.pdf (78 pages, 957667 by
+Output written on EulerVoigt_Optimization_AIMS_Seminar.pdf (77 pages, 955501 by
 tes).
 PDF statistics:
- 1478 PDF objects out of 1728 (max. 8388607)
- 177 named destinations out of 1000 (max. 500000)
- 169 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1480 PDF objects out of 1728 (max. 8388607)
+ 176 named destinations out of 1000 (max. 500000)
+ 177 words of extra memory for PDF output out of 10000 (max. 10000000)
 
