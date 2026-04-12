@@ -30,7 +30,7 @@ ax.tick_params(
 )
 
 Data = []
-a = 2
+a = 1
 for i in range(a,a+4,4):
     ax.set_title(r"$\alpha$-Energy vs $t$ - $\alpha=$"+str(i)+r"$/1024$")
 

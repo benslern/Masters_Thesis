@@ -1,15 +1,17 @@
-import matplotlib.pyplot as plt
 import numpy as np
+from scipy.interpolate import RegularGridInterpolator
+import matplotlib.pyplot as plt
+
 
 fig, ax = plt.subplots(figsize=[8, 4])
 
-ax.set_ylim(0.8,5)
-ax.set_yscale('log')
-ax.set_ylabel(r'$\text{max}_{t\in[0,T]}\|\nabla u_\alpha(t)\|_{L^2}$',fontsize="14")
+#ax.set_ylim(0.8,5)
+#ax.set_yscale('log')
+#ax.set_ylabel(r'$\text{max}_{t\in[0,T]}\|\nabla u_\alpha(t)\|_{L^2}$',fontsize="14")
 
 #ax.set_xlim(1.9,38)
-ax.set_xscale('log')
-ax.set_xlabel(r'$1024\alpha$',fontsize="14")
+#ax.set_xscale('log')
+#ax.set_xlabel(r'$1024\alpha$',fontsize="14")
 
 #ax.set_title(r"Fig 3 - init $\|u_\alpha\|_{\dot{H}^1} = \sqrt{3}/2$")
 
@@ -28,10 +30,12 @@ ax.tick_params(
     direction='in'       # direction of the ticks ('in', 'out', or 'inout')
 )
 
+
 Data = []
 alphas = [1,2,4,8,12,16,20,24,28,32,36]
 for i in alphas:
-    filename = "./alpha_"+str(i)+"_1024/energy_fwd_0.dat"
+    voigt_filename = "./alpha_"+str(i)+"_1024/energy_fwd_0.dat"
+    euler_filename = "./alpha_0_1024/energy_fwd_0.dat"
     Ts = []
     sqrt_enstrophy = []
     j = 0
@@ -42,8 +46,6 @@ for i in alphas:
             sqrt_enstrophy.append((float(vals[5]))**0.5)
             sqrt_enstrophy[j] = max(sqrt_enstrophy)
             Ts.append(round(float(vals[0]),2))
-            #if Ts[j]>3:
-            #    break
             j += 1
             #print(round(float(vals[0]),2),float(vals[5])**0.5)
 
@@ -55,6 +57,7 @@ for i in alphas:
 ND = np.asarray(Data).T
 Data = list(ND)
 
+'''
 #print(Data[0])
 
 for n in range(0,101,2):
@@ -82,3 +85,4 @@ ax.set_yticklabels(["","1","","2","","3","","4","","5"])
 ax.set_xticks([2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36])
 ax.set_xticklabels(["2","4","","8","","12","","16","","20","","24","","28","","32","","36"])
 plt.show()
+'''

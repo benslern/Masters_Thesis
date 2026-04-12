@@ -29,7 +29,7 @@ ax.tick_params(
 )
 
 Data = []
-alphas = [2,4,8,12,16,20,24,28,32,36]
+alphas = [1,2,4,8,12,16,20,24,28,32,36]
 for i in alphas:
     filename = "./alpha_"+str(i)+"_1024/energy_fwd_0.dat"
     Ts = []
@@ -40,6 +40,7 @@ for i in alphas:
         for line in file:
             line = " ".join(line.split())
             vals = line.split()
+         
             sqrt_enstrophy.append(float(vals[5])**0.5)
             sqrt_enstrophy[j] = max(sqrt_enstrophy)
             add = not add

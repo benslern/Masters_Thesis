@@ -4,16 +4,16 @@ import numpy as np
 fig, ax = plt.subplots(figsize=[8, 4])
 
 #ax.set_ylim(3.5,27)
-ax.set_yscale('log')
-ax.set_ylabel(r'$\|\omega\|_{L^\infty}$',fontsize="14")
-#ax.set_ylabel(r'$\|u_\alpha\|_{\dot{H}^1}$',fontsize="14")
+#ax.set_yscale('log')
+#ax.set_ylabel(r'$\|\omega\|_{L^\infty}$',fontsize="14")
+ax.set_ylabel(r'$\|u_\alpha\|_{\dot{H}^1}$',fontsize="14")
 
 ax.set_xlim(0,5)
 #ax.set_xscale('log')
 ax.set_xlabel(r'$t$',fontsize="14")
 
-ax.set_title(r"$\|\omega\|_{L^\infty}$ vs $t$")
-#ax.set_title(r"$\|u_\alpha\|_{\dot{H}^1}$ vs $t$ - init $\|u_\alpha\|_{\dot{H}^1} = \sqrt{3}/2$")
+#ax.set_title(r"$\|\omega\|_{L^\infty}$ vs $t$")
+ax.set_title(r"$\|u_\alpha\|_{\dot{H}^1}$ vs $t$")
 
 ax.tick_params(
     axis='both',          # applies to both x and y axes
@@ -31,7 +31,7 @@ ax.tick_params(
 )
 
 Data = []
-alphas = [0,2,4,8,12,16,20,24,28,32,36]
+alphas = [0,1,2,4,8,12,16,20,24,28,32,36]
 for i in alphas:
     filename = "./alpha_"+str(i)+"_1024/energy_fwd_0.dat"
     Ts = []
@@ -45,8 +45,8 @@ for i in alphas:
             vorticity.append(float(vals[4]))
             Ts.append(round(float(vals[0]),2))
             
-    ax.plot(Ts,vorticity,label=r"$1024\alpha: $"+str(i))
-    #ax.plot(Ts,sqrt_enstrophy,label=r"$1024\alpha: $"+str(i))
+    #ax.plot(Ts,vorticity,label=r"$1024\alpha: $"+str(i))
+    ax.plot(Ts,sqrt_enstrophy,label=r"$1024\alpha: $"+str(i))
     #print(len(Ts))
     #Data.append(sqrt_enstrophy)    
 
