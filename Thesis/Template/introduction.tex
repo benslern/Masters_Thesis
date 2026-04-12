@@ -120,9 +120,13 @@ which contradicts the hypothesis in the theorem that the above expression is pos
 
 
 \section{Initial Conditions}\label{sec:initial:conditions}
-The specific initial conditions that will be used in our simulations are described in section NUMBER. However, in order to formulate our optimization problem we must first describe the properties that each initial condition must have. Firstly, the pseudospectral methods used in this study require the functions to be smooth and real-analytic in order to have exponential convergence. A requirement of the Euler-Voigt equations is that the initial conditions are divergence free. Additionally, we assume without loss of generality that the initial conditions have a mean of zero. \textit{This is important because REASON.}
+In order to formulate our optimization problem we must first describe the properties that each initial condition must have. Firstly, the pseudo-spectral methods used in this study require the functions to be smooth and real-analytic in order to have exponential convergence [CITATION]. For Navier-Stokes the viscosity term acts to instantaneously smooth the initial condition [CITATION]. Therefore, a $H^3$ smooth initial condition will become Gevrey regular at the first time step [CITATION]. 
 \\~\\
-In order to identify initial conditions that satisfy these criteria, we consider analytic initial conditions that belong to the following Gevrey class
+For Euler there is no viscosity and so the solution simply stays at the same level of smoothness as the initial condition [CITATION]. For Euler-Voigt the regularization term keeps the solution globally well-posed but does not smooth the initial condition. Therefore, we must have analytic initial conditions to make use of the pseudo-spectral methods.
+\\~\\
+A requirement of the Euler-Voigt equations is that the initial conditions are divergence free. Additionally, we assume without loss of generality that the initial conditions have a mean of zero. \textit{This is important because REASON.}
+\\~\\
+In order to identify initial conditions that satisfy these criteria, we first consider analytic initial conditions that belong to the following Gevrey class
 \begin{equation}\label{eq:Gevrey:Class}
 G^\sigma := \lb \v\in H^s(\TT^3) : \|\v\|_{G^\sigma} = \la \v,\v\ra_{G^\sigma}^{1/2}<\infty \rb, \quad s\geq 3, \quad \sigma > 0.
 \end{equation}
