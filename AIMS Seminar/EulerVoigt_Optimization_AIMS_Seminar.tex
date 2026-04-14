@@ -22,6 +22,7 @@
 \usepackage[english]{babel}
 \usepackage[font=tiny]{caption}
 \usepackage{tabularray}
+\usepackage{comment}
 
 \newcommand{\bDiamond}{\mathbin{\Diamond}}
 \newcommand{\bLozenge}{\mathbin{\blacklozenge}}
@@ -434,6 +435,7 @@ then $\u$ develops a singularity in the interval $[0,T^*]$.
 \Emp
 }
 
+\begin{comment}
 \frame
 {
 \hspace*{-1.0cm}
@@ -457,6 +459,8 @@ Taking the supremum over $t\in[0,T^*]$ of the above equation, we obtain that
 
 \Emp
 }
+
+
 
 \frame
 {
@@ -502,9 +506,10 @@ The second equality holds because
 Here we use the fact that the convergence of the solutions of the Euler-Voigt equations to the solution of the Euler equations is uniform on $[0,T^*]$, as shown in Theorem 5.1.
 \end{proof}
 
-
 \Emp
 }
+
+\end{comment}
 
 \subsection{Initial Conditions}
 
@@ -1100,6 +1105,27 @@ Explicit fourth-order Runge-Kutta
 \item<5->
 2/3 dealiasing
 
+\item<6->
+Domain
+\vspace{-0.25cm}
+\begin{subequations}
+\begin{align*}
+\text{resolution}&: 128^3, 256^3, 512^3, 1024^3 \\
+\alpha&: 1/1024, 2/1024, 4/1024, 8/1024, 16/1024 \\
+T&: 3,5
+\end{align*}
+\end{subequations}
+\vspace*{-1cm}
+\item<7->
+Gevrey class
+\vspace{-0.25cm}
+\begin{subequations}
+\begin{align*}
+\sigma&: \text{1E-5, 1E-4, 1E-3, 1E-2, 1E-1} \\
+s&: 3
+\end{align*}
+\end{subequations}
+
 \end{itemize}
 \Emp
 }
@@ -1681,51 +1707,6 @@ $2^{-8}$ & 1.06E-06 & 2.35E-09 & 1.30E-10 & 6.31E-12 & 2.78E-12
 \Emp
 }
 
-
-\frame
-{
-\hspace*{-1.0cm}
-\Bmp{12cm}
-\raggedright
-
-\begin{itemize}
-\item<1->
-Domain
-\vspace{-0.25cm}
-\begin{subequations}
-\begin{align*}
-\text{resolution}&: 128^3, 256^3, 512^3, 1024^3 \\
-\alpha&: 1/1024, 2/1024, 4/1024, 8/1024, 16/1024 \\
-\end{align*}
-\end{subequations}
-\vspace{-1.0cm}
-
-\item<2->
-Time
-\vspace{-0.25cm}
-\begin{subequations}
-\begin{align*}
-dt&: 2^{-5} \\
-T&: 3, 5 \\
-\end{align*}
-\end{subequations}
-\vspace{-1.0cm}
-
-\item<3->
-Gevrey class
-\vspace{-0.25cm}
-\begin{subequations}
-\begin{align*}
-\sigma&: \text{1E-5, 1E-4, 1E-3, 1E-2, 1E-1} \\
-s&: 3
-\end{align*}
-\end{subequations}
-
-
-\end{itemize}
-\Emp
-}
-
 \section{Results}
 
 \frame{
@@ -1737,6 +1718,7 @@ s&: 3
 
 \subsection{Pre-Optimization Results}
 
+\begin{comment}
 \frame
 {
 \hspace*{-1.0cm}
@@ -1850,6 +1832,7 @@ Evolution of $\|\u(\x,t)\|_{\hdo}^2$ over time for $\alpha=0.$
 \end{itemize}
 \Emp
 }
+\end{comment}
 
 \frame
 {
@@ -1870,6 +1853,113 @@ Results of $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$ for each resolution at
 \Emp
 }
 
+\frame
+{
+\hspace*{-1.0cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1->
+We modify ansatz 4.2 (Larios et al. 2018) 
+$$\sup_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}^2 \approx \mathcal{O}(\alpha^p)$$.
+\medskip
+
+\item<2->
+Singularity formation criteria
+$$\alpha^2\pat(\beza)>0 \text{ as } \alpha \rightarrow 0$$
+\medskip
+
+\item<3->
+Singularity formation occurs if 
+$p \leq -1$.
+
+\end{itemize}
+\Emp
+}
+
+\frame
+{
+\hspace*{-1.0cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1->
+Results of $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$.
+
+\begin{figure}
+\centering
+\includegraphics[width=.9\linewidth]{larios_fig_3.png}
+\caption{.}
+\end{figure}
+
+\end{itemize}
+\Emp
+}
+
+\frame
+{
+\hspace*{-1.0cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1->
+Results of $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$.
+
+\begin{figure}
+\centering
+\includegraphics[width=.9\linewidth]{larios_fig_3_inset.png}
+\caption{Log-log plot of $max_{t\in[0,T^*]\|\nabla\ua\|_{L^2}^2}$ vs $\alpha$ at $T = 0, 0.1, ..., 5.0$}
+\end{figure}
+
+\end{itemize}
+\Emp
+}
+
+
 \subsection{Optimization Results}
+
+\frame
+{
+\hspace*{-1.0cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1->
+Results of $\alpha^2\pat(\tilde{\be}_{\alpha,T})$ as $\alpha\rightarrow 0$.
+
+
+\end{itemize}
+\Emp
+}
+
+\subsection{Conclusion}
+
+\frame
+{
+\hspace*{-1.0cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1->
+Our results indicate ...
+
+\item<2->
+Repeat with higher resolutions and expand to other initial conditions. Problem is non-convex.
+
+\end{itemize}
+\Emp
+}
+
+\frame{
+\centering
+
+\LARGE
+{Thank You}
+}
 
 \end{document}
