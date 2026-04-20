@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  14 APR 2026 11:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  17 APR 2026 10:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1083,85 +1083,85 @@ Package: xparse 2023-10-10 L3 Experimental document command parser
 Excluding comment 'comment')
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 208.
+(hyperref)                removing `math shift' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@underline' on input line 208.
+(hyperref)                removing `\@@underline' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 208.
+(hyperref)                removing `\hbox' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathsurround' on input line 208.
+(hyperref)                removing `\mathsurround' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 208.
+(hyperref)                removing `\z@' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 208.
+(hyperref)                removing `math shift' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 208.
+(hyperref)                removing `math shift' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 208.
+(hyperref)                removing `superscript' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 208.
+(hyperref)                removing `math shift' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 208.
+(hyperref)                removing `math shift' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 208.
+(hyperref)                removing `superscript' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 208.
+(hyperref)                removing `math shift' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 208.
+(hyperref)                removing `math shift' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 208.
+(hyperref)                removing `superscript' on input line 209.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 208.
+(hyperref)                removing `math shift' on input line 209.
 
 (EulerVoigt_Optimization_AIMS_Seminar.aux)
 \openout1 = `EulerVoigt_Optimization_AIMS_Seminar.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 222.
-LaTeX Font Info:    ... okay on input line 222.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 222.
-LaTeX Font Info:    ... okay on input line 222.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 222.
-LaTeX Font Info:    ... okay on input line 222.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 222.
-LaTeX Font Info:    ... okay on input line 222.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 222.
-LaTeX Font Info:    ... okay on input line 222.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 222.
-LaTeX Font Info:    ... okay on input line 222.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 222.
-LaTeX Font Info:    ... okay on input line 222.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 222.
-LaTeX Font Info:    ... okay on input line 222.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 222.
-LaTeX Font Info:    ... okay on input line 222.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 223.
+LaTeX Font Info:    ... okay on input line 223.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 223.
+LaTeX Font Info:    ... okay on input line 223.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 223.
+LaTeX Font Info:    ... okay on input line 223.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 223.
+LaTeX Font Info:    ... okay on input line 223.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 223.
+LaTeX Font Info:    ... okay on input line 223.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 223.
+LaTeX Font Info:    ... okay on input line 223.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 223.
+LaTeX Font Info:    ... okay on input line 223.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 223.
+LaTeX Font Info:    ... okay on input line 223.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 223.
+LaTeX Font Info:    ... okay on input line 223.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1223,64 +1223,64 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring OFF on input line 222.
+Package hyperref Info: Link coloring OFF on input line 223.
  (EulerVoigt_Optimization_AIMS_Seminar.out)
 (EulerVoigt_Optimization_AIMS_Seminar.out)
 \@outlinefile=\write8
 \openout8 = `EulerVoigt_Optimization_AIMS_Seminar.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 222.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 223.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 222.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 223.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 222.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 222.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 223.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 223.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 222.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 223.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 222.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 222.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 223.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 223.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 222.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 223.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 222.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 222.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 223.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 223.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 222.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 223.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 222.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 222.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 223.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 223.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 222.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 223.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 222.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 223.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 222.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 223.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 222.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 223.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 222.
+(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 223.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 222.
+(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 223.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 222.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 223.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 222.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 223.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 222.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 222.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 223.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 223.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
 (Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 2
-22.
+23.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 2
-22.
+23.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
-ut line 222.
+ut line 223.
 
 (C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/translator\translator-b
 asic-dictionary-English.dict
@@ -1309,20 +1309,20 @@ Dictionary: translator-theorem-dictionary, Language: English
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
  (EulerVoigt_Optimization_AIMS_Seminar.nav)
-LaTeX Font Info:    Trying to load font information for U+msa on input line 222
+LaTeX Font Info:    Trying to load font information for U+msa on input line 223
 .
 
 (C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 222
+LaTeX Font Info:    Trying to load font information for U+msb on input line 223
 .
 
 (C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 222.
+ut line 223.
 
 (C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/sansmathaccent\ot1mathk
 erncmss.fd
@@ -1331,7 +1331,7 @@ thkerncmss.
 )
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <8> not available
-(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 224.
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 225.
 
 [1
 Non-PDF special ignored!
@@ -1345,191 +1345,191 @@ Non-PDF special ignored!
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 286.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 287.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 286.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 287.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 286.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 287.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 286.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 287.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <8> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 286.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 287.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 286.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 287.
 
 LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
-286.
+287.
 
 (C:\Users\bensl\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmss.fd
 File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 286--286
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 287--287
 []|   $[]$  
  []
 
 [4
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 286--286
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 287--287
 []|   $[]$  
  []
 
 [5
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 286--286
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 287--287
 []|   $[]$  
  []
 
 [6
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 325--325
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 326--326
 []|   $[]$  
  []
 
 [7
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 325--325
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 326--326
 []|   $[]$  
  []
 
 [8
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 325--325
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 326--326
 []|   $[]$  
  []
 
 [9
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 361--361
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 362--362
 []|   $[]$  
  []
 
 [10
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 361--361
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 362--362
 []|   $[]$  
  []
 
 [11
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 361--361
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 362--362
 []|   $[]$  
  []
 
 [12
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 391--391
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 392--392
 []|   $[]$  
  []
 
 [13
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 411--411
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 412--412
 []|   $[]$  
  []
 
 [14
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 436--436
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 437--437
 []|   $[]$  
  []
 
 [15
 
 ] Excluding 'comment' comment.
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 548--548
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 549--549
 []|   $[]$  
  []
 
 [16
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 548--548
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 549--549
 []|   $[]$  
  []
 
 [17
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 548--548
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 549--549
 []|   $[]$  
  []
 
 [18
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 579--579
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 580--580
 []|   $[]$  
  []
 
 [19
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 579--579
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 580--580
 []|   $[]$  
  []
 
 [20
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 579--579
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 580--580
 []|   $[]$  
  []
 
 [21
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 611--611
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 612--612
 []|   $[]$  
  []
 
 [22
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 611--611
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 612--612
 []|   $[]$  
  []
 
 [23
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 611--611
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 612--612
 []|   $[]$  
  []
 
 [24
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 641--641
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 642--642
 []|   $[]$  
  []
 
 [25
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 641--641
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 642--642
 []|   $[]$  
  []
 
 [26
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 641--641
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 642--642
 []|   $[]$  
  []
 
@@ -1539,15 +1539,15 @@ Overfull \hbox (10.55711pt too wide) in paragraph at lines 641--641
 <interplay_vorticity_b.png, id=536, 407.121pt x 228.855pt>
 File: interplay_vorticity_b.png Graphic file (type png)
 <use interplay_vorticity_b.png>
-Package pdftex.def Info: interplay_vorticity_b.png  used on input line 676.
+Package pdftex.def Info: interplay_vorticity_b.png  used on input line 677.
 (pdftex.def)             Requested size: 138.2785pt x 77.72934pt.
 <Figure_1.png, id=537, 488.5452pt x 274.626pt>
 File: Figure_1.png Graphic file (type png)
 <use Figure_1.png>
-Package pdftex.def Info: Figure_1.png  used on input line 676.
+Package pdftex.def Info: Figure_1.png  used on input line 677.
 (pdftex.def)             Requested size: 138.2785pt x 77.72865pt.
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 676--676
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 677--677
 []|   $[]$  
  []
 
@@ -1556,210 +1556,210 @@ Overfull \hbox (10.55711pt too wide) in paragraph at lines 676--676
  <./interplay_vorticity_b.png> <./Figure_1.png>] [29
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 713--713
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 714--714
 []|   $[]$  
  []
 
 [30
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 713--713
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 714--714
 []|   $[]$  
  []
 
 [31
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 713--713
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 714--714
 []|   $[]$  
  []
 
 [32
 
 ]
-Overfull \hbox (3.70981pt too wide) detected at line 760
+Overfull \hbox (3.70981pt too wide) detected at line 761
 []
  []
 
 
-Overfull \hbox (14.26692pt too wide) in paragraph at lines 760--760
+Overfull \hbox (14.26692pt too wide) in paragraph at lines 761--761
 []|   $[]$  
  []
 
 [33
 
 ]
-Overfull \hbox (3.70981pt too wide) detected at line 760
+Overfull \hbox (3.70981pt too wide) detected at line 761
 []
  []
 
 
-Overfull \hbox (14.26692pt too wide) in paragraph at lines 760--760
+Overfull \hbox (14.26692pt too wide) in paragraph at lines 761--761
 []|   $[]$  
  []
 
 [34
 
 ]
-Overfull \hbox (3.70981pt too wide) detected at line 760
+Overfull \hbox (3.70981pt too wide) detected at line 761
 []
  []
 
 
-Overfull \hbox (14.26692pt too wide) in paragraph at lines 760--760
+Overfull \hbox (14.26692pt too wide) in paragraph at lines 761--761
 []|   $[]$  
  []
 
 [35
 
 ]
-Overfull \hbox (6.01237pt too wide) detected at line 820
+Overfull \hbox (6.01237pt too wide) detected at line 821
 []
  []
 
 
-Overfull \hbox (16.56949pt too wide) in paragraph at lines 820--820
+Overfull \hbox (16.56949pt too wide) in paragraph at lines 821--821
 []|   $[]$  
  []
 
 [36
 
 ]
-Overfull \hbox (6.01237pt too wide) detected at line 820
+Overfull \hbox (6.01237pt too wide) detected at line 821
 []
  []
 
 
-Overfull \hbox (16.56949pt too wide) in paragraph at lines 820--820
+Overfull \hbox (16.56949pt too wide) in paragraph at lines 821--821
 []|   $[]$  
  []
 
 [37
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 852--852
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 853--853
 []|   $[]$  
  []
 
 [38
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 852--852
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 853--853
 []|   $[]$  
  []
 
 [39
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 852--852
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 853--853
 []|   $[]$  
  []
 
 [40
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 875--875
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 876--876
 []|   $[]$  
  []
 
 [41
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 875--875
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 876--876
 []|   $[]$  
  []
 
 [42
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 875--875
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 876--876
 []|   $[]$  
  []
 
 [43
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 910--910
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 911--911
 []|   $[]$  
  []
 
 [44
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 910--910
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 911--911
 []|   $[]$  
  []
 
 [45
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 910--910
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 911--911
 []|   $[]$  
  []
 
 [46
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 945--945
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 946--946
 []|   $[]$  
  []
 
 [47
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 945--945
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 946--946
 []|   $[]$  
  []
 
 [48
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 945--945
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 946--946
 []|   $[]$  
  []
 
 [49
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 988--988
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 989--989
 []|   $[]$  
  []
 
 
-Overfull \vbox (1.83725pt too high) detected at line 988
+Overfull \vbox (1.83725pt too high) detected at line 989
  []
 
 [50
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 988--988
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 989--989
 []|   $[]$  
  []
 
 
-Overfull \vbox (1.83725pt too high) detected at line 988
+Overfull \vbox (1.83725pt too high) detected at line 989
  []
 
 [51
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 988--988
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 989--989
 []|   $[]$  
  []
 
 
-Overfull \vbox (1.83725pt too high) detected at line 988
+Overfull \vbox (1.83725pt too high) detected at line 989
  []
 
 [52
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 988--988
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 989--989
 []|   $[]$  
  []
 
 
-Overfull \vbox (1.83725pt too high) detected at line 988
+Overfull \vbox (1.83725pt too high) detected at line 989
  []
 
 [53
@@ -1768,10 +1768,10 @@ Overfull \vbox (1.83725pt too high) detected at line 988
 <riemannian_1.png, id=931, 831.105pt x 391.4625pt>
 File: riemannian_1.png Graphic file (type png)
 <use riemannian_1.png>
-Package pdftex.def Info: riemannian_1.png  used on input line 1002.
+Package pdftex.def Info: riemannian_1.png  used on input line 1003.
 (pdftex.def)             Requested size: 307.28766pt x 144.7373pt.
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1002--1002
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1003--1003
 []|   $[]$  
  []
 
@@ -1781,10 +1781,10 @@ Overfull \hbox (10.55711pt too wide) in paragraph at lines 1002--1002
 <riemannian_2.png, id=951, 831.105pt x 391.4625pt>
 File: riemannian_2.png Graphic file (type png)
 <use riemannian_2.png>
-Package pdftex.def Info: riemannian_2.png  used on input line 1016.
+Package pdftex.def Info: riemannian_2.png  used on input line 1017.
 (pdftex.def)             Requested size: 307.28766pt x 144.7373pt.
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1016--1016
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1017--1017
 []|   $[]$  
  []
 
@@ -1794,10 +1794,10 @@ Overfull \hbox (10.55711pt too wide) in paragraph at lines 1016--1016
 <riemannian_3.png, id=972, 831.105pt x 391.4625pt>
 File: riemannian_3.png Graphic file (type png)
 <use riemannian_3.png>
-Package pdftex.def Info: riemannian_3.png  used on input line 1030.
+Package pdftex.def Info: riemannian_3.png  used on input line 1031.
 (pdftex.def)             Requested size: 307.28766pt x 144.7373pt.
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1030--1030
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1031--1031
 []|   $[]$  
  []
 
@@ -1807,143 +1807,143 @@ Overfull \hbox (10.55711pt too wide) in paragraph at lines 1030--1030
 <riemannian.png, id=992, 831.105pt x 391.4625pt>
 File: riemannian.png Graphic file (type png)
 <use riemannian.png>
-Package pdftex.def Info: riemannian.png  used on input line 1043.
+Package pdftex.def Info: riemannian.png  used on input line 1044.
 (pdftex.def)             Requested size: 307.28766pt x 144.7373pt.
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1043--1043
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1044--1044
 []|   $[]$  
  []
 
 [57
 
  <./riemannian.png>]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1078--1078
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1079--1079
 []|   $[]$  
  []
 
 [58
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1078--1078
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1079--1079
 []|   $[]$  
  []
 
 [59
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1078--1078
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1079--1079
 []|   $[]$  
  []
 
 [60
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1078--1078
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1079--1079
 []|   $[]$  
  []
 
 [61
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1131--1131
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1132--1132
 []|   $[]$  
  []
 
 [62
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1131--1131
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1132--1132
 []|   $[]$  
  []
 
 [63
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1131--1131
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1132--1132
 []|   $[]$  
  []
 
 [64
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1131--1131
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1132--1132
 []|   $[]$  
  []
 
 [65
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1131--1131
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1132--1132
 []|   $[]$  
  []
 
 [66
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1131--1131
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1132--1132
 []|   $[]$  
  []
 
 [67
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1131--1131
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1132--1132
 []|   $[]$  
  []
 
 [68
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1204--1204
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1205--1205
 []|   $[]$  
  []
 
 [69
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1277--1277
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1278--1278
 []|   $[]$  
  []
 
 [70
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1350--1350
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1351--1351
 []|   $[]$  
  []
 
 [71
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1423--1423
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1424--1424
 []|   $[]$  
  []
 
 [72
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1495--1495
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1496--1496
 []|   $[]$  
  []
 
 [73
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1566--1566
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1567--1567
 []|   $[]$  
  []
 
 [74
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1637--1637
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1638--1638
 []|   $[]$  
  []
 
 [75
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1708--1708
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1709--1709
 []|   $[]$  
  []
 
@@ -1955,114 +1955,460 @@ Overfull \hbox (10.55711pt too wide) in paragraph at lines 1708--1708
 <Figure_3.png, id=1332, 547.2947pt x 281.55188pt>
 File: Figure_3.png Graphic file (type png)
 <use Figure_3.png>
-Package pdftex.def Info: Figure_3.png  used on input line 1854.
+Package pdftex.def Info: Figure_3.png  used on input line 1855.
 (pdftex.def)             Requested size: 287.57774pt x 147.94153pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1854--1854
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1855--1855
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1854--1854
+Underfull \hbox (badness 10000) in paragraph at lines 1855--1855
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1854--1854
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1855--1855
 []|   $[]$  
  []
 
 [78
 
  <./Figure_3.png>]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1879--1879
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1880--1880
 []|   $[]$  
  []
 
 [79
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1879--1879
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1880--1880
 []|   $[]$  
  []
 
 [80
 
 ]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1879--1879
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1880--1880
 []|   $[]$  
  []
 
 [81
 
 ]
-<larios_fig_3.png, id=1396, 516.7305pt x 264.5082pt>
-File: larios_fig_3.png Graphic file (type png)
-<use larios_fig_3.png>
-Package pdftex.def Info: larios_fig_3.png  used on input line 1899.
-(pdftex.def)             Requested size: 287.57774pt x 147.20738pt.
+<larios_fig_3_T3_big.png, id=1396, 578.16pt x 289.08pt>
+File: larios_fig_3_T3_big.png Graphic file (type png)
+<use larios_fig_3_T3_big.png>
+Package pdftex.def Info: larios_fig_3_T3_big.png  used on input line 1900.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1899--1899
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1900--1900
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1899--1899
+Underfull \hbox (badness 10000) in paragraph at lines 1900--1900
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1899--1899
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1900--1900
 []|   $[]$  
  []
 
 [82
 
- <./larios_fig_3.png>]
-<larios_fig_3_inset.png, id=1416, 516.7305pt x 264.5082pt>
-File: larios_fig_3_inset.png Graphic file (type png)
-<use larios_fig_3_inset.png>
-Package pdftex.def Info: larios_fig_3_inset.png  used on input line 1919.
-(pdftex.def)             Requested size: 287.57774pt x 147.20738pt.
+ <./larios_fig_3_T3_big.png>]
+<larios_fig_3_T3.png, id=1418, 578.16pt x 289.08pt>
+File: larios_fig_3_T3.png Graphic file (type png)
+<use larios_fig_3_T3.png>
+Package pdftex.def Info: larios_fig_3_T3.png  used on input line 1920.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
 
-Overfull \hbox (21.90005pt too wide) in paragraph at lines 1919--1919
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1920--1920
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1919--1919
+Underfull \hbox (badness 10000) in paragraph at lines 1920--1920
 
  []
 
 
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1919--1919
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1920--1920
 []|   $[]$  
  []
 
 [83
 
- <./larios_fig_3_inset.png>]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1937--1937
+ <./larios_fig_3_T3.png>]
+<larios_fig_3.png, id=1439, 578.16pt x 289.08pt>
+File: larios_fig_3.png Graphic file (type png)
+<use larios_fig_3.png>
+Package pdftex.def Info: larios_fig_3.png  used on input line 1940.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1940--1940
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1940--1940
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1940--1940
 []|   $[]$  
  []
 
 [84
 
-]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1956--1956
+ <./larios_fig_3.png>]
+<larios_fig_3_small.png, id=1460, 578.16pt x 289.08pt>
+File: larios_fig_3_small.png Graphic file (type png)
+<use larios_fig_3_small.png>
+Package pdftex.def Info: larios_fig_3_small.png  used on input line 1960.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1960--1960
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1960--1960
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1960--1960
 []|   $[]$  
  []
 
 [85
 
-]
-Overfull \hbox (10.55711pt too wide) in paragraph at lines 1956--1956
+ <./larios_fig_3_small.png>]
+<larios_fig_3_inset.png, id=1482, 578.16pt x 289.08pt>
+File: larios_fig_3_inset.png Graphic file (type png)
+<use larios_fig_3_inset.png>
+Package pdftex.def Info: larios_fig_3_inset.png  used on input line 1987.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1987--1987
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1987--1987
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1987--1987
 []|   $[]$  
  []
 
 [86
 
-] [87
+ <./larios_fig_3_inset.png>]
+File: larios_fig_3_inset.png Graphic file (type png)
+<use larios_fig_3_inset.png>
+Package pdftex.def Info: larios_fig_3_inset.png  used on input line 1987.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1987--1987
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1987--1987
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1987--1987
+[]|   $[]$  
+ []
+
+[87
+
+]
+File: larios_fig_3_inset.png Graphic file (type png)
+<use larios_fig_3_inset.png>
+Package pdftex.def Info: larios_fig_3_inset.png  used on input line 1987.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 1987--1987
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1987--1987
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 1987--1987
+[]|   $[]$  
+ []
+
+[88
+
+]
+<maximization_R128_T3.png, id=1527, 578.16pt x 289.08pt>
+File: maximization_R128_T3.png Graphic file (type png)
+<use maximization_R128_T3.png>
+Package pdftex.def Info: maximization_R128_T3.png  used on input line 2009.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 2009--2009
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2009--2009
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 2009--2009
+[]|   $[]$  
+ []
+
+[89
+
+ <./maximization_R128_T3.png>]
+<maximization_R128_T5.png, id=1547, 578.16pt x 289.08pt>
+File: maximization_R128_T5.png Graphic file (type png)
+<use maximization_R128_T5.png>
+Package pdftex.def Info: maximization_R128_T5.png  used on input line 2027.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 2027--2027
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2027--2027
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 2027--2027
+[]|   $[]$  
+ []
+
+[90
+
+ <./maximization_R128_T5.png>]
+<Figure_3_R128.png, id=1568, 578.16pt x 289.08pt>
+File: Figure_3_R128.png Graphic file (type png)
+<use Figure_3_R128.png>
+Package pdftex.def Info: Figure_3_R128.png  used on input line 2046.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 2046--2046
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2046--2046
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 2046--2046
+[]|   $[]$  
+ []
+
+[91
+
+ <./Figure_3_R128.png>]
+<larios_fig_3_optim_R128_T3.png, id=1590, 578.16pt x 289.08pt>
+File: larios_fig_3_optim_R128_T3.png Graphic file (type png)
+<use larios_fig_3_optim_R128_T3.png>
+Package pdftex.def Info: larios_fig_3_optim_R128_T3.png  used on input line 206
+6.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 2066--2066
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2066--2066
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 2066--2066
+[]|   $[]$  
+ []
+
+[92
+
+ <./larios_fig_3_optim_R128_T3.png>]
+<larios_fig_3_inset_R128_T3.png, id=1611, 578.16pt x 289.08pt>
+File: larios_fig_3_inset_R128_T3.png Graphic file (type png)
+<use larios_fig_3_inset_R128_T3.png>
+Package pdftex.def Info: larios_fig_3_inset_R128_T3.png  used on input line 209
+3.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 2093--2093
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2093--2093
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 2093--2093
+[]|   $[]$  
+ []
+
+[93
+
+ <./larios_fig_3_inset_R128_T3.png>]
+File: larios_fig_3_inset_R128_T3.png Graphic file (type png)
+<use larios_fig_3_inset_R128_T3.png>
+Package pdftex.def Info: larios_fig_3_inset_R128_T3.png  used on input line 209
+3.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 2093--2093
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2093--2093
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 2093--2093
+[]|   $[]$  
+ []
+
+[94
+
+]
+File: larios_fig_3_inset_R128_T3.png Graphic file (type png)
+<use larios_fig_3_inset_R128_T3.png>
+Package pdftex.def Info: larios_fig_3_inset_R128_T3.png  used on input line 209
+3.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 2093--2093
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2093--2093
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 2093--2093
+[]|   $[]$  
+ []
+
+[95
+
+]
+<larios_fig_3_inset_R128_T5.png, id=1656, 578.16pt x 289.08pt>
+File: larios_fig_3_inset_R128_T5.png Graphic file (type png)
+<use larios_fig_3_inset_R128_T5.png>
+Package pdftex.def Info: larios_fig_3_inset_R128_T5.png  used on input line 212
+0.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 2120--2120
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2120--2120
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 2120--2120
+[]|   $[]$  
+ []
+
+[96
+
+ <./larios_fig_3_inset_R128_T5.png>]
+File: larios_fig_3_inset_R128_T5.png Graphic file (type png)
+<use larios_fig_3_inset_R128_T5.png>
+Package pdftex.def Info: larios_fig_3_inset_R128_T5.png  used on input line 212
+0.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 2120--2120
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2120--2120
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 2120--2120
+[]|   $[]$  
+ []
+
+[97
+
+]
+File: larios_fig_3_inset_R128_T5.png Graphic file (type png)
+<use larios_fig_3_inset_R128_T5.png>
+Package pdftex.def Info: larios_fig_3_inset_R128_T5.png  used on input line 212
+0.
+(pdftex.def)             Requested size: 287.57774pt x 143.78535pt.
+
+Overfull \hbox (21.90005pt too wide) in paragraph at lines 2120--2120
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2120--2120
+
+ []
+
+
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 2120--2120
+[]|   $[]$  
+ []
+
+[98
+
+]
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 2142--2142
+[]|   $[]$  
+ []
+
+[99
+
+]
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 2142--2142
+[]|   $[]$  
+ []
+
+[100
+
+]
+Overfull \hbox (10.55711pt too wide) in paragraph at lines 2142--2142
+[]|   $[]$  
+ []
+
+[101
+
+] [102
 
 ]
 \tf@nav=\write9
@@ -2081,17 +2427,17 @@ L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `EulerVoigt_Optimization_AIMS_Seminar.out' ha
 s not changed.
-(rerunfilecheck)             Checksum: A9ACBE6DA6FB7C0D5A077B692BAE2D74;2113.
+(rerunfilecheck)             Checksum: 57D7130CA1BDCA0ACA4324E54B68B3AF;2113.
  ) 
 Here is how much of TeX's memory you used:
- 28234 strings out of 474486
- 567406 string characters out of 5743755
+ 28344 strings out of 474486
+ 569808 string characters out of 5743755
  1985542 words of memory out of 5000000
- 49763 multiletter control sequences out of 15000+600000
+ 49843 multiletter control sequences out of 15000+600000
  597663 words of font info for 135 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,22n,123p,432b,847s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi375\ecso
+ <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi450\ecso
 0800.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
 0\ecso0800.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
 /dpi657\ecso1000.pk> <C:\Users\bensl\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
@@ -2128,10 +2474,10 @@ fonts/symbols/msam10.pfb><C:/Users/bensl/AppData/Local/Programs/MiKTeX/fonts/ty
 pe1/public/amsfonts/symbols/msam7.pfb><C:/Users/bensl/AppData/Local/Programs/Mi
 KTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/bensl/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on EulerVoigt_Optimization_AIMS_Seminar.pdf (87 pages, 1178493 b
-ytes).
+Output written on EulerVoigt_Optimization_AIMS_Seminar.pdf (102 pages, 1670998 
+bytes).
 PDF statistics:
- 1684 PDF objects out of 1728 (max. 8388607)
- 198 named destinations out of 1000 (max. 500000)
- 188 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1950 PDF objects out of 2073 (max. 8388607)
+ 228 named destinations out of 1000 (max. 500000)
+ 233 words of extra memory for PDF output out of 10000 (max. 10000000)
 
