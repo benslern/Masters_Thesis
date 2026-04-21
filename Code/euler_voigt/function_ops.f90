@@ -888,7 +888,7 @@ CONTAINS
              DO i1 = 1,n(1)/2+1
                 if (abs(K1(i1)) > n(1)/3.0_pr*2.0_pr*PI) f(i1,i2,i3,ii) = cmplx(0.0_pr)
                 if (abs(K2(i2)) > n(2)/3.0_pr*2.0_pr*PI) f(i1,i2,i3,ii) = cmplx(0.0_pr)
-                if (abs(K2(i3+local_k_offset)) > n(3)/3.0_pr*2.0_pr*PI) f(i1,i2,i3,ii) = cmplx(0.0_pr)
+                if (abs(K3(i3+local_k_offset)) > n(3)/3.0_pr*2.0_pr*PI) f(i1,i2,i3,ii) = cmplx(0.0_pr)
              END DO
           END DO
        END DO

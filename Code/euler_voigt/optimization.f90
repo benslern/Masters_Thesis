@@ -23,7 +23,7 @@ MODULE optimization
   IMPLICIT NONE
   real(pr) :: norm_constr
   real(pr) :: sigma, l, s
-  integer :: stepper_opt
+  integer :: stepper_opt, init_iter
   real(pr), dimension(:,:,:,:), allocatable :: gradJ_opt, gradJ_pre_opt
   real(pr), dimension(:,:,:,:), allocatable :: d_opt, d1_opt
   
@@ -33,16 +33,17 @@ CONTAINS
 ! allocation    
 !=======================================
   
-  SUBROUTINE optimization_allocate(norm_constr_,l_, s_, sigma_, stepper_)
+  SUBROUTINE optimization_allocate(norm_constr_,l_, s_, sigma_, stepper_, init_iter_)
     implicit none
     real(pr), intent(in) :: norm_constr_
     real(pr), intent(in) :: l_, s_, sigma_
-    integer, intent(in) :: stepper_
+    integer, intent(in) :: stepper_, init_iter_
     
 
     norm_constr = norm_constr_
     l = l_
     s = s_
+    init_iter = init_iter_
     sigma = sigma_
     stepper_opt = stepper_
     if (.not. allocated(gradJ_opt)) allocate(gradJ_opt(1:n(1), 1:n(2), 1:local_N, 1:3))
@@ -106,7 +107,7 @@ CONTAINS
        close(4)
     end if
       
-    iter = 0
+    iter = init_iter
     J0 = 0.0_pr
     J1 = 0.0_pr
     deltaJ = 1.0_pr
@@ -125,7 +126,7 @@ CONTAINS
        close(3)
     end if
 
-    iter = 1
+    iter = init_iter + 1
     
     DO WHILE ( (ABS(deltaJ) > OPTIM_TOL) .AND. (iter<=MAX_ITER) )
 
@@ -274,7 +275,7 @@ CONTAINS
        close(4)
     end if
       
-    iter = 0
+    iter = init_iter
     norm2_grad = 0.0_pr
     J0 = 0.0_pr
     J1 = 0.0_pr
@@ -309,7 +310,7 @@ CONTAINS
        close(3)
     end if
 
-    iter = 1
+    iter = init_iter + 1
     
     DO WHILE ( (ABS(deltaJ) > OPTIM_TOL) .AND. (iter<=MAX_ITER) )
 
@@ -352,7 +353,7 @@ CONTAINS
           
        end if
        
-       if (iter == 1 .or. mod(iter, restart_freq) == 0) then
+       if (iter == init_iter + 1 .or. mod(iter, restart_freq) == 0) then
           restart_flag = 3
           beta = 0.0_pr          
           call projection(Uvec0, gradJ_opt, d_opt, norm2_grad)

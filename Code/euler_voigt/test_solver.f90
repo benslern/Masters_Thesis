@@ -173,7 +173,7 @@ PROGRAM EULER_VOIGT
       fix_dt1 = 2.0_pr**(-5)
       fix_dt2 = fix_dt1
       call solvers_allocate(stepper)
-      call optimization_allocate(sqrt(3.0_pr)/2.0_pr, 1.0_pr, 3.0_pr, 1.0e-3_pr, stepper)
+      !call optimization_allocate(sqrt(3.0_pr)/2.0_pr, 1.0_pr, 3.0_pr, 1.0e-3_pr, stepper)
       
       call initial_condition("/scratch/noahb/Research/iters/Uvec_fwdTE_20.nc");
       Uvec0 = Uvec
@@ -184,12 +184,12 @@ PROGRAM EULER_VOIGT
       call report_J(Uvec0, tau_brack, 100, fix_dt1) 
 
       call solvers_deallocate()
-      call optimization_deallocate()
+      !call optimization_deallocate()
    end if
 
    ! kappa test
 
-   if (1) then
+   if (0) then
       stepper = 3
       alpha = 4.0_pr/256.0_pr
       endTime = 5.0_pr
@@ -225,19 +225,24 @@ PROGRAM EULER_VOIGT
    end if
 
    ! optimization test
-   if (0) then
+   if (1) then
       visc = 0.0_pr
       stepper = 3
-      fix_dt1 = 2.0_pr**(-5.0_pr)
-      fix_dt2 = fix_dt1
-      alpha = 4.0_pr/256.0_pr
+      endTime = 3.0_pr
+      fix_dt1 = 2.0_pr**(-7.0_pr)
+      fix_dt2 = 2.0_pr**(-7.0_pr)
+      alpha = 1.0_pr/1024.0_pr
       call solvers_allocate(stepper)
       ! norm_constr, l, s, sigma, stepper)
-      call optimization_allocate(sqrt(3.0_pr)/2.0_pr, 1.0_pr, 3.0_pr, 1.0e-3_pr, stepper)
+      call optimization_allocate(sqrt(3.0_pr)/2.0_pr, 1.0_pr, 3.0_pr, 1.0e-5_pr, stepper,120)
       CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
       !Uvec0 = Uvec
-      call set_initial(Uvec0,2,10023,657889,3456788)
+      !call set_initial(Uvec0,2,10023,657889,3456788)
       !call initial_condition_refine_mpi((/512,512,512/))
+      call initial_condition("/scratch/noahb/T3/Research_V5/Uvec_fwdTE_120.nc");
+      Uvec0 = Uvec
+      CALL MPI_BARRIER(MPI_COMM_WORLD,Statinfo)
+
       tau_brack(1) = 0.0_pr
       tau_brack(2) = 1.0_pr
       !call report_J(Uvec0, tau_brack, 100, fix_dt1)
@@ -246,7 +251,7 @@ PROGRAM EULER_VOIGT
       !call rescale(Uvec0, val)
       !call fwd_3D(Uvec0, fix_dt1, 1, stepper, 0)
       !call bkd_3D(adj_Uvec0, fix_dt1, 1, 3, 0)
-      call maximization(tau_brack)
+      call maximization_RCG(tau_brack)
       call optimization_deallocate()
       call solvers_deallocate()
    end if

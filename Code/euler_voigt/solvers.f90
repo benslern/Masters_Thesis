@@ -1294,8 +1294,9 @@ CONTAINS
   
        
 !####################################3
-       !call save_velocity(Uvec, myindex)
-
+       if(MOD(myindex,10)==0) then
+         call save_velocity(Uvec, myindex)
+       end if
 !       if (parallel_data) then
 !          call save_velocity_cx(temp1_solver_cx, myindex)
 !       else
@@ -1329,8 +1330,9 @@ CONTAINS
       
      
       !#####################################3
-       !call save_vorticity(Wvec, Time_iter) 
-
+       if(MOD(myindex,10)==0) then
+         call save_vorticity(Wvec, myindex) 
+       end if
        call calculate_total_energy(Uvec, Wvec, K_total, E_total, H_total, maxW_global, E_component)
        call save_energy(K_total, E_total, H_total, maxW_global, H1_norm, E_component, time, file_energy)
 

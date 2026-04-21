@@ -5,14 +5,14 @@ MODULE global_variables
 !   include 'fftw3-mpi.f03'
  
   INTEGER, PARAMETER :: pr = KIND (1.0d0)
-  INTEGER, PARAMETER :: MAX_ITER = 100
+  INTEGER, PARAMETER :: MAX_ITER = 10000
   INTEGER, PARAMETER :: KappaPoints = 16
   REAL, PARAMETER :: OPTIM_TOL = 1.0e-10_pr
   REAL, PARAMETER :: MACH_EPSILON = 1.0e-10_pr 
   REAL, PARAMETER :: TAU_MAX = 100
 
   REAL(pr), parameter :: WEIGHT = 1.0_pr   ! Newly added on July 15, 2017, WEIGHT*R(u)+(1-WEIGHT)
-  integer :: RESOL = 128, K0_index = 0, E0_index = 12000  ! E0 here is the Lq norm (to the power q) of U or Sobolev norm of U
+  integer :: RESOL = 256, K0_index = 0, E0_index = 12000  ! E0 here is the Lq norm (to the power q) of U or Sobolev norm of U
   real(pr) :: fix_dt1  = 0.001_pr, fix_dt2  = 0.00005_pr
   real(pr) :: iniTime = 0.0_pr, endTime = 5.0_pr
   REAL(pr) :: lambda1 = 2.0_pr
