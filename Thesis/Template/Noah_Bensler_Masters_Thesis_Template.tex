@@ -3,6 +3,7 @@
 \usepackage{gscale_thesis_doublespace} % Double spaced thesis
 \usepackage{fancyheadings} % Header and footer styling
 \usepackage{natbib} % Bibliography formatting
+%\usepackage[round]{natbib} 
 \usepackage{setspace} % Allows double spacing but skips headers/footers
 \setcounter{tocdepth}{1} % Limits the TOC to chapter and section names
 
@@ -28,6 +29,12 @@
 \usepackage{xcolor}
 \usepackage{amsthm}
 \usepackage{amssymb}
+\usepackage{tabularray}
+\usepackage{colortbl}
+\usepackage{hhline}
+\usepackage{vcell}
+\colorlet{RED}{red}
+
 
 \DeclareMathOperator*{\argmax}{argmax}
 
@@ -52,7 +59,9 @@
 \def\ppat{\Phi'_{\alpha,T}}
 \def\u{\boldsymbol u}
 \def\v{\boldsymbol v}
+\def\d{\boldsymbol d}
 \def\x{\boldsymbol x}
+\def\y{\boldsymbol y}
 \def\k{\boldsymbol k}
 \def\z{\boldsymbol z}
 \def\j{\boldsymbol j}
@@ -80,17 +89,32 @@
 \def\L{\mathcal{L}}
 \def\P{\mathbf{P}}
 \def\R{\mathbf{R}}
+\def\a{\hat{\text{a}}}
+\def\P{{\mathcal{P}}}
+\def\b{{\bf b}}
+\def\bd{{\boldsymbol \Delta}}
+\def\bn{{\boldsymbol \nabla}}
+\def\be{{\boldsymbol \eta}}
+\def\bep{{\boldsymbol \eta'}}
+\def\bea{{\boldsymbol \eta_\alpha}}
+\def\bena{{\boldsymbol \eta_\alpha^{(n)}}}
+\def\beat{{\tilde{\boldsymbol \eta}_{\alpha,T}}}
+\def\beza{{\boldsymbol \eta_\alpha^0}}
+\def\benpa{{\boldsymbol \eta_\alpha^{(n+1)}}}
+\def\bepa{{\boldsymbol \eta'_\alpha}}
+\def\upa{\boldsymbol u'_\alpha}
+\def\usa{\boldsymbol u^*_\alpha}
 
 %\pagecolor[rgb]{0.2,0.2,0.2}
 %\color[rgb]{0.95,0.95,0.95}
 
 \newtheorem{thm}{Theorem}[section]
+\setlength{\arrayrulewidth}{1pt} 
 
 %\numberwithin{equation}{section} % Numbers equations based on their section
 
 % ********************************
-\begin{document}
-\include{definitions} % LaTeX variables for preface pages/headers   
+\begin{document}\include{definitions} % LaTeX variables for preface pages/headers   
   \beforepreface % Half title page, title page, declaration page   
   \include{layabstr} % Lay Abstract
   \include{abstr} % Abstract
@@ -115,7 +139,17 @@
        %\setcounter{equation}{0}
        \setcounter{table}{0}
        
-  \include{chapter_3_results}                  
+  \include{chapter_3_optimization_problem}                  
+       \setcounter{figure}{0}
+       %\setcounter{equation}{0}
+       \setcounter{table}{0}    
+  
+  \include{chapter_4_numerical_methods}                  
+       \setcounter{figure}{0}
+       %\setcounter{equation}{0}
+       \setcounter{table}{0}
+            
+  \include{chapter_5_results}                  
        \setcounter{figure}{0}
        %\setcounter{equation}{0}
        \setcounter{table}{0}
@@ -145,40 +179,32 @@
         \setcounter{figure}{0}
         %\setcounter{equation}{0}
         \setcounter{table}{0}
-        
-    \include{appendix_tg_seminorm_2pi}
+       
+    \include{appendix_tg_seminorm_general}
         \setcounter{figure}{0}
         %\setcounter{equation}{0}
         \setcounter{table}{0}
         
-    \include{appendix_tg_seminorm_1}
+    \include{appendix_tg_vorticity_general}
         \setcounter{figure}{0}
         %\setcounter{equation}{0}
         \setcounter{table}{0}
         
-    \include{appendix_tg_seminorm_1_scaled}
-        \setcounter{figure}{0}
+    \include{appendix_time_scaling_euler}
+    		\setcounter{figure}{0}
         %\setcounter{equation}{0}
         \setcounter{table}{0}
         
-    \include{appendix_tg_vorticity_2pi}
-        \setcounter{figure}{0}
+    \include{appendix_time_scaling_euler_voigt}
+    		\setcounter{figure}{0}
         %\setcounter{equation}{0}
         \setcounter{table}{0}
         
-    \include{appendix_tg_vorticity_1}
-        \setcounter{figure}{0}
-        %\setcounter{equation}{0}
-        \setcounter{table}{0}
-        
-    \include{appendix_tg_vorticity_1_scaled}
-        \setcounter{figure}{0}
-        %\setcounter{equation}{0}
-        \setcounter{table}{0}
 \end{appendix}
 
 % The bibliography is set up to allow for multiple bib files
 \bibliographystyle{plain} %ACM-Reference-Format}
+%\bibliographystyle{plainnat}
 \bibliography{references}
 
 \label{NumDocumentPages}

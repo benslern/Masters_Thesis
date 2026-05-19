@@ -9,9 +9,9 @@ ax.set_ylabel('slope',fontsize="14")
 
 ax.set_xlim(0,5)
 #ax.set_xscale('log')
-ax.set_xlabel(r'$t$',fontsize="14")
+ax.set_xlabel('time',fontsize="14")
 
-ax.set_title(r"Fig 3 inset - init $\|u_\alpha\|_{\dot{H}^1} = \sqrt{3}/2$")
+#ax.set_title(r"Fig 3 inset - init $\|u_\alpha\|_{\dot{H}^1} = \sqrt{3}/2$")
 
 ax.tick_params(
     axis='both',          # applies to both x and y axes
@@ -29,12 +29,13 @@ ax.tick_params(
 )
 
 Data = []
-alphas = [2,4,8,12,16,20,24,28,32,36]
+alphas = [1,2,4,8,12,16,20,24,28,32,36]
 for i in alphas:
     filename = "./alpha_"+str(i)+"_1024/energy_fwd_0.dat"
     Ts = []
     sqrt_enstrophy = []
     j = 0
+    add = True
     with open(filename, 'r') as file:
         for line in file:
             line = " ".join(line.split())
@@ -42,8 +43,11 @@ for i in alphas:
             sqrt_enstrophy.append(float(vals[5])**0.5)
             sqrt_enstrophy[j] = max(sqrt_enstrophy)
             Ts.append(round(float(vals[0]),2))
-
+            #if round(float(vals[0]),2)>=3.05:
+            #    break
             j += 1
+            add = not add
+            
             #print(round(float(vals[0]),2),float(vals[5])**0.5)
 
     Data.append(sqrt_enstrophy)
@@ -51,14 +55,16 @@ for i in alphas:
 ND = np.asarray(Data).T
 Data = list(ND)
 
-for i in range(0,9):
+for i in range(0,10):
     slopes = []
     print(alphas[i+1],alphas[i])
+    
     for n in range(0,101,1):
         m = (np.log(Data[n][i+1])-np.log(Data[n][i]))/(np.log(alphas[i+1]/1024) - np.log(alphas[i]/1024))
         slopes.append(m)
-    ax.plot(Ts,slopes,label=r"$1024\alpha$: "+str(alphas[i])+' - '+str(alphas[i+1]))
-
+    if True:
+        ax.plot(Ts,slopes,'o-',ms=4,label=r"$1024\alpha$: "+str(alphas[i])+' - '+str(alphas[i+1]))
+        print(min(slopes))
 ax.set_xticks([0,1,2,3,4,5])
 ax.set_xticklabels(["0","1","2","3","4","5"])
 ax.legend(loc="lower left")
