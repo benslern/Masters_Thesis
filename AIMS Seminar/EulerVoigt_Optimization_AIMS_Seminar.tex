@@ -21,6 +21,10 @@
 %\usepackage[dvips]{color}
 \usepackage[english]{babel}
 \usepackage[font=tiny]{caption}
+\captionsetup{
+    justification=raggedright,
+    singlelinecheck=false
+}
 \usepackage{tabularray}
 \usepackage{comment}
 
@@ -252,7 +256,7 @@ April 23, 2026  \\ \smallskip}
 
 \begin{itemize}
 \item<1->
-Navier-Stokes system ($\Omega = [0,L]^3$)
+Navier-Stokes equations ($\Omega = [0,L]^3$)
 %\footnotesize
 \small
 \begin{equation*}
@@ -295,7 +299,7 @@ One of the Clay Institute ``Millennium Problems'' (\$ 1M prize!) \\
 
 \begin{itemize}
 \item<1->
-Euler system ($\Omega = [0,L]^3$)
+Euler equations ($\Omega = [0,L]^3$)
 %\footnotesize
 \small
 \begin{equation*}
@@ -333,7 +337,7 @@ There is numerical evidence for singularity formation in Euler (J.D. Gibbon 2008
 
 \begin{itemize}
 \item<1->
-Euler-Voigt system ($\Omega = [0,L]^3$)
+Euler-Voigt equations ($\Omega = [0,L]^3$)
 %\footnotesize
 \small
 \begin{equation*}
@@ -348,13 +352,16 @@ Euler-Voigt system ($\Omega = [0,L]^3$)
 %\label{eq:NS}
 \right.
 \end{equation*}
-\smallskip
 
 \item<2->
 $\alpha > 0$ is the regularization parameter with units of length. Acts as a 'spectral filter'. The Euler-Voigt system is globally well-posed given smooth initial conditions (Y. Cao et al. 2006). 
-\medskip
 
-\item<3->
+\item<3-> Conservation of the $\alpha-$Energy
+\begin{equation*}
+E_\alpha(t) = \|\ua(t)\|_{L^2}^2 + \alpha^2\|\nabla\ua(t)\|_{L^2}^2 = E_\alpha(0).
+\end{equation*}
+
+\item<4->
 As $\alpha\rightarrow 0$ the solutions of Euler-Voigt converge to the solutions of Euler and so its behaviour can be used to determine if the Euler equations will develop a finite-time singularity.
 
 \end{itemize}
@@ -419,7 +426,7 @@ Then the Euler equations with the initial condition $\be_\alpha$ must develop a 
 
 \begin{itemize}
 \item<1-> Modified from Theorem 5.2 (A. Larios et al. 2010).
-\begin{thm}\label{thm:Theorem:1.3}
+\begin{thm}[Xinyu Zhao] \label{thm:Theorem:1.3}
 Given initial data $\be,\bea \in H^s(\Omega)$ for some $s\geq 3$ satisfying
 \begin{equation*}
 \|\be-\bea\|_{L^2}^2+\alpha^2\|\bnabla(\be-\bea)\|_{L^2}^2 \rightarrow 0, \quad \text{as } \alpha\rightarrow 0,
@@ -570,14 +577,19 @@ We use a closed manifold $\M_1 \subset V$ defined as
 \end{equation*}
 
 \item<3->
-Euler $(\u)$ and Euler-Voigt $(\ua)$ time scaling property
-\begin{equation}
-\tilde{\u}_{(\alpha)}(\x,t) = \lambda \u_{(\alpha)}(\x,\lambda t),
-\end{equation}
+Euler $(\u)$ and Euler-Voigt $(\ua)$ scaling property
+\begin{equation*}
+\u_{(\alpha)}(\x,t) = \frac{1}{\gamma}\tilde{\u}_{(\alpha)}(\y,\tau),
+\end{equation*}
+where
+\begin{equation*}
+\y = \beta\x, \tau = \lambda t, \text{ and } \frac{\beta}{\lambda\gamma} = 1.
+\end{equation*}
 
 \end{itemize}
 \Emp
 }
+
 
 \frame
 {
@@ -596,16 +608,14 @@ V_0\sin(2\pi x/L)\cos(2\pi y/L)\cos(2\pi z/L) \\
 0
 \end{bmatrix}
 \end{equation*}
+\smallskip
 
 \item<2->
-Characteristic time-scale
-\begin{equation*}
-t_c = \frac{L}{V_0} 
-\end{equation*}
+Using $L = 2\pi$ and $V_0 = 1$, Bustamente et al. 2012 showed numerical evidence for finite-time singularity in Euler from $\be_{TGV}$ at $T^* \approx 4$. Let $\beta = \lambda = \gamma = 1$.
 \smallskip
 
 \item<3->
-Using $(\Omega = [0,2\pi]^3)$ and $V_0 = 1$, Bustamente et al. 2012 showed numerical evidence for finite-time singularity in Euler from $\be_{TGV}$ at $T^* \approx 4$. We use $(\Omega = [0,1]^3)$ and so scale down to $V_0 = 1/2\pi$.  
+We use $L = 1$ and so $\beta = 1/2\pi$. We require the same time window and so $\lambda = 1$. Therefore, $\gamma = 1/2\pi$ and so $V_0 = 1/2\pi$.  
 
 \end{itemize}
 \Emp
@@ -694,9 +704,9 @@ Beale-Kato-Majda (BKM) criterion (Beale et al. 1984): A Smooth solution $u$ of t
 
 \begin{itemize}
 \item<1->
-Define our objective function $\pat : V\rightarrow \RR^+$
+Define our objective functional $\pat : V\rightarrow \RR^+$
 \begin{equation*}\label{eq:objective:function}
-\pat(\be) := \|\nabla \ua(T;\bea)\|_{L^2}^2 = \|\ua(T;\bea)\|_{\hdo}^2
+\pat(\bea) := \|\nabla \ua(T;\bea)\|_{L^2}^2 = \|\ua(T;\bea)\|_{\hdo}^2
 \end{equation*}
 \smallskip
 
@@ -715,6 +725,7 @@ If $\|\be-\tilde{\be}_{\alpha,T}\|_{L^2}^2+\alpha^2\|\bnabla(\be-\tilde{\be}_{\a
 
 \subsection{Riemannian Conjugate Gradient Method}
 
+\begin{comment}
 \frame
 {
 \hspace*{-1.0cm}
@@ -833,7 +844,7 @@ p_{\alpha}^*
 \item<1->
 Substituting $\pat$ into the G$\a$teaux differential,
 \begin{equation*}
-\ppat(\be;\bep)=  2\la \ua(\x,T),\upa(\x,T)\ra_{\hdo} = 2\la \usa(\x,0),\upa(\x,0)\ra^2_{L^2}
+\ppat(\be;\bep)=  2\la \ua(\x,T),\upa(\x,T)\ra_{\hdo} = \la \usa(\x,0),\upa(\x,0)\ra_{L^2}
 \end{equation*} 
 
 \item<2->
@@ -852,6 +863,8 @@ The gradient of the objective functional is
 \Emp
 }
 
+\end{comment}
+
 \frame
 {
 \hspace*{-1.0cm}
@@ -865,15 +878,23 @@ Project the gradient $\nabla\Phi_T(\bea)$ onto the tangent space to $\M_1$ at $\
 \medskip
 
 \item<2->
-Perform vector transport operation to construct a Riemannian conjugate ascent direction.
+Perform vector transport operation to compute our 'momentum' term.
 \medskip
 
 \item<3->
+Use the projected gradient and momentum term to construct a Riemannian conjugate ascent direction.
+
+\item<4->
+Compute optimal step size $\tau_n$.
+
+\item<5->
 Retract back to $\M_1$.
 
 \end{itemize}
 \Emp
 }
+
+\begin{comment}
 
 \frame
 {
@@ -987,7 +1008,7 @@ Step size
 \end{itemize}
 \Emp
 }
-
+\end{comment}
 
 \frame
 {
@@ -997,6 +1018,10 @@ Step size
 \begin{figure}
 \centering
 \includegraphics[width=.9\linewidth]{riemannian_1.png}
+\captionsetup{
+    justification=centering,
+    singlelinecheck=false
+}
 \caption{(Zhao et al. 2023, Fig. 1)}
 \end{figure}
 \Emp
@@ -1011,6 +1036,10 @@ Step size
 \begin{figure}
 \centering
 \includegraphics[width=.9\linewidth]{riemannian_2.png}
+\captionsetup{
+    justification=centering,
+    singlelinecheck=false
+}
 \caption{(Zhao et al. 2023, Fig. 1)}
 \end{figure}
 \Emp
@@ -1025,6 +1054,10 @@ Step size
 \begin{figure}
 \centering
 \includegraphics[width=.9\linewidth]{riemannian_3.png}
+\captionsetup{
+    justification=centering,
+    singlelinecheck=false
+}
 \caption{(Zhao et al. 2023, Fig. 1)}
 \end{figure}
 \Emp
@@ -1038,11 +1071,16 @@ Step size
 \begin{figure}
 \centering
 \includegraphics[width=.9\linewidth]{riemannian.png}
+\captionsetup{
+    justification=centering,
+    singlelinecheck=false
+}
 \caption{(Zhao et al. 2023, Fig. 1)}
 \end{figure}
 \Emp
 }
 
+\begin{comment}
 
 \frame
 {
@@ -1077,6 +1115,7 @@ Iterations are stopped when the relative change of $\pat$ is below a specified t
 \end{itemize}
 \Emp
 }
+\end{comment}
 
 \subsection{Numerical Methods}
 
@@ -1122,7 +1161,7 @@ Gevrey class
 \vspace{-0.25cm}
 \begin{subequations}
 \begin{align*}
-\sigma&: \text{1E-5, 1E-4, 1E-3, 1E-2, 1E-1} \\
+\sigma&: \text{1E-5}\\
 s&: 3
 \end{align*}
 \end{subequations}
@@ -1891,28 +1930,9 @@ Results of $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$. T=3.
 
 \begin{figure}
 \centering
-\includegraphics[width=.9\linewidth]{larios_fig_3_T3_big.png}
-\caption{Log-log plot of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}^2$ vs $\alpha$ at $T = 0$ (blue) to $T=5.0$ (red). $C\alpha^p$ (black)}
-\end{figure}
+\includegraphics[width=.9\linewidth]{larios_fig_3_T3_big_spaced.png}
+\caption{Log-log plot of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}$ vs $\alpha$ at $T = 0$ (blue) to $T=3.0$ (red). $C\alpha^p$ (black), $p=-0.234$.\\ $C\alpha^{-1}$ (dotted black).}
 
-\end{itemize}
-\Emp
-}
-
-\frame
-{
-\hspace*{-1.0cm}
-\Bmp{12cm}
-\raggedright
-
-\begin{itemize}
-\item<1->
-Results of $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$. T=3.
-
-\begin{figure}
-\centering
-\includegraphics[width=.9\linewidth]{larios_fig_3_T3.png}
-\caption{Log-log plot of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}^2$ vs $\alpha$ at $T = 0$ (blue) to $T=5.0$ (red). $C\alpha^p$ (black)}
 \end{figure}
 
 \end{itemize}
@@ -1931,8 +1951,8 @@ Results of $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$. T=5.
 
 \begin{figure}
 \centering
-\includegraphics[width=.9\linewidth]{larios_fig_3.png}
-\caption{Log-log plot of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}^2$ vs $\alpha$ at $T = 0$ (blue) to $T=5.0$ (red). $C\alpha^p$ (black)}
+\includegraphics[width=.9\linewidth]{larios_fig_3_spaced.png}
+\caption{Log-log plot of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}$ vs $\alpha$ at $T = 0$ (blue) to $T=5.0$ (red). $C\alpha^p$ (black), $p=-0.417$.\\ $C\alpha^{-1}$ (dotted black).}
 \end{figure}
 
 \end{itemize}
@@ -1948,39 +1968,19 @@ Results of $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$. T=5.
 \begin{itemize}
 \item<1->
 Results of $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$.
-
-\begin{figure}
-\centering
-\includegraphics[width=.9\linewidth]{larios_fig_3_small.png}
-\caption{Log-log plot of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}^2$ vs $\alpha$ at $T = 0$ (blue) to $T=5.0$ (red). $C\alpha^p$ (black)}
-\end{figure}
-
-\end{itemize}
-\Emp
-}
-
-\frame
-{
-\hspace*{-1.0cm}
-\Bmp{12cm}
-\raggedright
-
-\begin{itemize}
-\item<1->
-Results of $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$.
-
+\vspace*{-0.1cm}
 \begin{figure}
 \centering
 \includegraphics[width=.9\linewidth]{larios_fig_3_inset.png}
-\caption{Plot of the slope of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}^2$ vs $time$. }
+\caption{Plot of the slope of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}$ vs $time$. }
 \end{figure}
 \vspace*{-0.5cm}
 
 \item<2->
-Therefore $p = -0.417$.
+Therefore $p = -0.138$ for $T=3$ and $p = -0.390$ for $T=5$.
 
 \item<3->
-Our pre-optimization results do not indicate that singularity formation will occur.
+Our pre-optimization results do not indicate that singularity formation will occur from the Taylor Green Vortex.
 
 \end{itemize}
 \Emp
@@ -2058,7 +2058,7 @@ Results of $\alpha^2\pat(\tilde{\be}_{\alpha,T})$ as $\alpha\rightarrow 0$. Reso
 \begin{figure}
 \centering
 \includegraphics[width=.9\linewidth]{larios_fig_3_optim_R128_T3.png}
-\caption{Log-log plot of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}^2$ vs $\alpha$ at $T = 0$ (blue) to $T=5.0$ (red). $C\alpha^p$ (black)}
+\caption{Log-log plot of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}$ vs $\alpha$ at $T = 0$ (blue) to $T=5.0$ (red). $C\alpha^p$ (black), $p = -0.246$.}
 \end{figure}
 
 \end{itemize}
@@ -2078,15 +2078,31 @@ Results of $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$. Resolution=128, T=3.
 \begin{figure}
 \centering
 \includegraphics[width=.9\linewidth]{larios_fig_3_inset_R128_T3.png}
-\caption{Plot of the slope of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}^2$ vs $time$. }
+\caption{Plot of the slope of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}$ vs $time$. }
 \end{figure}
 \vspace*{-0.5cm}
 
 \item<2->
-Therefore $p = -0.417$.
+Therefore $p = -0.246$ and so singularity formation does not occur.
 
-\item<3->
-Our optimization results do not indicate that singularity formation will occur.
+\end{itemize}
+\Emp
+}
+
+\frame
+{
+\hspace*{-1.0cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1->
+Results of $\alpha^2\pat(\tilde{\be}_{\alpha,T})$ as $\alpha\rightarrow 0$. Resolution=128, T=5.
+\begin{figure}
+\centering
+\includegraphics[width=.9\linewidth]{larios_fig_3_optim_R128_T5.png}
+\caption{Log-log plot of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}$ vs $\alpha$ at $T = 0$ (blue) to $T=5.0$ (red). $C\alpha^p$ (black), $p = -0.470$.}
+\end{figure}
 
 \end{itemize}
 \Emp
@@ -2105,15 +2121,53 @@ Results of $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$. Resolution=128, T=5.
 \begin{figure}
 \centering
 \includegraphics[width=.9\linewidth]{larios_fig_3_inset_R128_T5.png}
-\caption{Plot of the slope of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}^2$ vs $time$. }
+\caption{Plot of the slope of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}$ vs $time$. }
 \end{figure}
 \vspace*{-0.5cm}
 
 \item<2->
-Therefore $p = -0.417$.
+Therefore $p = -0.470$.
 
 \item<3->
-Our optimization results do not indicate that singularity formation will occur.
+Our optimization results do not indicate that singularity formation will occur for a resolution of 128.
+
+\end{itemize}
+\Emp
+}
+
+\frame
+{
+\hspace*{-1.0cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1->
+Results of $\alpha^2\pat(\tilde{\be}_{\alpha,T})$ as $\alpha\rightarrow 0$. Resolution=256.
+\begin{figure}
+\centering
+\includegraphics[width=.9\linewidth]{Figure_3_R256.png}
+\caption{Results for $T=3$ (dotted line) and for $T=5$ (solid line). Results from runs performed at $128^3$ (orange plus), $256^3$ (cyan star).}
+\end{figure}
+
+\end{itemize}
+\Emp
+}
+
+\frame
+{
+\hspace*{-1.0cm}
+\Bmp{12cm}
+\raggedright
+
+\begin{itemize}
+\item<1->
+Results of $\alpha^2\pat(\tilde{\be}_{\alpha,T})$ as $\alpha\rightarrow 0$. Resolution=256, T=3.
+\begin{figure}
+\centering
+\includegraphics[width=.9\linewidth]{larios_fig_3_optim_R256_T3_spaced.png}
+\caption{Log-log plot of $max_{t\in[0,T^*]}\|\nabla\ua\|_{L^2}$ vs $\alpha$ at $T = 0$ (blue) to $T=5.0$ (red). $C\alpha^p$ (black), $p = -0.160$.}
+\end{figure}
 
 \end{itemize}
 \Emp
@@ -2129,13 +2183,16 @@ Our optimization results do not indicate that singularity formation will occur.
 
 \begin{itemize}
 \item<1->
-Our results indicate ...
+Our results indicate that without optimization, singularity formation will not occur in the Euler equations with the Taylor Green Vortex initial condition.
 
 \item<2->
-Repeat with higher resolutions.  
+Upon low resolution optimization, the results improve, but still do not indicate singularity formation.
 
 \item<3->
-The optimization problem is non-convex. The TGV may not optimize to global maxima. We must expand to other initial conditions.
+Our next step is to repeat with higher resolutions.  
+
+\item<4->
+The optimization problem is non-convex. The TGV may not optimize to global maximum. We must expand to other initial conditions.
 
 \end{itemize}
 \Emp

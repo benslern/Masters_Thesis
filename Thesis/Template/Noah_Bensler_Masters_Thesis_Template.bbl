@@ -1,12 +1,43 @@
 \begin{thebibliography}{10}
 
+\bibitem{beale_remarks_1984}
+J.~T. Beale, T.~Kato, and A.~Majda.
+\newblock Remarks on the breakdown of smooth solutions for the 3-{D} {Euler}
+  equations.
+\newblock {\em Communications in Mathematical Physics}, 94(1):61--66, March
+  1984.
+
+\bibitem{brachet_small-scale_1983}
+Marc~E. Brachet, Daniel~I. Meiron, Steven~A. Orszag, B.~G. Nickel, Rudolf~H.
+  Morf, and Uriel Frisch.
+\newblock Small-scale structure of the {Taylor}–{Green} vortex.
+\newblock {\em Journal of Fluid Mechanics}, 130:411--452, May 1983.
+
+\bibitem{bustamante_interplay_2012}
+Miguel~D. Bustamante and Marc Brachet.
+\newblock Interplay between the {Beale}-{Kato}-{Majda} theorem and the
+  analyticity-strip method to investigate numerically the incompressible
+  {Euler} singularity problem.
+\newblock {\em Physical Review E}, 86(6):066302, December 2012.
+\newblock arXiv:1112.1571 [physics].
+
+\bibitem{canuto_spectral_2006}
+Claudio Canuto, M.~Youssuff Hussaini, Alfio Quarteroni, and Thomas~A. Zang.
+\newblock {\em Spectral {Methods}: {Fundamentals} in {Single} {Domains}}.
+\newblock Scientific {Computation}. Springer, Berlin, Heidelberg, 2006.
+
 \bibitem{cao_global_2006}
 Yanping Cao, Evelyn~M. Lunasin, and Edriss~S. Titi.
 \newblock Global well-posedness of the three-dimensional viscous and inviscid
   simplified {Bardina} turbulence models.
 \newblock {\em Communications in Mathematical Sciences}, 4(4):823--848,
   December 2006.
-\newblock Publisher: International Press of Boston.
+
+\bibitem{chen_stable_2023}
+Jiajie Chen and Thomas~Y. Hou.
+\newblock Stable nearly self-similar blowup of the {2D} {Boussinesq} and {3D}
+  {Euler} equations with smooth data {I}: {Analysis}, May 2023.
+\newblock arXiv:2210.07191 [math.AP].
 
 \bibitem{cho_solving_2022}
 Hyuntae Cho, Yesom Park, and Myungjoo Kang.
@@ -27,7 +58,18 @@ Charles~R. Doering.
 \newblock The {3D} {Navier}-{Stokes} {Problem}.
 \newblock {\em Annual Review of Fluid Mechanics}, 41(Volume 41, 2009):109--128,
   January 2009.
-\newblock Publisher: Annual Reviews.
+
+\bibitem{gibbon_three-dimensional_2008}
+J.~D. Gibbon.
+\newblock The three-dimensional {Euler} equations: {Where} do we stand?
+\newblock {\em Physica D: Nonlinear Phenomena}, 237(14):1894--1904, August
+  2008.
+
+\bibitem{hou_potential_2022}
+Thomas~Y. Hou.
+\newblock Potential singularity of the {3D} {Euler} equations in the interior
+  domain, May 2022.
+\newblock arXiv:2107.05870 [math.AP].
 
 \bibitem{larios_computational_2018}
 Adam Larios, Mark~R. Petersen, Edriss~S. Titi, and Beth Wingate.
@@ -43,14 +85,27 @@ Adam Larios and Edriss~S. Titi.
   February 2010.
 \newblock arXiv:0910.3354 [math].
 
-\bibitem{luenberger_optimization_nodate}
+\bibitem{leray_sur_1934}
+Jean Leray.
+\newblock Sur le mouvement d'un liquide visqueux emplissant l'espace.
+\newblock {\em Acta Mathematica}, 63(1):193--248, December 1934.
+
+\bibitem{luenberger_optimization_1969}
 David~G. Luenberger.
 \newblock {\em Optimization by {Vector} {Space} {Methods}}.
+\newblock 1969.
 
 \bibitem{moffatt_singularities_2019}
 H.~K. Moffatt.
 \newblock Singularities in {Fluid} {Mechanics}, July 2019.
 \newblock arXiv:1907.06400 [physics].
+
+\bibitem{molfetta_self-truncation_2015}
+Giuseppe~Di Molfetta, Giorgio Krstlulovic, and Marc Brachet.
+\newblock Self-truncation and scaling in {Euler}-{Voigt}-alpha and related
+  fluid models.
+\newblock {\em Physical Review E}, 92(1):013020, July 2015.
+\newblock arXiv:1502.05544 [physics].
 
 \bibitem{protas_systematic_2022}
 Bartosz Protas.
@@ -65,6 +120,10 @@ James~C. Robinson.
 \newblock The {Navier}–{Stokes} regularity problem.
 \newblock {\em Philosophical Transactions of the Royal Society A: Mathematical,
   Physical and Engineering Sciences}, 378(2174):20190526, June 2020.
-\newblock Publisher: Royal Society.
+
+\bibitem{zhao_systematic_2023}
+Xinyu Zhao and Bartosz Protas.
+\newblock Systematic {Search} for {Singularities} in {3D} {Euler} {Flows}.
+\newblock {\em Journal of Nonlinear Science}, 33(6):120, October 2023.
 
 \end{thebibliography}
