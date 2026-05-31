@@ -2,15 +2,16 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Relative error of $\Phi _{dt}$ for each step size to $\Phi _c$. Resolution $N=128^3$ and time window $T=5$.}}{25}{table.caption.10}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces Relative error of $\Phi _{dt}$ for each step size to $\Phi _c$. Resolution $N=256^3$ and time window $T=5$.}}{25}{table.caption.11}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces Relative error of $\Phi _{dt}$ for each step size to $\Phi _c$. Resolution $N=128^3$ and time window $T=5$.}}{26}{table.caption.10}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Relative error of $\Phi _{dt}$ for each step size to $\Phi _c$. Resolution $N=256^3$ and time window $T=5$.}}{26}{table.caption.11}%
 \contentsline {table}{\numberline {4.3}{\ignorespaces Relative error of $\Phi _{dt}$ for each step size to $\Phi _c$. Resolution $N=512^3$ and time window $T=5$.}}{26}{table.caption.12}%
-\contentsline {table}{\numberline {4.4}{\ignorespaces Relative error of $\Phi _{dt}$ for each step size to $\Phi _c$. Resolution $N=1024^3$ and time window $T=5$.}}{26}{table.caption.13}%
-\contentsline {table}{\numberline {4.5}{\ignorespaces Maximum relative error of $E_\alpha (t)$ to $E_\alpha (0)$ for each step size. Resolution $N=128^3$ and time window $T=5$.}}{27}{table.caption.14}%
-\contentsline {table}{\numberline {4.6}{\ignorespaces Maximum relative error of $E_\alpha (t)$ to $E_\alpha (0)$ for each step size. Resolution $N=256^3$ and time window $T=5$.}}{27}{table.caption.15}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Relative error of $\Phi _{dt}$ for each step size to $\Phi _c$. Resolution $N=1024^3$ and time window $T=5$.}}{27}{table.caption.13}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Maximum relative error of $E_\alpha (t)$ to $E_\alpha (0)$ for each step size. Resolution $N=128^3$ and time window $T=5$.}}{28}{table.caption.14}%
+\contentsline {table}{\numberline {4.6}{\ignorespaces Maximum relative error of $E_\alpha (t)$ to $E_\alpha (0)$ for each step size. Resolution $N=256^3$ and time window $T=5$.}}{28}{table.caption.15}%
 \contentsline {table}{\numberline {4.7}{\ignorespaces Maximum relative error of $E_\alpha (t)$ to $E_\alpha (0)$ for each step size. Resolution $N=512^3$ and time window $T=5$.}}{28}{table.caption.16}%
-\contentsline {table}{\numberline {4.8}{\ignorespaces Maximum relative error of $E_\alpha (t)$ to $E_\alpha (0)$ for each step size. Resolution $N=1024^3$ and time window $T=5$.}}{28}{table.caption.17}%
+\contentsline {table}{\numberline {4.8}{\ignorespaces Maximum relative error of $E_\alpha (t)$ to $E_\alpha (0)$ for each step size. Resolution $N=1024^3$ and time window $T=5$.}}{29}{table.caption.17}%
 \contentsline {table}{\numberline {4.9}{\ignorespaces Selection of $\Delta t$ for each resolution and $\alpha $.}}{29}{table.caption.18}%
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

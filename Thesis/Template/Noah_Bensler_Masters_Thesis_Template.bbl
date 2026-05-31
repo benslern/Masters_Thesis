@@ -33,6 +33,15 @@ Yanping Cao, Evelyn~M. Lunasin, and Edriss~S. Titi.
 \newblock {\em Communications in Mathematical Sciences}, 4(4):823--848,
   December 2006.
 
+\bibitem{chen_finite_2021}
+Jiajie Chen and Thomas~Y. Hou.
+\newblock Finite time blowup of {2D} {Boussinesq} and {3D} {Euler} equations
+  with \${C}{\textasciicircum}\{1,{\textbackslash}alpha\}\$ velocity and
+  boundary.
+\newblock {\em Communications in Mathematical Physics}, 383(3):1559--1667, May
+  2021.
+\newblock arXiv:1910.00173 [math.AP].
+
 \bibitem{chen_stable_2023}
 Jiajie Chen and Thomas~Y. Hou.
 \newblock Stable nearly self-similar blowup of the {2D} {Boussinesq} and {3D}
@@ -59,17 +68,41 @@ Charles~R. Doering.
 \newblock {\em Annual Review of Fluid Mechanics}, 41(Volume 41, 2009):109--128,
   January 2009.
 
+\bibitem{fefferman_existence_2022}
+Charles~L Fefferman.
+\newblock Existence and {Smoothness} of the {Navier}-{Stokes} equation.
+\newblock
+  \url{https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf},
+  2022.
+
+\bibitem{fournier_sobolev_2003}
+John J.~F. Fournier and Robert~A. Adams.
+\newblock {\em Sobolev {Spaces}}.
+\newblock 2 edition, June 2003.
+
 \bibitem{gibbon_three-dimensional_2008}
 J.~D. Gibbon.
 \newblock The three-dimensional {Euler} equations: {Where} do we stand?
 \newblock {\em Physica D: Nonlinear Phenomena}, 237(14):1894--1904, August
   2008.
 
-\bibitem{hou_potential_2022}
+\bibitem{hou_potential_2023}
 Thomas~Y. Hou.
-\newblock Potential singularity of the {3D} {Euler} equations in the interior
-  domain, May 2022.
-\newblock arXiv:2107.05870 [math.AP].
+\newblock Potential {Singularity} of the {3D} {Euler} {Equations} in the
+  {Interior} {Domain}.
+\newblock {\em Foundations of Computational Mathematics}, 23(6):2203--2249,
+  December 2023.
+
+\bibitem{hou_potential_2022}
+Thomas~Y. Hou and De~Huang.
+\newblock Potential singularity formation of incompressible axisymmetric
+  {Euler} equations with degenerate viscosity coefficients, May 2022.
+\newblock arXiv:2102.06663 [math.AP].
+
+\bibitem{kato_nonstationary_1972}
+Tosio Kato.
+\newblock Nonstationary flows of viscous and ideal fluids in \textit{{R}}3.
+\newblock {\em Journal of Functional Analysis}, 9(3):296--305, March 1972.
 
 \bibitem{larios_computational_2018}
 Adam Larios, Mark~R. Petersen, Edriss~S. Titi, and Beth Wingate.
@@ -95,6 +128,14 @@ David~G. Luenberger.
 \newblock {\em Optimization by {Vector} {Space} {Methods}}.
 \newblock 1969.
 
+\bibitem{luo_potentially_2014}
+Guo Luo and Thomas~Y. Hou.
+\newblock Potentially {Singular} {Solutions} of the {3D} {Incompressible}
+  {Euler} {Equations}.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  111(36):12968--12973, September 2014.
+\newblock arXiv:1310.0497 [physics.flu-dyn].
+
 \bibitem{moffatt_singularities_2019}
 H.~K. Moffatt.
 \newblock Singularities in {Fluid} {Mechanics}, July 2019.
@@ -107,6 +148,11 @@ Giuseppe~Di Molfetta, Giorgio Krstlulovic, and Marc Brachet.
 \newblock {\em Physical Review E}, 92(1):013020, July 2015.
 \newblock arXiv:1502.05544 [physics].
 
+\bibitem{nocedal_numerical_2000}
+Jorge Nocedal and Stephen~J. Wright.
+\newblock {\em Numerical {Optimization}}.
+\newblock Second edition edition, 2000.
+
 \bibitem{protas_systematic_2022}
 Bartosz Protas.
 \newblock Systematic {Search} {For} {Extreme} and {Singular} {Behavior} in
@@ -115,11 +161,10 @@ Bartosz Protas.
   Physical and Engineering Sciences}, 380(2225):20210035, June 2022.
 \newblock arXiv:2112.14917 [math].
 
-\bibitem{robinson_navierstokes_2020}
-James~C. Robinson.
-\newblock The {Navier}–{Stokes} regularity problem.
-\newblock {\em Philosophical Transactions of the Royal Society A: Mathematical,
-  Physical and Engineering Sciences}, 378(2174):20190526, June 2020.
+\bibitem{robinson_three-dimensional_2016}
+James~C. Robinson, Jose~L. Rodrigo, and Witold Sadowski.
+\newblock {\em The {Three}-{Dimensional} {Navier}-{Stokes} {Equations}}.
+\newblock 2016.
 
 \bibitem{zhao_systematic_2023}
 Xinyu Zhao and Bartosz Protas.

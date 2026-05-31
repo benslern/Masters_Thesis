@@ -1,23 +1,21 @@
 \chapter{Rescaling the Euler-Voigt equations}
 \label{app:time:scale:euler:voigt}
 
-For Euler-Voigt fluids we have the equation
-$$-\alpha^2\partial_t\bd \ua + \partial_t \ua + (\ua\cdot\bn)\ua + \bn p = 0,$$
-where the solution is $\ua=\ua(\x,t)$. We construct a new scaled solution with
+Given a solution $\ua$ of the Euler-Voigt equations (\ref{eq:Euler:Voigt}), we construct a new scaled solution withe construct a new scaled solution with
 $$\tau = \lambda t, \qquad \kappa = \beta\alpha, \qquad \y = \beta\x.$$ 
 where $\lambda, \beta > 0$ are constants. The variables $\x$ and $\alpha$ are both scaled by $\beta$ because they are both spatial and we want to keep the relative size of the filter to the domain size fixed. Our new solution $\v$ is defined as
 $$\v = \v(\y,\tau) = \gamma \ua(\y/\beta, \tau/\lambda).$$
 Therefore
 $$\partial_t \ua = \frac{1}{\gamma}\frac{\partial \v}{d\tau}\frac{d\tau}{dt} = \frac{\lambda}{\gamma} \partial_\tau \v.$$
 and
-$$\bn \ua = \frac{1}{\gamma}\bn v \frac{d\y}{d\x} = \frac{\beta}{\gamma}\bn \v.$$
+$$\bn \ua = \frac{1}{\gamma}\bn \v \frac{d\y}{d\x} = \frac{\beta}{\gamma}\bn \v.$$
 and
 $$\partial_t \bd \ua = \partial_t \frac{\beta^2}{\gamma}\bd \v = \frac{\lambda \beta^2}{\gamma}\partial_\tau \bd \v.$$
-Substituting into the original equation
+Substituting $\v$ into equation (\ref{eq:Euler:Voigt}a)
 $$-\alpha^2\frac{\lambda \beta^2}{\gamma}\partial_\tau \bd \v + \frac{\lambda}{\gamma} \partial_\tau \v + \frac{\beta}{\gamma^2}(\v\cdot\bn)\v + \bn q = 0,$$
-where $q$ is defined as whatever pressure is required to satisfy the equality. This can be rearranged to the form,
+where $q$ is defined as whatever pressure is required to satisfy the incompressibility condition. This can be rearranged to the form,
 $$-\kappa^2\partial_t \bd \v + \partial_\tau \v + \frac{\beta}{\lambda\gamma}(\v\cdot\bn)\v + \bn q' = 0.$$
 Therefore, our function $\v$ can only be a solution to the Euler-Voigt equations if
 $$\frac{\beta}{\lambda\gamma} = 1.$$
 For the Taylor Green Vortex with $L = 2\pi$ and $V_0 = 1$, let $\gamma = \lambda = \beta = 1.$
-In order to rescale this to the domain with $L=1$ we must set $\beta = 1/2\pi$. Additionally we want our rescaled solution to have the same time scale as the original solution and so we must set $\lambda = 1$. Therefore, for our scaled solution $\v$ to be a solution of Euler-Voigt we must set $\gamma = V_0 = 1/2\pi$. 
+In order to rescale this to the domain with $L=1$ we must set $\beta = 1/2\pi$. Additionally, we want our rescaled solution to have the same time scale as the original solution and so we must set $\lambda = 1$. Therefore, for our scaled solution $\v$ to be a solution of the Euler-Voigt equations we must set $\gamma = V_0 = 1/2\pi$. 

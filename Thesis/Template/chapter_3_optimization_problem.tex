@@ -2,20 +2,20 @@
 
 \section{Formulation of the Problem}
 
-With our initial conditions and blowup criteria defined, we now define the PDE-constrained optimization problem. We begin with the objection functional, defined as $\pat: V\rightarrow \RR^+$ as
+With our initial conditions and blowup criteria defined, we now construct the PDE-constrained optimization problem. We begin with the objection functional $\pat: V\rightarrow \RR^+$, which is defined as
 \begin{subequations}\label{eq:objective:functional}
 \begin{align}
 \pat(\bea) &:= \|\nabla \ua(T;\bea)\|_{L^2}^2,\\
 &:= \|\ua(T;\bea)\|_{\hdo}^2,
 \end{align}
 \end{subequations}
-where $\ua(T;\bea)$ is the solution of the Euler-Voigt equations obtained at time $T$ with the initial condition $\bea\in V$ and regularization parameter $\alpha$. We can now formulate our optimization problem. Given $\alpha, T\in\mathbb{R}^+$, find
+where $\ua(T;\bea)$ is the solution of the Euler-Voigt equations (\ref{eq:Euler:Voigt}) obtained at time $T$ with the initial condition $\bea\in V$ and regularization parameter $\alpha$. Given $\alpha, T\in\mathbb{R}^+$, the optimization problem will find the initial condition that maximizes the objective functional
 \begin{align}
-\tilde{\be}_{\alpha,T} = \argmax_{\bea \in M_1}\pat(\bea).
+\tilde{\be}_{\alpha,T} = \argmax_{\bea \in M_C}\pat(\bea).
 \end{align}
-The objective functional is maximized using an Riemannian conjugate gradient iterative relation described in Section (\ref{sec:Riemannian Conjugate Gradient Method}). This method is utilized because it accelerates the gradient ascent method which is necessary given the computational cost of each iteration. The solution to the problem is the value of $\be_{\alpha,T}^n$ as the iteration number $n\rightarrow \infty$. The same method was used in \cite{zhao_systematic_2023} to construct a PDE-constrained optimization problem for the Euler equations to search for initial conditions $\be$ with unit $\dot{H}^3$-seminorm such that the optimal solution achieved a maximum $\dot{H}^3$ seminorm within a selected time interval $[0,T]$ for $T=25$ and $T=75$.
+The objective functional is maximized using an Riemannian conjugate gradient iterative relation described in Section \ref{sec:Riemannian Conjugate Gradient Method}. This method is utilized because it accelerates the gradient ascent method which is necessary given the computational cost of each iteration. The solution to the problem is the value of $\be_{\alpha,T}^n$ as the iteration number $n\rightarrow \infty$. The same method was used in \cite{zhao_systematic_2023} to construct a PDE-constrained optimization problem for the Euler equations to search for initial conditions $\be$ that produce 'extreme' flows.
 \\~\\ 
-Our goal is to first fix $T$ and solve the optimization problem for a sequence of decrease values of $\alpha$ that converge to 0. We examine the results for a time interval before the expected point singularity formation should occur and again for a time interval after. From Theorem (\ref{thm:Theorem:1.3}) if
+Our goal is to first fix $T$ and solve the optimization problem for a sequence of decrease values of $\alpha$ that converge to 0. We examine the results for a time interval before the expected point singularity formation should occur and again for a time interval after. From Theorem \ref{thm:Theorem:1.3} if
 \begin{equation}
 \|\be-\beat\|_{L^2}^2+\alpha^2\|\bn(\be-\beat)\|_{L^2}^2 \rightarrow 0, \quad \text{as } \alpha\rightarrow 0,
 \end{equation} 
@@ -23,22 +23,25 @@ and
 \begin{equation}
 \limsup_{\alpha \rightarrow 0} \left( \alpha^2 \sup_{t\in[0,T^*]} \pat(\tilde{\be}_{\alpha,T})\right) > 0,
 \end{equation}
-then $\u$ develops a singularity in the interval $[0,T^*]$ from initial condition $\be$. From the results of \cite{bustamante_interplay_2012}, the expected time of singularity formation in Euler is $T^*\approx 4.4$. Therefore, we perform the optimization problem for $T=3$ and $T=5$. We anticipate that upon optimization the results of $T=3$ should indicate blow-up will not occur and for $T=5$ singularity formation will occur.
+then $\u$ develops a singularity in the interval $[0,T^*]$ from initial condition $\be$. From the results of \cite{bustamante_interplay_2012}, the expected time of singularity formation in Euler is $T^*\approx 4$. Therefore, we perform the optimization problem for $T=3$, where blow-up should not occur, and $T=5$ where it may occur.
 
 \section{Gradient of Objective Function} \label{sec:Gateaux Directional Differential}
-The optimization problem is solved using an iterative relation which uses an optimal search direction and distance to create the next iteration's initial condition. We compute the optimal search direction using the gradient of the objection functional $\nabla\pat(\bea)$. This value is computed using an adjoint method which depends on solving a properly defined adjoint system backwards in time. We first introduce the G\^{a}teaux (directional) differential $\ppat(\bea;\bea'): V\times V \rightarrow \mathbb{R}$. The first order finite difference equation for the Gateaux differential is,
+The optimization problem is solved using an iterative relation which uses an optimal search direction and distance to create the next iteration's initial condition. We compute the optimal search direction using the gradient of the objection functional $\nabla\pat(\bea)$. This value is computed using an adjoint method which depends on solving a properly defined adjoint system backwards in time. To derive the gradient, we first introduce the G\^{a}teaux (directional) differential $\ppat(\bea;\bea'): V\times V \rightarrow \mathbb{R}$. The first order finite difference equation for the Gateaux differential is,
 \begin{align}\label{eq:Gateaux:differential}
 \ppat(\bea;\bea'):=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}\left[\pat(\bea+\epsilon\bepa)-\pat(\bea)\right].
 \end{align}
-This represents the change in $\pat$ from a small perturbation proportional to $\bepa$ applied to the initial condition $\bea$. By fixing the initial condition $\bea$, we can view the G\^{a}teaux differential as a bounded linear functional on V. Therefore, it can also be represented as an inner product on the Gevrey space using the Riesz representation theorem \cite{zhao_systematic_2023} \cite{luenberger_optimization_1969}
+This represents the change in $\pat$ from a small perturbation proportional to $\epsilon$ in the direction $\bepa$ from the initial condition $\bea$. By fixing the initial condition $\bea$, we can view the G\^{a}teaux differential as a bounded linear functional on $V$. Therefore, it can also be represented as an inner product on the Gevrey space using the Riesz representation theorem \cite{zhao_systematic_2023} \cite{luenberger_optimization_1969}
 \begin{equation}\label{eq:Gateaux:differential:riesz}
-\ppat(\bea;\bea') = \la \nabla\pat(\bea),\bea'\ra_{G^\sigma}.
+\ppat(\bea;\bepa) = \la \nabla\pat(\bea),\bepa\ra_{G^\sigma}.
 \end{equation}
-Substituting the second definition of the objective functional (\ref{eq:objective:functional}) into the finite difference form of the G\^{a}teaux differential, we derive the G\^{a}teaux differential in the form of the $\hdo$ inner product and the $L^2$ inner product,
-\begin{align}\label{eq:Gateaux:differential:inner:product}
-\ppat(\be;\be')=  2\la \ua(\cdot,T),\upa(\cdot,T)\ra_{\hdo} = \la \usa(\cdot,0),\upa(\cdot,0)\ra_{L^2}
+Substituting the second definition of the objective functional (\ref{eq:objective:functional}) into the finite difference form of the G\^{a}teaux differential (\ref{eq:Gateaux:differential}), we derive the G\^{a}teaux differential in the form of the $\hdo$ semi-inner product and the $L^2$ inner product,
+\begin{subequations}\label{eq:Gateaux:differential:inner:product}
+\begin{align}
+\ppat(\be;\be')&=  2\la \ua(\cdot,T),\upa(\cdot,T)\ra_{\hdo}\\
+			  &= \la \usa(\cdot,0),\upa(\cdot,0)\ra_{L^2}
 \end{align}
-The complete derivations for both forms are shown in Appendix (\ref{app:gateaux}). In (\ref{eq:Gateaux:differential:inner:product}) the value $\upa$ is the solution of the linearization of the Euler-Voigt system (\ref{eq:Euler:Voigt}) around its solution $\ua$. The linearization of the Euler-Voigt system is defined as
+\end{subequations}
+The derivations for both forms are shown in Appendix \ref{app:gateaux}. In (\ref{eq:Gateaux:differential:inner:product}) the value $\upa$ is the solution of the linearization of the Euler-Voigt system (\ref{eq:Euler:Voigt}) around its solution $\ua$. The linearization of the Euler-Voigt system is defined as\\
 \begin{small}
 \begin{subequations}\label{eq:euler:voigt:linearization}
 \begin{align}
@@ -53,11 +56,11 @@ p'
 0\\
 0
 \end{bmatrix}\\
-\upa(x,0) =& \bea'
+\upa(x,0) =& \bepa
 \end{align}
 \end{subequations}
 \end{small}
-\noindent where $\bea'$ and $p'$ are the perturbations of the initial condition and pressure, respectively. The derivation of the linearized form of the Euler-Voigt equations is shown in Appendix (\ref{app:lin:euler}). The value $\usa$ in (\ref{eq:Gateaux:differential:inner:product}) is the solution of the adjoint system
+\noindent where $\bepa$ and $p'$ are the perturbations of the initial condition and pressure, respectively. The derivation of the linearized form of the Euler-Voigt equations is shown in Appendix \ref{app:lin:euler}. The value $\usa$ in (\ref{eq:Gateaux:differential:inner:product}) is the solution of the adjoint system
 \small
 \begin{subequations}\label{eq:euler:voigt:adjoint}
 \begin{align}
@@ -75,7 +78,7 @@ p_{\alpha}^*
 \end{align}
 \end{subequations}
 \normalsize
-which is derived in Appendix (\ref{app:adjoint}) by performing integration by parts, in both space and time, on the following duality-pairing relation 
+which is derived in Appendix \ref{app:adjoint} by performing integration by parts, in both space and time, on the following duality-pairing relation 
 \begin{equation}\label{eq:duality:pairing}
 \begin{aligned}
 \left(\L\begin{bmatrix}
@@ -98,45 +101,41 @@ p'
 \usa\\
 p^*
 \end{bmatrix} \right) + \int_{\TT^3} \upa(\x,T)\cdot \usa(\x,T)\,d\x \\[3pt]
-&- \int_{\TT^3}\be'(\x)\cdot \usa(\x,0) \,d\x \\
+&- \int_{\TT^3}\bepa(\x)\cdot \usa(\x,0) \,d\x \\
 =& \, 0.
 \end{aligned}
 \end{equation}
 Using the adjoint system we can now define the gradient. We take the G\^{a}teaux differential in the form of the $L^2$ inner product  (\ref{eq:Gateaux:differential:inner:product}) and in the Riesz representation form (\ref{eq:Gateaux:differential:riesz})
 \begin{equation}
-\ppat(\bea;\bea') = 2\la \usa(\cdot,0),\upa(\cdot,0)\ra_{L^2} = \la \nabla\pat(\bea),\bea' \ra_{G^\sigma}.
+\ppat(\bea;\bea') = \la \usa(\cdot,0),\upa(\cdot,0)\ra_{L^2} = \la \nabla\pat(\bea),\bepa \ra_{G^\sigma}.
 \end{equation}
-Expressing the $L^2$ inner product in its integral form,
-\begin{subequations}
-\begin{align}
-\la \nabla\pat(\be),\be' \ra_{G^\sigma} &= \int_{\TT^3} \usa(x,0)\cdot \be'(x) \,dx \\
-&= \int_{\TT^3} (1+|D|^2)^3e^{2\sigma|D|}\left[(1+|D|^2)^{-3}e^{-2\sigma|D|}\usa(x,0)\right]\cdot \be'(x) \,dx \\
-&= \la (1+|D|^2)^{-3}e^{-2\sigma|D|} \usa(x,0),\be'(x) \ra_{G^\sigma}
-\end{align}
-\end{subequations}
-This gives us the G\^{a}teaux differential in the form of the Gevrey inner product
+Using the definition of the Gevrey inner product (\ref{eq:eq:Gevrey:Inner:Product}), the $L^2$ inner product can be converted to the Gevrey inner product,
 \begin{equation}
-\la \nabla\pat(\be),\be' \ra_{G^\sigma} = \la (1+|D|^2)^{-3}e^{-2\sigma|D|} \usa(x,0),\be'(x) \ra_{G^\sigma}.
+\la \usa(\cdot,0),\upa(\cdot,0)\ra_{L^2} = \la (1+|D|^2)^{-3}e^{-2\sigma|D|} \usa(x,0),\bepa(x) \ra_{G^\sigma}
+\end{equation}
+Therefore, we have two forms of the G\^{a}teaux differential as a Gevrey inner product
+\begin{equation}
+\la \nabla\pat(\bea),\bepa \ra_{G^\sigma} = \la (1+|D|^2)^{-3}e^{-2\sigma|D|} \usa(x,0),\bepa(x) \ra_{G^\sigma}.
 \end{equation}
 Therefore, the gradient of the objective functional is
 \begin{equation}\label{eq:gradient}
 \nabla \pat(\bea) = (1+|D|^2)^{-3}e^{-2\sigma|D|}\usa(x,0)
 \end{equation}
-The adjoint system (\ref{eq:Euler-Voigt:adjoint}) is a terminal value problem. Therefore, to compute the gradient we first evolve the Euler-Voigt system forward from $\bea$ to compute $\ua(\x,T)$, from which we obtain the terminal value of (\ref{eq:Euler-Voigt:adjoint}). Finally, we evolve the adjoint system backwards in time to obtain the initial value $\usa(\x,0)$ which is used to compute the gradient (\ref{eq:gradient}).
+The adjoint system (\ref{eq:euler:voigt:adjoint}) is a terminal value problem. Therefore, to compute the gradient we first evolve the Euler-Voigt system forward from $\bea$ to compute $\ua(\x,T)$, from which we obtain the terminal value of (\ref{eq:euler:voigt:adjoint}). Finally, we evolve the adjoint system backwards in time to obtain the initial value $\usa(\x,0)$ which is used to compute the gradient (\ref{eq:gradient}).
 
 \section{Riemannian Conjugate Gradient Method}\label{sec:Riemannian Conjugate Gradient Method}
 
-The optimization solution looks for an initial condition $\bea \in M_1$ that maximizes our objective functional. Therefore, not only must our first initial condition $\be^0_{\alpha,T}$ have a $\hdo$-seminorm of $\sqrt{3}/2$, but so too must each following iteration $\be_{\alpha,T}^{n}$. We ensure this constraint is upheld using a Riemannian conjugate gradient method modified from the method used in \cite{protas_systematic_2022} and \cite{danaila_computation_2017}. This method has three steps: 
+The optimization solution looks for an initial condition $\bea \in M_C$ that maximizes our objective functional. Therefore, not only must our starting initial condition $\be^0_{\alpha,T}$ have a $\hdo$-seminorm of $\sqrt{3}/2$, but so too must each following iteration $\be_{\alpha,T}^{n}$. We ensure this constraint is upheld using a Riemannian conjugate gradient method modified from the method used in \cite{protas_systematic_2022} and \cite{danaila_computation_2017}. This method has three steps: 
 \begin{enumerate}
-  \item Project the gradient $\nabla\Phi_T(\bea)$ onto the tangent space to $\M_1$ at $\bea$
-  \item Perform a suitable vector transport operation in order to construct a Riemannian conjugate ascent direction using the previous search direction
-  \item Retract the resulting state back to the constraint manifold $\M_1$
+  \item Project the gradient $\nabla\Phi_T(\bea)$ onto the tangent space to $\M_C$ at $\bea$.
+  \item Perform a suitable vector transport operation in order to construct a Riemannian conjugate ascent direction using the previous search direction.
+  \item Retract the resulting state back to the constraint manifold $\M_c$.
 \end{enumerate}
-We first define the tangent space to $\M_1$ as
+We first define the tangent space to $\M_C$ as
 \begin{equation}\label{eq:tangent:space}
-T_{\v}\M_1 = \lb \z\in V : \la \v,\z\ra_{\hdo}=0\rb.
+T_{\v}\M_C = \lb \z\in V : \la \v,\z\ra_{\hdo}=0\rb.
 \end{equation}
-For any $\z\in \T_{\v}\M_1$, this condition can be expressed as
+For any $\z\in \T_{\v}\M_C$, this condition can be expressed as
 \begin{subequations}
 \begin{align}
 \la \v,\z\ra_{\hdo} &= \int_{\TT^3}|D|\v\cdot|D|\z d\x \\
@@ -144,32 +143,32 @@ For any $\z\in \T_{\v}\M_1$, this condition can be expressed as
 &= \la (1+|D|^2)^{-3}e^{-2\sigma|D|}|D|^2\v,\z\ra_{G^\sigma} = 0.
 \end{align}
 \end{subequations}
-Thus, at each point $\v\in M_1$, the tangent space $\T_{\v},\M_1$ can be characterized using the unit 'normal' vector given by 
+Thus, at each point $\v\in M_C$, the tangent space $\T_{\v}\M_C$ can be characterized using the unit 'normal' vector given by 
 \begin{equation}
 \n_{\v} = \frac{(1+|D|^2)^{-3}e^{-2\sigma|D|}|D|^2\v}{\|(1+|D|^2)^{-3}e^{-2\sigma|D|}|D|^2\v\|_{G^\sigma}}
 \end{equation}
-which allows us to construct the projection operator $\P_{\T_{\v}M_1}: V \rightarrow \T_{\v}\M_1$, 
+which allows us to construct the projection operator $\P_{\T_{\v}M_C}: V \rightarrow \T_{\v}\M_C$, 
 \begin{equation}\label{eq:projection:operator}
-\forall \w \in V, \quad \P_{\T_{\v}\M_1}\w = \w - \la \n_{\v}, \w \ra_{G^\sigma}\n_{\v}.
+\forall \w \in V, \quad \P_{\T_{\v}\M_C}\w = \w - \la \n_{\v}, \w \ra_{G^\sigma}\n_{\v}.
 \end{equation}
 As stated previously, the initial conditions at each iteration must have a $\hdo$-seminorm of $\sqrt{3}/2$. In order to ensure this we introduce the Retraction operator
 \begin{equation}\label{eq:retraction:operator}
 \R(\v) = \frac{\sqrt{3}}{2}\frac{\v}{\|\v\|_{\hdo}}, \qquad \v\neq \boldsymbol 0.
 \end{equation}
-The Reimannian method uses the search direction of the $n$-th iteration to compute the search direction of the $(n+1)$-th iteration. This is done by a linear combination of the current direction and a 'momentum' term based on the previous iteration's search direction. However, the two search directions belong to different tangent spaces to $\M_1$ and thus cannot be directly added. In order to allow algebraic operations to be performed on the vectors of the two tangent spaces we introduce the vector transport operation
-$$\T\M_1 \oplus \T\M_1 \rightarrow \T\M_1: (\bp,\bx)\mapsto \Gamma_{\bp}(\bx)\in \T\M_1, $$
-where $\T\M_1 = \bigcup_{\v\in\M_1}\T_v\M_1$ is the tangent bundle on $\M_1$. The operation transports the vector field $\bx$ along the manifold $M_1$ in the direction of $\bp$. This allows us to map search directions between the tangent spaces of two consecutive iterations. The operator is defined via differentiated retraction
+The Reimannian method uses the search direction of the $n$-th iteration to compute the search direction of the $(n+1)$-th iteration. This is done by a linear combination of the current direction and a 'momentum' term based on the previous iteration's search direction. However, the two search directions belong to different tangent spaces to $\M_C$ and thus cannot be directly added. In order to allow algebraic operations to be performed on the vectors of the two tangent spaces we introduce the vector transport operation
+$$\T\M_C \oplus \T\M_C \rightarrow \T\M_C: (\bp,\bx)\mapsto \Gamma_{\bp}(\bx)\in \T\M_C, $$
+where $\T\M_C = \bigcup_{\v\in\M_C}\T_v\M_C$ is the tangent bundle on $\M_C$. The operation transports the vector field $\bx$ along the manifold $M_C$ in the direction of $\bp$. This allows us to map search directions between the tangent spaces of two consecutive iterations. The operator is defined via differentiated retraction
 \begin{subequations}\label{eq:vector:transport}
 \begin{align*}
 \Gamma_\varphi(\xi) &:= \frac{d}{dt}\R(\varphi + t\xi)\big|_{t=0}\\
-&:= \frac{\sqrt{3}}{2} \frac{1}{\|\u+\varphi_{\u}\|_{\hdo}} \left[\xi_{\u} - \frac{\la \u+\varphi_{\u},\xi_{\u}\ra_{\hdo}}{\|\u + \varphi_{\u}\|_{\hdo}^2}(\u + \varphi_{\u})\right], \u\in M_1
+&:= \frac{\sqrt{3}}{2} \frac{1}{\|\u+\varphi_{\u}\|_{\hdo}} \left[\xi_{\u} - \frac{\la \u+\varphi_{\u},\xi_{\u}\ra_{\hdo}}{\|\u + \varphi_{\u}\|_{\hdo}^2}(\u + \varphi_{\u})\right], \u\in M_C
 \end{align*}
 \end{subequations}
 With our operators defined we can now construct the iterative relation that will be used to maximization our objective functional (\ref{eq:objective:functional})
 \begin{equation}
 \benpa = \R\left[\bena + \tau_n \d^{(n)}\right].
 \end{equation}
-To simply notation, let $\bds G^{(n)} := \nabla\pat(\bena)$ and let $\T_n := \T_{\bena}\M_1$. The search direction at iteration n ($\d^{(n)}$) is computed as
+To simply notation, let $\bds G^{(n)} := \nabla\pat(\bena)$ and let $\T_n := \T_{\bena}\M_C$. The search direction at iteration n ($\d^{(n)}$) is computed as
 \begin{small}
 \begin{subequations}\label{eq:search:direction}
 \begin{align*}
@@ -178,7 +177,7 @@ To simply notation, let $\bds G^{(n)} := \nabla\pat(\bena)$ and let $\T_n := \T_
 \end{align*}
 \end{subequations}
 \end{small}
-where the 'momentum' term is computed using the Polak-Ribi$\grave{\text{e}}$re approach (Nocedal et al. 1999).
+where the 'momentum' term is computed using the Polak-Ribi$\grave{\text{e}}$re approach \cite{nocedal_numerical_2000}.
 \begin{small}
 \begin{equation}
 \beta_n = \frac{\la P_{\T_n}\bds G^{(n)}, \left( P_{\T_n}\bds G^{(n)} - \Gamma_{\tau_{n-1}\d^{n-1}}P_{\T_{n-1}} \bds G^{(n-1)} \right) \ra_{G^\sigma}}{\|P_{\T_{n-1}} \bds G^{(n-1)}\|_{G^\sigma}^2}.

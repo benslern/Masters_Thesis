@@ -1,0 +1,27 @@
+\chapter{Function Spaces}
+\label{app:function:spaces}
+{\color{red}
+In this analysis we use the Lebesgue space $L^p(\Omega)$ which consists of real-valued measurable functions $\u$, defined on $\Omega$, and $p\in\RR^+$ for which 
+\begin{equation*}
+\int_{\Omega} |\u|^p\,d\x < \infty.
+\end{equation*}
+For $L^p(\Omega)$ the norm is defined as
+\begin{equation*}
+\|\u\|_{L^p} = \left( \int_{\Omega} |\u|^p\,d\x \right)^{1/p},
+\end{equation*}
+where $1\leq p < \infty$. For $p=\infty$, the norm is given by
+\begin{equation*}
+\|\u\|_{L^\infty} = \esssup_{\x\in\Omega} |\u|,
+\end{equation*}
+where $\esssup$ is the essential supremum of $|\u|$ on $\Omega$ \cite{fournier_sobolev_2003}.
+\\~\\
+For any nonnegative integer $k$, the space $C^k(\Omega)$ is the space of functions $\u$ which, together with all partial derivatives $\partial^{\alpha}\u$ of orders $|\alpha|\leq k$, are continuous on $\Omega$ \cite{fournier_sobolev_2003}. 
+\\~\\
+For $s\in\RR^+$ the $L^2$-based Sobolev space $H^s(\Omega)$ is the space of all functions for which the finite norm $\|\cdot\|_{H^s}<\infty$ defined by
+\begin{equation*}
+\|\u\|_{H^s}^2 := (2\pi)^3\sum_{k\in\ZZ^3}(1+|k|^{2s})|\hat{\u}_k|^2,
+\end{equation*}
+where $\hat{\u}_k$ is the Fourier coefficient \cite{robinson_three-dimensional_2016}. For any function $\u\in H^s(\TT^3)$ the $\dot{H}^s$ seminorm is defined by
+\begin{equation*}
+\|\u\|_{\dot{H}^s}^2 := (2\pi)^3\sum_{k\in\dot{\ZZ}^3}|k|^{2s}|\hat{\u}_k|^2
+\end{equation*}}

@@ -1,12 +1,10 @@
 \chapter{Results}
 
-The Theorem (XINYU THOREM) provide the criteria we use to confirm that singularity formation occurs in Euler as $\alpha\rightarrow 0$. BECAUSE OUR NUMERICAL MODELS MUST STOP AT SOME SMALL ALPHA OUR ALPHA SQUARED OBJECTIVE FUNCTION WILL NATURALLY BE POSITIVE. TO CONFIRM THAT OUR CRITERIA IS UPHELD IN THE LIMIT ALPHA GOING TO ZERO WE USE THE METHOD UTILIZED IN LARIOS ET AL 2018.
-\\~\\
-(COMPUTATIONAL INVESTIGATION) propose the following ansatz,
+Theorem \ref{thm:Theorem:1.3} provides the criteria we use to confirm that singularity formation occurs in Euler as $\alpha\rightarrow 0$. First we check that condition (\ref{eq:eta:0:condition}) is satisfied, then we check that (\ref{eq:alpha:sup}) is satisfied. It is not necessarily clear whether or not the value used in each criterion is converging to zero or to some small positive value. In order to make this determination we use the method of \cite{larios_computational_2018}, which proposes the following ansatz,
 \begin{equation}
 \sup_{t\in[0,T^*]}\|\nabla\ua(t)\|_{L^2} \approx \mathcal{O}(\alpha^p),
 \end{equation}
-for $T^* > 0$ sufficiently large and for some power $p$. From Theorem (XINYU THEOREM), if there exists a finite time $T^*>0$ such that
+for $T^* > 0$ sufficiently large and for some power $p$. From Theorem \ref{thm:Theorem:1.3}, if there exists a finite time $T^*>0$ such that
 \begin{equation}
 \limsup_{\alpha\rightarrow 0}\left( \alpha^2\sup_{t\in[0,T^*]}\|\nabla\ua(t)\|_{L^2}^2\right) > 0.
 \end{equation}
@@ -14,23 +12,20 @@ then $\u$ develops a singularity in the interval $[0,T^*]$. From this ansatz, in
 \\~\\
 We present numerical evidence that singularity formation does not occur from the Taylor Green Vortex as $\alpha\rightarrow 0$. In addition, we present numerical evidence that upon optimization ... RESULTS!
 
-
 \subsection{Pre-Optimization Results}
 
-We begin by presenting our pre-optimization results for the Taylor Green Vortex, i.e. $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$. FROM BRACHET AND BUSTAMANTE ET AL WE ANTICIPATE THAT BLOWUP SHOULD OCCUR AT $T^* \approx 4$. We compare the results at $T=3$ and $T=5$. Therefore, we expect that we should obtain $p>-1$ for $T=3$ and $p\leq -1$ for $T=5$.
+We begin by presenting our results for the TGV without optimization, i.e., $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$. 
+
+
+First show that condition (\ref{eq:eta:0:condition}) is satisfied.
+
 
 \subsubsection{Results of $\boldsymbol{\alpha^2\pat}$ for TGV}
 
-First we present the results of $\alpha^2\pat(\beza)$ as $\alpha\rightarrow 0$ for the Taylor Green Vortex.
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[scale=•]{•}
-%\end{figure}
-The results show that both trends are heading to zero. This also demonstrates why we need the analysis of the slope. It does not clearly indicate from this graph alone whether or not the trend remains positive.
 
-\subsubsection{Results of $\boldsymbol{\alpha}$ slope for TGV}
+Without optimization $\be$ and $\tilde{\be}_{\alpha,T}$, for all values of $\alpha$, are simply the TGV. Therefore, it is trivially true that condition (\ref{eq:eta:0:condition}) is satisfied. So we only need to examine the value of $p$ as $\alpha\rightarrow 0$ to determine if a singularity forms in Euler.
 
-Results of $p$ slope as $\alpha\rightarrow 0$ for the Taylor Green Vortex.
+
 
 \subsubsection{Comparison to Larios et al. 2018}
 

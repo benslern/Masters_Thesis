@@ -1,4 +1,4 @@
-\chapter{Numerical Methods}
+\chapter{Numerical Methods}\label{chp:numerical:methods}
 
 
 
@@ -8,7 +8,7 @@ space and nonlinear products are computed in the physical space. The standard 2/
 
 \section{Time Stepping}
 
-Time stepping is performed with the explicit fourth-order Runge-Kutta (RK4) method. The determination of our time step size $\Delta t$ is based on three factors. First, we consider the numerical stability of the models. Second, we consider the accuracy of the solution, determined by the relative error of the objective functional (\ref{eq:objective:functional}) to the results for a minimum step size. Finally, we consider the conservation of the $\alpha$-energy, determined by the maximum relative error of $E_\alpha(t)$ to $E_\alpha(0)$. The RK4 method does not conserve energy, and so the $\alpha$-energy of our model gradually decreases over time. These factors are analysed for each resolution and value of $\alpha$ for the Taylor Green Vortex.
+Time stepping is performed with the explicit fourth-order Runge-Kutta (RK4) method. The determination of our time step size $\Delta t$ is based on three factors. First, we consider the numerical stability of the models. Second, we consider the accuracy of the solution, determined by the relative error of the objective functional (\ref{eq:objective:functional}) to the results for a minimum step size. Finally, we consider the conservation of the $\alpha$-energy (\ref{eq:alpha:Energy}), determined by the maximum relative error of $E_\alpha(t)$ to $E_\alpha(0)$. These factors are analysed for each resolution and value of $\alpha$ for the Taylor Green Vortex.
 \\~\\
 The goal of our optimization problem is to identify initial conditions $\beat$ that produce 'extreme' behaviour in solutions to the Euler-Voigt equations. Therefore, the Taylor Green Vortex will by definition be the least extreme initial condition examined. To ensure stability, accuracy, and conservation of $\alpha$-energy are maintained upon optimization we must select a step size smaller than the minimum step size identified by these criteria.
 
@@ -98,7 +98,7 @@ The tables shows that the accuracy of the objective functional decreases as $\al
 
 \subsection{Conservation of $\alpha$-Energy}
 
-The conservation of $\alpha$-energy is also used to verify the model for a given resolution, regularization parameter, and time window. The tables below show the maximum relative error of the $\alpha$-energy for each $\alpha$ and $\Delta t$,
+The conservation of $\alpha$-energy is also used to verify the model for a given resolution, regularization parameter, and time window. The RK4 method does not conserve energy, and so the $\alpha$-energy of our model gradually decreases over time. The tables below show the maximum relative error of the $\alpha$-energy for each $\alpha$ and $\Delta t$,
 \begin{equation}
 \epsilon_{\alpha} = \max_{t\in[0,T]}\left|\frac{E_\alpha(t) - E_\alpha(0)}{E_\alpha(t)}\right|.
 \end{equation}

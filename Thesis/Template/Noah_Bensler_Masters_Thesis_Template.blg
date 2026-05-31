@@ -25,6 +25,8 @@ Reallocating 'name_of_file' (item size: 1) to 22 items.
 A level-1 auxiliary file: chapter_5_results.aux
 Reallocating 'name_of_file' (item size: 1) to 15 items.
 A level-1 auxiliary file: conclusion.aux
+Reallocating 'name_of_file' (item size: 1) to 29 items.
+A level-1 auxiliary file: appendix_function_spaces.aux
 Reallocating 'name_of_file' (item size: 1) to 21 items.
 A level-1 auxiliary file: appendix_gateaux.aux
 Reallocating 'name_of_file' (item size: 1) to 23 items.
@@ -46,46 +48,49 @@ The style file: plain.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
 Warning--I didn't find a database entry for "matharu_adjoint_based_2024"
+Warning--empty publisher in fournier_sobolev_2003
 Warning--empty publisher in luenberger_optimization_1969
-You've used 20 entries,
+Warning--empty publisher in nocedal_numerical_2000
+Warning--empty publisher in robinson_three-dimensional_2016
+You've used 27 entries,
             2118 wiz_defined-function locations,
-            654 strings with 8372 characters,
-and the built_in function-call counts, 6220 in all, are:
-= -- 607
-> -- 272
+            694 strings with 9704 characters,
+and the built_in function-call counts, 8332 in all, are:
+= -- 816
+> -- 362
 < -- 0
-+ -- 112
-- -- 88
-* -- 478
-:= -- 1055
-add.period$ -- 65
-call.type$ -- 20
-change.case$ -- 102
++ -- 147
+- -- 116
+* -- 629
+:= -- 1404
+add.period$ -- 88
+call.type$ -- 27
+change.case$ -- 136
 chr.to.int$ -- 0
-cite$ -- 21
-duplicate$ -- 206
-empty$ -- 506
-format.name$ -- 88
-if$ -- 1263
+cite$ -- 31
+duplicate$ -- 282
+empty$ -- 682
+format.name$ -- 116
+if$ -- 1698
 int.to.chr$ -- 0
-int.to.str$ -- 20
-missing$ -- 18
-newline$ -- 107
-num.names$ -- 40
-pop$ -- 98
+int.to.str$ -- 27
+missing$ -- 27
+newline$ -- 144
+num.names$ -- 54
+pop$ -- 142
 preamble$ -- 1
-purify$ -- 84
+purify$ -- 112
 quote$ -- 0
-skip$ -- 142
+skip$ -- 193
 stack$ -- 0
-substring$ -- 421
-swap$ -- 20
+substring$ -- 556
+swap$ -- 27
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 76
-warning$ -- 1
-while$ -- 62
-width$ -- 22
-write$ -- 225
-(There were 2 warnings)
+type$ -- 98
+warning$ -- 4
+while$ -- 83
+width$ -- 29
+write$ -- 301
+(There were 5 warnings)

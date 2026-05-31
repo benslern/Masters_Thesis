@@ -53,6 +53,11 @@
 \newcommand{\ra}{\right\rangle}
 \newcommand{\lb}{\left\lbrace}
 \newcommand{\rb}{\right\rbrace}
+\newcommand{\lr}{\left\lbrace}
+\newcommand{\rr}{\right\rbrace}
+
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator*{\essinf}{ess\,inf}
 
 \def\hdo{\dot{H}^1}
 \def\pat{\Phi_{\alpha,T}}
@@ -160,6 +165,11 @@
         \setcounter{table}{0}
 
 \begin{appendix}
+	\include{appendix_function_spaces}
+    		\setcounter{figure}{0}
+        %\setcounter{equation}{0}
+        \setcounter{table}{0}
+        
 	\include{appendix_gateaux}
 		\setcounter{figure}{0}
         %\setcounter{equation}{0}
@@ -200,6 +210,7 @@
         %\setcounter{equation}{0}
         \setcounter{table}{0}
         
+        
 \end{appendix}
 
 % The bibliography is set up to allow for multiple bib files
@@ -211,3 +222,4 @@
 
 \end{document}
 % ********************************
+%howpublished = {\url{https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf}}
