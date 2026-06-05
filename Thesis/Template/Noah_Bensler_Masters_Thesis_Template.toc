@@ -26,19 +26,18 @@
 \contentsline {chapter}{\numberline {5}Results}{34}{chapter.5}%
 \contentsline {subsection}{\numberline {5.0.1}Pre-Optimization Results}{35}{subsection.5.0.1}%
 \contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for TGV}{35}{subsubsection*.19}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for TGV}{35}{subsubsection*.20}%
-\contentsline {subsubsection}{Comparison to Larios et al. 2018}{35}{subsubsection*.21}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for INIT1}{36}{subsubsection*.22}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for INIT1}{36}{subsubsection*.23}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for INIT2}{36}{subsubsection*.24}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for INIT2}{36}{subsubsection*.25}%
+\contentsline {subsubsection}{Comparison to Larios et al. 2018}{35}{subsubsection*.20}%
+\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for INIT1}{35}{subsubsection*.21}%
+\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for INIT1}{35}{subsubsection*.22}%
+\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for INIT2}{36}{subsubsection*.23}%
+\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for INIT2}{36}{subsubsection*.24}%
 \contentsline {subsection}{\numberline {5.0.2}Optimization Results}{36}{subsection.5.0.2}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for TGV}{36}{subsubsection*.26}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for TGV}{36}{subsubsection*.27}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for INIT1}{37}{subsubsection*.28}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for INIT1}{37}{subsubsection*.29}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for INIT2}{37}{subsubsection*.30}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for INIT2}{37}{subsubsection*.31}%
+\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for TGV}{36}{subsubsection*.25}%
+\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for TGV}{36}{subsubsection*.26}%
+\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for INIT1}{36}{subsubsection*.27}%
+\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for INIT1}{36}{subsubsection*.28}%
+\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for INIT2}{36}{subsubsection*.29}%
+\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for INIT2}{37}{subsubsection*.30}%
 \contentsline {chapter}{\numberline {6}Conclusion}{38}{chapter.6}%
 \contentsline {chapter}{\numberline {A}Function Spaces}{39}{appendix.A}%
 \contentsline {chapter}{\numberline {B}Derivation of the Gateaux Directional Differential}{41}{appendix.B}%
