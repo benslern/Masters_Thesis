@@ -30,13 +30,13 @@ ax.tick_params(
 )
 
 Data = []
-alphas = [32,64]
+alphas = [12,24,48]
 dt = "2"
 for dt in ["2","3","4","5","6","7","8"]:
     for i in alphas:
         ax.set_title(r"$\alpha$-Energy vs $t$ - $\alpha=$"+str(i)+r"$/1024$")
 
-        filename = "./resol_512/alpha_"+str(i)+"_1024/energy_fwd_"+dt+".dat"
+        filename = "./resol_256/alpha_"+str(i)+"_1024/energy_fwd_"+dt+".dat"
         Ts = []
         ase = []
         energy = []

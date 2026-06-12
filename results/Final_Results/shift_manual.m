@@ -1,10 +1,10 @@
 clear all;
 %filename = 'q4Q9000T0005_L_B4.nc';
 %filenamenew = 'q4Q9000T0005_L_B4_new.nc';
-filename = './Optimization_Results_T3/TGV/alpha_16_1024/Uvec_fwdTE_visual.nc';
-filenamenew = './Optimization_Results_T3/TGV/alpha_16_1024/Uvec_fwdTE_visual_shift.nc';
+filename = './Nonoptimization_Results_T5/TGV/alpha_8_1024/Uvec_fwdTE_visual.nc';
+filenamenew = './Nonoptimization_Results_T5/TGV/alpha_8_1024/Uvec_fwdTE_visual_shift.nc';
 
-new_ori = [0.666, 1, 1];   % the coordinates of new origin, in [0,1]^3
+new_ori = [1, 0.3333, 1];   % the coordinates of new origin, in [0,1]^3
 compute_vort = 0;      % set if need to compute vorticity
 
 ncdisp(filename, '/' , 'full');

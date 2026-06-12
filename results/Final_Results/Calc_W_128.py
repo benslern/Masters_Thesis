@@ -9,10 +9,10 @@ from paraview.simple import *
 paraview.simple._DisableFirstRenderCameraReset()
 
 # find source
-uvec_fwdTE_0nc = GetActiveSource() #FindSource('Uvec_fwdTE_0.nc')
+uvec_fwdTE_visualnc = getActiveSource() #FindSource('Uvec_fwdTE_visual.nc')
 
 # create a new 'Transform'
-transform1 = Transform(registrationName='Transform1', Input=uvec_fwdTE_0nc)
+transform1 = Transform(registrationName='Transform1', Input=uvec_fwdTE_visualnc)
 transform1.Transform = 'Transform'
 
 # Properties modified on transform1.Transform
@@ -49,13 +49,28 @@ transform1Display.SelectInputVectors = [None, '']
 transform1Display.WriteLog = ''
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-transform1Display.ScaleTransferFunction.Points = [-0.15915494309189532, 0.0, 0.5, 0.0, 0.15915494309189532, 1.0, 0.5, 0.0]
+transform1Display.ScaleTransferFunction.Points = [-0.14554230746987531, 0.0, 0.5, 0.0, 0.14554230746987531, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-transform1Display.OpacityTransferFunction.Points = [-0.15915494309189532, 0.0, 0.5, 0.0, 0.15915494309189532, 1.0, 0.5, 0.0]
+transform1Display.OpacityTransferFunction.Points = [-0.14554230746987531, 0.0, 0.5, 0.0, 0.14554230746987531, 1.0, 0.5, 0.0]
 
 # hide data in view
-Hide(uvec_fwdTE_0nc, renderView1)
+Hide(uvec_fwdTE_visualnc, renderView1)
+
+# find source
+uvec_fwdTE_0nc = FindSource('Uvec_fwdTE_0.nc')
+
+# find source
+transform2 = FindSource('Transform2')
+
+# find source
+resampleToImage2 = FindSource('ResampleToImage2')
+
+# find source
+mergeVectorComponents2 = FindSource('MergeVectorComponents2')
+
+# find source
+pythonCalculator2 = FindSource('PythonCalculator2')
 
 # update the view to ensure updated data information
 renderView1.Update()
@@ -100,10 +115,10 @@ resampleToImage1Display.SelectInputVectors = [None, '']
 resampleToImage1Display.WriteLog = ''
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-resampleToImage1Display.ScaleTransferFunction.Points = [-0.15915494309189532, 0.0, 0.5, 0.0, 0.15915494309189532, 1.0, 0.5, 0.0]
+resampleToImage1Display.ScaleTransferFunction.Points = [-0.14554230746987534, 0.0, 0.5, 0.0, 0.14554230746987534, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-resampleToImage1Display.OpacityTransferFunction.Points = [-0.15915494309189532, 0.0, 0.5, 0.0, 0.15915494309189532, 1.0, 0.5, 0.0]
+resampleToImage1Display.OpacityTransferFunction.Points = [-0.14554230746987534, 0.0, 0.5, 0.0, 0.14554230746987534, 1.0, 0.5, 0.0]
 
 # init the 'Plane' selected for 'SliceFunction'
 resampleToImage1Display.SliceFunction.Origin = [511.4999999977, 511.4999999977, 511.4999999977]
@@ -155,10 +170,10 @@ mergeVectorComponents1Display.SelectInputVectors = ['POINTS', 'U']
 mergeVectorComponents1Display.WriteLog = ''
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-mergeVectorComponents1Display.ScaleTransferFunction.Points = [-0.15915494309189532, 0.0, 0.5, 0.0, 0.15915494309189532, 1.0, 0.5, 0.0]
+mergeVectorComponents1Display.ScaleTransferFunction.Points = [-0.14554230746987534, 0.0, 0.5, 0.0, 0.14554230746987534, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-mergeVectorComponents1Display.OpacityTransferFunction.Points = [-0.15915494309189532, 0.0, 0.5, 0.0, 0.15915494309189532, 1.0, 0.5, 0.0]
+mergeVectorComponents1Display.OpacityTransferFunction.Points = [-0.14554230746987534, 0.0, 0.5, 0.0, 0.14554230746987534, 1.0, 0.5, 0.0]
 
 # init the 'Plane' selected for 'SliceFunction'
 mergeVectorComponents1Display.SliceFunction.Origin = [511.4999999977, 511.4999999977, 511.4999999977]
@@ -209,10 +224,10 @@ pythonCalculator1Display.SelectInputVectors = ['POINTS', 'U']
 pythonCalculator1Display.WriteLog = ''
 
 # init the 'PiecewiseFunction' selected for 'ScaleTransferFunction'
-pythonCalculator1Display.ScaleTransferFunction.Points = [-0.15915494309189532, 0.0, 0.5, 0.0, 0.15915494309189532, 1.0, 0.5, 0.0]
+pythonCalculator1Display.ScaleTransferFunction.Points = [-0.14554230746987534, 0.0, 0.5, 0.0, 0.14554230746987534, 1.0, 0.5, 0.0]
 
 # init the 'PiecewiseFunction' selected for 'OpacityTransferFunction'
-pythonCalculator1Display.OpacityTransferFunction.Points = [-0.15915494309189532, 0.0, 0.5, 0.0, 0.15915494309189532, 1.0, 0.5, 0.0]
+pythonCalculator1Display.OpacityTransferFunction.Points = [-0.14554230746987534, 0.0, 0.5, 0.0, 0.14554230746987534, 1.0, 0.5, 0.0]
 
 # init the 'Plane' selected for 'SliceFunction'
 pythonCalculator1Display.SliceFunction.Origin = [511.4999999977, 511.4999999977, 511.4999999977]
@@ -235,16 +250,16 @@ layout1 = GetLayout()
 # saving layout sizes for layouts
 
 # layout/tab size in pixels
-layout1.SetSize(1086, 703)
+layout1.SetSize(1043, 703)
 
 #-----------------------------------
 # saving camera placements for views
 
 # current camera placement for renderView1
-renderView1.CameraPosition = [-963.0805755932578, -2289.1143250936707, 1815.0604040265623]
-renderView1.CameraFocalPoint = [511.49999999999983, 511.49999999999983, 511.49999999999966]
-renderView1.CameraViewUp = [-0.07385340003786889, 0.4525289260758627, 0.8886862474278945]
-renderView1.CameraParallelScale = 885.9439880714807
+renderView1.CameraPosition = [3282.46782499116, 2144.143116454009, 1683.3839387119924]
+renderView1.CameraFocalPoint = [511.4999999977014, 511.49999999770114, 511.4999999977005]
+renderView1.CameraViewUp = [-0.28971416830245217, -0.1826616985064116, 0.9395213699451287]
+renderView1.CameraParallelScale = 885.943988067497
 
 #--------------------------------------------
 # uncomment the following to render all views
