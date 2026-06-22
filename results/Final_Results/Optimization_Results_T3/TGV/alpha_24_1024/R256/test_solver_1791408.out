@@ -1,0 +1,328 @@
+
+Lmod is automatically replacing "gcc/12.3" with "intel/2023.2.1".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) aocl-blas/5.1       4) fftw/3.3.10         7) netcdf-fortran-mpi/4.6.1
+  2) aocl-lapack/5.1     5) flexiblas/3.3.1     8) netcdf-mpi/4.9.2
+  3) fftw-mpi/3.3.10     6) hdf5-mpi/1.14.2     9) openmpi/4.1.5
+
+ /scratch/noahb/Research_V3/_Uvec_fwdTE0_OPT_CX_0.dat
+ eval_J; main_iter =           0
+ norm =   0.749999999184130      norm_constr =   0.866025403784439     
+ solvers; time =   3.00000000000000     
+ maximization_RCG; main_iter =           1
+ eval_grad_J; main_iter =           1
+ adj_solvers; time =   3.00000000000000     
+ gradJ: inner product =  -7.361732751176575E-017
+ norm =   1.608732197475112E-008 norm_constr =   0.866025403784439     
+ norm2_grad =   3.912614776826397E-005
+ Start mnbrak; main_iter =           1
+ norm =   0.750000000000000      norm_constr =   0.866025403784439     
+ norm =    1.50000000000001      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.752864745084375      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           3
+ norm =   0.750010942352530      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           4
+ norm =   0.750000041796067      norm_constr =   0.866025403784439     
+ norm =   0.750000109423525      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750001298388595      norm_constr =   0.866025403784439     
+ norm =   0.750005992382241      norm_constr =   0.866025403784439     
+ Start brent; main_iter =           1
+ norm =   0.750001298388595      norm_constr =   0.866025403784439     
+       brent; do iteration; case 3 ... 
+ norm =   0.750002687166690      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           1
+       brent; do iteration; case 1; FLAG =           1
+       brent; do iteration; case 2 ... 
+ norm =   0.750000689865984      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           2
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750001911448353      norm_constr =   0.866025403784439     
+       brent; do iteration; case 5 ... 
+       brent; do iteration j =           3
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750002158819527      norm_constr =   0.866025403784439     
+       brent; do iteration; case 8 ... 
+       brent; do iteration; case 9 ... 
+       brent; do iteration j =           4
+       brent; do iteration; case 1; FLAG =           2
+       brent; do iteration; case 4 .. 
+ norm =   0.750001679125109      norm_constr =   0.866025403784439     
+       brent; do iteration; case 7 ... 
+       brent; do iteration; case 10 ... 
+       brent; do iteration j =           5
+ eval_J; main_iter =           1
+ norm =   0.750001911448353      norm_constr =   0.866025403784439     
+ solvers; time =   3.00000000000000     
+ maximization_RCG; main_iter =           2
+ eval_grad_J; main_iter =           2
+ adj_solvers; time =   3.00000000000000     
+ gradJpre: inner product =  -4.878909776184770E-019
+ dJ: inner product =  -4.878909776184770E-019
+ gradJ: inner product =  -1.305379415672547E-016
+ norm =   1.232817085664392E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           2
+ norm =   0.750000000000000      norm_constr =   0.866025403784439     
+ norm =   0.750007645793413      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000029204332      norm_constr =   0.866025403784439     
+ norm =   0.750000076457933      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750000092295825      norm_constr =   0.866025403784439     
+ norm =   0.750000121077319      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000093045069      norm_constr =   0.866025403784439     
+ norm =   0.750000175907306      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           2
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000123681043      norm_constr =   0.866025403784439     
+ norm =   0.750000286250488      norm_constr =   0.866025403784439     
+ Start brent; main_iter =           2
+ norm =   0.750000175907306      norm_constr =   0.866025403784439     
+ eval_J; main_iter =           2
+ norm =   0.750000175907306      norm_constr =   0.866025403784439     
+ solvers; time =   3.00000000000000     
+ maximization_RCG; main_iter =           3
+ eval_grad_J; main_iter =           3
+ adj_solvers; time =   3.00000000000000     
+ gradJpre: inner product =   1.219727444046192E-018
+ dJ: inner product =   2.168404344971009E-019
+ gradJ: inner product =  -7.350890729451720E-017
+ norm =   1.265664848180454E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           3
+ norm =   0.749999999999999      norm_constr =   0.866025403784439     
+ norm =   0.750000703629227      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000002687624      norm_constr =   0.866025403784439     
+ norm =   0.750000007036292      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000002895774      norm_constr =   0.866025403784439     
+ norm =   0.750000018421252      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000007297249      norm_constr =   0.866025403784439     
+ norm =   0.750000048227465      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           2
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000019439008      norm_constr =   0.866025403784439     
+ norm =   0.750000126261142      norm_constr =   0.866025403784439     
+ Start brent; main_iter =           3
+ norm =   0.750000048227465      norm_constr =   0.866025403784439     
+ eval_J; main_iter =           3
+ norm =   0.750000048227465      norm_constr =   0.866025403784439     
+ solvers; time =   3.00000000000000     
+ maximization_RCG; main_iter =           4
+ eval_grad_J; main_iter =           4
+ adj_solvers; time =   3.00000000000000     
+ gradJpre: inner product =  -7.318364664277155E-019
+ dJ: inner product =   8.131516293641283E-020
+ gradJ: inner product =  -5.345116710353537E-017
+ norm =   1.247096537397471E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           4
+ norm =   0.750000000000001      norm_constr =   0.866025403784439     
+ norm =   0.750000192909858      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000000736849      norm_constr =   0.866025403784439     
+ norm =   0.750000001929097      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000000742765      norm_constr =   0.866025403784439     
+ norm =   0.750000005050445      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000001935549      norm_constr =   0.866025403784439     
+ norm =   0.750000013222238      norm_constr =   0.866025403784439     
+ Start brent; main_iter =           4
+ norm =   0.750000005050445      norm_constr =   0.866025403784439     
+ eval_J; main_iter =           4
+ norm =   0.750000005050445      norm_constr =   0.866025403784439     
+ solvers; time =   3.00000000000000     
+ maximization_RCG; main_iter =           5
+ eval_grad_J; main_iter =           5
+ adj_solvers; time =   3.00000000000000     
+ gradJpre: inner product =  -2.981555974335137E-019
+ dJ: inner product =   8.131516293641283E-019
+ gradJ: inner product =  -8.603144238672478E-017
+ norm =   1.258155084722633E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           5
+ norm =   0.750000000000000      norm_constr =   0.866025403784439     
+ norm =   0.750000020201782      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000000077164      norm_constr =   0.866025403784439     
+ norm =   0.750000000202018      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000000077219      norm_constr =   0.866025403784439     
+ norm =   0.750000000528890      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000000202083      norm_constr =   0.866025403784439     
+ norm =   0.750000001384651      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           2
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000000529234      norm_constr =   0.866025403784439     
+ norm =   0.750000003625063      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           3
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000001385817      norm_constr =   0.866025403784439     
+ norm =   0.750000009490538      norm_constr =   0.866025403784439     
+ Start brent; main_iter =           5
+ norm =   0.750000003625063      norm_constr =   0.866025403784439     
+ eval_J; main_iter =           5
+ norm =   0.750000003625063      norm_constr =   0.866025403784439     
+ solvers; time =   3.00000000000000     
+ maximization_RCG; main_iter =           6
+ eval_grad_J; main_iter =           6
+ adj_solvers; time =   3.00000000000000     
+ gradJpre: inner product =   1.084202172485504E-019
+ dJ: inner product =  -7.318364664277155E-019
+ gradJ: inner product =  -7.345469718589293E-017
+ norm =   1.244866217600869E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           6
+ norm =   0.750000000000000      norm_constr =   0.866025403784439     
+ norm =   0.750000014500251      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000000055386      norm_constr =   0.866025403784439     
+ norm =   0.750000000145002      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000000055398      norm_constr =   0.866025403784439     
+ norm =   0.750000000379622      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000000145009      norm_constr =   0.866025403784439     
+ norm =   0.750000000993862      norm_constr =   0.866025403784439     
+ Start brent; main_iter =           6
+ norm =   0.750000000379622      norm_constr =   0.866025403784439     
+ eval_J; main_iter =           6
+ norm =   0.750000000379622      norm_constr =   0.866025403784439     
+ solvers; time =   3.00000000000000     
+ maximization_RCG; main_iter =           7
+ eval_grad_J; main_iter =           7
+ adj_solvers; time =   3.00000000000000     
+ gradJpre: inner product =   8.131516293641283E-020
+ dJ: inner product =  -2.710505431213761E-020
+ gradJ: inner product =  -9.554531645028508E-017
+ norm =   1.247333548595742E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           7
+ norm =   0.749999999999999      norm_constr =   0.866025403784439     
+ norm =   0.750000001518486      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000000005800      norm_constr =   0.866025403784439     
+ norm =   0.750000000015185      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000000005801      norm_constr =   0.866025403784439     
+ norm =   0.750000000039755      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000000015185      norm_constr =   0.866025403784439     
+             mnbrak; do while NO. 2; case 1; sub_case 2
+ Start brent; main_iter =           7
+ norm =   0.750000000015185      norm_constr =   0.866025403784439     
+ eval_J; main_iter =           7
+ norm =   0.750000000015185      norm_constr =   0.866025403784439     
+ solvers; time =   3.00000000000000     
+ maximization_RCG; main_iter =           8
+ eval_grad_J; main_iter =           8
+ adj_solvers; time =   3.00000000000000     
+ gradJpre: inner product =  -2.168404344971009E-019
+ dJ: inner product =  -5.421010862427522E-020
+ gradJ: inner product =  -1.069023342070707E-016
+ norm =   1.250167067732546E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           8
+ norm =   0.750000000000000      norm_constr =   0.866025403784439     
+ norm =   0.750000000060739      norm_constr =   0.866025403784439     
+ norm =   0.750000000159017      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000000060747      norm_constr =   0.866025403784439     
+ norm =   0.750000000416314      norm_constr =   0.866025403784439     
+ Start brent; main_iter =           8
+ norm =   0.750000000159017      norm_constr =   0.866025403784439     
+ eval_J; main_iter =           8
+ norm =   0.750000000159017      norm_constr =   0.866025403784439     
+ solvers; time =   3.00000000000000     
+ maximization_RCG; main_iter =           9
+ eval_grad_J; main_iter =           9
+ adj_solvers; time =   3.00000000000000     
+ gradJpre: inner product =   8.131516293641283E-020
+ dJ: inner product =  -4.336808689942018E-019
+ gradJ: inner product =  -1.053031360026546E-016
+ norm =   1.244911768035622E-008 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           9
+ norm =   0.750000000000000      norm_constr =   0.866025403784439     
+ norm =   0.750000000636072      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000000002429      norm_constr =   0.866025403784439     
+ norm =   0.750000000006361      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000000002430      norm_constr =   0.866025403784439     
+ norm =   0.750000000016652      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 1
+ norm =   0.750000000006361      norm_constr =   0.866025403784439     
+             mnbrak; do while NO. 2; case 1; sub_case 2
+ Start brent; main_iter =           9
+ norm =   0.750000000006361      norm_constr =   0.866025403784439     
+ eval_J; main_iter =           9
+ norm =   0.750000000006361      norm_constr =   0.866025403784439     
+ solvers; time =   3.00000000000000     
+ Relative difference reaches tolerance, iteration exit ... ...
+ exit normally
+ stepper =            3
+ execution time =   0.140038193333333     
+job 1 finished
+
+scontrol show job 1791408
+JobId=1791408 JobName=R256_ALPHA_24
+   UserId=noahb(3138520) GroupId=noahb(3138520) MCS_label=N/A
+   Priority=939641 Nice=0 Account=def-bprotas QOS=normal
+   JobState=COMPLETING Reason=None Dependency=(null)
+   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:41:03 TimeLimit=1-00:00:00 TimeMin=N/A
+   SubmitTime=2026-06-17T16:36:08 EligibleTime=2026-06-17T16:36:08
+   AccrueTime=2026-06-17T16:36:08
+   StartTime=2026-06-17T22:37:35 EndTime=2026-06-17T23:18:38 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-06-17T22:37:35 Scheduler=Main
+   Partition=compute AllocNode:Sid=tri-login01:3181385
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=tri0057
+   BatchHost=tri0057
+   NumNodes=1 NumCPUs=192 NumTasks=192 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=192,mem=767000M,node=1,billing=192
+   AllocTRES=cpu=192,mem=767000M,node=1,billing=192
+   Socks/Node=* NtasksPerN:B:S:C=192:0:*:* CoreSpec=*
+   MinCPUsNode=192 MinMemoryNode=767000M MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)
+   Command=/scratch/noahb/Research_V3/test_solver.sh
+   SubmitLine=SBATCH --comment /opt/slurm/bin/sbatch --export=NONE --get-user-env test_solver.sh --export=NONE --get-user-env test_solver.sh
+   WorkDir=/scratch/noahb/Research_V3
+   Comment=/opt/slurm/bin/sbatch --export=NONE --get-user-env test_solver.sh
+   StdErr=
+   StdIn=/dev/null
+   StdOut=/scratch/noahb/Research_V3/./results/test_solver_1791408.out
+   TresPerTask=cpu=1
+
+sacct -j 1791408
+JobID           JobName    Account    Elapsed  MaxVMSize     MaxRSS  SystemCPU    UserCPU ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- ---------- ---------- -------- 
+1791408      R256_ALPH+ def-bprot+   00:41:03                         00:00:00   00:00:00      0:0 
+1791408.bat+      batch def-bprot+   00:41:03                         00:00:00   00:00:00      0:0 
+1791408.ext+     extern def-bprot+   00:41:03                         00:00:00   00:00:00      0:0 
+

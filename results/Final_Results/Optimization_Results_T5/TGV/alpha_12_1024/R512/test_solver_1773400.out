@@ -1,0 +1,110 @@
+
+Lmod is automatically replacing "gcc/12.3" with "intel/2023.2.1".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) aocl-blas/5.1       4) fftw/3.3.10         7) netcdf-fortran-mpi/4.6.1
+  2) aocl-lapack/5.1     5) flexiblas/3.3.1     8) netcdf-mpi/4.9.2
+  3) fftw-mpi/3.3.10     6) hdf5-mpi/1.14.2     9) openmpi/4.1.5
+
+ /scratch/noahb/Research_V4/_Uvec_fwdTE0_OPT_CX_0.dat
+ eval_J; main_iter =           0
+ norm =   0.750000000817724      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization_RCG; main_iter =           1
+ eval_grad_J; main_iter =           1
+ adj_solvers; time =   5.00000000000000     
+ gradJ: inner product =   7.638204305160379E-016
+ norm =   2.673467320940147E-006 norm_constr =   0.866025403784439     
+ norm2_grad =   4.829823799380658E-003
+ Start mnbrak; main_iter =           1
+ norm =   0.750000000000000      norm_constr =   0.866025403784439     
+ norm =    1.50000000000002      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.752864745084373      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           3
+ norm =   0.750010942352529      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           4
+ norm =   0.750000041796067      norm_constr =   0.866025403784439     
+ norm =   0.750000109423522      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           0
+             mnbrak; do while NO. 2; case 3
+ norm =   0.750002154891589      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 2 ... mnbrak_iter =           1
+             mnbrak; do while NO. 2; case 2
+ norm =   0.750002184501650      norm_constr =   0.866025403784439     
+ norm =   0.750002232839680      norm_constr =   0.866025403784439     
+ Start brent; main_iter =           1
+ norm =   0.750002184501650      norm_constr =   0.866025403784439     
+ eval_J; main_iter =           1
+ norm =   0.750002184501650      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ maximization_RCG; main_iter =           2
+ eval_grad_J; main_iter =           2
+ adj_solvers; time =   5.00000000000000     
+ gradJpre: inner product =  -5.854691731421724E-018
+ dJ: inner product =  -5.854691731421724E-018
+ gradJ: inner product =   6.013527349690850E-016
+ norm =   3.661892298559318E-007 norm_constr =   0.866025403784439     
+ Start mnbrak; main_iter =           2
+ norm =   0.750000000000002      norm_constr =   0.866025403784439     
+ norm =   0.750008738006614      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           2
+ norm =   0.750000033376215      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           3
+ norm =   0.750000000127484      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           4
+ norm =   0.750000000000487      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           5
+ norm =   0.750000000000001      norm_constr =   0.866025403784439     
+       mnbrak; do while NO. 1 ... FuncEval =           6
+ norm =   0.750000000000000      norm_constr =   0.866025403784439     
+ mnbrack iteration beyond maximum, the maxdEdt stops iterating ...            1
+ Start brent; main_iter =           2
+ norm =   0.750002184501654      norm_constr =   0.866025403784439     
+ eval_J; main_iter =           2
+ norm =   0.750002184501654      norm_constr =   0.866025403784439     
+ solvers; time =   5.00000000000000     
+ exit normally
+ stepper =            3
+ execution time =    2.13475879416667     
+job 1 finished
+
+scontrol show job 1773400
+JobId=1773400 JobName=R512_ALPHA_12
+   UserId=noahb(3138520) GroupId=noahb(3138520) MCS_label=N/A
+   Priority=965095 Nice=0 Account=def-bprotas QOS=normal
+   JobState=COMPLETING Reason=None Dependency=(null)
+   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=04:02:39 TimeLimit=1-00:00:00 TimeMin=N/A
+   SubmitTime=2026-06-15T19:06:08 EligibleTime=2026-06-15T19:06:08
+   AccrueTime=2026-06-15T19:06:08
+   StartTime=2026-06-15T22:33:09 EndTime=2026-06-16T02:35:48 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-06-15T22:33:09 Scheduler=Backfill
+   Partition=compute AllocNode:Sid=tri-login06:1989122
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=tri1015
+   BatchHost=tri1015
+   NumNodes=1 NumCPUs=192 NumTasks=192 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=192,mem=767000M,node=1,billing=192
+   AllocTRES=cpu=192,mem=767000M,node=1,billing=192
+   Socks/Node=* NtasksPerN:B:S:C=192:0:*:* CoreSpec=*
+   MinCPUsNode=192 MinMemoryNode=0 MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)
+   Command=/scratch/noahb/Research_V4/test_solver.sh
+   SubmitLine=SBATCH --comment /opt/slurm/bin/sbatch --export=NONE --get-user-env test_solver.sh --export=NONE --get-user-env test_solver.sh
+   WorkDir=/scratch/noahb/Research_V4
+   Comment=/opt/slurm/bin/sbatch --export=NONE --get-user-env test_solver.sh
+   StdErr=
+   StdIn=/dev/null
+   StdOut=/scratch/noahb/Research_V4/./results/test_solver_1773400.out
+   TresPerTask=cpu=1
+
+sacct -j 1773400
+JobID           JobName    Account    Elapsed  MaxVMSize     MaxRSS  SystemCPU    UserCPU ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- ---------- ---------- -------- 
+1773400      R512_ALPH+ def-bprot+   04:02:39                         00:00:00   00:00:00      0:0 
+1773400.bat+      batch def-bprot+   04:02:39                         00:00:00   00:00:00      0:0 
+1773400.ext+     extern def-bprot+   04:02:39                         00:00:00   00:00:00      0:0 
+
