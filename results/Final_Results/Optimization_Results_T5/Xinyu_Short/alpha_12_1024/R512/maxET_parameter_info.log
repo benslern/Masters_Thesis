@@ -7,7 +7,7 @@
    Viscosity         =   0.000000000000000E+000
    Processors        =          128
    Initial condition = R256 OPT Xinyu Short                              
-   dt                =   3.125000000000000E-002
+   dt                =   1.562500000000000E-002
    alpha             =   1.171875000000000E-002
    sigma             =   1.000000000000000E-005
    init_h1           =   0.866025403784439     
