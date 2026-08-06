@@ -1,21 +1,25 @@
-\chapter{Proof of Relation (\ref{eq:Gevrey:Class})}
+\chapter{Proof of Relation (\ref{eq:Gevrey:size})}
 \label{app:Gevrey:size}
 
+In this Appendix we prove relation (\ref{eq:Gevrey:size}) which shows that the parameter $\sigma$ determines the relative 'size' of the Gevrey space in which we search for optimal initial conditions.
+
 \begin{proof}
-Let $\sigma_1, \sigma_2$ be defined such that
-$$0 < \sigma_1 < \sigma_2.$$
-Therefore, from (\ref{eq:Gevrey:Inner:Product})
-\begin{align}
+Let $\sigma_1, \sigma_2\in \RR$ be defined such that $0 < \sigma_1 < \sigma_2$. Therefore, from (\ref{eq:Gevrey:Inner:Product})
+\begin{align*}
 \notag
 \|\v\|_{G^{\sigma_2}} &=\left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2\sigma_2 |D|}\v\cdot \v \, d\x\right]^{1/2}\\
 \notag
-&> \left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2 \sigma_1 |D|}\v\cdot \v \, d\x\right]^{1/2} = \|v\|_{G^{\sigma_1}} \\
+&\geq \left[ \int_{\TT^3}(1+|D|^2)^{s}e^{2 \sigma_1 |D|}\v\cdot \v \, d\x\right]^{1/2} = \|\v\|_{G^{\sigma_1}} \\
 \notag
-&> \left[ \int_{\TT^3}(1+|D|^2)^{s}e^{0}\v\cdot \v \, d\x\right]^{1/2} = \|\v\|_{G^{0}} \\
-&= \left[ \int_{\TT^3}(1+|D|^2)^{s}\v\cdot \v \, d\x\right]^{1/2}= \|v\|_{H^s}
-\end{align}
-Thus,
-$$\|\v\|_{G^{\sigma_2}} > \|\v\|_{G^{\sigma_1}} > \|\v\|_{G^{0}}.$$
-It follows from this that if $\|\v\|_{G^{\sigma_2}} < \infty$ then $\|\v\|_{G^{\sigma_1}} < \infty$ and so if $v\in G^{\sigma_2}$ then $v\in G^{\sigma_1}$. However, the converse is not true. The same argument shows that if $v\in G^{\sigma_1}$ then $v\in G^0$ which is equivalent to $v\in H^s$. Therefore, 
-$$G^{\sigma_2} \subset G^{\sigma_1} \subset G^0 = H^s.$$
+&\geq \left[ \int_{\TT^3}(1+|D|^2)^{s}e^{0}\v\cdot \v \, d\x\right]^{1/2} = \|\v\|_{G^{0}} \\
+&= \left[ \int_{\TT^3}(1+|D|^2)^{s}\v\cdot \v \, d\x\right]^{1/2}= \|\v\|_{H^s}.
+\end{align*}
+\noindent Thus,
+\begin{equation*}
+\|\v\|_{G^{\sigma_2}} \geq \|\v\|_{G^{\sigma_1}} \geq \|\v\|_{G^{0}} = \|\v\|_{H^s}.
+\end{equation*}
+\noindent It follows from this that if $\|\v\|_{G^{\sigma_2}} < \infty$ then $\|\v\|_{G^{\sigma_1}} < \infty$ and so if $v\in G^{\sigma_2}$ then $v\in G^{\sigma_1}$. However, the converse is not true. The same argument shows that if $v\in G^{\sigma_1}$ then $v\in G^0$, which is equivalent to $v\in H^s$. Therefore, $G^{\sigma_2} \subset G^{\sigma_1} \subset G^0 = H^s.$
+
+
 \end{proof}
+

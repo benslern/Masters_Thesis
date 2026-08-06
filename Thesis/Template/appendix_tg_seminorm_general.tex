@@ -1,42 +1,51 @@
-\chapter{Evaluation of $\|\be\|_{\hdo}$ for the General Taylor Green Vortex}
+\chapter{Evaluation of $\|\be\|_{\hds}$ for the Taylor Green Vortex}
 \label{app:tg:seminorm:general}
 
-The general form of the 3D Taylor Green Vortex on the 3D torus $\Omega$ with characteristic length $L$ is given in (\ref{eq:TGV})
-To simplify the notation we drop the subscript $TGV$ and substitute in 
-$$x' = 2\pi x/L, \quad y' = 2\pi y/L, \quad z' = 2\pi z/L.$$
-The formula for $\|\be\|_{\hdo}$ is
-$$\|\be\|_{\hdo} = \|\nabla\be\|_{L^2} = \left[ \sum_{i,j=1}^3 \int_{\Omega} (\partial_i\be_j)^2 \,d\x \right]^{1/2},$$
-where $\partial_i$ is the partial derivative with respect to the i-th component and $\be_j$ is the j-th component of $\be$. Because the 3rd component of $\be$ is zero, the partial derivative is also zero. This leaves us with six integrals to evaluate.
-\begin{align*}
-\sum_{i,j=1}^3 \int_{\Omega} (\partial_i\be_j)^2 \,d\x &= \int_{\Omega} (\partial_1\be_1)^2 \, d\x + \int_{\Omega} (\partial_2\be_1)^2 \, d\x + \int_{\Omega} (\partial_3\be_1)^2 \, d\x \\
-&+ \int_{\Omega} (\partial_1\be_2)^2 \, d\x + \int_{\Omega} (\partial_2\be_2)^2 \, d\x + \int_{\Omega} (\partial_3\be_2)^2 \, d\x.
-\end{align*}
-Evaluating each partial derivative
-\begin{small}
-\begin{align*}
-\sum_{i,j=1}^3 \int_{\Omega} (\partial_i\be_j)^2 \,d\x &= \int_{\Omega} (2\pi V_0/L \cos(x')\cos(y')\cos(z'))^2 \, d\x \\ &+ \int_{\Omega} (-2\pi V_0/L \sin(x')\sin(y')\cos(z'))^2 \, d\x \\
-&+ \int_{\Omega} (-2\pi V_0/L \sin(x')\cos(y')\sin(z'))^2 \, d\x \\ &+ \int_{\Omega} (2\pi V_0/L \sin(x')\sin(y')\cos(z'))^2 \, d\x \\ 
-&+ \int_{\Omega} (-2\pi V_0/L \cos(x')\cos(y')\cos(z'))^2 \, d\x \\ &+ \int_{\Omega} (2\pi V_0/L \cos(x')\sin(y')\sin(z'))^2 \, d\x,
-\end{align*}
-\end{small}
-which simplifies to
-\begin{small}
-\begin{align*}
-\sum_{i,j=1}^3 \int_{\Omega} (\partial_i\be_j)^2 \,d\x &= 4\pi^2 V_0^2/L^2\int_{\Omega} \cos^2(x')\cos^2(y')\cos^2(z') \, d\x \\ &+ 4\pi^2 V_0^2/L^2\int_{\Omega} \sin^2(x')\sin^2(y')\cos^2(z') \, d\x \\
-&+ 4\pi^2 V_0^2/L^2\int_{\Omega} \sin^2(x')\cos^2(y')\sin^2(z') \, d\x \\ &+ 4\pi^2 V_0^2/L^2\int_{\Omega} \sin^2(x')\sin^2(y')\cos^2(z') \, d\x \\ 
-&+ 4\pi^2 V_0^2/L^2\int_{\Omega} \cos^2(x')\cos^2(y')\cos^2(z') \, d\x \\ &+ 4\pi^2 V_0^2/L^2\int_{\Omega} \cos^2(x')\sin^2(y')\sin^2(z') \, d\x.
-\end{align*}
-\end{small}
-Because the integrand is separable, the integrals can be reduced to products of,
+{\color{red}
+In this Appendix we {\color{red}compute} the $\hds$ seminorm for the Taylor Green Vortex. The $\hdo$ seminorm is required for properly scaling the initial conditions of the Euler and Euler-Voigt equations and the $\hdt$ is required for comparing our results to those of \cite{zhao_systematic_2023}.
+\\~\\
+The 3D Taylor Green Vortex on the 3D torus $\Omega$ with characteristic length $L$ is given in (\ref{eq:TGV}). To simplify the notation we drop the subscript $TGV$. The formula for $\|\be\|_{\hds}$ is
+
 \begin{equation*}
-\int_{0}^L \cos^2(x')\, dx = \frac{L}{2}, \qquad \text{and} \qquad \int_{0}^L \sin^2(x')\, dx = \frac{L}{2}.
+\|\be\|_{\hds}^2 := \sum_{|\alpha|=s}\frac{s!}{\alpha!}\|d^\alpha\be\|_{L^2}^2.
 \end{equation*}
-Therefore, each of the six integrals is equal to 
+This can be expressed in integral form as
 \begin{equation*}
-\frac{4\pi^2 V_0^2}{L^2}\frac{L^3}{8}.
+\|\be\|_{\hds}^2 = \sum_{|\alpha|=s}\frac{s!}{\alpha!}\ls \sum_{i=1}^3 \int_{\Omega} \lr \frac{\partial^{|\alpha|}}{\partial_1^{\alpha_1}\partial_2^{\alpha_2}\partial_3^{\alpha_3}} \eta_i \rr^2\,d\x \rs.
 \end{equation*}
-The sum of the six integrals is
-$$\sum_{i,j=1}^3 \int_{\Omega} (\partial_i\be_j)^2 \,d\x = 6\frac{4\pi^2V_0^2}{L^2}\frac{L^3}{8} = 3\pi^2V_0^2L. $$
-Substituting into the formula for $\|\cdot\|_{\hdo}$ gives
-\\
-$$\|\be_{TGV}\|_{\hdo} = \left[ 3\pi^2V_0^2L \right]^{1/2} = \sqrt{3L}\pi V_0.$$
+For the TGV, the third term $\eta_3$ is zero and the partial derivative of the other two terms $\eta_1$ and $\eta_2$ are
+\begin{equation*}
+\frac{\partial^{|\alpha|}}{\partial_1^{\alpha_1}\partial_2^{\alpha_2}\partial_3^{\alpha_3}} \eta_i = V_0\lr\frac{2\pi}{L}\rr^{|\alpha|}f(x_1)g(x_2)h(x_3), \qquad i=1,2,
+\end{equation*}
+where $f$, $g$, and $h$ are either $\sin(2\pi x_j/L)$ or $\cos(2\pi x_j/L)$. This allows us to simplify the equation to
+\begin{equation*}
+\|\be\|_{\hds}^2 = \sum_{|\alpha|=s}\frac{s!}{\alpha!}\ls \sum_{i=1}^2 V_0^2\lr\frac{2\pi}{L}\rr^{2|\alpha|} \int_{\Omega}  f(x_1)^2g(x_2)^2h(x_3)^2\,d\x \rs.
+\end{equation*}
+Because the integrand is separable, the integral is equal to the product of,
+\begin{equation*}
+\int_{0}^L \cos^2(2\pi x_j/L)\, dx_j = \frac{L}{2}, \qquad \text{and} \qquad \int_{0}^L \sin^2(2\pi x_j/L)\, dx_j = \frac{L}{2}.
+\end{equation*}
+Therefore, the equation can be simplified to
+\begin{equation*}
+\|\be\|_{\hds}^2 = \sum_{|\alpha|=s}\frac{s!}{\alpha!}\ls 2V_0^2\lr\frac{2\pi}{L}\rr^{2|\alpha|} \lr\frac{L}{2}\rr^3 \rs = \sum_{|\alpha|=s}\frac{s!}{\alpha!}\ls 2^{2|\alpha|-2}V_0^2\pi^{2|\alpha|}L^{3-2|\alpha|} \rs.
+\end{equation*}
+For $s=1$, there are three tuples $\alpha$ with degree $|\alpha|=1$. These are the three permutations of $\alpha=(1,0,0)$ with $\alpha! = 1$. Therefore, we obtain the result
+\begin{equation*}
+\|\be\|_{\hdo} = \sqrt{3L}V_0\pi.
+\end{equation*} 
+For $s=3$, there are ten tuples $\alpha$ with degree $|\alpha|=3$. These are $\alpha=(1,1,1)$ with $\alpha!=1$, the three permutations of $\alpha=(3,0,0)$ with $\alpha!=6$, and the six permutations of $\alpha=(1,2,0)$ with $\alpha!=2$.  Therefore,
+\begin{equation*}
+\|\be\|_{\hdt}^2 = \ls \frac{3!}{1} + 3\frac{3!}{6} + 6\frac{3!}{2}\rs 2^{4}V_0^2\pi^{6}L^{-3}.
+\end{equation*} 
+From this, we obtain the result
+\begin{equation*}
+\|\be\|_{\hdt} = \frac{12\sqrt{3}V_0\pi^3}{\sqrt{L^3}}.
+\end{equation*} 
+ 
+\noindent In Appendices \ref{app:time:scale:euler} and \ref{app:time:scale:euler:voigt} we derived the scaling property of the Euler and Euler-Voigt equations, respectively. This property requires that $\beta/\lambda\gamma = 1$, where $\beta$ is the scaling factor in space, $\lambda$ is the scaling factor in time, and $\gamma$ is the scaling factor of the 'size' of the solution. The optimization problem of \cite{zhao_systematic_2023} searched for optimal initial conditions with a fixed $\|\be\|_{\hdt} = 1$ on a domain with 3D periodic cube with side length $L=1$. Therefore, in this model, $V_0 = 1/(12\sqrt{3}\pi^3)$. Let $\beta=\gamma=\lambda = 1$.   
+\\~\\
+Our optimization problem searches for optimal initial conditions with a fixed $\|\be\|_{\hdo} = \sqrt{3}/2$. Our search is also performed on a domain with $L=1$. Using these results, we obtain the relative scaling of our model to that of \cite{zhao_systematic_2023}. These are $\beta = 1$ and $\gamma=1/6\sqrt{3}pi^2$. Thus, to satisfy the scaling property, $\gamma = 6\sqrt{3}\pi^2$. Therefore, one unit of time in our model is equivalent to $6\sqrt{3}\pi^2$ units of time in the model of \cite{zhao_systematic_2023}.
+
+
+}
+

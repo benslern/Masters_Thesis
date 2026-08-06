@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d
+This is BibTeX, Version 0.99e
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Noah_Bensler_Masters_Thesis_Template.aux
 Reallocating 'name_of_file' (item size: 1) to 16 items.
@@ -27,70 +27,70 @@ Reallocating 'name_of_file' (item size: 1) to 15 items.
 A level-1 auxiliary file: conclusion.aux
 Reallocating 'name_of_file' (item size: 1) to 29 items.
 A level-1 auxiliary file: appendix_function_spaces.aux
-Reallocating 'name_of_file' (item size: 1) to 21 items.
-A level-1 auxiliary file: appendix_gateaux.aux
-Reallocating 'name_of_file' (item size: 1) to 23 items.
-A level-1 auxiliary file: appendix_lin_euler.aux
-Reallocating 'name_of_file' (item size: 1) to 17 items.
-A level-1 auxiliary file: appendix_adj.aux
 Reallocating 'name_of_file' (item size: 1) to 20 items.
 A level-1 auxiliary file: appendix_gevrey.aux
-Reallocating 'name_of_file' (item size: 1) to 33 items.
-A level-1 auxiliary file: appendix_tg_seminorm_general.aux
-Reallocating 'name_of_file' (item size: 1) to 34 items.
-A level-1 auxiliary file: appendix_tg_vorticity_general.aux
 Reallocating 'name_of_file' (item size: 1) to 32 items.
 A level-1 auxiliary file: appendix_time_scaling_euler.aux
 Reallocating 'name_of_file' (item size: 1) to 38 items.
 A level-1 auxiliary file: appendix_time_scaling_euler_voigt.aux
+Reallocating 'name_of_file' (item size: 1) to 33 items.
+A level-1 auxiliary file: appendix_tg_seminorm_general.aux
+Reallocating 'name_of_file' (item size: 1) to 34 items.
+A level-1 auxiliary file: appendix_tg_vorticity_general.aux
+Reallocating 'name_of_file' (item size: 1) to 23 items.
+A level-1 auxiliary file: appendix_lin_euler.aux
+Reallocating 'name_of_file' (item size: 1) to 17 items.
+A level-1 auxiliary file: appendix_adj.aux
+Reallocating 'name_of_file' (item size: 1) to 21 items.
+A level-1 auxiliary file: appendix_gateaux.aux
 Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: plain.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
-Warning--I didn't find a database entry for "matharu_adjoint_based_2024"
+Warning--empty publisher in absil_optimization_2008
 Warning--empty publisher in fournier_sobolev_2003
 Warning--empty publisher in luenberger_optimization_1969
 Warning--empty publisher in nocedal_numerical_2000
 Warning--empty publisher in robinson_three-dimensional_2016
-You've used 27 entries,
+You've used 30 entries,
             2118 wiz_defined-function locations,
-            694 strings with 9704 characters,
-and the built_in function-call counts, 8332 in all, are:
-= -- 816
-> -- 362
+            708 strings with 10065 characters,
+and the built_in function-call counts, 9143 in all, are:
+= -- 895
+> -- 395
 < -- 0
-+ -- 147
-- -- 116
-* -- 629
-:= -- 1404
-add.period$ -- 88
-call.type$ -- 27
-change.case$ -- 136
++ -- 160
+- -- 126
+* -- 678
+:= -- 1543
+add.period$ -- 98
+call.type$ -- 30
+change.case$ -- 148
 chr.to.int$ -- 0
-cite$ -- 31
-duplicate$ -- 282
-empty$ -- 682
-format.name$ -- 116
-if$ -- 1698
+cite$ -- 35
+duplicate$ -- 317
+empty$ -- 752
+format.name$ -- 126
+if$ -- 1867
 int.to.chr$ -- 0
-int.to.str$ -- 27
-missing$ -- 27
-newline$ -- 144
-num.names$ -- 54
-pop$ -- 142
+int.to.str$ -- 30
+missing$ -- 32
+newline$ -- 159
+num.names$ -- 60
+pop$ -- 160
 preamble$ -- 1
-purify$ -- 112
+purify$ -- 123
 quote$ -- 0
-skip$ -- 193
+skip$ -- 215
 stack$ -- 0
-substring$ -- 556
-swap$ -- 27
+substring$ -- 596
+swap$ -- 30
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 98
-warning$ -- 4
-while$ -- 83
-width$ -- 29
-write$ -- 301
+type$ -- 106
+warning$ -- 5
+while$ -- 91
+width$ -- 32
+write$ -- 333
 (There were 5 warnings)

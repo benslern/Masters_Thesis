@@ -1,44 +1,45 @@
 \chapter{Linearization of the Euler-Voigt System}
 \label{app:lin:euler}
 
-Euler-Voigt Equations,
-\begin{equation}
-\notag
+In this Appendix we derive the linearization of the Euler-Voigt equations. It is used to obtain the adjoint system and the gradient of the objective functional.
+\\~\\
+\noindent The Euler-Voigt equations are defined as,
+\begin{equation*}
 \begin{cases}
-      -\alpha^2\partial_t\Delta \ua + \partial_t \ua + (\ua\cdot\bn)\ua+\bn p = 0\\
+      -\alpha^2\partial_t\Delta \ua + \partial_t \ua + (\ua\cdot\bn)\ua+\bn \pa = 0\\
       \bn\cdot \ua = 0\\
-      \left.\ua\right\vert_{t=0} = \be.\\
+      \left.\ua\right\vert_{t=0} = \bea.\\
     \end{cases}
-\end{equation}
-Substituting in $\ua=\ua+\ua'$, $\be=\be+\be'$, and $p=p+p'$,
+\end{equation*}
+Substituting in $\ua=\ua+\upa$, $\bea=\bea+\bepa$, and $\pa=\pa+\ppa$,
 $$\begin{cases}
-      -\alpha^2\partial_t\Delta (\ua+\ua') + \partial_t (\ua+\ua') + ((\ua+\ua')\cdot\bn)(\ua+\ua')+\bn (p+p') = 0\\
-      \bn\cdot (\ua+\ua') = 0\\
-      \left.(\ua+\ua')\right\vert_{t=0} = \be+\be'.\\
+      -\alpha^2\partial_t\Delta (\ua+\upa) + \partial_t (\ua+\upa) + ((\ua+\upa)\cdot\bn)(\ua+\upa)+\bn (\pa+\ppa) = 0\\
+      \bn\cdot (\ua+\upa) = 0\\
+      \left.(\ua+\upa)\right\vert_{t=0} = \bea+\bepa.\\
     \end{cases}$$
-Expanding
+By expanding each term we obtain,
 $$\begin{cases}
-      -\alpha^2\partial_t\Delta \ua-\alpha^2\partial_t\Delta \ua' + \partial_t \ua+\partial_t\ua' + \ua\cdot\bn \ua + \\ \ua\cdot\bn \ua' +\ua'\cdot\bn \ua + \ua'\cdot\bn \ua' +\bn p+ \bn p' = 0\\
-      \bn\cdot (\ua+\ua') = 0\\
-      \left.(\ua+\ua')\right\vert_{t=0} = \be+\be'.\\
+      -\alpha^2\partial_t\Delta \ua-\alpha^2\partial_t\Delta \upa + \partial_t \ua+\partial_t\upa + \ua\cdot\bn \ua + \\ \ua\cdot\bn \upa +\upa\cdot\bn \ua + \upa\cdot\bn \upa +\bn \pa+ \bn \ppa = 0\\
+      \bn\cdot (\ua+\upa) = 0\\
+      \left.(\ua+\upa)\right\vert_{t=0} = \bea+\bepa.\\
     \end{cases}$$
 Substituting in the Euler-Voigt equations we simplify to
 $$\begin{cases}
-      -\alpha^2\partial_t\Delta \ua' + \partial_t\ua' + \ua\cdot\bn \ua' +\ua'\cdot\bn \ua + \ua'\cdot\bn \ua' + \bn p' = 0\\
-      \bn\cdot \ua' = 0\\
-      \left.\ua'\right\vert_{t=0} = \be'.\\
+      -\alpha^2\partial_t\Delta \upa + \partial_t\upa + \ua\cdot\bn \upa +\upa\cdot\bn \ua + \upa\cdot\bn \upa + \bn \ppa = 0\\
+      \bn\cdot \upa = 0\\
+      \left.\upa\right\vert_{t=0} = \bepa.\\
     \end{cases}$$
-Linearizing the system by removing non-linear terms, we derive the Linearized Euler-Voigt system
+Linearizing the system by removing non-linear terms, we derive the linearized Euler-Voigt system
 $$\begin{cases}
-      -\alpha^2\partial_t\Delta \ua' + \partial_t\ua' + \ua\cdot\bn \ua' +\ua'\cdot\bn \ua + \bn p' = 0\\
-      \bn\cdot \ua' = 0\\
-      \left.\ua'\right\vert_{t=0} = \be'.\\
+      -\alpha^2\partial_t\Delta \upa + \partial_t\upa + \ua\cdot\bn \upa +\upa\cdot\bn \ua + \bn \ppa = 0\\
+      \bn\cdot \upa = 0\\
+      \left.\upa\right\vert_{t=0} = \bepa.\\
     \end{cases}$$
 This can be rearranged to the form
-\begin{equation}
+\begin{equation*}
 \begin{cases}
-      \partial_t \ua'+(I-\alpha^2\Delta)^{-1}(\ua\cdot\bn \ua'+\ua'\cdot\bn \ua+\bn p')=0\\
-      \bn\cdot \ua' = 0\\
-      \left.\ua'\right\vert_{t=0} = \be'.\\
+      \partial_t \upa+(I-\alpha^2\Delta)^{-1}(\ua\cdot\bn \upa+\upa\cdot\bn \ua+\bn \ppa)=0\\
+      \bn\cdot \upa = 0\\
+      \left.\upa\right\vert_{t=0} = \bepa.\\
     \end{cases}
-\end{equation}
+\end{equation*}

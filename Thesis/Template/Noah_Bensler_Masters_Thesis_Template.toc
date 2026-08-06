@@ -1,50 +1,39 @@
 \contentsline {chapter}{Lay Abstract}{iii}{chapter*.1}%
 \contentsline {chapter}{Abstract}{iv}{chapter*.2}%
-\contentsline {chapter}{Acknowledgements}{vii}{chapter*.3}%
+\contentsline {chapter}{Acknowledgements}{vi}{chapter*.3}%
 \contentsline {chapter}{Notation, and Abbreviations}{xiii}{chapter*.7}%
 \contentsline {chapter}{Declaration of Academic Achievement}{xv}{chapter*.8}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Singularity Formation in Models of 3D Fluid Flows}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}3D Euler-Voigt Equations}{4}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Outline of the Thesis}{5}{section.1.3}%
+\contentsline {section}{\numberline {1.3}Outline of the Thesis}{6}{section.1.3}%
 \contentsline {chapter}{\numberline {2}Properties of the Euler-Voigt Equations}{7}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Finite Time Blow-up Criterion}{7}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Initial Conditions}{10}{section.2.2}%
+\contentsline {section}{\numberline {2.2}Initial Conditions}{11}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Scaling Symmetries of Euler and Euler-Voigt Systems}{13}{section.2.3}%
-\contentsline {chapter}{\numberline {3}Statement of the Optimization Problem}{16}{chapter.3}%
+\contentsline {chapter}{\numberline {3}The Optimization Problem}{16}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Formulation of the Problem}{16}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Gradient of Objective Function}{17}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Riemannian Conjugate Gradient Method}{21}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Numerical Methods}{24}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Spatial Discretization \& Spectral Methods}{24}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Time Stepping}{24}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Numerical Stability \& Accuracy}{25}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Conservation of $\alpha $-Energy}{27}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Determination of Gevrey class size}{29}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Spectrum Validation}{30}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Kappa Test Validation}{31}{section.4.5}%
-\contentsline {chapter}{\numberline {5}Results}{34}{chapter.5}%
-\contentsline {subsection}{\numberline {5.0.1}Pre-Optimization Results}{35}{subsection.5.0.1}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for TGV}{35}{subsubsection*.19}%
-\contentsline {subsubsection}{Comparison to Larios et al. 2018}{35}{subsubsection*.20}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for INIT1}{35}{subsubsection*.21}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for INIT1}{35}{subsubsection*.22}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for INIT2}{36}{subsubsection*.23}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for INIT2}{36}{subsubsection*.24}%
-\contentsline {subsection}{\numberline {5.0.2}Optimization Results}{36}{subsection.5.0.2}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for TGV}{36}{subsubsection*.25}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for TGV}{36}{subsubsection*.26}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for INIT1}{36}{subsubsection*.27}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for INIT1}{36}{subsubsection*.28}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha ^2\Phi _{\alpha ,T}}$ for INIT2}{36}{subsubsection*.29}%
-\contentsline {subsubsection}{Results of $\boldsymbol {\alpha }$ slope for INIT2}{37}{subsubsection*.30}%
-\contentsline {chapter}{\numberline {6}Conclusion}{38}{chapter.6}%
-\contentsline {chapter}{\numberline {A}Function Spaces}{39}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Derivation of the Gateaux Directional Differential}{41}{appendix.B}%
-\contentsline {chapter}{\numberline {C}Linearization of the Euler-Voigt System}{45}{appendix.C}%
-\contentsline {chapter}{\numberline {D}Derivation of the Adjoint System}{47}{appendix.D}%
-\contentsline {chapter}{\numberline {E}Proof of Relation (\ref {eq:Gevrey:Class})}{52}{appendix.E}%
-\contentsline {chapter}{\numberline {F}Evaluation of $\|{\boldsymbol \eta }\|_{\dot {H}^1}$ for the General Taylor Green Vortex}{54}{appendix.F}%
-\contentsline {chapter}{\numberline {G}Evaluation of $\|\nabla \times {\boldsymbol \eta }\|_{L^\infty }$ for the General Taylor Green Vortex}{57}{appendix.G}%
-\contentsline {chapter}{\numberline {H}Rescaling the Euler equations}{59}{appendix.H}%
-\contentsline {chapter}{\numberline {I}Rescaling the Euler-Voigt equations}{61}{appendix.I}%
+\contentsline {section}{\numberline {3.2}Initial Guesses}{17}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Gradient of Objective Function}{19}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Riemannian Conjugate Gradient Method}{23}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Numerical Methods}{28}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Discretization}{28}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Numerical Stability \& Accuracy}{29}{subsection.4.1.1}%
+\contentsline {section}{\numberline {4.2}Energy Spectra and Validation of Numerical Resolution}{32}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Validation of the Gradient of the Objective Functional (\ref {eq:objective:functional})}{34}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Determination of the parameter defining the Gevrey space}{37}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Results}{39}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Singularity Detection}{40}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Results Obtained Using the Initial Guesses}{42}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Results Obtained Using ${\boldsymbol \eta }_{TGV}$}{42}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}{\color {red}Delayed Singularity Formation}}{43}{subsection.5.2.2}%
+\contentsline {chapter}{\numberline {6}Conclusion}{49}{chapter.6}%
+\contentsline {chapter}{\numberline {A}Function Spaces}{50}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Proof of Relation (\ref {eq:Gevrey:size})}{52}{appendix.B}%
+\contentsline {chapter}{\numberline {C}Rescaling the Euler equations}{53}{appendix.C}%
+\contentsline {chapter}{\numberline {D}Rescaling the Euler-Voigt equations}{55}{appendix.D}%
+\contentsline {chapter}{\numberline {E}Evaluation of $\|{\boldsymbol \eta }\|_{\dot {H}^s}$ for the Taylor Green Vortex}{57}{appendix.E}%
+\contentsline {chapter}{\numberline {F}Evaluation of $\|\nabla \times {\boldsymbol \eta }\|_{L^\infty }$ for the Taylor Green Vortex}{60}{appendix.F}%
+\contentsline {chapter}{\numberline {G}Linearization of the Euler-Voigt System}{62}{appendix.G}%
+\contentsline {chapter}{\numberline {H}Derivation of the Adjoint System}{64}{appendix.H}%
+\contentsline {chapter}{\numberline {I}Derivation of the G\^{a}teaux Directional Differential of the Objective Functional}{70}{appendix.I}%
