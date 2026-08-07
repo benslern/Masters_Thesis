@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.8.10)  13 JAN 2026 11:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.12)  2 JUL 2026 16:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./appendix_adj.tex
 (appendix_adj.tex
-LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-01-04>
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
 ! Undefined control sequence.
 l.1 \chapter
             {Derivation of the Adjoint System}
@@ -60,6 +60,15 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 1--3
 []
  []
 
+! Undefined control sequence.
+l.4 {\color
+           {red}In this Appendix we derive the adjoint system (\ref{eq:euler...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 
 ! LaTeX Error: Missing \begin{document}.
 
@@ -67,12 +76,119 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.4 F
-     or this derivation we will exclude the $\alpha$ subscript on the $u_{\a...
+l.4 {\color{r
+             ed}In this Appendix we derive the adjoint system (\ref{eq:euler...
 
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no I in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no A in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no j in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no ( in font nullfont!
+! Undefined control sequence.
+<write> ...:euler:voigt:adjoint' on page \thepage 
+                                                  \space undefined\on@line .
+l.4 ...djoint system (\ref{eq:euler:voigt:adjoint}
+                                                  ) using the duality-pairin...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `eq:euler:voigt:adjoint' on page  undefined on input l
+ine 4.
+
+Missing character: There is no ) in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no ( in font nullfont!
+! Undefined control sequence.
+<write> ... `eq:duality:pairing' on page \thepage 
+                                                  \space undefined\on@line .
+l.4 ...-pairing relation (\ref{eq:duality:pairing}
+                                                  ). For this derivation we ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `eq:duality:pairing' on page  undefined on input line 
+4.
+
+Missing character: There is no ) in font nullfont!
+Missing character: There is no . in font nullfont!
 Missing character: There is no F in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
@@ -226,6 +342,16 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 4--5
  []
 
 
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 4--5
+[]
+ []
+
+
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 4--5
+[]
+ []
+
+
 Overfull \hbox (6.43404pt too wide) in paragraph at lines 4--5
 \OML/cmm/m/it/10 $
  []
@@ -245,105 +371,21 @@ Overfull \hbox (11.42334pt too wide) in paragraph at lines 4--5
 \OML/cmm/m/it/10 u[]$
  []
 
-! Undefined control sequence.
-l.5 $$\int_0^T\int_{\TT
-                       ^3} u \,dt = \int_D u \,dt$$
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-
-Overfull \hbox (89.81488pt too wide) detected at line 5
+Overfull \hbox (95.52324pt too wide) detected at line 5
 [][] [][] \OML/cmm/m/it/10 u dt \OT1/cmr/m/n/10 = [][] \OML/cmm/m/it/10 u dt
  []
 
 Missing character: There is no W in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
+Missing character: There is no b in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no j in font nullfont!
-Missing character: There is no o in font nullfont!
+Missing character: There is no g in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no s in font nullfont!
+Missing character: There is no b in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no , in font nullfont!
-! Undefined control sequence.
-l.7 $$(L[u'],u^*):=\int_0^T\int_{\mathbb
-                                        {T}^3} L[u']u^* dx dt = (u',L[u^*])+...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (353.97314pt too wide) detected at line 7
-\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 L\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 u[]\OT1/cm
-r/m/n/10 ]\OML/cmm/m/it/10 ; u[]\OT1/cmr/m/n/10 ) := [][] [][] \OML/cmm/m/it/10
- L\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 ]\OML/cmm/m/it/10 u[]dxd
-t \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 u[]; L\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 u
-[]\OT1/cmr/m/n/10 ]) + [][] \OML/cmm/m/it/10 u[]u[]\OMS/cmsy/m/n/10 j[] ^^@ [][
-] \OML/cmm/m/it/10 u[]u[]\OMS/cmsy/m/n/10 j[]\OML/cmm/m/it/10 dx \OT1/cmr/m/n/1
-0 = 0\OML/cmm/m/it/10 :
- []
-
-Missing character: There is no S in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no b in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -405,9 +447,56 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no , in font nullfont!
+
+! LaTeX Error: Environment subequations undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 \begin{subequations}
+                        
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Environment align* undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8 \begin{align*}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.9 \L^
+       *\begin{bmatrix}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+! LaTeX Error: Environment bmatrix undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 \L^*\begin{bmatrix}
+                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 ! Undefined control sequence.
-l.9 $$(L[u'],u^*):= \int_0^T\int_{\mathbb
-                                         {T}^3} (\partial_t u'+(I-\alpha^2\D...
+l.10 \usa
+         \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -415,16 +504,338 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (345.43341pt too wide) detected at line 9
-\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 L\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 u[]\OT1/cm
-r/m/n/10 ]\OML/cmm/m/it/10 ; u[]\OT1/cmr/m/n/10 ) := [][] [][](\OML/cmm/m/it/10
- @[]u[] \OT1/cmr/m/n/10 + (\OML/cmm/m/it/10 I \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/i
-t/10 []\OT1/cmr/m/n/10 ^^A)[](\OML/cmm/m/it/10 u[]\OMS/cmsy/m/n/10 r\OML/cmm/m
-/it/10 u[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 u[] \OMS/cmsy/m/n/10 ^^A r\OML/cm
-m/m/it/10 u[]\OMS/cmsy/m/n/10 r\OML/cmm/m/it/10 p[]\OT1/cmr/m/n/10 ))\OML/cmm/m
-/it/10 u[] \OT1/cmr/m/n/10 + (\OMS/cmsy/m/n/10 r ^^A \OML/cmm/m/it/10 u[]\OT1/c
-mr/m/n/10 )\OML/cmm/m/it/10 p[]dx dt:
+! LaTeX Error: \begin{document} ended by \end{bmatrix}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12 \end{bmatrix}
+                   :=& \begin{bmatrix}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Misplaced alignment tab character &.
+l.12 \end{bmatrix} :=&
+                       \begin{bmatrix}
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+
+! LaTeX Error: Environment bmatrix undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12 \end{bmatrix} :=& \begin{bmatrix}
+                                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+l.13 -\partial_t\usa
+                    -(\bn (I-\alpha^2)^{-1}\usa + (\bn (I-\alpha^2)^{-1}\usa...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.13 -\partial_t\usa-(\bn
+                          (I-\alpha^2)^{-1}\usa + (\bn (I-\alpha^2)^{-1}\usa...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.13 -\partial_t\usa-(\bn (I-\alpha^2)^{-1}\usa
+                                                + (\bn (I-\alpha^2)^{-1}\usa...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.13 ...al_t\usa-(\bn (I-\alpha^2)^{-1}\usa + (\bn
+                                                   (I-\alpha^2)^{-1}\usa)^{\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.13 ...a^2)^{-1}\usa + (\bn (I-\alpha^2)^{-1}\usa
+                                                  )^{\intercal})\ua-\bn p_{\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.13 ...a + (\bn (I-\alpha^2)^{-1}\usa)^{\intercal
+                                                  })\ua-\bn p_{\alpha}^*\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.13 ...\bn (I-\alpha^2)^{-1}\usa)^{\intercal})\ua
+                                                  -\bn p_{\alpha}^*\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.13 ...(I-\alpha^2)^{-1}\usa)^{\intercal})\ua-\bn
+                                                   p_{\alpha}^*\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.14 -\bn
+          \cdot \usa
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.14 -\bn \cdot \usa
+                    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: \begin{document} ended by \end{bmatrix}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.15 \end{bmatrix}
+                   = \begin{bmatrix}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Environment bmatrix undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.15 \end{bmatrix} = \begin{bmatrix}
+                                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: \begin{document} ended by \end{bmatrix}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.18 \end{bmatrix}
+                  \\
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+<recently read> \usa 
+                     
+l.19 \usa
+         (\x,T) =& 2|D|^2\ua(\x,T)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.19 \usa(\x
+            ,T) =& 2|D|^2\ua(\x,T)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Misplaced alignment tab character &.
+l.19 \usa(\x,T) =&
+                   2|D|^2\ua(\x,T)
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+l.19 \usa(\x,T) =& 2|D|^2\ua
+                            (\x,T)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.19 \usa(\x,T) =& 2|D|^2\ua(\x
+                               ,T)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: \begin{document} ended by \end{align*}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 \end{align*}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.20 \end{align*}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+! LaTeX Error: \begin{document} ended by \end{subequations}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.21 \end{subequations}
+                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (10.84724pt too wide) in paragraph at lines 5--22
+              []$[][] 
  []
+
+
+Overfull \hbox (24.06331pt too wide) in paragraph at lines 5--22
+\OML/cmm/m/it/10 p[] \OT1/cmr/m/n/10 :=
+ []
+
+
+Overfull \hbox (24.38548pt too wide) in paragraph at lines 5--22
+\OMS/cmsy/m/n/10 ^^@\OML/cmm/m/it/10 @[] \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (20.73615pt too wide) in paragraph at lines 5--22
+\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 I \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (33.32301pt too wide) in paragraph at lines 5--22
+\OML/cmm/m/it/10 []\OT1/cmr/m/n/10 )[] +
+ []
+
+
+Overfull \hbox (20.73615pt too wide) in paragraph at lines 5--22
+\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 I \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (41.60081pt too wide) in paragraph at lines 5--22
+\OML/cmm/m/it/10 []\OT1/cmr/m/n/10 )[])[]) \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (10.73001pt too wide) in paragraph at lines 5--22
+\OML/cmm/m/it/10 p[][] 
+ []
+
+
+Overfull \hbox (7.7778pt too wide) in paragraph at lines 5--22
+\OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (13.3333pt too wide) in paragraph at lines 5--22
+\OMS/cmsy/m/n/10 ^^A \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 5--22
+\OT1/cmr/m/n/10 0[] 
+ []
+
+
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 5--22
+\OT1/cmr/m/n/10 0[] 
+ []
+
+
+Overfull \hbox (30.01038pt too wide) in paragraph at lines 5--22
+\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ; T\OT1/cmr/m/n/10 ) =
+ []
+
+
+Overfull \hbox (43.05353pt too wide) in paragraph at lines 5--22
+\OT1/cmr/m/n/10 2\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 D\OMS/cmsy/m/n/10 j[]\OT1/c
+mr/m/n/10 (\OML/cmm/m/it/10 ; T\OT1/cmr/m/n/10 )$
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.25 T
+      his integral can be split into five parts. Solving the first part with...
+
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 Missing character: There is no T in font nullfont!
 Missing character: There is no h in font nullfont!
@@ -462,18 +873,6 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no . in font nullfont!
-
-Overfull \hbox (321.70908pt too wide) detected at line 11
-\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 L\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 u[]\OT1/cm
-r/m/n/10 ]\OML/cmm/m/it/10 ; u[]\OT1/cmr/m/n/10 ) := [](\OML/cmm/m/it/10 @[]u[]
- \OT1/cmr/m/n/10 + (\OML/cmm/m/it/10 I \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 [
-]\OT1/cmr/m/n/10 ^^A)[](\OML/cmm/m/it/10 u[]\OMS/cmsy/m/n/10 r\OML/cmm/m/it/10 
-u[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 u[] \OMS/cmsy/m/n/10 ^^A r\OML/cmm/m/it/
-10 u[]\OMS/cmsy/m/n/10 r\OML/cmm/m/it/10 p[]\OT1/cmr/m/n/10 ))\OML/cmm/m/it/10 
-u[] \OT1/cmr/m/n/10 + (\OMS/cmsy/m/n/10 r ^^A \OML/cmm/m/it/10 u[]\OT1/cmr/m/n/
-10 )\OML/cmm/m/it/10 p[]dx dt:
- []
-
 Missing character: There is no S in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no l in font nullfont!
@@ -524,36 +923,32 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 
-Overfull \hbox (16.28009pt too wide) in paragraph at lines 11--13
-         $\OML/cmm/m/it/10 u \OT1/cmr/m/n/10 =
+Overfull \hbox (20.0pt too wide) in paragraph at lines 25--26
+[]
  []
 
 
-Overfull \hbox (10.32181pt too wide) in paragraph at lines 11--13
+Overfull \hbox (16.28009pt too wide) in paragraph at lines 25--26
+\OML/cmm/m/it/10 u \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (10.32181pt too wide) in paragraph at lines 25--26
 \OML/cmm/m/it/10 u[]$
  []
 
 
-Overfull \hbox (18.56708pt too wide) in paragraph at lines 11--13
+Overfull \hbox (18.56708pt too wide) in paragraph at lines 25--26
 \OML/cmm/m/it/10 v[] \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (17.36002pt too wide) in paragraph at lines 11--13
+Overfull \hbox (17.36002pt too wide) in paragraph at lines 25--26
 \OML/cmm/m/it/10 @[]u[]$ 
  []
 
 ! Undefined control sequence.
-l.13 $$\int_0^T\int_{\mathbb
-                            {T}^3}u^*\partial_t u'dx\, dt = \int_{\mathbb{T}...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.13 ...^3}u^*\partial_t u'dx\, dt = \int_{\mathbb
+l.26 ..._D u^*\partial_t u'dx\, dt = \int_{\mathbb
                                                   {T}^3}u^*u'|_{t=0}^{t=T} d...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -561,20 +956,11 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.13 ...u'|_{t=0}^{t=T} dx - \int_0^T\int_{\mathbb
-                                                  {T}^3} u'\partial_t u^* dx...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-
-Overfull \hbox (258.27385pt too wide) detected at line 13
-[][] [][] \OML/cmm/m/it/10 u[]@[]u[]dx dt \OT1/cmr/m/n/10 = [][] \OML/cmm/m/it/
-10 u[]u[]\OMS/cmsy/m/n/10 j[]\OML/cmm/m/it/10 dx \OMS/cmsy/m/n/10 ^^@ [][] [][]
- \OML/cmm/m/it/10 u[]@[]u[]dx dt:
+Overfull \hbox (216.44383pt too wide) detected at line 26
+[][] \OML/cmm/m/it/10 u[]@[]u[]dx dt \OT1/cmr/m/n/10 = [][] \OML/cmm/m/it/10 u[
+]u[]\OMS/cmsy/m/n/10 j[]\OML/cmm/m/it/10 dx \OMS/cmsy/m/n/10 ^^@ [][] \OML/cmm/
+m/it/10 u[]@[]u[]dx dt:
  []
 
 Missing character: There is no S in font nullfont!
@@ -645,28 +1031,10 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no , in font nullfont!
-! Undefined control sequence.
-l.15 $$\int_0^T\int_{\mathbb
-                            {T}^3}\left[(I-\alpha^2\Delta)^{-1}u\cdot\nabla ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.15 ...]\cdot u^* dx\, dt = \int_0^T\int_{\mathbb
-                                                  {T}^3}\left[(I-\alpha^2\De...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (341.95749pt too wide) detected at line 15
-[][] [][] [] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = [
-][] [][] [] \OML/cmm/m/it/10 u[]dx dt:
+Overfull \hbox (271.17554pt too wide) detected at line 28
+[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = [] \OML/cmm
+/m/it/10 u[]dx dt:
  []
 
 Missing character: There is no U in font nullfont!
@@ -714,22 +1082,22 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no , in font nullfont!
 
-Overfull \hbox (11.11115pt too wide) in paragraph at lines 15--17
+Overfull \hbox (11.11115pt too wide) in paragraph at lines 28--30
          $\OMS/cmsy/m/n/10 r ^^A
  []
 
 
-Overfull \hbox (16.28009pt too wide) in paragraph at lines 15--17
+Overfull \hbox (16.28009pt too wide) in paragraph at lines 28--30
 \OML/cmm/m/it/10 u \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 15--17
+Overfull \hbox (5.00002pt too wide) in paragraph at lines 28--30
 \OT1/cmr/m/n/10 0$ 
  []
 
 
-Overfull \hbox (165.70491pt too wide) detected at line 17
+Overfull \hbox (165.70491pt too wide) detected at line 30
 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u[]u[]\OT1/cmr/m/n/10 ) = []\OML/cmm/m/it/1
 0 u[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 u[][] \OT1/cmr/m/n/10 = \OML/cmm/m/it/
 10 u[][]:
@@ -767,28 +1135,10 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no , in font nullfont!
-! Undefined control sequence.
-l.19 $$\int_0^T\int_{\mathbb
-                            {T}^3}\left[(I-\alpha^2\Delta)^{-1}u\cdot\nabla ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.19 ...]\cdot u^* dx\, dt = \int_0^T\int_{\mathbb
-                                                  {T}^3}\left[(I-\alpha^2\De...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (358.78915pt too wide) detected at line 19
-[][] [][] [] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = [
-][] [][] [] \OML/cmm/m/it/10 u[]dx dt:
+Overfull \hbox (288.0072pt too wide) detected at line 32
+[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = [] \OML/cmm
+/m/it/10 u[]dx dt:
  []
 
 Missing character: There is no U in font nullfont!
@@ -869,53 +1219,35 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no , in font nullfont!
 
-Overfull \hbox (16.28009pt too wide) in paragraph at lines 19--21
+Overfull \hbox (16.28009pt too wide) in paragraph at lines 32--34
                $\OML/cmm/m/it/10 u \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (19.62503pt too wide) in paragraph at lines 19--21
+Overfull \hbox (19.62503pt too wide) in paragraph at lines 32--34
 \OT1/cmr/m/n/10 [(\OML/cmm/m/it/10 I \OMS/cmsy/m/n/10 ^^@
  []
 
 
-Overfull \hbox (46.97816pt too wide) in paragraph at lines 19--21
+Overfull \hbox (46.97816pt too wide) in paragraph at lines 32--34
 \OML/cmm/m/it/10 []\OT1/cmr/m/n/10 ^^A)[]\OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 ]
 $
  []
 
 
-Overfull \hbox (18.56708pt too wide) in paragraph at lines 19--21
+Overfull \hbox (18.56708pt too wide) in paragraph at lines 32--34
 \OML/cmm/m/it/10 v[] \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (42.14142pt too wide) in paragraph at lines 19--21
+Overfull \hbox (42.14142pt too wide) in paragraph at lines 32--34
 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u[]u[]\OT1/cmr/m/n/10 )$ 
  []
 
-! Undefined control sequence.
-l.21 $$\int_0^T\int_{\mathbb
-                            {T}^3}\left[(I-\alpha^2\Delta)^{-1}u\cdot\nabla ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.21 ...\cdot u^* dx\, dt = -\int_0^T\int_{\mathbb
-                                                  {T}^3} u_j u_i' \frac{\par...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (359.90018pt too wide) detected at line 21
-[][] [][] [] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = \
-OMS/cmsy/m/n/10 ^^@ [][] [][] \OML/cmm/m/it/10 u[]u[][] [] dx dt:
+Overfull \hbox (287.4516pt too wide) detected at line 34
+[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = \OMS/cmsy/m
+/n/10 ^^@\OML/cmm/m/it/10 u[]u[][] [] dx dt:
  []
 
 Missing character: There is no C in font nullfont!
@@ -949,29 +1281,10 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no , in font nullfont!
-! Undefined control sequence.
-l.23 $$\int_0^T\int_{\mathbb
-                            {T}^3}\left[(I-\alpha^2\Delta)^{-1}u\cdot\nabla ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.23 ...\cdot u^* dx\, dt = -\int_0^T\int_{\mathbb
-                                                  {T}^3} u' \cdot \left[u \c...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (363.63612pt too wide) detected at line 23
-[][] [][] [] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = \
-OMS/cmsy/m/n/10 ^^@ [][] [][] \OML/cmm/m/it/10 u[] \OMS/cmsy/m/n/10 ^^A [] \OML
-/cmm/m/it/10 dx dt:
+Overfull \hbox (291.18755pt too wide) detected at line 36
+[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = \OMS/cmsy/m
+/n/10 ^^@\OML/cmm/m/it/10 u[] \OMS/cmsy/m/n/10 ^^A [] \OML/cmm/m/it/10 dx dt:
  []
 
 Missing character: There is no S in font nullfont!
@@ -1041,28 +1354,10 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no , in font nullfont!
-! Undefined control sequence.
-l.25 $$\int_0^T\int_{\mathbb
-                            {T}^3}\left[(I-\alpha^2\Delta)^{-1}u'\cdot\nabla...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.25 ...]\cdot u^* dx\, dt = \int_0^T\int_{\mathbb
-                                                  {T}^3}\left[(I-\alpha^2\De...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (341.95749pt too wide) detected at line 25
-[][] [][] [] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = [
-][] [][] [] \OML/cmm/m/it/10 u[]dx dt:
+Overfull \hbox (271.17554pt too wide) detected at line 38
+[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = [] \OML/cmm
+/m/it/10 u[]dx dt:
  []
 
 Missing character: There is no A in font nullfont!
@@ -1099,53 +1394,35 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 
-Overfull \hbox (16.28009pt too wide) in paragraph at lines 25--27
+Overfull \hbox (16.28009pt too wide) in paragraph at lines 38--40
      $\OML/cmm/m/it/10 u \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (19.62503pt too wide) in paragraph at lines 25--27
+Overfull \hbox (19.62503pt too wide) in paragraph at lines 38--40
 \OT1/cmr/m/n/10 [(\OML/cmm/m/it/10 I \OMS/cmsy/m/n/10 ^^@
  []
 
 
-Overfull \hbox (46.97816pt too wide) in paragraph at lines 25--27
+Overfull \hbox (46.97816pt too wide) in paragraph at lines 38--40
 \OML/cmm/m/it/10 []\OT1/cmr/m/n/10 ^^A)[]\OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 ]
 $
  []
 
 
-Overfull \hbox (18.56708pt too wide) in paragraph at lines 25--27
+Overfull \hbox (18.56708pt too wide) in paragraph at lines 38--40
 \OML/cmm/m/it/10 v[] \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (42.14142pt too wide) in paragraph at lines 25--27
+Overfull \hbox (42.14142pt too wide) in paragraph at lines 38--40
 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u[]u[]\OT1/cmr/m/n/10 )$ 
  []
 
-! Undefined control sequence.
-l.27 $$\int_0^T\int_{\mathbb
-                            {T}^3}\left[(I-\alpha^2\Delta)^{-1}u'\cdot\nabla...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.27 ...\cdot u^* dx\, dt = -\int_0^T\int_{\mathbb
-                                                  {T}^3}u_j'u_i\frac{\partia...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (359.90018pt too wide) detected at line 27
-[][] [][] [] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = \
-OMS/cmsy/m/n/10 ^^@ [][] [][] \OML/cmm/m/it/10 u[]u[][] [] dx dt:
+Overfull \hbox (287.4516pt too wide) detected at line 40
+[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = \OMS/cmsy/m
+/n/10 ^^@\OML/cmm/m/it/10 u[]u[][] [] dx dt:
  []
 
 Missing character: There is no B in font nullfont!
@@ -1238,52 +1515,34 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no , in font nullfont!
 
-Overfull \hbox (8.53014pt too wide) in paragraph at lines 27--29
+Overfull \hbox (8.53014pt too wide) in paragraph at lines 40--42
       $\OML/cmm/m/it/10 u[]$
  []
 
 
-Overfull \hbox (7.9838pt too wide) in paragraph at lines 27--29
+Overfull \hbox (7.9838pt too wide) in paragraph at lines 40--42
 \OML/cmm/m/it/10 v \OMS/cmsy/m/n/10 ^^A
  []
 
 
-Overfull \hbox (17.98376pt too wide) in paragraph at lines 27--29
+Overfull \hbox (17.98376pt too wide) in paragraph at lines 40--42
 \OML/cmm/m/it/10 w \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (14.28345pt too wide) in paragraph at lines 27--29
+Overfull \hbox (14.28345pt too wide) in paragraph at lines 40--42
 \OML/cmm/m/it/10 v[] \OMS/cmsy/m/n/10 ^^A
  []
 
 
-Overfull \hbox (13.7279pt too wide) in paragraph at lines 27--29
+Overfull \hbox (13.7279pt too wide) in paragraph at lines 40--42
 \OML/cmm/m/it/10 w[]$
  []
 
-! Undefined control sequence.
-l.29 $$\int_0^T\int_{\mathbb
-                            {T}^3}\left[(I-\alpha^2\Delta)^{-1}u'\cdot\nabla...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.29 ...\cdot u^* dx\, dt = -\int_0^T\int_{\mathbb
-                                                  {T}^3}u_i'u_j\frac{\partia...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (359.0159pt too wide) detected at line 29
-[][] [][] [] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = \
-OMS/cmsy/m/n/10 ^^@ [][] [][] \OML/cmm/m/it/10 u[]u[][] [] dx dt:
+Overfull \hbox (286.56732pt too wide) detected at line 42
+[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = \OMS/cmsy/m
+/n/10 ^^@\OML/cmm/m/it/10 u[]u[][] [] dx dt:
  []
 
 Missing character: There is no C in font nullfont!
@@ -1317,29 +1576,10 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no , in font nullfont!
-! Undefined control sequence.
-l.31 $$\int_0^T\int_{\mathbb
-                            {T}^3}\left[(I-\alpha^2\Delta)^{-1}u'\cdot\nabla...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.31 ...\cdot u^* dx\, dt = -\int_0^T\int_{\mathbb
-                                                  {T}^3}u' \cdot \left[ u \c...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (369.38023pt too wide) detected at line 31
-[][] [][] [] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = \
-OMS/cmsy/m/n/10 ^^@ [][] [][] \OML/cmm/m/it/10 u[] \OMS/cmsy/m/n/10 ^^A [] \OML
-/cmm/m/it/10 dx dt:
+Overfull \hbox (296.93166pt too wide) detected at line 44
+[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[]dx dt \OT1/cmr/m/n/10 = \OMS/cmsy/m
+/n/10 ^^@\OML/cmm/m/it/10 u[] \OMS/cmsy/m/n/10 ^^A [] \OML/cmm/m/it/10 dx dt:
  []
 
 Missing character: There is no S in font nullfont!
@@ -1423,28 +1663,10 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no , in font nullfont!
-! Undefined control sequence.
-l.33 $$\int_0^T\int_{\mathbb
-                            {T}^3} \nabla p' \cdot u^* dx\,dt= \int_0^T\int_...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.33 ...p' \cdot u^* dx\,dt= \int_0^T\int_{\mathbb
-                                                  {T}^3} \frac{\partial p'}{...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (186.59914pt too wide) detected at line 33
-[][] [][] \OMS/cmsy/m/n/10 r\OML/cmm/m/it/10 p[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/
-m/it/10 u[]dx dt \OT1/cmr/m/n/10 = [][] [][] []\OML/cmm/m/it/10 u[]dx dt:
+Overfull \hbox (115.81718pt too wide) detected at line 46
+\OMS/cmsy/m/n/10 r\OML/cmm/m/it/10 p[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[
+]dx dt \OT1/cmr/m/n/10 = []\OML/cmm/m/it/10 u[]dx dt:
  []
 
 Missing character: There is no A in font nullfont!
@@ -1482,48 +1704,29 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no , in font nullfont!
 
-Overfull \hbox (16.28009pt too wide) in paragraph at lines 33--35
+Overfull \hbox (16.28009pt too wide) in paragraph at lines 46--48
      $\OML/cmm/m/it/10 u \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (10.32181pt too wide) in paragraph at lines 33--35
+Overfull \hbox (10.32181pt too wide) in paragraph at lines 46--48
 \OML/cmm/m/it/10 u[]$
  []
 
 
-Overfull \hbox (18.56708pt too wide) in paragraph at lines 33--35
+Overfull \hbox (18.56708pt too wide) in paragraph at lines 46--48
 \OML/cmm/m/it/10 v[] \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (22.74594pt too wide) in paragraph at lines 33--35
+Overfull \hbox (22.74594pt too wide) in paragraph at lines 46--48
 \OML/cmm/m/it/10 @x[]p[]$ 
  []
 
-! Undefined control sequence.
-l.35 $$\int_0^T\int_{\mathbb
-                            {T}^3} \nabla p' \cdot u^* dx\,dt= -\int_0^T\int...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.35 ...' \cdot u^* dx\,dt= -\int_0^T\int_{\mathbb
-                                                  {T}^3} p'\frac{\partial u_...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (194.83582pt too wide) detected at line 35
-[][] [][] \OMS/cmsy/m/n/10 r\OML/cmm/m/it/10 p[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/
-m/it/10 u[]dx dt \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@ [][] [][] \OML/cmm/m/it
-/10 p[][]dx dt:
+Overfull \hbox (122.38724pt too wide) detected at line 48
+\OMS/cmsy/m/n/10 r\OML/cmm/m/it/10 p[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[
+]dx dt \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@\OML/cmm/m/it/10 p[][]dx dt:
  []
 
 Missing character: There is no C in font nullfont!
@@ -1557,30 +1760,12 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no , in font nullfont!
-! Undefined control sequence.
-l.37 $$\int_0^T\int_{\mathbb
-                            {T}^3} \nabla p' \cdot u^* dx\,dt= -\int_0^T\int...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.37 ...' \cdot u^* dx\,dt= -\int_0^T\int_{\mathbb
-                                                  {T}^3} p'(\nabla \cdot u^*...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (205.46019pt too wide) detected at line 37
-[][] [][] \OMS/cmsy/m/n/10 r\OML/cmm/m/it/10 p[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/
-m/it/10 u[]dx dt \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@ [][] [][] \OML/cmm/m/it
-/10 p[]\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 r ^^A \OML/cmm/m/it/10 u[]\OT1/cmr/m/n
-/10 )\OML/cmm/m/it/10 dx dt:
+Overfull \hbox (133.01161pt too wide) detected at line 50
+\OMS/cmsy/m/n/10 r\OML/cmm/m/it/10 p[] \OMS/cmsy/m/n/10 ^^A \OML/cmm/m/it/10 u[
+]dx dt \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@\OML/cmm/m/it/10 p[]\OT1/cmr/m/n/1
+0 (\OMS/cmsy/m/n/10 r ^^A \OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10
+ dx dt:
  []
 
 Missing character: There is no S in font nullfont!
@@ -1663,29 +1848,10 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no , in font nullfont!
-! Undefined control sequence.
-l.39 $$\int_0^T\int_{\mathbb
-                            {T}^3}(\nabla \cdot u')p^* dx\,dt = \int_0^T\int...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.39 ...cdot u')p^* dx\,dt = \int_0^T\int_{\mathbb
-                                                  {T}^3} \frac{\partial u_i'...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (192.02629pt too wide) detected at line 39
-[][] [][]\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 r ^^A \OML/cmm/m/it/10 u[]\OT1/cmr/m
-/n/10 )\OML/cmm/m/it/10 p[]dx dt \OT1/cmr/m/n/10 = [][] [][] []\OML/cmm/m/it/10
- p[]dx dt:
+Overfull \hbox (122.91096pt too wide) detected at line 52
+\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 r ^^A \OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 )\O
+ML/cmm/m/it/10 p[]dx dt \OT1/cmr/m/n/10 = []\OML/cmm/m/it/10 p[]dx dt:
  []
 
 Missing character: There is no A in font nullfont!
@@ -1723,48 +1889,30 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no , in font nullfont!
 
-Overfull \hbox (16.28009pt too wide) in paragraph at lines 39--41
+Overfull \hbox (16.28009pt too wide) in paragraph at lines 52--54
      $\OML/cmm/m/it/10 u \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (9.62848pt too wide) in paragraph at lines 39--41
+Overfull \hbox (9.62848pt too wide) in paragraph at lines 52--54
 \OML/cmm/m/it/10 p[]$
  []
 
 
-Overfull \hbox (18.56708pt too wide) in paragraph at lines 39--41
+Overfull \hbox (18.56708pt too wide) in paragraph at lines 52--54
 \OML/cmm/m/it/10 v[] \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (23.963pt too wide) in paragraph at lines 39--41
+Overfull \hbox (23.963pt too wide) in paragraph at lines 52--54
 \OML/cmm/m/it/10 @x[]u[]$ 
  []
 
-! Undefined control sequence.
-l.41 $$\int_0^T\int_{\mathbb
-                            {T}^3}(\nabla \cdot u')p^* dx\,dt = -\int_0^T\in...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.41 ...dot u')p^* dx\,dt = -\int_0^T\int_{\mathbb
-                                                  {T}^3} \frac{\partial p^*}...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (201.47072pt too wide) detected at line 41
-[][] [][]\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 r ^^A \OML/cmm/m/it/10 u[]\OT1/cmr/m
-/n/10 )\OML/cmm/m/it/10 p[]dx dt \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@ [][] []
-[] []\OML/cmm/m/it/10 u[]dx dt:
+Overfull \hbox (130.68877pt too wide) detected at line 54
+\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 r ^^A \OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 )\O
+ML/cmm/m/it/10 p[]dx dt \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@[]\OML/cmm/m/it/1
+0 u[]dx dt:
  []
 
 Missing character: There is no C in font nullfont!
@@ -1798,29 +1946,11 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no , in font nullfont!
-! Undefined control sequence.
-l.43 $$\int_0^T\int_{\mathbb
-                            {T}^3}(\nabla \cdot u')p^* dx\,dt = -\int_0^T\in...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
-l.43 ...dot u')p^* dx\,dt = -\int_0^T\int_{\mathbb
-                                                  {T}^3} u'\cdot \nabla p^* ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (203.79356pt too wide) detected at line 43
-[][] [][]\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 r ^^A \OML/cmm/m/it/10 u[]\OT1/cmr/m
-/n/10 )\OML/cmm/m/it/10 p[]dx dt \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@ [][] []
-[] \OML/cmm/m/it/10 u[] \OMS/cmsy/m/n/10 ^^A r\OML/cmm/m/it/10 p[]dx dt:
+Overfull \hbox (133.01161pt too wide) detected at line 56
+\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 r ^^A \OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 )\O
+ML/cmm/m/it/10 p[]dx dt \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@\OML/cmm/m/it/10 
+u[] \OMS/cmsy/m/n/10 ^^A r\OML/cmm/m/it/10 p[]dx dt:
  []
 
 Missing character: There is no C in font nullfont!
@@ -1846,17 +1976,8 @@ Missing character: There is no l in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no , in font nullfont!
 ! Undefined control sequence.
-l.45 $$\int_{\mathbb
-                    {T}^3}u^*u'|_{t=0}^{t=T} dx - \int_0^T\int_{\mathbb{T}^3...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.45 ...u'|_{t=0}^{t=T} dx - \int_0^T\int_{\mathbb
-                                                  {T}^3} u'\left[\partial_t ...
+l.58 $$\int_{\mathbb
+                    {T}^3}u^*u'|_{t=0}^{t=T} dx -  u'\left[\partial_t u^* - ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1864,11 +1985,10 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (462.80415pt too wide) detected at line 45
+Overfull \hbox (427.41318pt too wide) detected at line 58
 [][] \OML/cmm/m/it/10 u[]u[]\OMS/cmsy/m/n/10 j[]\OML/cmm/m/it/10 dx \OMS/cmsy/m
-/n/10 ^^@ [][] [][] \OML/cmm/m/it/10 u[] [] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/
-10 p[]\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 r ^^A \OML/cmm/m/it/10 u[]\OT1/cmr/m/n/
-10 )
+/n/10 ^^@ \OML/cmm/m/it/10 u[] [] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 p[]\OT1
+/cmr/m/n/10 (\OMS/cmsy/m/n/10 r ^^A \OML/cmm/m/it/10 u[]\OT1/cmr/m/n/10 )
  []
 
 Missing character: There is no T in font nullfont!
@@ -1900,7 +2020,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no , in font nullfont!
 ! Undefined control sequence.
-l.47 $$\mathbb
+l.60 $$\mathbb
               {L}^*\begin{bmatrix}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1915,7 +2035,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.47 $$\mathbb{L}^*\begin{bmatrix}
+l.60 $$\mathbb{L}^*\begin{bmatrix}
                                   
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1928,7 +2048,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.50 \end{bmatrix}
+l.63 \end{bmatrix}
                    := \begin{bmatrix}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1941,7 +2061,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.50 \end{bmatrix} := \begin{bmatrix}
+l.63 \end{bmatrix} := \begin{bmatrix}
                                      
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1954,7 +2074,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.53 \end{bmatrix}
+l.66 \end{bmatrix}
                    = \begin{bmatrix}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1967,7 +2087,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.53 \end{bmatrix} = \begin{bmatrix}
+l.66 \end{bmatrix} = \begin{bmatrix}
                                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1980,14 +2100,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.56 \end{bmatrix}
+l.69 \end{bmatrix}
                   $$
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (330.21587pt too wide) detected at line 56
+Overfull \hbox (330.21587pt too wide) detected at line 69
 \OML/cmm/m/it/10 L[]u[][] p[] \OT1/cmr/m/n/10 := \OMS/cmsy/m/n/10 ^^@\OML/cmm/m
 /it/10 @[]u[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 r\OT1/cmr/
 m/n/10 (\OML/cmm/m/it/10 I \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 []\OT1/cmr/m/
@@ -2005,7 +2125,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.58 T
+l.71 T
       o derive the terminal condition of the adjoint system we compare the s...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -2124,12 +2244,12 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 58--59
+Overfull \hbox (20.0pt too wide) in paragraph at lines 71--72
 []
  []
 
 ! Undefined control sequence.
-l.59 $$\int_{\TT
+l.72 $$\int_{\TT
                 ^3}u'(x,T)\u^*(x,T) dx = 2\la u(x,T),u'(x,T)\ra_{\hdo}$$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2138,21 +2258,21 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \u invalid in math mode on input line 59.
+LaTeX Warning: Command \u invalid in math mode on input line 72.
 
 
-LaTeX Warning: Command \u invalid in math mode on input line 59.
+LaTeX Warning: Command \u invalid in math mode on input line 72.
 
-LaTeX Font Info:    Trying to load font information for +cmr on input line 59.
-LaTeX Font Info:    No file cmr.fd. on input line 59.
+LaTeX Font Info:    Trying to load font information for +cmr on input line 72.
+LaTeX Font Info:    No file cmr.fd. on input line 72.
 
 LaTeX Font Warning: Font shape `/cmr/m/n' undefined
-(Font)              using `/cmr/m/n' instead on input line 59.
+(Font)              using `/cmr/m/n' instead on input line 72.
 
 ! Corrupted NFSS tables.
 wrong@fontshape ...message {Corrupted NFSS tables}
                                                   error@fontshape else let f...
-l.59 $$\int_{\TT^3}u'(x,T)\u^
+l.72 $$\int_{\TT^3}u'(x,T)\u^
                              *(x,T) dx = 2\la u(x,T),u'(x,T)\ra_{\hdo}$$
 This error message was generated by an \errmessage
 command, so I can't give any explicit help.
@@ -2161,12 +2281,12 @@ and deduce the truth by order and method.
 
 
 LaTeX Font Warning: Font shape `/cmr/m/n' undefined
-(Font)              using `OT1/cmr/m/n' instead on input line 59.
+(Font)              using `OT1/cmr/m/n' instead on input line 72.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.59 $$\int_{\TT^3}u'(x,T)\u^
+l.72 $$\int_{\TT^3}u'(x,T)\u^
                              *(x,T) dx = 2\la u(x,T),u'(x,T)\ra_{\hdo}$$
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -2174,7 +2294,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again> 
                    \global 
-l.59 $$\int_{\TT^3}u'(x,T)\u^
+l.72 $$\int_{\TT^3}u'(x,T)\u^
                              *(x,T) dx = 2\la u(x,T),u'(x,T)\ra_{\hdo}$$
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -2184,7 +2304,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor 
                              
-l.59 $$\int_{\TT^3}u'(x,T)\u^
+l.72 $$\int_{\TT^3}u'(x,T)\u^
                              *(x,T) dx = 2\la u(x,T),u'(x,T)\ra_{\hdo}$$
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -2194,7 +2314,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent 
                                                   #1 #2\egroup \ifmmode \els...
-l.59 $$\int_{\TT^3}u'(x,T)\u^
+l.72 $$\int_{\TT^3}u'(x,T)\u^
                              *(x,T) dx = 2\la u(x,T),u'(x,T)\ra_{\hdo}$$
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -2202,7 +2322,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \edef 
-l.59 $$\int_{\TT^3}u'(x,T)\u^
+l.72 $$\int_{\TT^3}u'(x,T)\u^
                              *(x,T) dx = 2\la u(x,T),u'(x,T)\ra_{\hdo}$$
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -2212,7 +2332,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again> 
                    \egroup 
-l.59 $$\int_{\TT^3}u'(x,T)\u^
+l.72 $$\int_{\TT^3}u'(x,T)\u^
                              *(x,T) dx = 2\la u(x,T),u'(x,T)\ra_{\hdo}$$
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -2220,7 +2340,7 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 ! Undefined control sequence.
-l.59 $$\int_{\TT^3}u'(x,T)\u^*(x,T) dx = 2\la
+l.72 $$\int_{\TT^3}u'(x,T)\u^*(x,T) dx = 2\la
                                               u(x,T),u'(x,T)\ra_{\hdo}$$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2229,7 +2349,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.59 ...(x,T)\u^*(x,T) dx = 2\la u(x,T),u'(x,T)\ra
+l.72 ...(x,T)\u^*(x,T) dx = 2\la u(x,T),u'(x,T)\ra
                                                   _{\hdo}$$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2238,7 +2358,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.59 ...u^*(x,T) dx = 2\la u(x,T),u'(x,T)\ra_{\hdo
+l.72 ...u^*(x,T) dx = 2\la u(x,T),u'(x,T)\ra_{\hdo
                                                   }$$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2247,7 +2367,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.60 $$ = 2\int_{\TT
+l.73 $$ = 2\int_{\TT
                     ^3}|D|u(x,T)\u'(x,T) dx$$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2256,15 +2376,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \u invalid in math mode on input line 60.
+LaTeX Warning: Command \u invalid in math mode on input line 73.
 
 
-LaTeX Warning: Command \u invalid in math mode on input line 60.
+LaTeX Warning: Command \u invalid in math mode on input line 73.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent 
                                                   #1 #2\egroup \ifmmode \els...
-l.60 $$ = 2\int_{\TT^3}|D|u(x,T)\u'
+l.73 $$ = 2\int_{\TT^3}|D|u(x,T)\u'
                                    (x,T) dx$$
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -2272,7 +2392,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \edef 
-l.60 $$ = 2\int_{\TT^3}|D|u(x,T)\u'
+l.73 $$ = 2\int_{\TT^3}|D|u(x,T)\u'
                                    (x,T) dx$$
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -2282,7 +2402,7 @@ so that I will find a matching right brace soon.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.60 $$ = 2\int_{\TT^3}|D|u(x,T)\u'(x,T) dx$
+l.73 $$ = 2\int_{\TT^3}|D|u(x,T)\u'(x,T) dx$
                                             $
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2291,7 +2411,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 ! Undefined control sequence.
-l.61 $$ = \int_{\TT
+l.74 $$ = \int_{\TT
                    ^3}2|D|^2u(x,T)\u'(x,T)dx$$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2300,15 +2420,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \u invalid in math mode on input line 61.
+LaTeX Warning: Command \u invalid in math mode on input line 74.
 
 
-LaTeX Warning: Command \u invalid in math mode on input line 61.
+LaTeX Warning: Command \u invalid in math mode on input line 74.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent 
                                                   #1 #2\egroup \ifmmode \els...
-l.61 $$ = \int_{\TT^3}2|D|^2u(x,T)\u'
+l.74 $$ = \int_{\TT^3}2|D|^2u(x,T)\u'
                                      (x,T)dx$$
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -2316,7 +2436,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \edef 
-l.61 $$ = \int_{\TT^3}2|D|^2u(x,T)\u'
+l.74 $$ = \int_{\TT^3}2|D|^2u(x,T)\u'
                                      (x,T)dx$$
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -2326,7 +2446,7 @@ so that I will find a matching right brace soon.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.61 $$ = \int_{\TT^3}2|D|^2u(x,T)\u'(x,T)dx$
+l.74 $$ = \int_{\TT^3}2|D|^2u(x,T)\u'(x,T)dx$
                                              $
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2335,15 +2455,15 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-LaTeX Warning: Command \u invalid in math mode on input line 63.
+LaTeX Warning: Command \u invalid in math mode on input line 76.
 
 
-LaTeX Warning: Command \u invalid in math mode on input line 63.
+LaTeX Warning: Command \u invalid in math mode on input line 76.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.63 $$\u^
+l.76 $$\u^
           *(x,T) = 2|D|^2u(x,T)$$
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -2351,7 +2471,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing { inserted.
 <to be read again> 
                    \global 
-l.63 $$\u^
+l.76 $$\u^
           *(x,T) = 2|D|^2u(x,T)$$
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -2361,7 +2481,7 @@ so that I will find a matching right brace soon.
 ! Improper \spacefactor.
 <recently read> \spacefactor 
                              
-l.63 $$\u^
+l.76 $$\u^
           *(x,T) = 2|D|^2u(x,T)$$
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -2371,7 +2491,7 @@ I'm forgetting what you said and using zero instead.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent 
                                                   #1 #2\egroup \ifmmode \els...
-l.63 $$\u^
+l.76 $$\u^
           *(x,T) = 2|D|^2u(x,T)$$
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -2379,7 +2499,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \edef 
-l.63 $$\u^
+l.76 $$\u^
           *(x,T) = 2|D|^2u(x,T)$$
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -2389,7 +2509,7 @@ so that I will find a matching right brace soon.
 ! Missing { inserted.
 <to be read again> 
                    \egroup 
-l.63 $$\u^
+l.76 $$\u^
           *(x,T) = 2|D|^2u(x,T)$$
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -2399,13 +2519,21 @@ so that I will find a matching right brace soon.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.63 $$\u^*(x,T) = 2|D|^2u(x,T)$
+l.76 $$\u^*(x,T) = 2|D|^2u(x,T)$
                                 $
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.77 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
 
 )
 ! Emergency stop.
@@ -2415,11 +2543,11 @@ my insertion and my current dilemma will both disappear.
 
  
 Here is how much of TeX's memory you used:
- 32 strings out of 474486
- 648 string characters out of 5743755
- 1939542 words of memory out of 5000000
- 22418 multiletter control sequences out of 15000+600000
- 558069 words of font info for 36 fonts, out of 8000000 for 9000
+ 42 strings out of 467871
+ 827 string characters out of 5418376
+ 444733 words of memory out of 5000000
+ 29020 multiletter control sequences out of 15000+600000
+ 628029 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 23i,9n,32p,307b,123s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 23i,9n,32p,437b,167s stack positions out of 10000i,1000n,20000p,200000b,200000s
 !  ==> Fatal error occurred, no output PDF file produced!

@@ -1,9 +1,25 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Maximum of vorticity $\|\omega (\cdot ,t)\|_\infty $. Results from runs performed at different resolutions are displayed together: $128^3$ (orange plus), $256^3$ (cyan star), $512^3$ (brown triangles), $1024^3$ (blue squares).}}{15}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Maximum of vorticity $\|\boldsymbol \omega (t)\|_{L^\infty }$. Results from runs performed at different resolutions are displayed together: $128^3$ (orange plus), $256^3$ (cyan star), $512^3$ (brown triangles), $1024^3$ (blue squares).}}{15}{figure.caption.9}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Isosurfaces of vorticity $\omega ={\boldsymbol \nabla }\times {\boldsymbol \eta }_{TGV}$ (a) magnitude $|\boldsymbol \omega (\boldsymbol x)|$, and components (b) $|\omega _1|$, (c) $|\omega _2|$, and (d) $|\omega _3|$.}}{19}{figure.caption.10}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Isosurfaces of vorticity $\omega ={\boldsymbol \nabla }\times {\boldsymbol \eta }_{S}$ (a) magnitude $|\boldsymbol \omega (\boldsymbol x)|$, and components (b) $|\omega _1|$, (c) $|\omega _2|$, and (d) $|\omega _3|$.}}{20}{figure.caption.11}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces $e(k,t)$ vs. $k$ starting from ${\boldsymbol \eta }_S$ for $\alpha =8/1024$ and $N=256^3$ at $t=0$ (orange), $t=1$ (cyan), $t=2$ (brown), $t=3$ (blue), $t=4$ (green), $t=5$ (purple).}}{33}{figure.caption.16}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces $e(k,t)$ vs. $k$ starting from ${\boldsymbol \eta }_{TGV}$ for $\alpha =64/1024$ and $N=128^3$ at $t=0$ (orange), $t=1$ (cyan), $t=2$ (brown), $t=3$ (blue), $t=4$ (green), $t=5$ (purple).}}{34}{figure.caption.17}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Schematic illustration of the log-log dependence of $\kappa (\epsilon )$ on $\epsilon $, cf. (\ref {eq:kappa}).}}{36}{figure.caption.18}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Dependence of $\kappa (\epsilon )$ on $\epsilon $ for $\alpha =8/1024$. }}{36}{figure.caption.19}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Dependence of $\kappa (\epsilon )$ on $\epsilon $ for $\alpha =64/1024.$}}{37}{figure.caption.20}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces $\Phi _{\alpha ,T}({\boldsymbol \eta }_{\alpha ,T}^{(n)})$ vs iteration number $n$ for $\alpha =16/1024$, $T=5$, and different indicated values of $\sigma $.}}{38}{figure.caption.21}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Isosurfaces of vorticity $\omega ={\boldsymbol \nabla }\times \boldsymbol u_\alpha (T=3;{\boldsymbol \eta }_{TGV})$. (a) magnitude $|\boldsymbol \omega (\boldsymbol x)|$, and components (b) $|\omega _1|$, (c) $|\omega _2|$, and (d) $|\omega _3|$.}}{43}{figure.caption.22}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Isosurfaces of vorticity $\omega ={\boldsymbol \nabla }\times \boldsymbol u_\alpha (T=5;{\boldsymbol \eta }_{TGV})$. (a) magnitude $|\boldsymbol \omega (\boldsymbol x)|$, and components (b) $|\omega _1|$, (c) $|\omega _2|$, and (d) $|\omega _3|$.}}{44}{figure.caption.23}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Solution of the Euler-Voigt system for $T=3$ starting from ${\boldsymbol \eta }_{TGV}$. Log-log plot of $\text {max}_{t\in [0,T]}\|{\boldsymbol \nabla }\boldsymbol u_\alpha (t)\|_{L^2}$ vs $\alpha $ at $t=0$ (blue) to $t=3$ (red), Steepest slope $p=-0.225$ (black), slope of $p=-1$ (dotted black)}}{44}{figure.caption.24}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Solution of the Euler-Voigt system for $T=3$ starting from ${\boldsymbol \eta }_{TGV}$. Plot of the slope of ($\text {max}_{t\in [0,T]}\|{\boldsymbol \nabla }\boldsymbol u_\alpha (t)\|_{L^2}$ vs $\alpha $) vs time for each $\alpha $.}}{45}{figure.caption.25}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Solution of the Euler-Voigt system for $T=5$ starting from ${\boldsymbol \eta }_{TGV}$. Log-log plot of $\text {max}_{t\in [0,T]}\|{\boldsymbol \nabla }\boldsymbol u_\alpha (t)\|_{L^2}$ vs $\alpha $ at $t=0$ (blue) to $t=5$ (red), Steepest slope $p=-0.417$ (black), slope of $p=-1$ (dotted black)}}{45}{figure.caption.26}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Solution of the Euler-Voigt system for $T=5$ starting from ${\boldsymbol \eta }_{TGV}$. Plot of the slope of ($\text {max}_{t\in [0,T']}\|{\boldsymbol \nabla }\boldsymbol u_\alpha (t)\|_{L^2}$ vs $\alpha $) vs time at each $\alpha $.}}{46}{figure.caption.27}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces TGV for $T=25$. Log-log plot of $\text {max}_{t\in [0,T]}\|{\boldsymbol \nabla }\boldsymbol u_\alpha (t)\|_{L^2}$ vs $\alpha $ at $t=0$ (blue) to $t=25$ (red), Steepest slope $p=$ (black), slope of $p=-1$ (dotted black)}}{47}{figure.caption.28}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces TGV for $T=25$. Plot of the slope of ($\text {max}_{t\in [0,T']}\|{\boldsymbol \nabla }\boldsymbol u_\alpha (t)\|_{L^2}$ vs $\alpha $) vs time at each $\alpha $.}}{47}{figure.caption.29}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

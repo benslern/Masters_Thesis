@@ -1,5 +1,17 @@
 \begin{thebibliography}{10}
 
+\bibitem{absil_optimization_2008}
+P.~Absil.
+\newblock {\em Optimization {Algorithms} on {Matrix} {Manifolds}}.
+\newblock 2008.
+
+\bibitem{ayala_extreme_2017}
+Diego Ayala and Bartosz Protas.
+\newblock Extreme {Vortex} {States} and the {Growth} of {Enstrophy} in {3D}
+  {Incompressible} {Flows}.
+\newblock {\em Journal of Fluid Mechanics}, 818:772--806, May 2017.
+\newblock arXiv:1605.05742 [physics.flu-dyn].
+
 \bibitem{beale_remarks_1984}
 J.~T. Beale, T.~Kato, and A.~Majda.
 \newblock Remarks on the breakdown of smooth solutions for the 3-{D} {Euler}
@@ -68,12 +80,15 @@ Charles~R. Doering.
 \newblock {\em Annual Review of Fluid Mechanics}, 41(Volume 41, 2009):109--128,
   January 2009.
 
+\bibitem{doering_applied_1995}
+Charles~R. Doering and J.~D. Gibbon.
+\newblock {\em Applied {Analysis} of the {Navier}-{Stokes} {Equations}}.
+\newblock Cambridge {Texts} in {Applied} {Mathematics}. Cambridge University
+  Press, Cambridge, 1995.
+
 \bibitem{fefferman_existence_2022}
 Charles~L Fefferman.
-\newblock Existence and {Smoothness} of the {Navier}-{Stokes} equation.
-\newblock
-  \url{https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf},
-  2022.
+\newblock Existence and {Smoothness} of the {Navier}-{Stokes} equation, 2022.
 
 \bibitem{fournier_sobolev_2003}
 John J.~F. Fournier and Robert~A. Adams.

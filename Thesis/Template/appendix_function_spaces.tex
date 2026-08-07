@@ -1,27 +1,39 @@
 \chapter{Function Spaces}
 \label{app:function:spaces}
-{\color{red}
-In this analysis we use the Lebesgue space $L^p(\Omega)$ which consists of real-valued measurable functions $\u$, defined on $\Omega$, and $p\in\RR^+$ for which 
-\begin{equation*}
-\int_{\Omega} |\u|^p\,d\x < \infty.
-\end{equation*}
-For $L^p(\Omega)$ the norm is defined as
+
+In this Appendix we introduce the Lebesgue space, {\color{red}the space of continuous functions}, and the Sobolev space. These function spaces are used to define the initial conditions and solutions of the Euler and Euler-Voigt equations, the criteria for singularity formation, the objective functional, the gradient of the objective functional, and the Riemannian conjugate gradient method. 
+\\~\\
+The Lebesgue space $L^p(\Omega)$ consists of real-valued measurable functions $\u$, defined on $\Omega$, for which the norm
 \begin{equation*}
 \|\u\|_{L^p} = \left( \int_{\Omega} |\u|^p\,d\x \right)^{1/p},
 \end{equation*}
-where $1\leq p < \infty$. For $p=\infty$, the norm is given by
+ is bounded, where $1\leq p < \infty$. For $p=\infty$, the norm is given by
 \begin{equation*}
-\|\u\|_{L^\infty} = \esssup_{\x\in\Omega} |\u|,
+\|\u\|_{L^\infty} = \esssup_{\x\in\Omega} |\u(\x)|,
 \end{equation*}
-where $\esssup$ is the essential supremum of $|\u|$ on $\Omega$ \cite{fournier_sobolev_2003}.
+where $\esssup$ is the essential supremum of $|\u|$ on $\Omega$ \cite{fournier_sobolev_2003,robinson_three-dimensional_2016}.
 \\~\\
-For any nonnegative integer $k$, the space $C^k(\Omega)$ is the space of functions $\u$ which, together with all partial derivatives $\partial^{\alpha}\u$ of orders $|\alpha|\leq k$, are continuous on $\Omega$ \cite{fournier_sobolev_2003}. 
+{\color{red}
+Let $\alpha = (\alpha_1,...,\alpha_n)$ be an $n$-tuple of nonnegative integers $\alpha_i$ with the magnitude $|\alpha| = \sum_{i=1}^n \alpha_i$. For any nonnegative integer $k$, the space $C^k(\Omega)$ is the space of functions $\u$ which, together with all partial derivatives $\partial^{\alpha}\u$ of orders $|\alpha|\leq k$, are continuous on $\Omega$ \cite{fournier_sobolev_2003}. 
 \\~\\
-For $s\in\RR^+$ the $L^2$-based Sobolev space $H^s(\Omega)$ is the space of all functions for which the finite norm $\|\cdot\|_{H^s}<\infty$ defined by
+For $s\in\RR^+$, the $L^2$-based Sobolev space $H^s(\Omega)$ is the space of all functions for which
 \begin{equation*}
-\|\u\|_{H^s}^2 := (2\pi)^3\sum_{k\in\ZZ^3}(1+|k|^{2s})|\hat{\u}_k|^2,
+\|\u\|_{H^s}^2 := (2\pi)^3\sum_{\k\in\ZZ^3}(1+|\k|^{2s})|\widehat{\u}_{\k}|^2.
 \end{equation*}
-where $\hat{\u}_k$ is the Fourier coefficient \cite{robinson_three-dimensional_2016}. For any function $\u\in H^s(\TT^3)$ the $\dot{H}^s$ seminorm is defined by
+is finite \cite{fournier_sobolev_2003,robinson_three-dimensional_2016}. In physical space, the norm is defined as
 \begin{equation*}
-\|\u\|_{\dot{H}^s}^2 := (2\pi)^3\sum_{k\in\dot{\ZZ}^3}|k|^{2s}|\hat{\u}_k|^2
-\end{equation*}}
+\|\u\|_{H^s}^2 := \sum_{|\alpha | \leq s} \frac{s!}{\alpha!}\|d^{\alpha}\u\|_{L^2}^2,
+\end{equation*} 
+where $\alpha! = \alpha_1!\alpha_2!\alpha_3!$, and $d^\alpha \u$ is defined as
+\begin{equation*}
+d^\alpha \u = \frac{\partial^{|\alpha |}}{\partial_1^{\alpha_1}\partial_2^{\alpha_2}\partial_3^{\alpha_3}}\u.
+\end{equation*}
+For any function $\u\in H^s(\TT^3)$ the $\dot{H}^s$ seminorm is defined by
+\begin{equation*}
+\|\u\|_{\dot{H}^s}^2 := (2\pi)^3\sum_{\k\in\dot{\ZZ}^3}|\k|^{2s}|\widehat{\u}_{\k}|^2.
+\end{equation*}
+The seminorm in physical space is defined as
+\begin{equation*}
+\|\u\|_{\dot{H}^s}^2 := \sum_{| \alpha | = s} \frac{s!}{\alpha!}\|d^{\alpha}\u\|_{L^2}^2.
+\end{equation*}
+}

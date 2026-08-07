@@ -17,7 +17,7 @@
 \usepackage{subcaption} % Allows captions to be added to subfigures
 \usepackage[justification=centering]{caption} % Centres caption text
 \usepackage{array} % Used for table formatting
-\newcolumntype{P}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{P}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \usepackage{booktabs} % Fancy-style tables
 \usepackage{longtable} % Allows for tables that are more than one page long
 \usepackage{float} % Better figure placement control
@@ -33,7 +33,16 @@
 \usepackage{colortbl}
 \usepackage{hhline}
 \usepackage{vcell}
+\usepackage{comment}
 \colorlet{RED}{red}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%\usepackage[noend]{algpseudocode}
+
+\makeatletter
+% Reinsert missing \algbackskip
+\def\algbackskip{\hskip-\ALG@thistlm}
+\makeatother
 
 
 \DeclareMathOperator*{\argmax}{argmax}
@@ -48,18 +57,23 @@
 \urlstyle{same}
 \pagenumbering{arabic}
 
+
 \newcommand{\bds}{\boldsymbol}
 \newcommand{\la}{\left\langle}
 \newcommand{\ra}{\right\rangle}
 \newcommand{\lb}{\left\lbrace}
 \newcommand{\rb}{\right\rbrace}
-\newcommand{\lr}{\left\lbrace}
-\newcommand{\rr}{\right\rbrace}
+\newcommand{\lr}{\left(}
+\newcommand{\rr}{\right)}
+\newcommand{\ls}{\left[}
+\newcommand{\rs}{\right]}
 
 \DeclareMathOperator*{\esssup}{ess\,sup}
 \DeclareMathOperator*{\essinf}{ess\,inf}
 
 \def\hdo{\dot{H}^1}
+\def\hds{\dot{H}^s}
+\def\hdt{\dot{H}^3}
 \def\pat{\Phi_{\alpha,T}}
 \def\ppat{\Phi'_{\alpha,T}}
 \def\u{\boldsymbol u}
@@ -71,15 +85,19 @@
 \def\z{\boldsymbol z}
 \def\j{\boldsymbol j}
 \def\n{\boldsymbol n}
-\def\w{\boldsymbol w}
+\def\w{\boldsymbol \omega}
 \def\bx{\boldsymbol \xi}
 \def\bp{\boldsymbol \varphi}
+\def\dxdt{\,d\boldsymbol x\,dt}
 \def\bd{\boldsymbol \Delta}
 \def\ua{\boldsymbol u_\alpha}
+\def\pa{p_{\alpha}}
+\def\ppa{p'_{\alpha}}
+\def\psa{p^*_{\alpha}}
 \def\upa{\boldsymbol u'_\alpha}
 \def\usa{\boldsymbol u^*_\alpha}
-\def\uhk{\hat{\boldsymbol u}_{\boldsymbol k}}
-\def\uhpk{\hat{\boldsymbol u}'_{\boldsymbol k}}
+\def\uhk{\widehat{\boldsymbol u}_{\boldsymbol k}}
+\def\uhpk{\widehat{\boldsymbol u}'_{\boldsymbol k}}
 \def\bn{\boldsymbol \nabla}
 \def\be{\boldsymbol \eta}
 \def\bea{\boldsymbol \eta_\alpha}
@@ -92,6 +110,7 @@
 \def\M{\mathcal{M}}
 \def\T{\mathcal{T}}
 \def\L{\mathcal{L}}
+\def\O{\mathcal{O}}
 \def\P{\mathbf{P}}
 \def\R{\mathbf{R}}
 \def\a{\hat{\text{a}}}
@@ -116,6 +135,9 @@
 \newtheorem{thm}{Theorem}[section]
 \setlength{\arrayrulewidth}{1pt} 
 
+\newtheorem{prb}{Problem}[section]
+\setlength{\arrayrulewidth}{1pt} 
+
 %\numberwithin{equation}{section} % Numbers equations based on their section
 
 % ********************************
@@ -123,7 +145,6 @@
   \beforepreface % Half title page, title page, declaration page   
   \include{layabstr} % Lay Abstract
   \include{abstr} % Abstract
-  \include{dedic} % Dedication
   \include{acknowledgements} % Acknowledgements
   {
     \hypersetup{linkcolor=black}
@@ -165,37 +186,14 @@
         \setcounter{table}{0}
 
 \begin{appendix}
+
+    \setlength{\arrayrulewidth}{1pt} 
 	\include{appendix_function_spaces}
     		\setcounter{figure}{0}
         %\setcounter{equation}{0}
         \setcounter{table}{0}
         
-	\include{appendix_gateaux}
-		\setcounter{figure}{0}
-        %\setcounter{equation}{0}
-        \setcounter{table}{0}
-	
-	\include{appendix_lin_euler}
-		\setcounter{figure}{0}
-        %\setcounter{equation}{0}
-        \setcounter{table}{0}
-        
-    \include{appendix_adj}
-        \setcounter{figure}{0}
-        %\setcounter{equation}{0}
-        \setcounter{table}{0}
-
     \include{appendix_gevrey}
-        \setcounter{figure}{0}
-        %\setcounter{equation}{0}
-        \setcounter{table}{0}
-       
-    \include{appendix_tg_seminorm_general}
-        \setcounter{figure}{0}
-        %\setcounter{equation}{0}
-        \setcounter{table}{0}
-        
-    \include{appendix_tg_vorticity_general}
         \setcounter{figure}{0}
         %\setcounter{equation}{0}
         \setcounter{table}{0}
@@ -207,6 +205,31 @@
         
     \include{appendix_time_scaling_euler_voigt}
     		\setcounter{figure}{0}
+        %\setcounter{equation}{0}
+        \setcounter{table}{0}
+        
+    \include{appendix_tg_seminorm_general}
+        \setcounter{figure}{0}
+        %\setcounter{equation}{0}
+        \setcounter{table}{0}
+        
+    \include{appendix_tg_vorticity_general}
+        \setcounter{figure}{0}
+        %\setcounter{equation}{0}
+        \setcounter{table}{0}
+        
+    	\include{appendix_lin_euler}
+		\setcounter{figure}{0}
+        %\setcounter{equation}{0}
+        \setcounter{table}{0}
+        
+    \include{appendix_adj}
+        \setcounter{figure}{0}
+        %\setcounter{equation}{0}
+        \setcounter{table}{0}
+    
+	\include{appendix_gateaux}
+		\setcounter{figure}{0}
         %\setcounter{equation}{0}
         \setcounter{table}{0}
         

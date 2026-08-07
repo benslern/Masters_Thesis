@@ -1,39 +1,27 @@
-\chapter{Derivation of the Gateaux Directional Differential}
+\chapter{Derivation of the G\^{a}teaux Directional Differential of the Objective Functional}
 \label{app:gateaux}
 
-The equation for the Gateaux differential (\ref{eq:Gateaux:differential}) is
-$$\ppat(\be;\be'):=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}[\pat(\be+\epsilon\be')-\pat(\be)].$$
-The objective functional (\ref{eq:objective:functional}) is defined as,
-$$\pat(\be):=\|\nabla \ua(T;\be)\|_{L^2}^2 = \|\ua(T;\be)\|_{\hdo}^2.$$
-Substituting the second definition of (\ref{eq:objective:functional}) into (\ref{eq:Gateaux:differential}),
-$$\ppat(\be;\be')=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}[\|\ua(T;\be+\epsilon\be')\|_{\hdo}^2-\|\ua(T;\be)\|_{\hdo}^2].$$
-The equation for the $\hdo$ seminorm is
-$$\|u\|_{\hdo}^2 = (2\pi)^3\sum_{k\in\ZZ^3}|k|^2|\uhk |^2.$$
-Substituting in the equation for the $\dot{H}^1$ seminorm
-$$\ppat(\be;\be')=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}[(2\pi)^3\sum_{k\in\ZZ^3}|k|^2|\uhk +\epsilon\uhpk |^2-(2\pi)^3\sum_{k\in\ZZ^3}|k|^2|\uhk |^2].$$
-This simplifies to
-$$\ppat(\be;\be')=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}[(2\pi)^3\sum_{k\in\ZZ^3}|k|^22\epsilon|\uhk\uhpk|+(2\pi)^3\sum_{k\in\ZZ^3}|k|^2\epsilon^2|\uhpk|^2].$$
-Taking the limit $\epsilon\rightarrow 0$
-$$\ppat(\be;\be')=2(2\pi)^3\sum_{k\in\ZZ^3}|k|^2|\uhk\uhpk|.$$
-This can be expressed in the integral form 
-$$\ppat(\be;\be')=2\int_{\TT^3}\sum_{k\in\ZZ^3}|k|^2\uhk\uhpk e^{2ikx}dx.$$
-Which is equivalent to the inner product
-$$\ppat(\be;\be')=2\la\sum_{k\in\ZZ^3}|k|\uhk e^{ikx},\sum_{k\in\ZZ^3}|k|\uhpk e^{ikx}\ra_{L^2}.$$
-This gives us the Gateaux differential in the form of the $\hdo$ inner product
-$$\ppat(\be;\be')=  2\la\ua(\cdot,T),\upa(\cdot,T)\ra_{\hdo}.$$
-The integral form of the $\hdo$ inner product is
-$$\la \u, \v \ra_{\hdo} = \int_{\TT^3} |D|\u\cdot |D|\v \, dx,$$
-where $|D|$ is the operator defined in (\ref{eq:D}). Therefore, the Gateaux differential can be expressed as
-$$\ppat(\be;\be')= 2\int_{\TT^3}|D|\ua(x,T)\cdot|D|\upa(x,T)\,dx,$$
-which can be rearranged to the form
-$$\ppat(\be;\be')= \int_{\TT^3}2|D|^2\ua(x,T)\cdot\upa(x,T)\,dx.$$
-We now make use of the adjoint system terminal condition derived in Appendix (\ref{app:adjoint})
-$$\usa(x,T) = 2|D|^2\ua(x,T).$$
-Therefore
-$$\ppat(\be;\be') = \int_{\TT^3}\usa(x,T)\cdot\upa(x,T)\,dx.$$
-Now using the duality-pairing defined in Appendix (\ref{app:adjoint})
-$$\ppat(\be;\be') = \int_{\TT^3}\be'(x)\cdot\usa(x,0)\,dx.$$
-This is the inner product
-$$\ppat(\be;\be') = \la \usa(x,0), \be'(x)\ra_{L^2}.$$
+In this Appendix we derive an expression for the G\^{a}teaux directional differential of the objective functional, $\ppat(\bea;\bepa)$ in terms of the $\hdo$ inner product and $L^2$ inner product. This differential is used to obtain the gradient of the objective functional.
+\\~\\
+We begin by substituting the second definition of (\ref{eq:objective:functional}) into (\ref{eq:Gateaux:differential}) to obtain
+$$\ppat(\bea;\bepa)=\lim_{\epsilon\rightarrow 0}\frac{1}{\epsilon}[\|\ua(T;\bea+\epsilon\bepa)\|_{\hdo}^2-\|\ua(T;\bea)\|_{\hdo}^2].$$
+Using the $\hdo$ seminorm as defined in Appedix \ref{app:function:spaces}, and taking the limit $\epsilon\rightarrow 0$, we can express $\ppat$ in the form of the $\hdo$ inner product
+$$\ppat(\bea;\bepa)=  2\la\ua(T),\upa(T)\ra_{\hdo}.$$
+Using the integral form of the $\dot{H}^s$ seminorm from Appendix \ref{app:function:spaces}, the G\^{a}teaux differential can be expressed in physical space as
+$$\ppat(\bea;\bepa)= \int_{\TT^3}2|D|^2\ua(\x,T)\cdot\upa(\x,T)\,d\x.$$
+We now make use of the terminal condition in the adjoint system imposed in Appendix \ref{app:adjoint}
+$$\usa(x,T) = 2|D|^2\ua(\x,T).$$
 Therefore,
-$$\ppat(\be;\be') = 2\la\ua(\cdot,T),\upa(\cdot,T)\ra_{\hdo} = \la \usa(x,0), \be'(x)\ra_{L^2}.$$
+$$\ppat(\bea;\bepa) = \int_{\TT^3}\usa(\x,T)\cdot\upa(\x,T)\,d\x.$$
+Now using the duality-pairing \ref{eq:duality:pairing}
+$$\ppat(\bea;\bepa) = \int_{\TT^3}\usa(\x,0)\cdot\bepa(\x)\,d\x,$$
+which lets us express the value of $\ppat$ with the $L^2$ inner product
+$$\ppat(\bea;\bepa) = \la \usa(0), \bepa\ra_{L^2}.$$
+Therefore,
+$$\ppat(\bea;\bepa) = 2\la\ua(T),\upa(T)\ra_{\hdo} = \la \usa(0), \bepa\ra_{L^2}.$$
+As described in Section \ref{sec:Gateaux Directional Differential}, the differential can also be expressed as a Gevrey inner product using the Riesz representation theorem (\ref{eq:Gateaux:differential:riesz}). Using the definition of the Gevrey inner product (\ref{eq:Gevrey:Inner:Product}), the $L^2$ inner product can be converted to the Gevrey inner product,
+$$\la \usa(0),\upa(0)\ra_{L^2} = \la (1+|D|^2)^{-3}e^{-2\sigma|D|} \usa(0),\bepa \ra_{G^\sigma}.$$
+Therefore, we have two forms of the G\^{a}teaux differential as a Gevrey inner product
+$$\ppat(\bea;\bea') = \la \nabla\pat(\bea),\bepa \ra_{G^\sigma} = \la (1+|D|^2)^{-3}e^{-2\sigma|D|} \usa(0),\bepa \ra_{G^\sigma}.$$
+From this we obtain the gradient of the objective functional
+$$\nabla \pat(\bea) = (1+|D|^2)^{-3}e^{-2\sigma|D|}\usa(0).$$

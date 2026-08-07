@@ -1,277 +1,210 @@
-\chapter{Numerical Methods}\label{chp:numerical:methods}
+\chapter{Numerical Methods}\label{chapter:4}
 
+In this chapter we describe and validate the numerical techniques used to solve the optimization problem. In addition, we determine the parameters including the resolution, time step size, regularization parameter $\alpha$, and Gevrey parameters $s$ and $\sigma$.
 
-
-\section{Spatial Discretization \& Spectral Methods}
-Simulations were computed using a standard pseudospectral fourier method on a periodic unit cube, discretized in a uniform grid of spatial resolutions $N=128^3, 256^3, 512^3, 1024^3$. Derivatives are evaluated in the Fourier
-space and nonlinear products are computed in the physical space. The standard 2/3 dealiasing rule is also applied. Our interest is in the limit $\alpha\rightarrow 0$. Therefore, we use the regularization parameters $\alpha = 2^{-6}, 2^{-7}, 2^{-8}, 2^{-9}, 2^{-10}$.
-
-\section{Time Stepping}
-
-Time stepping is performed with the explicit fourth-order Runge-Kutta (RK4) method. The determination of our time step size $\Delta t$ is based on three factors. First, we consider the numerical stability of the models. Second, we consider the accuracy of the solution, determined by the relative error of the objective functional (\ref{eq:objective:functional}) to the results for a minimum step size. Finally, we consider the conservation of the $\alpha$-energy (\ref{eq:alpha:Energy}), determined by the maximum relative error of $E_\alpha(t)$ to $E_\alpha(0)$. These factors are analysed for each resolution and value of $\alpha$ for the Taylor Green Vortex.
+\section{Discretization}
+The Euler-Voigt (\ref{eq:Euler:Voigt}) and adjoint system (\ref{eq:euler:voigt:adjoint}) were discretized in space using a standard pseudospectral Fourier method on a uniform grid with $N=128^3$, $256^3$, $512^3$, $1024^3$ grid points. Derivatives are evaluated in the Fourier space and nonlinear products are computed in the physical space. The standard 2/3 dealiasing rule is also applied.
 \\~\\
-The goal of our optimization problem is to identify initial conditions $\beat$ that produce 'extreme' behaviour in solutions to the Euler-Voigt equations. Therefore, the Taylor Green Vortex will by definition be the least extreme initial condition examined. To ensure stability, accuracy, and conservation of $\alpha$-energy are maintained upon optimization we must select a step size smaller than the minimum step size identified by these criteria.
+Time stepping is performed with the explicit fourth-order Runge-Kutta (RK4) method. The determination of our time step size $\Delta t$ is based on two factors. First, we consider the accuracy of the solution, determined by the relative error of the objective functional (\ref{eq:objective:functional}) relative to the results obtained with a minimum step size for a time interval $T=5$. Second, we consider the conservation of the $\alpha$-energy (\ref{eq:alpha:Energy}), determined by the maximum relative error of $E_\alpha(t)$ relative to $E_\alpha(0)$, for $t\in[0,5]$. These factors are analysed for each resolution and value of $\alpha$ for the TGV.
+\\~\\
+The goal of our optimization search is to identify initial conditions $\beat$ that produce 'extreme' behaviour in solutions to the Euler-Voigt equations. Therefore, the TGV as the initial guess will by definition lead to a less extreme flow evolution than the initial conditions constructed at each iteration of the optimization search. To ensure stability, accuracy, and conservation of $\alpha$-energy upon optimization, we must select a step size smaller than the minimum step size identified by the above criteria.
 
 \subsection{Numerical Stability \& Accuracy}
 
-We begin with the stability and accuracy of the Euler-Voigt model. To determine the stability and accuracy of the model at each step size we start from the iteration zero initial conditions and evaluate the objective functional (\ref{eq:objective:functional}) for the time window $T=5$. First we do this for $\Delta t = 2^{-8}$ and designate the result as our 'correct' value $\Phi_c$. We then compute the relative error of the objective functional for each value of $\Delta t$ ($\Phi_{dt}$) to $\Phi_c$
-\begin{equation}\label{eq:epsilon:rel}
-\epsilon_{rel} = \left|\frac{\Phi_c - \Phi_{dt}}{\Phi_c}\right|.
+We begin by analysing the accuracy of the time discretization. To determine the accuracy of the discretization with a given time step size we solve the Euler-Voigt system for $T=5$ with the TGV used as the initial condition and evaluate the objective functional (\ref{eq:objective:functional}). First, we do this for $\Delta t = 2^{-8}$ and designate this result as our 'correct' value $\Phi_c$. We then compute the relative error of the objective functional for each value of $\Delta t$, denoted $\Phi_{\Delta t}$, to $\Phi_{\min}$
+\begin{equation}\label{eq:epsilon:phi}
+\epsilon_{\Phi} = \left|\frac{\Phi_{\min} - \Phi_{\Delta t}}{\Phi_{\min}}\right|.
 \end{equation}
-For models that experienced numerical instability in the time window $[0,T]$ we set $\epsilon_{rel}$ to infinity. 
-\\~\\
-Tables (\ref{tbl:stability:128}) to (\ref{tbl:stability:1024}) show the results for $\epsilon_{rel}$ at the four resolutions utilized in this analysis. 
-The tables shows that the accuracy of the objective functional decreases as $\alpha\rightarrow 0$ and increases as $\Delta t \rightarrow 0$. In addition, the accuracy of the model overall increases as the resolution increases. Finally, the size of the instability region does increase with resolution, but only for the smallest value of $\alpha$. For all other values of $\alpha$, the stability is unaffected over the time window $t\in[0,T]$. 
+
+\noindent In \cite{larios_computational_2018}, the regularization parameter was in the range $\alpha=12/1024$, ..., $36/1024$. We extend this range in both directions and use the regularization parameters $\alpha = 8/1024$, ..., $64/1024$. Table \ref{tbl:accuracy} shows the values for $\epsilon_{\Phi}$ for $\alpha=16/1024,...,64/1024$. We include only these values of $\alpha$ in this table because they led to identical results for all four resolutions. This is due to the fact that the regularization term in (\ref{eq:Euler:Voigt}) kept the solution well-resolved even at the lowest resolution, and so the accuracy did not increase with the higher resolutions. Table \ref{tbl:accuracy:2} shows the results of $\epsilon_{\Phi}$ for $\alpha=8/1024,12/1024$. For these values the model becomes under-resolved at the lowest resolution and so accuracy does increase at the finer resolutions. 
 
 \renewcommand{\arraystretch}{1.5}
-\begin{table}
-\centering
-\scriptsize
-\begin{tabular}{lllllll}
-                                &                               &                                                     &                                                     & \normalsize{$\alpha$}                                            &                                                       &                                                       \\ \cline{3-7} 
-                                & \multicolumn{1}{l|}{}         & \multicolumn{1}{l|}{1/1024}                         & \multicolumn{1}{l|}{2/1024}                         & \multicolumn{1}{l|}{4/1024}                         & \multicolumn{1}{l|}{8/1024}                           & \multicolumn{1}{l|}{16/1024}                          \tabularnewline \hhline{~|*6-}
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.0045}   & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.00E-05} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{Inf}                            & \multicolumn{1}{l|}{Inf}                            & \multicolumn{1}{l|}{0.0572}                         & \multicolumn{1}{l|}{0.0011}                           & \multicolumn{1}{l|}{3.64E-06}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.1662} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.1157} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.0332} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}4.85E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.02E-07} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{\normalsize{$\Delta t$}} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{0.1093}                         & \multicolumn{1}{l|}{0.0715}                         & \multicolumn{1}{l|}{0.0181}                         & \multicolumn{1}{l|}{2.33E-04}                         & \multicolumn{1}{l|}{1.21E-08}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.0593} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.0369} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.0085} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.02E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.63E-10} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{0.0228}                         & \multicolumn{1}{l|}{0.0137}                         & \multicolumn{1}{l|}{0.003}                          & \multicolumn{1}{l|}{3.45E-05}                         & \multicolumn{1}{l|}{9.44E-11}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        \tabularnewline \hhline{~|*6-} 
-\end{tabular}
-\caption{Relative error of $\Phi_{dt}$ for each step size to $\Phi_c$. Resolution $N=128^3$ and time window $T=5$.}
-\label{tbl:stability:128}
-\end{table}
-
 \begin{table}[]
 \centering
-\scriptsize
 \begin{tabular}{lllllll}
-                                &                               &                                                     &                                                     & \normalsize{$\alpha$}                                              &                                                       &                                                       \\ \cline{3-7} 
-                                & \multicolumn{1}{l|}{}         & \multicolumn{1}{l|}{1/1024}                         & \multicolumn{1}{l|}{2/1024}                         & \multicolumn{1}{l|}{4/1024}                           & \multicolumn{1}{l|}{8/1024}                           & \multicolumn{1}{l|}{16/1024}                          \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.003}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.00E-05} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{Inf}                            & \multicolumn{1}{l|}{Inf}                            & \multicolumn{1}{l|}{0.0112}                           & \multicolumn{1}{l|}{1.82E-04}                         & \multicolumn{1}{l|}{3.64E-06}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.0652} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.0021}   & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}9.46E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.01E-07} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{\normalsize{$\Delta t$}} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{0.1097}                         & \multicolumn{1}{l|}{0.0348}                         & \multicolumn{1}{l|}{7.13E-04}                         & \multicolumn{1}{l|}{5.12E-07}                         & \multicolumn{1}{l|}{1.17E-08}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.0619} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.0171} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.08E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.00E-08} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.01E-10} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{0.025}                          & \multicolumn{1}{l|}{0.0157}                         & \multicolumn{1}{l|}{1.05E-04}                         & \multicolumn{1}{l|}{1.96E-09}                         & \multicolumn{1}{l|}{4.04E-11}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        \tabularnewline \hhline{~|*6-} 
+                                &                               &                                                       &                                                       & $\alpha$                                              &                                                       &                                                       \\ \cline{3-7} 
+                                & \multicolumn{1}{l|}{}         & \multicolumn{1}{l|}{16/1024}                          & \multicolumn{1}{l|}{24/1024}                          & \multicolumn{1}{l|}{32/1024}                          & \multicolumn{1}{l|}{48/1024}                          & \multicolumn{1}{l|}{64/1024}                          \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.00E-05} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.45E-05} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}4.80E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.70E-07} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.58E-07} \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{3.64E-06}                         & \multicolumn{1}{l|}{7.89E-07}                         & \multicolumn{1}{l|}{2.63E-07}                         & \multicolumn{1}{l|}{5.03E-08}                         & \multicolumn{1}{l|}{9.29E-09}                         \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.02E-07} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}4.53E-08} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.52E-08} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.01E-09} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}5.63E-10} \\ \cline{2-7} 
+\multicolumn{1}{l|}{$\Delta t$} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{1.21E-08}                         & \multicolumn{1}{l|}{2.70E-09}                         & \multicolumn{1}{l|}{9.16E-10}                         & \multicolumn{1}{l|}{1.83E-10}                         & \multicolumn{1}{l|}{3.48E-11}                         \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.63E-10} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.65E-10} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}5.99E-11} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.33E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.05E-12} \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{9.44E-11}                         & \multicolumn{1}{l|}{9.42E-12}                         & \multicolumn{1}{l|}{5.99E-12}                         & \multicolumn{1}{l|}{0}                                & \multicolumn{1}{l|}{0}                                \\ \cline{2-7} 
+%\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        \\ \cline{2-7} 
 \end{tabular}
-\caption{Relative error of $\Phi_{dt}$ for each step size to $\Phi_c$. Resolution $N=256^3$ and time window $T=5$.}
-\label{tbl:stability:256}
+\caption{Results $\epsilon_{\Phi}$ for $\alpha=16/1024,...,64/1024$.}
+\label{tbl:accuracy}
 \end{table}
 
-\begin{table}[]
-\centering
-\scriptsize
-\begin{tabular}{lllllll}
-                                &                               &                                                     &                                                       & \normalsize{$\alpha$}                                              &                                                       &                                                       \\ \cline{3-7} 
-                                & \multicolumn{1}{l|}{}         & \multicolumn{1}{l|}{1/1024}                         & \multicolumn{1}{l|}{2/1024}                           & \multicolumn{1}{l|}{4/1024}                           & \multicolumn{1}{l|}{8/1024}                           & \multicolumn{1}{l|}{16/1024}                          \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.003}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.00E-05} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{Inf}                            & \multicolumn{1}{l|}{Inf}                              & \multicolumn{1}{l|}{0.009}                            & \multicolumn{1}{l|}{1.82E-04}                         & \multicolumn{1}{l|}{3.64E-06}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.0174}   & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.61E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}9.45E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.01E-07} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{\normalsize{$\Delta t$}} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{Inf}                            & \multicolumn{1}{l|}{0.0036}                           & \multicolumn{1}{l|}{3.63E-05}                         & \multicolumn{1}{l|}{5.10E-07}                         & \multicolumn{1}{l|}{1.17E-08}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.0306} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.85E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.72E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.90E-08} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.01E-10} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{0.0115}                         & \multicolumn{1}{l|}{2.42E-04}                         & \multicolumn{1}{l|}{8.42E-08}                         & \multicolumn{1}{l|}{1.63E-09}                         & \multicolumn{1}{l|}{4.04E-11}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        \tabularnewline \hhline{~|*6-} 
+
+\begin{table}[!htb]
+	\centering
+    \begin{subtable}{.5\linewidth}
+      \centering
+        \begin{tabular}{llll}
+                                &                               & $\alpha$                                              &                                                       \\ \cline{3-4} 
+                                & \multicolumn{1}{l|}{}         & \multicolumn{1}{l|}{8/1024}                           & \multicolumn{1}{l|}{12/1024}                          \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.0045}   & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.66E-04} \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{0.0011}                           & \multicolumn{1}{l|}{1.46E-05}                         \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}4.85E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.30E-06} \\ \cline{2-4} 
+\multicolumn{1}{l|}{$\Delta t$} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{2.33E-04}                         & \multicolumn{1}{l|}{3.19E-07}                         \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.02E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.23E-07} \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{3.45E-05}                         & \multicolumn{1}{l|}{4.05E-08}                         \\ \cline{2-4} 
+%\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        \\ \cline{2-4} 
 \end{tabular}
-\caption{Relative error of $\Phi_{dt}$ for each step size to $\Phi_c$. Resolution $N=512^3$ and time window $T=5$.}
-\label{tbl:stability:512}
+
+    \caption{$N=128^3$}
+    \end{subtable}%
+    \begin{subtable}{.5\linewidth}
+      \centering
+      \begin{tabular}{llll}
+                                &                               & $\alpha$                                              &                                                       \\ \cline{3-4} 
+                                & \multicolumn{1}{l|}{}         & \multicolumn{1}{l|}{8/1024}                           & \multicolumn{1}{l|}{12/1024}                          \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.003}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.64E-04} \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{1.82E-04}                         & \multicolumn{1}{l|}{1.34E-05}                         \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}9.46E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.05E-07} \\ \cline{2-4} 
+\multicolumn{1}{l|}{$\Delta t$} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{5.12E-07}                         & \multicolumn{1}{l|}{3.95E-08}                         \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.00E-08} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.32E-09} \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{1.96E-09}                         & \multicolumn{1}{l|}{1.31E-10}                         \\ \cline{2-4} 
+%\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        \\ \cline{2-4} 
+\end{tabular}
+	
+    \caption{$N=256^3,512^3,1024^3$}
+    \end{subtable} 
+    
+    \caption{Results $\epsilon_{\Phi}$ for $\alpha=8/1024,12/1024$.}
+    \label{tbl:accuracy:2}
 \end{table}
 
-\begin{table}[]
-\centering
-\scriptsize
-\begin{tabular}{lllllll}
-                                &                               &                                                     &                                                       & \normalsize{$\alpha$                                             } &                                                       &                                                       \\ \cline{3-7} 
-                                & \multicolumn{1}{l|}{}         & \multicolumn{1}{l|}{1/1024}                         & \multicolumn{1}{l|}{2/1024}                           & \multicolumn{1}{l|}{4/1024}                           & \multicolumn{1}{l|}{8/1024}                           & \multicolumn{1}{l|}{16/1024}                          \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.003}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.00E-05} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{Inf}                            & \multicolumn{1}{l|}{Inf}                              & \multicolumn{1}{l|}{0.009}                            & \multicolumn{1}{l|}{1.82E-04}                         & \multicolumn{1}{l|}{3.64E-06}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.015}    & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.61E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}9.45E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.01E-07} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{\normalsize{$\Delta t$}} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{Inf}                            & \multicolumn{1}{l|}{0.0022}                           & \multicolumn{1}{l|}{3.64E-05}                         & \multicolumn{1}{l|}{5.10E-07}                         & \multicolumn{1}{l|}{1.17E-08}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0.0039} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.64E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.71E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.90E-08} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.01E-10} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{5.17E-04}                       & \multicolumn{1}{l|}{4.92E-06}                         & \multicolumn{1}{l|}{8.36E-08}                         & \multicolumn{1}{l|}{1.63E-09}                         & \multicolumn{1}{l|}{4.04E-11}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}0}        \tabularnewline \hhline{~|*6-} 
-\end{tabular}
-\caption{Relative error of $\Phi_{dt}$ for each step size to $\Phi_c$. Resolution $N=1024^3$ and time window $T=5$.}
-\label{tbl:stability:1024}
-\end{table}
-
-\subsection{Conservation of $\alpha$-Energy}
-
-The conservation of $\alpha$-energy is also used to verify the model for a given resolution, regularization parameter, and time window. The RK4 method does not conserve energy, and so the $\alpha$-energy of our model gradually decreases over time. The tables below show the maximum relative error of the $\alpha$-energy for each $\alpha$ and $\Delta t$,
-\begin{equation}
-\epsilon_{\alpha} = \max_{t\in[0,T]}\left|\frac{E_\alpha(t) - E_\alpha(0)}{E_\alpha(t)}\right|.
+\noindent We now examine the conservation of $\alpha$-energy for the Euler-Voigt model. To determine the accuracy of discretization with a given time step size we solve the Euler-Voigt system for $T=5$ with the TGV used as the initial condition and evaluate the maximum relative error of the $\alpha$-energy
+\begin{equation}\label{eq:alpha:energy:rel}
+\epsilon_{\alpha} = \max_{t\in[0,T]}\left|\frac{E_\alpha(t) - E_\alpha(0)}{E_\alpha(0)}\right|.
 \end{equation}
-For models that experienced numerical instability in the time window $[0,T]$ we set $\epsilon_{\alpha}$ to infinity. 
+Table \ref{tbl:alpha:energy} shows the values of $\epsilon_{\alpha}$ for $\alpha=16/1024,...,64/1024$. Just as with the values of $\epsilon_{\Phi}$, we include only these values of $\alpha$ because they led to identical values for all four resolutions. Table \ref{tbl:alpha:energy:2} shows the values of $\epsilon_{\alpha}$ for $\alpha=8/1024,12/1024$. The time step size of each model run was selected based on the results in these tables to ensure accuracy and conservation of the $\alpha$-energy for the chosen value of $\alpha$ and resolution.
 
 \begin{table}[]
 \centering
-\scriptsize
 \begin{tabular}{lllllll}
-                                &                                            &                                                       &                                                       & \normalsize{$\alpha$}                                              &                                                       &                                                       \\ \cline{3-7} 
-                                & \multicolumn{1}{l|}{}                      & \multicolumn{1}{l|}{1/1024}                           & \multicolumn{1}{l|}{2/1024}                           & \multicolumn{1}{l|}{4/1024}                           & \multicolumn{1}{l|}{8/1024}                           & \multicolumn{1}{l|}{16/1024}                          \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.82E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.73E-06} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{Inf}                              & \multicolumn{1}{l|}{Inf}                              & \multicolumn{1}{l|}{1.94E-03}                         & \multicolumn{1}{l|}{6.91E-05}                         & \multicolumn{1}{l|}{3.72E-07}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.38E-03} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.74E-03} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.11E-03} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.05E-05} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.76E-08} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{\normalsize{$\Delta t$}} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{2.38E-03}                         & \multicolumn{1}{l|}{1.81E-03}                         & \multicolumn{1}{l|}{6.49E-04}                         & \multicolumn{1}{l|}{1.57E-05}                         & \multicolumn{1}{l|}{9.59E-10}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.51E-03} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.09E-03} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.56E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.05E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.55E-11} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{8.67E-04}                         & \multicolumn{1}{l|}{6.06E-04}                         & \multicolumn{1}{l|}{1.87E-04}                         & \multicolumn{1}{l|}{4.08E-06}                         & \multicolumn{1}{l|}{1.47E-11}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}4.69E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.21E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}9.59E-05} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.05E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}6.00E-12} \tabularnewline \hhline{~|*6-} 
+                                &                               &                                                       &                                                       & $\alpha$                                              &                                                       &                                                       \\ \cline{3-7} 
+                                & \multicolumn{1}{l|}{}         & \multicolumn{1}{l|}{16/1024}                          & \multicolumn{1}{l|}{24/1024}                          & \multicolumn{1}{l|}{32/1024}                          & \multicolumn{1}{l|}{48/1024}                          & \multicolumn{1}{l|}{64/1024}                          \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.73E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.90E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}5.95E-07} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}9.75E-08} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.64E-08} \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}3.72E-07} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}7.68E-08} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}2.29E-08} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}3.81E-09} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}6.05E-10} \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.76E-08} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.47E-09} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}9.74E-10} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.67E-10} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.45E-11} \\ \cline{2-7} 
+\multicolumn{1}{l|}{$\Delta t$} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}9.59E-10} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}1.74E-10} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}4.71E-11} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}9.79E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}2.80E-12} \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.55E-11} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}9.29E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.27E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.41E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.96E-12} \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}1.47E-11} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}2.45E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}2.86E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}3.12E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}2.01E-12} \\ \cline{2-7} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}6.00E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.07E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.12E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.55E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.21E-12} \\ \cline{2-7} 
 \end{tabular}
-\caption{Maximum relative error of $E_\alpha(t)$ to $E_\alpha(0)$ for each step size. Resolution $N=128^3$ and time window $T=5$.}
-\label{tbl:conservation:128}
+\caption{The values of $\epsilon_{\alpha}$ for $\alpha=16/1024,...,64/1024$.}
+\label{tbl:alpha:energy}
 \end{table}
 
-\begin{table}[]
-\centering
-\scriptsize
-\begin{tabular}{lllllll}
-                                &                                            &                                                       &                                                       & \normalsize{$\alpha$}                                              &                                                       &                                                       \\ \cline{3-7} 
-                                & \multicolumn{1}{l|}{}                      & \multicolumn{1}{l|}{1/1024}                           & \multicolumn{1}{l|}{2/1024}                           & \multicolumn{1}{l|}{4/1024}                           & \multicolumn{1}{l|}{8/1024}                           & \multicolumn{1}{l|}{16/1024}                          \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.91E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.73E-06} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{Inf}                              & \multicolumn{1}{l|}{Inf}                              & \multicolumn{1}{l|}{4.34E-04}                         & \multicolumn{1}{l|}{1.49E-05}                         & \multicolumn{1}{l|}{3.72E-07}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.36E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}5.61E-05} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}6.85E-07} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.75E-08} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{\normalsize{$\Delta t$}} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{9.63E-04}                         & \multicolumn{1}{l|}{4.35E-04}                         & \multicolumn{1}{l|}{1.80E-05}                         & \multicolumn{1}{l|}{3.40E-08}                         & \multicolumn{1}{l|}{9.09E-10}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}6.33E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.48E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.97E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.89E-09} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}4.95E-11} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{3.83E-04}                         & \multicolumn{1}{l|}{1.37E-04}                         & \multicolumn{1}{l|}{4.59E-06}                         & \multicolumn{1}{l|}{1.38E-10}                         & \multicolumn{1}{l|}{2.89E-12}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.14E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.23E-05} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.33E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.37E-11} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.95E-12} \tabularnewline \hhline{~|*6-} 
+\begin{table}[!htb]
+    \begin{subtable}{.5\linewidth}
+      \centering
+        \begin{tabular}{llll}
+                                &                               & $\alpha$                                              &                                                       \\ \cline{3-4} 
+                                & \multicolumn{1}{l|}{}         & \multicolumn{1}{l|}{8/1024}                           & \multicolumn{1}{l|}{12/1024}                          \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.82E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.35E-05} \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{6.91E-05}                         & \multicolumn{1}{l|}{1.60E-06}                         \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.05E-05} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.26E-07} \\ \cline{2-4} 
+\multicolumn{1}{l|}{$\Delta t$} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{1.57E-05}                         & \multicolumn{1}{l|}{3.14E-08}                         \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.05E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.41E-08} \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{4.08E-06}                         & \multicolumn{1}{l|}{6.99E-09}                         \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.05E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.50E-09} \\ \cline{2-4} 
 \end{tabular}
-\caption{Maximum relative error of $E_\alpha(t)$ to $E_\alpha(0)$ for each step size. Resolution $N=256^3$ and time window $T=5$.}
-\label{tbl:conservation:256}
+\caption{$N=128^3$}
+    \end{subtable}%
+    \begin{subtable}{.5\linewidth}
+      \centering
+        \begin{tabular}{llll}
+                                &                               & $\alpha$                                              &                                                       \\ \cline{3-4} 
+                                & \multicolumn{1}{l|}{}         & \multicolumn{1}{l|}{8/1024}                           & \multicolumn{1}{l|}{12/1024}                          \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.91E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}3.33E-05} \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{1.49E-05}                         & \multicolumn{1}{l|}{1.50E-06}                         \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}6.85E-07} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}7.21E-08} \\ \cline{2-4} 
+\multicolumn{1}{l|}{$\Delta t$} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{3.40E-08}                         & \multicolumn{1}{l|}{3.80E-09}                         \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.89E-09} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.14E-10} \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{1.38E-10}                         & \multicolumn{1}{l|}{1.20E-11}                         \\ \cline{2-4} 
+\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.37E-11} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.80E-12} \\ \cline{2-4} 
+\end{tabular}
+\caption{$N=256^3, 512^3, 1024^3$}
+    \end{subtable} 
+    \caption{The values of $\epsilon_{\alpha}$ for $\alpha=8/1024,12/1024$.}
+    \label{tbl:alpha:energy:2}
 \end{table}
 
-\begin{table}[]
-\centering
-\scriptsize
-\begin{tabular}{lllllll}
-                                &                                            &                                                       &                                                       & \normalsize{$\alpha$}                                              &                                                       &                                                       \\ \cline{3-7} 
-                                & \multicolumn{1}{l|}{}                      & \multicolumn{1}{l|}{1/1024}                           & \multicolumn{1}{l|}{2/1024}                           & \multicolumn{1}{l|}{4/1024}                           & \multicolumn{1}{l|}{8/1024}                           & \multicolumn{1}{l|}{16/1024}                          \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.91E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.73E-06} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{Inf}                              & \multicolumn{1}{l|}{Inf}                              & \multicolumn{1}{l|}{3.85E-04}                         & \multicolumn{1}{l|}{1.49E-05}                         & \multicolumn{1}{l|}{3.72E-07}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.72E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.58E-05} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}6.85E-07} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.75E-08} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{\normalsize{$\Delta t$}} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{Inf}                              & \multicolumn{1}{l|}{2.89E-05}                         & \multicolumn{1}{l|}{1.12E-06}                         & \multicolumn{1}{l|}{3.38E-08}                         & \multicolumn{1}{l|}{9.09E-10}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.58E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.18E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}5.00E-08} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.82E-09} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}4.95E-11} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{9.02E-05}                         & \multicolumn{1}{l|}{3.74E-06}                         & \multicolumn{1}{l|}{2.47E-09}                         & \multicolumn{1}{l|}{1.03E-10}                         & \multicolumn{1}{l|}{3.44E-12}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}4.98E-05} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.91E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.42E-10} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}6.31E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.69E-12} \tabularnewline \hhline{~|*6-} 
-\end{tabular}
-\caption{Maximum relative error of $E_\alpha(t)$ to $E_\alpha(0)$ for each step size. Resolution $N=512^3$ and time window $T=5$.}
-\label{tbl:conservation:512}
-\end{table}
+\section{Energy Spectra and Validation of Numerical Resolution}
 
-\begin{table}[]
-\centering
-\scriptsize
-\begin{tabular}{lllllll}
-                                &                                            &                                                       &                                                       & \normalsize{$\alpha$}                                              &                                                       &                                                       \\ \cline{3-7} 
-                                & \multicolumn{1}{l|}{}                      & \multicolumn{1}{l|}{1/1024}                           & \multicolumn{1}{l|}{2/1024}                           & \multicolumn{1}{l|}{4/1024}                           & \multicolumn{1}{l|}{8/1024}                           & \multicolumn{1}{l|}{16/1024}                          \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-2}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.91E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}8.73E-06} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-3}$} & \multicolumn{1}{l|}{Inf}                              & \multicolumn{1}{l|}{Inf}                              & \multicolumn{1}{l|}{3.85E-04}                         & \multicolumn{1}{l|}{1.49E-05}                         & \multicolumn{1}{l|}{3.72E-07}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Inf}      & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.53E-04} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.58E-05} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}6.85E-07} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.75E-08} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{\normalsize{$\Delta t$}} & \multicolumn{1}{l|}{$2^{-5}$} & \multicolumn{1}{l|}{Inf}                              & \multicolumn{1}{l|}{2.67E-05}                         & \multicolumn{1}{l|}{1.12E-06}                         & \multicolumn{1}{l|}{3.38E-08}                         & \multicolumn{1}{l|}{9.09E-10}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.46E-05} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.26E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}4.99E-08} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.82E-09} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}4.95E-11} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-7}$} & \multicolumn{1}{l|}{2.53E-06}                         & \multicolumn{1}{l|}{5.12E-08}                         & \multicolumn{1}{l|}{2.45E-09}                         & \multicolumn{1}{l|}{1.03E-10}                         & \multicolumn{1}{l|}{3.25E-12}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.06E-06} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.35E-09} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}1.30E-10} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}6.31E-12} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}2.78E-12} \tabularnewline \hhline{~|*6-} 
-\end{tabular}
-\caption{Maximum relative error of $E_\alpha(t)$ to $E_\alpha(0)$ for each step size. Resolution $N=1024^3$ and time window $T=5$.}
-\label{tbl:conservation:1024}
-\end{table}
-
-The Tables show that the conservation of $\alpha$-energy error $\epsilon_{\alpha}$ increases as $\alpha\rightarrow 0$ and decreases as $\Delta t\rightarrow 0$. In addition, the error decreases as the resolution increases.
-\\~\\
-Based on the results of the stability, accuracy, and $\alpha$-energy conservation we can now select the appropriate time step size for each $\alpha$ and resolution, shown in Table (\ref{tbl:dt:selection}). These step sizes are selected because they are the largest step sizes that ensure the stability, accuracy and $\alpha$-energy conservation of the model from the Taylor Green Vortex.
-
-\begin{table}[]
-\centering
-\scriptsize
-\begin{tabular}{lllllll}
-                                &                           &                                                       &                                                       & \normalsize{$\alpha$}                                              &                                                       &                                                       \\ \cline{3-7} 
-                                & \multicolumn{1}{l|}{}     & \multicolumn{1}{l|}{1/1024}                           & \multicolumn{1}{l|}{2/1024}                           & \multicolumn{1}{l|}{4/1024}                           & \multicolumn{1}{l|}{8/1024}                           & \multicolumn{1}{l|}{16/1024}                          \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$128^3$}  & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}$2^{-6}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}$2^{-5}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}$2^{-3}$} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{\normalsize{N}} & \multicolumn{1}{l|}{$256^3$}  & \multicolumn{1}{l|}{$2^{-8}$}                         & \multicolumn{1}{l|}{$2^{-8}$}                         & \multicolumn{1}{l|}{$2^{-6}$}                         & \multicolumn{1}{l|}{$2^{-4}$}                         & \multicolumn{1}{l|}{$2^{-3}$}                         \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$512^3$}  & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}$2^{-8}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}$2^{-7}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}$2^{-5}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}$2^{-4}$} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}$2^{-3}$} \tabularnewline \hhline{~|*6-} 
-\multicolumn{1}{l|}{}           & \multicolumn{1}{l|}{$1024^3$} & \multicolumn{1}{l|}{$2^{-8}$}                         & \multicolumn{1}{l|}{$2^{-7}$}                         & \multicolumn{1}{l|}{$2^{-5}$}                         & \multicolumn{1}{l|}{$2^{-4}$}                         & \multicolumn{1}{l|}{$2^{-3}$}                         \tabularnewline \hhline{~|*6-} 
-\end{tabular}
-\caption{Selection of $\Delta t$ for each resolution and $\alpha$.}
-\label{tbl:dt:selection}
-\end{table}
-
-\section{Determination of Gevrey class size}\label{sec:sigma}
-
-In Section (\ref{sec:initial:conditions}) we introduce the Gevrey space in which we search for initial conditions (\ref{eq:Gevrey:Class}). The size of the space is determined by two variables, $s\geq 3$ and $\sigma>0$. We use a fixed value of $s=3$. In order to determine the value of $\sigma$ we start with the optimization problem for $\alpha = 16/1024$, $T=5$, and resolution $N=128^3$. The problem is repeated for $\sigma =$ 1E-1, 1E-2, 1E-3, 1E-4, 1E-5.
-\\~\\
-%&\begin{figure}[!h]
-%\centering
-%\includegraphics[scale=0.75]{"../../results/Final_Results/Sigma/R128/Maximization_of_Phi."}
-%\caption{Maximization of $\pat(\be_{\alpha,T}^{(n)})$ vs iteration number. $\alpha=16/1024$, $T=5$, $N=128^3$.}
-%\end{figure}
-
-\section{Spectrum Validation}
-
-The energy spectrum of the solution $\ua(\x,t)$ is defined as,
+The energy spectrum of the solution of (\ref{eq:Euler:Voigt}) is defined as,
 \begin{equation}\label{eq:spectrum}
-e(k,t) := \frac{1}{2}\sum_{j\leq|\bds j|<j+1}|\hat{\ua}_{\bds j}(t)|^2, \quad k=2\pi j, \quad j\in\mathbb{N}.
+e(k,t) := \frac{1}{2}\sum_{j\leq|\bds j|<j+1}|\widehat{\u}_{\bds j}(t)|^2, \quad k=2\pi j, \quad \bds j\in\mathbb{Z}^3.
 \end{equation}
-The regularization term of (\ref{eq:Euler:Voigt}) acts as a filter which suppresses the growth of small-scale structures of length-scale smaller than the regularization parameter $\alpha$. Therefore, the spectrum (\ref{eq:spectrum}) is suppressed for wavenumbers $k>k_{\alpha}$ where
-\begin{equation}\label{eq:k:alpha}
-k_\alpha := \frac{2\pi}{\alpha}.
-\end{equation}
-Due to this filter, the solution to (\ref{eq:Euler:Voigt}) can remain well resolved. This is ideal for our analysis because it ensures that the model fully captures the small scale structures of the fluid. When this occurs we can be certain that our objective functional (\ref{eq:objective:functional}) is accurate. We begin by examining the spectrum of the solution from the Taylor Green Vortex on the time window $[0,T]$ for $T=5$.
+The regularization term in (\ref{eq:Euler:Voigt}) acts as a filter which suppresses the growth of small-scale structures with length-scales smaller than the regularization parameter $\alpha$ \cite{molfetta_self-truncation_2015}. Due to this property, the solution to (\ref{eq:Euler:Voigt}) can remain well-resolved with relatively low resolution models. This is ideal for our analysis because it ensures that the model can fully capture the small scale structures of the fluid and so we can be certain that our objective functional (\ref{eq:objective:functional}) is accurately approximated.
 \\~\\
-The plots () to () show the semi-log energy vs wavenumber graph of the solution over time.
+{\color{red}
+We know that for smooth solutions with Gevrey regularity, cf. (\ref{eq:Gevrey:Class}), the energy spectrum (\ref{eq:spectrum}) decays exponentially as the wavenumber $j=|\j|$ increases. Thus, whether or not a solution is well resolved can be assessed by examining the energy spectrum. Figures \ref{fig:spectrum:underresolved} and \ref{fig:spectrum:resolved} show the energy spectrum of the solution corresponding to $\be_{S}$ with $\alpha=8/1024$ and $\be_{TGV}$ with $\alpha=64/1024$, respectively. The spectrum is plotted over the time interval $T=5$. These figures demonstrate the exponential decay in the Fourier coefficients expected of a solution with Gevrey regularity. As the solutions evolve in time the rate of decay decreases as energy is transferred to small-scale structures. In Figure \ref{fig:spectrum:underresolved} a portion of the spectrum is cut-off by the 2/3 dealiasing filter. Due to the regularization term in (\ref{eq:Euler:Voigt}), the solution in Figure \ref{fig:spectrum:resolved} remains well resolved. }
 
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.7]{"figures/spectrum_underresolved.png"}
+\caption{$e(k,t)$ vs. $k$ starting from $\be_S$ for $\alpha=8/1024$ and $N=256^3$ at $t=0$ (orange), $t=1$ (cyan), $t=2$ (brown), $t=3$ (blue), $t=4$ (green), $t=5$ (purple).}
+\label{fig:spectrum:underresolved}
+\end{figure}
 
-initial condition shown below demonstrates the exponential decay expected by a analytic function. As the solution evolves in time the rate of decay decreases due to aliasing. While this can be reduced by anti-aliasing techniques, it cannot be entirely prevented
-\\~\\
-Low resolution and small alpha simulations are especially vulnerable to aliasing errors and the solutions stop being analytic before the chosen timescale.
-\\~\\
-The chosen timescales, alphas, and resolutions are validated in the graphs below which show that the spectral decay remains exponential and thus the solutions remain analytic.
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.7]{"figures/spectrum_resolved.png"}
+\caption{$e(k,t)$ vs. $k$ starting from $\be_{TGV}$ for $\alpha=64/1024$ and $N=128^3$ at $t=0$ (orange), $t=1$ (cyan), $t=2$ (brown), $t=3$ (blue), $t=4$ (green), $t=5$ (purple).}
+\label{fig:spectrum:resolved}
+\end{figure}
 
-\section{Kappa Test Validation}
+\noindent {\color{red}In order to minimize the computational cost, the optimization searches were started from the initial guess at the lowest resolution, and ran until condition (\ref{eq:stop}) was satisfied. If the flow over $[0,T]$ corresponding to the optimal initial condition $\beat$ was under-resolved, then the initial condition was up-scaled to the next higher resolution $2N$ by padding with zeros in Fourier space and then converting back to physical space. The optimization search was restarted, now with the up-scaled $\beat$ as the initial guess $\beza$. Optimization was stopped when criterion (\ref{eq:stop}) was satisfied and the flow corresponding to $\tilde{\be}_{\alpha,T}$ remained well resolved, as verified by inspecting the energy spectrum (\ref{eq:spectrum}). Using this method we can ensure that the final optimal initial conditions and the corresponding flows were all well-resolved, and so we can be certain our evaluation of the objective functional is accurate for all of the cases discussed in Chapter \ref{chapter:5}.}
 
-The simulations are discretized in space using a psuedospectral method and time using a fourth order Runge Kutta method. The kappa test is a means of validating these discretization methods based on the validation method of \cite{matharu_adjoint_based_2024}. We define the value $\kappa$ as
+\section{Validation of the Gradient of the Objective Functional (\ref{eq:objective:functional})}
+
+In the previous sections we examined the accuracy of the objective functional (\ref{eq:objective:functional}) and $\alpha$-energy (\ref{eq:alpha:Energy}) based on the regularization parameter $\alpha$, resolution $N$, and time step size $\Delta t$. In order to assess how accurately the gradient (\ref{eq:gradient}) of the objective functional is evaluated, we introduce the quantity \cite{ayala_extreme_2017,zhao_systematic_2023}. 
 \begin{equation}\label{eq:kappa}
-\kappa(\epsilon) = \frac{\epsilon^{-1}\left[ \pat(\be+\epsilon\be')-\pat(\be) \right]}{\la \nabla\pat(\be),\be' \ra}
+\kappa(\epsilon) = \frac{\epsilon^{-1}\left[ \pat(\bea+\epsilon\bepa)-\pat(\bea) \right]}{\la \nabla\pat(\bea),\bepa \ra_{G^\sigma}},
 \end{equation}
-where $\pat$ is the objective functional (\ref{eq:objective:functional}), $\be$ is the initial condition, and $\nabla\pat$ is the gradient of the objective functional (\ref{eq:gradient}). The numerator is the first order finite difference approximation of the Gateaux differential. The denominator is the Reisz form of the differential that utilizes the adjoint system (\ref{eq:Euler-Voigt:adjoint}). If the numerical approximation methods are accurate, then we expect $\kappa\approx 1$.
+where the numerator is the first-order finite difference approximation of the G\^{a}teaux differential (\ref{eq:Gateaux:differential}), and the denominator is the Reisz form (\ref{eq:Gateaux:differential:riesz}) of the differential.
 \\~\\
-A log-log plot of $|\kappa-1|$ vs $\epsilon$ can be broken up into three regions, each dominated by different error sources. These are the discretization errors, round off errors, and truncation errors. The round off errors are caused by finite precision numerical representation and so are approximately of order $O(\epsilon^{-1})$. Therefore, we expect the value of $\kappa$ to be dominated by round off errors for small $\epsilon$ values. The truncation errors are caused by using a first order finite difference formula to calculate the derivative. The truncation errors are of order $O(\epsilon)$. Therefore, we expect the value of $\kappa$ to be dominated by the truncation errors for large values of $\epsilon$. Between these two regions the value of $\kappa$ will be determined by the discretization errors in the numerical solutions, which are themselves a product of the spatial and temporal resolution. With smaller values of $\Delta x$ and $\Delta t$ causing the error to decrease. This will cause the value of $\log_{10}|kappa-1|$ to decrease as the resolution increases. Additionally, an increase in the resolution will decrease the range of $\epsilon$ over which the discretization errors dominate. Therefore, we expect the plot of $\kappa$ vs $\epsilon$ to be of the general form shown in the graph below. 
-\\~\\
-%\begin{figure}[!htbp]
-%\centering
-%\includegraphics[scale=0.8]{"../../KappaTest/KappaTheory.png"}
-%\caption{Plot showing the expected $\kappa$ behaviour for different spatial and temporal %resolution where $\delta$ represents a small arbitrary constant.}
-%\end{figure}
+A log-log plot of $|\kappa-1|$ vs $\epsilon$ can be broken up into three regions, which are dominated by roundoff errors, truncation errors, and discretization errors. The roundoff errors are caused by subtractive cancellation errors due to finite-precision arithmetics in the numerator of {\ref{eq:kappa}} and so are approximately f order $\O(\epsilon^{-1})$. Therefore, (\ref{eq:kappa}) will be dominated by round off errors for small $\epsilon$ values. The truncation errors are caused by the finite difference formula to approximate the G\^{a}teaux differential in the numerator and are of order $\O(\epsilon)$. Therefore, (\ref{eq:kappa}) will be dominated by the truncation errors for large values of $\epsilon$. Between these two regions (\ref{eq:kappa}) will be dominated by the discretization errors in the approximation of the PDEs, which depend on the spatial resolution $N$ and time step size $\Delta t$. Refining the discretization in both space and time ill reduce these errors. Therefore, if the calculation of the gradient is accurate, the log-log plot of $|\kappa-1|$ vs $\epsilon$ will be of the general form shown in Figure \ref{fig:kappa:theory}. 
 
-\noindent The following $\kappa$ test graphs were generated using a fixed spacial resolution of 128 and with varying temporal resolutions $\Delta t \in [2^{-4},2^{-12}]$. The initial conditions used are the 3D Taylor Green, 3D ABC, and 3D ABC Mixture, each with a random initial perturbation. The simulations were run for timescales of $T=1$ and $T=3$. The results are shown below.
-\\~\\
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.9]{"figures/KappaTheory2.png"}
+\caption{Schematic illustration of the log-log dependence of $\kappa(\epsilon)$ on $\epsilon$, cf. (\ref{eq:kappa}).}
+\label{fig:kappa:theory}
+\end{figure}
 
-%\begin{figure}[!h]
-%\centering
-%\includegraphics[scale=0.4]{"../../KappaTest/kappa_test_init1/t1_result.png"}
-%\includegraphics[scale=0.4]{"../../KappaTest/kappa_test_init1/t3_result.png"}
-%\end{figure}
+\noindent The quantity (\ref{eq:kappa}) was evaluated by fixing the spacial resolution at $N=512^3$, to keep the model well resolved, and varying the time step size $\Delta t \in [2^{-2},2^{-8}]$. The simulations were run for the time window of $T=5$ and $\epsilon\in [\text{1E-14}, 1]$. The values for $\alpha=8/1024$ and $\alpha=64/1024$ are shown in Figures \ref{fig:kappa:8} and \ref{fig:kappa:64}, respectively. The results from the $\kappa$ test reveal behaviour consistent with the expected behaviour illustrated in Figure \ref{fig:kappa:theory}. In particular, the values of $\kappa(\epsilon)$ obtained for intermediate values of $\epsilon$, the plateaux in the figures, approach unity as the time step is refined. Therefore, we conclude that the numerical techniques used to compute the gradient are accurate.
 
-\noindent The results from the 3D Taylor-Green $\kappa$ test show the expected behaviour from the theoretical kappa test graph. The value of kappa increases at very small and large values of epsilon. The value of kappa approaches 1 as $\Delta t$ decreases, and so the plateau region lowers and decreases in width. The T=1 time scale results follow very closely to the expected results while the T=3 time scale simulations show deviations from the the expected behaviour. These differences are due to the random initial direction of each simulation having more time to deviate from one another.
-\\~\\
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.7]{"figures/kappa_8.png"}
+\caption{Dependence of $\kappa(\epsilon)$ on $\epsilon$ for $\alpha=8/1024$. }
+\label{fig:kappa:8}
+\end{figure}
 
-%\begin{figure}[!h]
-%\centering
-%\includegraphics[scale=0.4]{"../../KappaTest/kappa_test_init2/t1_result.png"}
-%\includegraphics[scale=0.4]{"../../KappaTest/kappa_test_init2/t3_result.png"}
-%\end{figure}
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.7]{"figures/kappa_64.png"}
+\caption{Dependence of $\kappa(\epsilon)$ on $\epsilon$ for $\alpha=64/1024.$}
+\label{fig:kappa:64}
+\end{figure}
 
-The kappa test results for the 3D ABC initial condition exhibit the same lowering of kappa as the time step decreases. However, unlike the Taylor Green initial condition, the results from the 3D ABC $\kappa$ test have little to no plateau region. This indicates that the 3D ABC initial condition simulations are much more sensitive to the round off and truncation errors.
-\\~\\
+\section{Determination of the parameter defining the Gevrey space}\label{sec:sigma}
 
-%\begin{figure}[!h]
-%\centering
-%\includegraphics[scale=0.4]{"../../KappaTest/kappa_test_init3/t1_result.png"}
-%\includegraphics[scale=0.4]{"../../KappaTest/kappa_test_init3/t3_result.png"}
-%\end{figure}
+In Section \ref{sec:initial:conditions} we introduced the Gevrey space (\ref{eq:Gevrey:Class}) in which we search for optimal initial conditions. The relative 'size' of the space is determined by two parameters, $s\geq 3$ and $\sigma>0$. We use a fixed value of $s=3$. In order to determine an optimal value of $\sigma$, we solve the optimization problem for $\alpha=16/1024$, $T=5$, and different values of $\sigma = 10^{-1},...,10^{-5}$. The resulting values of the objective functional are compared in Figure \ref{fig:sigma}. 
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.7]{"figures/Sigma_2.png"}
+\caption{$\pat(\be_{\alpha,T}^{(n)})$ vs iteration number $n$ for $\alpha=16/1024$, $T=5$, and different indicated values of $\sigma$.}
+\label{fig:sigma}
+\end{figure}
 
-The results from the 3D ABC Mixture $\kappa$ test show the same expected behaviour as the 3D Taylor Green kappa test.
-\\~\\
-The three kappa test results align well with the expected theoretical result. Therefore, we conclude that the discretization and time stepping techniques used in this analysis are valid and accurate.
+\noindent The results of Figure \ref{fig:sigma} show that the number of iterations it took to reach the maximum value does change depending on the value of $\sigma$, but there was not a significant variation in the value of the objective functional. This was also the result of the tests conducted for different values of $\alpha$. These results are consistent with those of \cite{zhao_systematic_2023} which found that the optimization results did not significantly change so long as $\sigma < 10^{-1}$. Therefore, we make the same selection as in \cite{zhao_systematic_2023} and choose $\sigma = 10^{-5}$.
 
 
 \pagebreak
