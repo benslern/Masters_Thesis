@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --account=def-bprotas
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=192
+#SBATCH --ntasks-per-node=128
 #SBATCH --cpus-per-task=1
-#SBATCH --time=0-00:15
+#SBATCH --time=0-00:30
 #SBATCH --output=./results/test_solver_%j.out
-#SBATCH --job-name=R128_A48_NON
+#SBATCH --job-name=R256_A24_T3_TGV
 
 cd $SLURM_SUBMIT_DIR
 

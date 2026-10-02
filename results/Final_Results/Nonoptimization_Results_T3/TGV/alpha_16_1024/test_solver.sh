@@ -3,9 +3,9 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=128
 #SBATCH --cpus-per-task=1
-#SBATCH --time=0-00:20
+#SBATCH --time=0-00:30
 #SBATCH --output=./results/test_solver_%j.out
-#SBATCH --job-name=R128_ALPHA_64
+#SBATCH --job-name=R256_A16_T3_TGV
 
 cd $SLURM_SUBMIT_DIR
 

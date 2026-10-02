@@ -11,24 +11,24 @@ Due to MODULEPATH changes, the following have been reloaded:
  solvers; time =   3.00000000000000     
  exit normally
  stepper =            3
- execution time =   3.752155555555556E-004
+ execution time =   2.640226944444444E-003
 job 1 finished
 
-scontrol show job 1759505
-JobId=1759505 JobName=R128_A48_NON
+scontrol show job 2174301
+JobId=2174301 JobName=R256_A16_T3_TGV
    UserId=noahb(3138520) GroupId=noahb(3138520) MCS_label=N/A
-   Priority=832898 Nice=0 Account=def-bprotas QOS=normal
+   Priority=812174 Nice=0 Account=def-bprotas QOS=normal
    JobState=COMPLETING Reason=None Dependency=(null)
    Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
-   RunTime=00:01:00 TimeLimit=00:15:00 TimeMin=N/A
-   SubmitTime=2026-06-12T12:02:46 EligibleTime=2026-06-12T12:02:46
-   AccrueTime=2026-06-12T12:02:46
-   StartTime=2026-06-12T12:02:47 EndTime=2026-06-12T12:03:47 Deadline=N/A
-   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-06-12T12:02:47 Scheduler=Main
-   Partition=compute AllocNode:Sid=tri-login01:3862593
+   RunTime=00:00:34 TimeLimit=00:30:00 TimeMin=N/A
+   SubmitTime=2026-08-21T15:22:53 EligibleTime=2026-08-21T15:22:53
+   AccrueTime=2026-08-21T15:22:53
+   StartTime=2026-08-21T16:27:03 EndTime=2026-08-21T16:27:37 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-08-21T16:27:03 Scheduler=Backfill
+   Partition=compute AllocNode:Sid=tri-login02:2077506
    ReqNodeList=(null) ExcNodeList=(null)
-   NodeList=tri1223
-   BatchHost=tri1223
+   NodeList=tri0727
+   BatchHost=tri0727
    NumNodes=1 NumCPUs=192 NumTasks=192 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
    ReqTRES=cpu=192,mem=767000M,node=1,billing=192
    AllocTRES=cpu=192,mem=767000M,node=1,billing=192
@@ -36,19 +36,19 @@ JobId=1759505 JobName=R128_A48_NON
    MinCPUsNode=192 MinMemoryNode=767000M MinTmpDiskNode=0
    Features=(null) DelayBoot=00:00:00
    OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)
-   Command=/scratch/noahb/Research_V1/test_solver.sh
+   Command=/scratch/noahb/Research_V2/test_solver.sh
    SubmitLine=SBATCH --comment /opt/slurm/bin/sbatch --export=NONE --get-user-env test_solver.sh --export=NONE --get-user-env test_solver.sh
-   WorkDir=/scratch/noahb/Research_V1
+   WorkDir=/scratch/noahb/Research_V2
    Comment=/opt/slurm/bin/sbatch --export=NONE --get-user-env test_solver.sh
    StdErr=
    StdIn=/dev/null
-   StdOut=/scratch/noahb/Research_V1/./results/test_solver_1759505.out
+   StdOut=/scratch/noahb/Research_V2/./results/test_solver_2174301.out
    TresPerTask=cpu=1
 
-sacct -j 1759505
+sacct -j 2174301
 JobID           JobName    Account    Elapsed  MaxVMSize     MaxRSS  SystemCPU    UserCPU ExitCode 
 ------------ ---------- ---------- ---------- ---------- ---------- ---------- ---------- -------- 
-1759505      R128_A48_+ def-bprot+   00:01:00                         00:00:00   00:00:00      0:0 
-1759505.bat+      batch def-bprot+   00:01:00                         00:00:00   00:00:00      0:0 
-1759505.ext+     extern def-bprot+   00:01:00                         00:00:00   00:00:00      0:0 
+2174301      R256_A16_+ def-bprot+   00:00:34                         00:00:00   00:00:00      0:0 
+2174301.bat+      batch def-bprot+   00:00:34                         00:00:00   00:00:00      0:0 
+2174301.ext+     extern def-bprot+   00:00:34                         00:00:00   00:00:00      0:0 
 
